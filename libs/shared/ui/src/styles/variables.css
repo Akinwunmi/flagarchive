@@ -1,0 +1,22 @@
+:root {
+  --flag-space-2xs: 0.25rem;
+  --flag-space-xs: 0.5rem;
+  --flag-space-sm: 0.75rem;
+  --flag-space-md: 1rem;
+  --flag-space-lg: 1.25rem;
+  --flag-space-xl: 1.5rem;
+  --flag-space-2xl: 2rem;
+  --flag-space-3xl: 2.5rem;
+  --flag-space-4xl: 3rem;
+  --flag-space-5xl: 3.5rem;  
+  --flag-space-6xl: 4rem;  
+  --flag-space-7xl: 4.5rem;
+
+  --flag-radius-xs: 0.125rem;
+  --flag-radius-sm: 0.25rem;
+  --flag-radius-md: 0.375rem;
+  --flag-radius-lg: 0.5rem;
+
+  --_elevation-offset: var(--flag-space-2xs) var(--flag-space-2xs) var(--flag-space-xs);
+  --flag-elevation-xs: var(--_elevation-offset) var(--flag-black-alpha-light);
+}

@@ -1,0 +1,82 @@
+body {
+  color: var(--flag-primary);
+  font-family: var(--flag-font-family);
+}
+
+.sidebar-container.css-r1cy5n {
+  background-color: var(--flag-grey-bg);
+  color: var(--flag-primary);
+
+  div.sidebar-header.css-1be7p8e {
+    padding-left: var(--flag-space-xs);
+    padding-top: var(--flag-space-2xs);
+  }
+
+  div.search-field.css-omflal {
+    background-color: var(--flag-white);
+    height: var(--flag-space-3xl);
+  }
+
+  .sidebar-item.css-74g2xs {
+    border-radius: 0;
+    color: var(--flag-primary);
+    height: var(--flag-space-2xl);
+    margin-inline: calc(var(--flag-space-sm) * -1);
+
+    svg {
+      &.css-1e3avu6,
+      &.css-1omskcr,
+      &.css-ndobih,
+      &.css-rqpmm3,
+      &.css-9ilfw8 {
+        color: var(--flag-primary);
+      }
+    }
+
+    &:hover {
+      background-color: var(--flag-primary-200);
+      color: var(--flag-primary-700);
+
+      svg {
+        &.css-1e3avu6,
+        &.css-1omskcr,
+        &.css-ndobih,
+        &.css-rqpmm3,
+        &.css-9ilfw8 {
+          color: var(--flag-primary-700);
+        }
+      }
+    }
+
+    &[data-selected='true'] {
+      background-color: var(--flag-primary);
+      color: var(--flag-white);
+      font-weight: 500;
+
+      svg {
+        &.css-1e3avu6,
+        &.css-1omskcr,
+        &.css-ndobih,
+        &.css-rqpmm3,
+        &.css-9ilfw8 {
+          color: var(--flag-white);
+        }
+      }
+
+      &:hover {
+        background-color: var(--flag-primary-700);
+        color: var(--flag-white);
+
+        svg {
+          &.css-1e3avu6,
+          &.css-1omskcr,
+          &.css-ndobih,
+          &.css-rqpmm3,
+          &.css-9ilfw8 {
+            color: var(--flag-white);
+          }
+        }
+      }
+    }
+  }
+}
