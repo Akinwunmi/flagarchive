@@ -20,6 +20,22 @@ module.exports = [
               sourceTag: '*',
               onlyDependOnLibsWithTags: ['*'],
             },
+            {
+              sourceTag: 'type:feature',
+              onlyDependOnLibsWithTags: ['type:feature', 'type:ui'],
+            },
+            {
+              sourceTag: 'type:ui',
+              onlyDependOnLibsWithTags: ['type:ui'],
+            },
+            {
+              sourceTag: 'scope:forms',
+              onlyDependOnLibsWithTags: ['scope:forms', 'scope:shared'],
+            },
+            {
+              sourceTag: 'scope:shared',
+              onlyDependOnLibsWithTags: ['scope:shared'],
+            },
           ],
         },
       ],

@@ -8,12 +8,16 @@
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:application",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
         "outputPath": "dist/apps/flagarchive",
         "index": "apps/flagarchive/src/index.html",
         "browser": "apps/flagarchive/src/main.ts",
-        "polyfills": ["zone.js"],
+        "polyfills": [
+          "zone.js"
+        ],
         "tsConfig": "apps/flagarchive/tsconfig.app.json",
         "assets": [
           {
@@ -21,7 +25,9 @@
             "input": "apps/flagarchive/public"
           }
         ],
-        "styles": ["apps/flagarchive/src/styles.css"],
+        "styles": [
+          "apps/flagarchive/src/styles.css"
+        ],
         "scripts": []
       },
       "configurations": {
@@ -48,8 +54,17 @@
       },
       "defaultConfiguration": "production"
     },
+    "deploy": {
+      "dependsOn": [
+        "build"
+      ],
+      "command": "netlify deploy --dir=dist/apps/flagarchive "
+    },
     "serve": {
       "executor": "@angular-devkit/build-angular:dev-server",
+      "options": {
+        "port": 1991
+      },
       "configurations": {
         "production": {
           "buildTarget": "flagarchive:build:production"
@@ -71,7 +86,9 @@
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
       "options": {
         "jestConfig": "apps/flagarchive/jest.config.ts"
       }

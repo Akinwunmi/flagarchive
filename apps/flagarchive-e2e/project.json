@@ -4,7 +4,9 @@
   "projectType": "application",
   "sourceRoot": "apps/flagarchive-e2e/src",
   "tags": [],
-  "implicitDependencies": ["flagarchive"],
+  "implicitDependencies": [
+    "flagarchive"
+  ],
   "// targets": "to see all targets run: nx show project flagarchive-e2e --web",
   "targets": {}
 }
