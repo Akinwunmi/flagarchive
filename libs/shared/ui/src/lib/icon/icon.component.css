@@ -1,0 +1,5 @@
+:host {
+  display: inline-block;
+  font-size: var(--flag-space-xl);
+  user-select: none;
+}

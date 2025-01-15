@@ -1,0 +1,35 @@
+:root {
+  --flag-white: hsl(0, 0%, 100%);
+
+  --_black: 0, 0%, 7%;
+  --flag-black: hsl(var(--_black));
+
+  --flag-grey-100: hsl(235, 10%, 94%);
+  --flag-grey-200: hsl(235, 10%, 88%);
+  --flag-grey-300: hsl(235, 10%, 80%);
+  --flag-grey-400: hsl(235, 10%, 67%);
+  --flag-grey-500: hsl(235, 10%, 50%);
+  --flag-grey-600: hsl(235, 10%, 37%);
+  --flag-grey-700: hsl(235, 10%, 23%);
+
+  --flag-grey-bg: var(--flag-grey-200);
+
+  --flag-primary-100: hsl(240, 100%, 97%);
+  --flag-primary-200: hsl(240, 100%, 90%);
+  --flag-primary-500: hsl(240, 100%, 50%);
+  --flag-primary-600: hsl(240, 100%, 37%);
+  --flag-primary-700: hsl(240, 100%, 23%);
+
+  --flag-primary: var(--flag-primary-500);
+
+  --flag-color-secondary-100: hsl(36, 11%, 94%);
+  --flag-color-secondary-200: hsl(36, 11%, 89%);
+  --flag-color-secondary-300: hsl(36, 11%, 80%);
+  --flag-color-secondary-500: hsl(36, 11%, 51%);
+  --flag-color-secondary-600: hsl(36, 11%, 37%);
+  --flag-color-secondary-700: hsl(36, 11%, 23%);
+
+  --flag-color-secondary: var(--flag-color-secondary-500);
+
+  --flag-black-alpha-light: hsla(var(--_black), 0.1);
+}

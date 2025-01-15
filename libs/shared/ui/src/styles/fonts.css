@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght@20..48,400&family=Inter:wght@300;400;500;600&display=block');
+
+:root {
+  --flag-font-family: 'Inter', sans-serif;
+
+  --flag-letter-spacing-md: 0.25rem;
+
+  --flag-line-height-xs: 1.125rem;
+  --flag-line-height-sm: 1.25rem;
+  --flag-line-height-md: 1.5rem;
+  --flag-line-height-lg: 1.75rem;
+  --flag-line-height-xl: 2rem;
+
+  --flag-font-size-xs: 0.75rem;
+  --flag-font-size-sm: 1rem;
+  --flag-font-size-md: 1.25rem;
+  --flag-font-size-lg: 1.375rem;
+  --flag-font-size-xl: 1.5rem;
+
+  --flag-font-weight-regular: 400;
+  --flag-font-weight-medium: 500;
+  --flag-font-weight-bold: 600;
+}
