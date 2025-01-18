@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  selector: 'lib-card-footer',
+  selector: 'flag-card-footer',
   imports: [],
   templateUrl: './card-footer.component.html',
   styleUrl: './card-footer.component.css',

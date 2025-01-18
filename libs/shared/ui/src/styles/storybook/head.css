@@ -1,0 +1,42 @@
+.sb-bar {
+  &.css-l1e2yg,
+  &.css-1f2i9e8 {
+    box-shadow: var(--flag-white) 0 calc(var(--flag-border-width-xs) * -1) 0 0 inset;
+
+    .css-n2j2tx,
+    .css-18rvurk {
+      &:focus {
+        box-shadow: none;
+      }
+    }
+    
+    .css-n2j2tx {
+      background-color: var(--flag-secondary);
+      color: var(--flag-white);
+    
+      &:hover {
+        background-color: var(--flag-secondary-700);
+        color: var(--flag-white);
+      }
+    
+      &:active {
+        background-color: var(--flag-secondary-600);
+        color: var(--flag-white);
+      }
+    }
+    
+    .css-18rvurk {
+      color: var(--flag-secondary-700);
+    
+      &:hover {
+        background-color: var(--flag-secondary-200);
+        color: var(--flag-secondary-700);
+      }
+    
+      &:active {
+        background-color: var(--flag-secondary-100);
+        color: var(--flag-secondary-700);
+      }
+    }
+  }
+}

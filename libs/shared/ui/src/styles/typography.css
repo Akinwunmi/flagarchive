@@ -1,0 +1,6 @@
+h1 {
+  font-size: var(--flag-font-size-lg);
+  font-weight: var(--flag-font-weight-medium);
+  line-height: var(--flag-line-height-sm);
+  margin: 0;
+}

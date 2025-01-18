@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 
 @Component({
-  selector: 'lib-icon',
+  selector: 'flag-icon',
   templateUrl: './icon.component.html',
   styleUrl: './icon.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,

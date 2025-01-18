@@ -14,16 +14,14 @@ const meta: Meta<StoryArgs> = {
   title: 'Components/List Item',
   render: (args) => ({
     template: `
-      <lib-list-item [active]="active" [disabled]="disabled" [interactive]="interactive">
+      <flag-list-item [active]="active">
         {{ label }}
-      </lib-list-item>
+      </flag-list-item>
     `,
     props: args,
   }),
   args: {
-    active: false,
     disabled: false,
-    interactive: true,
     label: 'List Item',
   },
 };

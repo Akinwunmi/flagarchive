@@ -11,7 +11,7 @@ const meta: Meta<StoryArgs> = {
   component: IconComponent,
   title: 'Components/Icon',
   render: (args) => ({
-    template: '<lib-icon>{{ name }}</lib-icon>',
+    template: '<flag-icon>{{ name }}</flag-icon>',
     props: args,
   }),
   args: {
