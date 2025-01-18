@@ -1,16 +1,14 @@
-import { Route } from '@angular/router';
+import { Routes } from '@angular/router';
 
-import { NxWelcomeComponent } from './nx-welcome.component';
-
-export const appRoutes: Route[] = [
+export const APP_ROUTES: Routes = [
   {
     path: '',
-    component: NxWelcomeComponent,
-    pathMatch: 'full',
+    loadChildren: () =>
+      import('./pages/home/home.routes').then((m) => m.HOME_ROUTES),
   },
   {
-    path: 'forms',
-    loadComponent: () =>
-      import('@flagarchive/forms').then((m) => m.FormsComponent),
+    path: '**',
+    pathMatch: 'full',
+    redirectTo: '',
   },
 ];

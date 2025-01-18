@@ -1,0 +1,41 @@
+:host {
+  align-items: center;
+  background-color: var(--flag-white);
+  box-sizing: border-box;
+  color: var(--flag-primary);
+  cursor: pointer;
+  display: grid;
+  font-family: var(--flag-font-family);
+  font-size: var(--flag-font-size-sm);
+  gap: var(--flag-space-xs);
+  grid-template-columns: auto 1fr auto;
+  line-height: var(--flag-line-height-md);
+  min-height: var(--flag-space-4xl);
+  padding: var(--flag-space-sm);
+  transition: (
+    color 150ms ease-in-out,
+    background-color 150ms ease-in-out,
+  );
+  width: 100%;
+
+  &:hover {
+    background-color: var(--flag-primary-200);
+    color: var(--flag-primary-700);
+  }
+
+  &:active,
+  &.active {
+    background-color: var(--flag-primary-100);
+    color: var(--flag-primary-600);
+  }
+
+  &.disabled {
+    background-color: var(--flag-grey-300);
+    color: var(--flag-grey-500);
+    pointer-events: none;
+  }
+
+  &:not(.interactive) {
+    pointer-events: none;
+  }
+}

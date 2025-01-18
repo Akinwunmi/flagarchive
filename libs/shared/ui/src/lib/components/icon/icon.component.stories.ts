@@ -9,7 +9,7 @@ type StoryArgs = IconComponent & { name: string };
 const meta: Meta<StoryArgs> = {
   tags: ['autodocs'],
   component: IconComponent,
-  title: 'Icon',
+  title: 'Components/Icon',
   render: (args) => ({
     template: '<lib-icon>{{ name }}</lib-icon>',
     props: args,

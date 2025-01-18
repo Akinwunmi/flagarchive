@@ -9,7 +9,6 @@ import {
 
 @Component({
   selector: 'lib-icon',
-  imports: [],
   templateUrl: './icon.component.html',
   styleUrl: './icon.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,

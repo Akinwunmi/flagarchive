@@ -1,4 +1,5 @@
 :host {
+  color: var(--flag-primary);
   display: grid;
   font-size: var(--flag-font-size-md);
   font-weight: var(--flag-font-weight-bold);

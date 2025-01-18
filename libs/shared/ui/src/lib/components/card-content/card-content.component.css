@@ -1,4 +1,5 @@
 :host {
+  color: var(--flag-primary);
   display: grid;
   padding: 0 var(--flag-space-lg) var(--flag-space-lg);
 }

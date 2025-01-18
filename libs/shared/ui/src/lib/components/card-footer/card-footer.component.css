@@ -1,4 +1,5 @@
 :host {
+  color: var(--flag-primary);
   display: flex;
   gap: var(--flag-space-md);
   justify-content: flex-end;

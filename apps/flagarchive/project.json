@@ -26,6 +26,7 @@
           }
         ],
         "styles": [
+          "libs/shared/ui/src/styles/index.css",
           "apps/flagarchive/src/styles.css"
         ],
         "scripts": []

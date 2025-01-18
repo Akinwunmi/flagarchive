@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/angular';
-import { within } from '@storybook/testing-library';
 import { expect } from '@storybook/jest';
+import { within } from '@storybook/testing-library';
 
 import { CardContentComponent } from '../card-content/card-content.component';
 import { CardFooterComponent } from '../card-footer/card-footer.component';
@@ -20,7 +20,7 @@ type StoryArgs = CardComponent & {
 const meta: Meta<StoryArgs> = {
   tags: ['autodocs'],
   component: CardComponent,
-  title: 'Card',
+  title: 'Components/Card',
   render: (args) => {
     const header = '<lib-card-header>{{ headerTitle }}</lib-card-header>';
     const content = '<lib-card-content>{{ content }}</lib-card-content>';
@@ -81,9 +81,10 @@ type Story = StoryObj<StoryArgs>;
  */
 
 export const Default: Story = {
-  args: {},
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    expect(canvas.getByText(/card works!/gi)).toBeTruthy();
+    expect(canvas.getByText(/Comoros/gi)).toBeTruthy();
+    expect(canvas.getByText(/Part of Africa/gi)).toBeTruthy();
+    expect(canvas.getAllByRole('button')).toHaveLength(2);
   },
 };

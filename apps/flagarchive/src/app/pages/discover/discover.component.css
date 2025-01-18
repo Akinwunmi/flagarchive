@@ -1,0 +1,66 @@
+:host {
+  --advanced-search-height: 4rem;
+  --navigation-height: 4.5rem;
+
+  height: 100%;
+
+  @media screen and (min-width: 40rem) {
+    --advanced-search-height: 4.5rem;
+  }
+}
+
+.navigation {
+  background-color: var(--flag-color-grey-200);
+  border-block-end: 1px solid var(--flag-color-white);
+  display: grid;
+  gap: var(--flag-space-lg);
+  height: var(--navigation-height);
+  position: fixed;
+  inset-block: calc(var(--app-header-height) + var(--advanced-search-height) - var(--flag-space-md)) 0;
+  width: 100%;
+  z-index: 2;
+
+  flag-skeleton {
+    height: 100%;
+  }
+
+  @media screen and (min-width: 40rem) {
+    border-block-end: none;
+    border-inline-end: 1px solid var(--flag-color-white);
+    height: auto;
+    inset-block: var(--app-header-height) 0;
+    width: var(--app-navigation-width);
+  }
+}
+
+app-advanced-search {
+  background-color: var(--flag-color-grey-200);
+  border-block-end: 1px solid var(--flag-color-white);
+  height: var(--advanced-search-height);
+  inset-inline: 0;
+  padding-inline: var(--app-horizontal-padding);
+  position: fixed;
+  top: var(--app-header-height);
+  z-index: 1;
+
+  @media screen and (min-width: 40rem) {
+    inset-inline-start: var(--app-navigation-width);
+  }
+}
+
+.content {
+  display: grid;
+  grid-template-rows: 1fr var(--app-footer-height);
+  min-height: calc(100svh - var(--app-header-height) - var(--advanced-search-height));
+  padding-left: 0;
+  padding-top: calc(var(--advanced-search-height) + var(--navigation-height));
+
+  router-outlet {
+    display: none;
+  }
+
+  @media screen and (min-width: 40rem) {
+    padding-left: var(--app-navigation-width);
+    padding-top: var(--advanced-search-height);
+  }
+}
