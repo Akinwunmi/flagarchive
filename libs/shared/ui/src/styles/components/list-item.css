@@ -14,10 +14,8 @@
   min-height: var(--flag-space-4xl);
   padding-inline: var(--flag-space-sm);
   text-decoration: none;
-  transition: (
-    color 150ms ease-in-out,
-    background-color 150ms ease-in-out,
-  );
+  transition: background-color 150ms ease-in-out;
+  transition-property: background-color, color;
   width: 100%;
 
   &:hover {
@@ -31,8 +29,22 @@
     color: var(--flag-primary-600);
   }
 
+  &[secondary] {
+    background-color: var(--flag-secondary-100);
+    color: var(--flag-secondary-700);
+
+    &:hover {
+      background-color: var(--flag-secondary-300);
+    }
+
+    &:active,
+    &[active] {
+      background-color: var(--flag-secondary-200);
+    }
+  }
+
   &.disabled {
-    background-color: var(--flag-grey-300);
+    background-color: var(--flag-grey-100);
     color: var(--flag-grey-500);
     pointer-events: none;
   }

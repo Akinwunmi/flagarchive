@@ -47,7 +47,8 @@
         "browserTarget": "ui:build-storybook",
         "compodoc": false,
         "styles": [
-          "libs/shared/ui/src/styles/index.css"
+          "libs/shared/ui/src/styles/index.css",
+          "libs/shared/ui/src/styles/storybook/preview.css"
         ]
       },
       "configurations": {

@@ -1,0 +1,36 @@
+div.css-11xgcgt,
+div.css-111a2cx {
+  background-color: transparent;
+
+  button {
+    background-color: var(--flag-secondary-100);
+    border: none;
+    border-radius: var(--flag-radius-sm);
+    color: var(--flag-secondary-700);
+    margin: var(--flag-space-xs);
+
+    &:hover {
+      background-color: var(--flag-secondary-300);
+    }
+
+    &:active {
+      background-color: var(--flag-secondary-200);
+    }
+
+    &:focus {
+      box-shadow: none;
+    }
+  }
+}
+
+div.css-1xrl4hz {
+  background-color: var(--flag-primary);
+
+  div.css-8ycahn {
+    * {
+      .token {
+        color: var(--flag-white);
+      }
+    }
+  }
+}

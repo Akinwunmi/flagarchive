@@ -43,6 +43,7 @@ const meta: Meta<StoryArgs> = {
           CardHeaderComponent,
         ],
       },
+      props: args,
       styles: [
         `
           flag-card {
@@ -57,7 +58,6 @@ const meta: Meta<StoryArgs> = {
           ${args.showFooter ? footer : ''}
         </flag-card>
       `,
-      props: args,
     };
   },
   args: {

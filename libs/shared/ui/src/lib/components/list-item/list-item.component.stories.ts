@@ -13,12 +13,12 @@ const meta: Meta<StoryArgs> = {
   component: ListItemComponent,
   title: 'Components/List Item',
   render: (args) => ({
+    props: args,
     template: `
-      <flag-list-item [active]="active">
+      <flag-list-item [disabled]="disabled">
         {{ label }}
       </flag-list-item>
     `,
-    props: args,
   }),
   args: {
     disabled: false,

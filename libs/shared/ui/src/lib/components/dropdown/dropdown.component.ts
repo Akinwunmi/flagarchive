@@ -1,0 +1,32 @@
+import {
+  ChangeDetectionStrategy,
+  Component,
+  input,
+  model,
+} from '@angular/core';
+
+import { DropdownTriggerDirective } from '../../directives';
+import { CardComponent } from '../card/card.component';
+import { IconComponent } from '../icon/icon.component';
+import { ListComponent } from '../list/list.component';
+
+@Component({
+  selector: 'flag-dropdown',
+  templateUrl: './dropdown.component.html',
+  styleUrl: './dropdown.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [
+    DropdownTriggerDirective,
+    CardComponent,
+    IconComponent,
+    ListComponent,
+  ],
+})
+export class DropdownComponent {
+  label = input.required();
+  icon = input();
+  hideChevron = input(false);
+  secondary = input(false);
+
+  isOpen = model(false);
+}

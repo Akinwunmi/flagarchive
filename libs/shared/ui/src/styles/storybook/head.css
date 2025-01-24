@@ -1,7 +1,7 @@
 .sb-bar {
   &.css-l1e2yg,
   &.css-1f2i9e8 {
-    box-shadow: var(--flag-white) 0 calc(var(--flag-border-width-xs) * -1) 0 0 inset;
+    box-shadow: var(--flag-grey-100) 0 calc(var(--flag-border-width-sm) * -1) 0 0 inset;
 
     .css-n2j2tx,
     .css-18rvurk {

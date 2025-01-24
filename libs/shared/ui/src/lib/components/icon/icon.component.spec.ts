@@ -2,15 +2,14 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { IconComponent } from './icon.component';
 
-describe('IconComponent', () => {
+describe(IconComponent.name, () => {
   let component: IconComponent;
   let fixture: ComponentFixture<IconComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [IconComponent]
-    })
-    .compileComponents();
+      imports: [IconComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(IconComponent);
     component = fixture.componentInstance;

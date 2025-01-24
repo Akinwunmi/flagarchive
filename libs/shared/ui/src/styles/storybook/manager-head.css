@@ -1,4 +1,5 @@
-.sb-bar.css-1f2i9e8 {
+.sb-bar.css-1f2i9e8,
+.sb-bar.css-1yedr2a {
   background-color: var(--flag-grey-bg);
   color: var(--flag-primary);
 }
@@ -11,7 +12,8 @@ div.css-lf8gv9 {
   }
 }
 
-.sidebar-container.css-r1cy5n {
+.sidebar-container.css-r1cy5n,
+.sidebar-container.css-1ybqm8n {
   background-color: var(--flag-grey-bg);
   color: var(--flag-primary);
 
@@ -24,12 +26,14 @@ div.css-lf8gv9 {
     }
   }
 
-  div.search-field.css-omflal {
+  div.search-field.css-omflal,
+  div.search-field.css-5wj62b {
     background-color: var(--flag-white);
     height: var(--flag-space-3xl);
   }
 
-  .sidebar-item.css-ld0a14 {
+  .sidebar-item.css-ld0a14,
+  .sidebar-item.css-qyeqia {
     border-radius: var(--flag-radius-sm);
     color: var(--flag-primary);
 

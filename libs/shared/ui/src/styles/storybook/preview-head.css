@@ -2,9 +2,34 @@ div.css-k7lbue {
   background-color: var(--flag-grey-bg);
   font-size: var(--flag-base-font-size);
 
-  .sb-bar.css-l1e2yg {
-    background-color: var(--flag-grey-bg);
-    color: var(--flag-primary);
+  div.css-hd7ysc {
+    border: none;
+    border-radius: var(--flag-radius-lg);
+    box-shadow: var(--flag-elevation-xs);
+
+    .sb-bar.css-l1e2yg {
+      background-color: var(--flag-grey-bg);
+      color: var(--flag-primary);
+    }
+  }
+
+  div.css-14m39zm {
+    border: none;
+    border-radius: var(--flag-radius-lg);
+    box-shadow: var(--flag-elevation-xs);
+
+    table.css-v2ifgj {
+      tbody {
+        filter: none;
+        
+        > tr {
+          > * {
+            background-color: var(--flag-grey-200);
+            border: none;
+          }
+        }
+      }
+    }
   }
   
   h1.css-11knh3z,
@@ -24,4 +49,10 @@ div.css-k7lbue {
   .css-qa4clq :where(li:not(.sb-anchor, .sb-unstyled, .sb-unstyled li)) {
     font-size: var(--flag-font-size-sm);
   }
+}
+
+span.css-o1d7ko {
+  background-color: var(--flag-secondary-100);
+  border-radius: var(--flag-radius-md);
+  color: var(--flag-secondary-600);
 }

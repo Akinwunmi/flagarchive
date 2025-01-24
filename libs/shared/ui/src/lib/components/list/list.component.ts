@@ -5,5 +5,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   templateUrl: './list.component.html',
   styleUrl: './list.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    role: 'list',
+  },
 })
 export class ListComponent {}
