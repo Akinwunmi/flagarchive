@@ -22,14 +22,29 @@
 
   --flag-primary: var(--flag-primary-500);
 
-  --flag-color-secondary-100: hsl(36, 11%, 94%);
-  --flag-color-secondary-200: hsl(36, 11%, 89%);
-  --flag-color-secondary-300: hsl(36, 11%, 80%);
-  --flag-color-secondary-500: hsl(36, 11%, 51%);
-  --flag-color-secondary-600: hsl(36, 11%, 37%);
-  --flag-color-secondary-700: hsl(36, 11%, 23%);
+  --flag-secondary-100: hsl(36, 11%, 94%);
+  --flag-secondary-200: hsl(36, 11%, 89%);
+  --flag-secondary-300: hsl(36, 11%, 80%);
+  --flag-secondary-500: hsl(36, 11%, 51%);
+  --flag-secondary-600: hsl(36, 11%, 37%);
+  --flag-secondary-700: hsl(36, 11%, 23%);
 
-  --flag-color-secondary: var(--flag-color-secondary-500);
+  --flag-secondary: var(--flag-secondary-500);
+
+  --flag-success-100: hsl(150, 70%, 97%);
+  --flag-success-500: hsl(150, 70%, 51%);
+  --flag-success-600: hsl(150, 70%, 44%);
+  --flag-success-700: hsl(150, 70%, 37%);
+
+  --flag-warning-100: hsl(39, 100%, 97%);
+  --flag-warning-500: hsl(39, 100%, 51%);
+  --flag-warning-600: hsl(39, 100%, 44%);
+  --flag-warning-700: hsl(39, 100%, 37%);
+
+  --flag-error-100: hsl(354, 100%, 97%);
+  --flag-error-500: hsl(354, 100%, 51%);
+  --flag-error-600: hsl(354, 100%, 44%);
+  --flag-error-700: hsl(354, 100%, 37%);
 
   --flag-black-alpha-light: hsla(var(--_black), 0.1);
 }

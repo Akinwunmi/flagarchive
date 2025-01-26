@@ -17,6 +17,9 @@
   --flag-radius-md: 0.375rem;
   --flag-radius-lg: 0.5rem;
 
+  --flag-border-width-xs: 0.0625rem;
+  --flag-border-width-sm: 0.125rem;
+
   --_elevation-offset: var(--flag-space-2xs) var(--flag-space-2xs) var(--flag-space-xs);
   --flag-elevation-xs: var(--_elevation-offset) var(--flag-black-alpha-light);
 }

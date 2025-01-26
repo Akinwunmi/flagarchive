@@ -3,6 +3,8 @@
 :root {
   --flag-font-family: 'Inter', sans-serif;
 
+  --flag-base-font-size: 16px;
+
   --flag-letter-spacing-md: 0.25rem;
 
   --flag-line-height-xs: 1.125rem;

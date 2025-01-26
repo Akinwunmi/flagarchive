@@ -1,0 +1,23 @@
+<button
+  flag-button
+  type="button"
+  [attr.secondary]="secondary() || undefined"
+  [flagDropdownTrigger]="dropdown"
+  [(isOpen)]="isOpen"
+>
+  @if (icon(); as icon) {
+    <flag-icon>{{ icon }}</flag-icon>
+  }
+  {{ label() }}
+  @if (!hideChevron()) {
+    <flag-icon [class.rotated]="isOpen()">keyboard_arrow_down</flag-icon>
+  }
+</button>
+
+<ng-template #dropdown>
+  <flag-card>
+    <flag-list>
+      <ng-content />
+    </flag-list>
+  </flag-card>
+</ng-template>

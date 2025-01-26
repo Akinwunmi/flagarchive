@@ -1,6 +1,0 @@
-:host {
-  display: flex;
-  gap: var(--flag-space-md);
-  justify-content: flex-end;
-  padding: 0 var(--flag-space-lg) var(--flag-space-lg);
-}

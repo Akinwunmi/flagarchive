@@ -1,0 +1,9 @@
+[flag-button] {
+  flag-icon {
+    transition: transform 150ms ease-in-out;
+
+    &.rotated {
+      transform: rotate(180deg);
+    }
+  }
+}

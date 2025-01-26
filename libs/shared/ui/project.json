@@ -48,7 +48,7 @@
         "compodoc": false,
         "styles": [
           "libs/shared/ui/src/styles/index.css",
-          "libs/shared/ui/src/styles/storybook-overrides.css"
+          "libs/shared/ui/src/styles/storybook/preview.css"
         ]
       },
       "configurations": {

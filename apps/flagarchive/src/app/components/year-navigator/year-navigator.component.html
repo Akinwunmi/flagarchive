@@ -1,0 +1,43 @@
+@let MAX_SELECTED_YEAR = max() === selectedYear();
+@let MIN_SELECTED_YEAR = min() === selectedYear();
+
+<p>Timeline</p>
+<button flag-button secondary [disabled]="MIN_SELECTED_YEAR" (click)="previous()">
+  <flag-icon>keyboard_arrow_left</flag-icon>
+</button>
+<button
+  flag-button
+  secondary
+  class="year-button"
+  [flagDropdownTrigger]="dropdown"
+  [isOpen]="dropdownIsOpen"
+  [class.pulse]="isPlaying()"
+  (click)="setDropdownState()"
+  (keyup)="setDropdownState()"
+>
+  {{ selectedYear() }}
+</button>
+<button flag-button secondary [disabled]="MAX_SELECTED_YEAR" (click)="next()">
+  <flag-icon>keyboard_arrow_right</flag-icon>
+</button>
+
+<div class="play">
+  <button flag-button secondary [disabled]="MIN_SELECTED_YEAR || isPlaying()" (click)="play(true)">
+    <flag-icon>arrow_back_2</flag-icon>
+  </button>
+  <button flag-button secondary [disabled]="!isPlaying()" (click)="stop()">
+    <flag-icon>pause</flag-icon>
+  </button>
+  <button flag-button secondary [disabled]="MAX_SELECTED_YEAR || isPlaying()" (click)="play()">
+    <flag-icon>play_arrow</flag-icon>
+  </button>
+</div>
+
+<ng-template #dropdown>
+  <flag-year-picker
+    [min]="min()"
+    [max]="max()"
+    [selected]="selectedYear()"
+    (selectedChange)="setSelectedYear($event)"
+  />
+</ng-template>
