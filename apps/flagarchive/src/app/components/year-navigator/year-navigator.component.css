@@ -1,0 +1,52 @@
+:host {
+  align-items: center;
+  color: var(--flag-secondary-700);
+  display: flex;
+  gap: var(--flag-space-2xs);
+}
+
+p {
+  display: none;
+  margin-inline-end: var(--flag-space-sm);
+
+  @media screen and (min-width: 60rem) {
+    display: block;
+  }
+}
+
+.year-button {
+  transition: font-weight 250ms ease-in-out;
+  width: 4rem;
+
+  &.pulse {
+    animation: pulse 3s infinite;
+    background-color: var(--flag-primary-100);
+    font-weight: 600;
+    outline: 2px solid transparent;
+  }
+}
+
+.play {
+  align-items: center;
+  display: flex;
+  gap: var(--flag-space-2xs);
+  margin-inline-start: var(--flag-space-sm);
+
+  p {
+    padding-inline: var(--flag-space-sm);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    outline-color: transparent;
+  }
+
+  65% {
+    outline-color: var(--flag-primary);
+  }
+
+  100% {
+    outline-color: transparent;
+  }
+}

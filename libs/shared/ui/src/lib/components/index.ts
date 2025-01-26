@@ -6,3 +6,4 @@ export * from './icon/icon.component';
 export * from './list/list.component';
 export * from './list-item/list-item.component';
 export * from './pill/pill.component';
+export * from './year-picker/year-picker.component';

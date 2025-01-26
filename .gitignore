@@ -45,3 +45,7 @@ Thumbs.db
 
 
 storybook-static
+# Firebase
+.firebase
+*-debug.log
+.runtimeconfig.json
