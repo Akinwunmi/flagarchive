@@ -12,12 +12,14 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Meta } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 
+import { EntityComponent } from '../../components';
 import { Entity, Layout, RouteIndex } from '../../models';
 import { AdvancedSearchStore, EntitiesStore } from '../../state';
 import { getActiveRange } from '../../utils';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [EntityComponent],
   selector: 'app-entity-list',
   styleUrl: './entity-list.component.css',
   templateUrl: './entity-list.component.html',

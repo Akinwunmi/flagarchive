@@ -1,7 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
+import { provideAuth, getAuth } from '@angular/fire/auth';
+import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { RouterModule } from '@angular/router';
+import {
+  TranslateFakeLoader,
+  TranslateLoader,
+  TranslateModule,
+} from '@ngx-translate/core';
 
 import { AppComponent } from './app.component';
+import { FIREBASE_CONFIG } from './firebase.config';
 
 describe(AppComponent.name, () => {
   let app: AppComponent;
@@ -9,7 +18,21 @@ describe(AppComponent.name, () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AppComponent, RouterModule.forRoot([])],
+      imports: [
+        AppComponent,
+        RouterModule.forRoot([]),
+        TranslateModule.forRoot({
+          loader: {
+            provide: TranslateLoader,
+            useClass: TranslateFakeLoader,
+          },
+        }),
+      ],
+      providers: [
+        provideAuth(() => getAuth()),
+        provideFirebaseApp(() => initializeApp(FIREBASE_CONFIG)),
+        provideFirestore(() => getFirestore()),
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(AppComponent);

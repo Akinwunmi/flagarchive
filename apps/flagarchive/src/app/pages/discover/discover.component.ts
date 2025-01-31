@@ -6,7 +6,12 @@ import {
 } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
-import { AdvancedSearchComponent, AppFooterComponent } from '../../components';
+import {
+  AdvancedSearchComponent,
+  AppFooterComponent,
+  MainNavigationComponent,
+} from '../../components';
+import { TranslationKeyPipe } from '../../pipes';
 import { EntitiesStore } from '../../state';
 
 @Component({
@@ -14,10 +19,10 @@ import { EntitiesStore } from '../../state';
   imports: [
     AdvancedSearchComponent,
     AppFooterComponent,
-    // SkeletonComponent,
-    // MainNavigationComponent,
+    MainNavigationComponent,
     RouterOutlet,
   ],
+  providers: [TranslationKeyPipe],
   selector: 'app-discover',
   styleUrl: './discover.component.css',
   templateUrl: './discover.component.html',
@@ -25,11 +30,7 @@ import { EntitiesStore } from '../../state';
 export class DiscoverComponent implements OnInit {
   readonly #entitiesStore = inject(EntitiesStore);
 
-  mainEntities = this.#entitiesStore.main;
-  selected = this.#entitiesStore.selected;
-
   ngOnInit() {
-    console.log('discover');
     this.#entitiesStore.getMainEntities();
   }
 }

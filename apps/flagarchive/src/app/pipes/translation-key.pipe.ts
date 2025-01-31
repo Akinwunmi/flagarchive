@@ -2,7 +2,6 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
   name: 'translationKey',
-  standalone: true
 })
 export class TranslationKeyPipe implements PipeTransform {
   public transform(prefix: string, key?: string): string {
@@ -10,6 +9,8 @@ export class TranslationKeyPipe implements PipeTransform {
       return '\u2014';
     }
 
-    return `${prefix}.${key.replace(/[ -]/g, '_').replace(/\//g, '.')}`.toUpperCase();
+    return `${prefix}.${key
+      .replace(/[ -]/g, '_')
+      .replace(/\//g, '.')}`.toUpperCase();
   }
 }

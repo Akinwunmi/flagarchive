@@ -1,0 +1,24 @@
+:host {
+  align-items: center;
+  display: flex;
+  gap: var(--flag-space-xs);
+  grid-column: 1 / -1;
+  padding: var(--flag-space-lg) var(--app-horizontal-padding);
+
+  > flag-icon {
+    color: var(--flag-color-grey-500);
+
+    &:last-of-type {
+      display: none;
+    }
+  }
+
+  app-flag-image {
+    height: var(--flag-size-lg);
+  }
+
+  @media (min-width: 40rem) {
+    display: none;
+    padding: 0;
+  }
+}

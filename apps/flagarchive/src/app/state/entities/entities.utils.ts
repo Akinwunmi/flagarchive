@@ -2,36 +2,44 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { Entity, EntityRange } from '../../models';
 import { sortBy } from '../../utils';
-import { AdvancedSearchStore } from '../advanced-search';
+import { AdvancedSearchStore } from '../advanced-search/advanced-search.store';
 
 export function setFilteredEntities(
   entities: Entity[],
   advancedSearchStore: InstanceType<typeof AdvancedSearchStore>,
-  translateService?: TranslateService,
+  translateService?: TranslateService
 ): Entity[] {
-  const filteredEntities = entities.filter(entity => isEntityInRange(entity, advancedSearchStore));
+  const filteredEntities = entities.filter((entity) =>
+    isEntityInRange(entity, advancedSearchStore)
+  );
   return sortBy<Entity, 'translationKey'>(
-    filteredEntities.map(entity => setEntityByActiveRange(entity, advancedSearchStore)),
+    filteredEntities.map((entity) =>
+      setEntityByActiveRange(entity, advancedSearchStore)
+    ),
     'translationKey',
     advancedSearchStore.sortDirection(),
-    translateService,
+    translateService
   );
 }
 
 export function setYears(
   entities: Entity[],
   parentEntity: Entity,
-  advancedSearchStore: InstanceType<typeof AdvancedSearchStore>,
+  advancedSearchStore: InstanceType<typeof AdvancedSearchStore>
 ) {
   const currentYear = new Date().getFullYear();
-  const entityRanges = entities.map(entity => entity.ranges);
+  const entityRanges = entities.map((entity) => entity.ranges);
   const selectedYear = advancedSearchStore.selectedYear;
   let maxYear = currentYear;
   let minYear = currentYear;
 
   if (entityRanges.length) {
-    maxYear = Math.max(...entityRanges.map(ranges => getLastYear(currentYear, ranges)));
-    minYear = Math.min(...entityRanges.map(ranges => getFirstYear(maxYear, ranges)));
+    maxYear = Math.max(
+      ...entityRanges.map((ranges) => getLastYear(currentYear, ranges))
+    );
+    minYear = Math.min(
+      ...entityRanges.map((ranges) => getFirstYear(maxYear, ranges))
+    );
   }
 
   if (maxYear === currentYear && minYear === currentYear) {
@@ -61,7 +69,7 @@ function getFirstYear(defaultYear: number, ranges?: EntityRange[]): number {
 
 function isEntityInRange(
   entity: Entity,
-  advancedSearchStore: InstanceType<typeof AdvancedSearchStore>,
+  advancedSearchStore: InstanceType<typeof AdvancedSearchStore>
 ): boolean {
   const maxYear = advancedSearchStore.maxYear;
   const selectedYear = advancedSearchStore.selectedYear;
@@ -70,7 +78,7 @@ function isEntityInRange(
     return true;
   }
 
-  return entity.ranges.some(range => {
+  return entity.ranges.some((range) => {
     const start = range.start;
     const end = range.end ?? maxYear();
 
@@ -80,14 +88,14 @@ function isEntityInRange(
 
 function setEntityByActiveRange(
   entity: Entity,
-  advancedSearchStore: InstanceType<typeof AdvancedSearchStore>,
+  advancedSearchStore: InstanceType<typeof AdvancedSearchStore>
 ): Entity {
   if (!entity.ranges) {
     return entity;
   }
 
   const selectedYear = advancedSearchStore.selectedYear;
-  const activeRange = entity.ranges.find(range => {
+  const activeRange = entity.ranges.find((range) => {
     const end = range.end ?? Infinity; // Treat open-ended ranges as infinite
     return selectedYear() >= range.start && selectedYear() <= end;
   });

@@ -10,8 +10,8 @@
 }
 
 .navigation {
-  background-color: var(--flag-color-grey-200);
-  border-block-end: 1px solid var(--flag-color-white);
+  background-color: var(--flag-grey-200);
+  border-block-end: 1px solid var(--flag-white);
   display: grid;
   gap: var(--flag-space-lg);
   height: var(--navigation-height);
@@ -20,13 +20,9 @@
   width: 100%;
   z-index: 2;
 
-  flag-skeleton {
-    height: 100%;
-  }
-
   @media screen and (min-width: 40rem) {
     border-block-end: none;
-    border-inline-end: 1px solid var(--flag-color-white);
+    border-inline-end: 1px solid var(--flag-white);
     height: auto;
     inset-block: var(--app-header-height) 0;
     width: var(--app-navigation-width);
@@ -34,8 +30,8 @@
 }
 
 app-advanced-search {
-  background-color: var(--flag-color-grey-200);
-  border-block-end: 1px solid var(--flag-color-white);
+  background-color: var(--flag-grey-200);
+  border-block-end: 1px solid var(--flag-white);
   height: var(--advanced-search-height);
   inset-inline: 0;
   padding-inline: var(--app-horizontal-padding);

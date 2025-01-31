@@ -1,0 +1,38 @@
+:host {
+  background-color: var(--flag-grey-200);
+  border-bottom: var(--flag-border-width-xs) solid var(--flag-white);
+  box-sizing: border-box;
+  display: grid;
+  gap: var(--flag-space-sm);
+  padding: var(--flag-space-xs) var(--app-horizontal-padding) var(--flag-space-xs);
+}
+
+header {
+  align-items: center;
+  display: flex;
+  gap: var(--flag-space-sm);
+  height: var(--flag-space-3xl);
+  justify-content: space-between;
+  
+  .title {
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    gap: var(--flag-space-xs);
+    text-transform: uppercase;
+  
+    img {
+      width: var(--flag-space-lg);
+    }
+  
+    flag-pill {
+      text-transform: initial;
+    }
+  }
+}
+
+.menu-list {
+  display: flex;
+  gap: var(--flag-space-xs);
+  justify-content: flex-end;
+}

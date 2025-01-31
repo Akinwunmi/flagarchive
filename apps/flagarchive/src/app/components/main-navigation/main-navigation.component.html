@@ -1,0 +1,38 @@
+@let CONTINENTS_TRANSLATION = 'DISCOVER.CONTINENTS' | translate;
+@let ORGANIZATIONS_TRANSLATION = 'DISCOVER.ORGANIZATIONS' | translate;
+
+<app-breadcrumb [items]="breadcrumbItems()" />
+<ng-container
+  *ngTemplateOutlet="
+    entitiesTemplate;
+    context: {
+      $implicit: continents(),
+      title: CONTINENTS_TRANSLATION,
+    }
+  "
+/>
+<ng-container
+  *ngTemplateOutlet="
+    entitiesTemplate;
+    context: {
+      $implicit: organizations(),
+      title: ORGANIZATIONS_TRANSLATION,
+    }
+  "
+/>
+
+<ng-template #entitiesTemplate let-entities let-title="title">
+  <section>
+    <h2>{{ title }}</h2>
+    @for (entity of entities; track entity.id) {
+      <button
+        flag-button
+        [attr.ghost]="entity.id !== selectedMainEntityId() || undefined"
+        (click)="selectMainEntity(entity.id)"
+        (keydown)="selectMainEntity(entity.id, $event)"
+      >
+        {{ 'ENTITIES' | translationKey: entity.translationKey | translate }}
+      </button>
+    }
+  </section>
+</ng-template>

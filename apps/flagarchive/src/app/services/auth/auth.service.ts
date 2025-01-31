@@ -4,7 +4,6 @@ import {
   Auth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  signOut,
   updateProfile,
   User,
   user,
@@ -52,10 +51,9 @@ export class AuthService {
     return from(promise);
   }
 
-  logOut(): Observable<void> {
-    const promise = signOut(this.#firebaseAuth);
+  logOut() {
     this.#userService.favorites.set([]);
     this.#userService.roles.set([]);
-    return from(promise);
+    this.#firebaseAuth.signOut();
   }
 }

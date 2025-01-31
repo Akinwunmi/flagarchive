@@ -1,0 +1,23 @@
+:host {
+  background-color: var(--flag-color-grey-300);
+  display: block;
+  height: 100%;
+  width: 100%;
+
+  &.soft {
+    border-radius: var(--flag-radius-sm);
+  }
+  
+  &.loading {
+    animation: 1200ms ease-in-out infinite alternate pulsate;
+  }
+}
+
+@keyframes pulsate {
+  from {
+    background-color: var(--flag-color-grey-200);
+  }
+  to {
+    background-color: var(--flag-color-grey-300);
+  }
+}
