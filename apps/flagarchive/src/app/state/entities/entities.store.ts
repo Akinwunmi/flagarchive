@@ -1,14 +1,20 @@
 import { computed, inject } from '@angular/core';
 import { tapResponse } from '@ngrx/operators';
-import { patchState, signalStore, withComputed, withMethods, withState } from '@ngrx/signals';
+import {
+  patchState,
+  signalStore,
+  withComputed,
+  withMethods,
+  withState,
+} from '@ngrx/signals';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { pipe, switchMap, tap } from 'rxjs';
 
 import { Entity, EntityFlagRange, EntityRange, EntityType } from '../../models';
 import { EntityService } from '../../services';
 import { getActiveRange } from '../../utils';
-import { AdvancedSearchStore } from '../advanced-search';
-import { ErrorsStore } from '../errors';
+import { AdvancedSearchStore } from '../advanced-search/advanced-search.store';
+import { ErrorsStore } from '../errors/errors.store';
 import { initialState } from '../state';
 
 import { setFilteredEntities, setYears } from './entities.utils';
@@ -21,10 +27,14 @@ export const EntitiesStore = signalStore(
     (
       store,
       advancedSearchStore = inject(AdvancedSearchStore),
-      translateService = inject(TranslateService),
+      translateService = inject(TranslateService)
     ) => ({
       filteredEntities: computed(() =>
-        setFilteredEntities(store.current(), advancedSearchStore, translateService),
+        setFilteredEntities(
+          store.current(),
+          advancedSearchStore,
+          translateService
+        )
       ),
       selected: computed(() => {
         const entity = store.foundEntity();
@@ -33,24 +43,32 @@ export const EntitiesStore = signalStore(
         const selectedYear = advancedSearchStore.selectedYear();
 
         return {
-          entity: setFilteredEntities(entity ? [entity] : [], advancedSearchStore)[0] ?? undefined,
+          entity:
+            setFilteredEntities(
+              entity ? [entity] : [],
+              advancedSearchStore
+            )[0] ?? undefined,
           flag: entity?.flags?.[flagCategory],
-          flagRange: getActiveRange(selectedYear, flagRanges) as EntityFlagRange | undefined,
-          range: getActiveRange(selectedYear, entity?.ranges) as EntityRange | undefined,
+          flagRange: getActiveRange(selectedYear, flagRanges) as
+            | EntityFlagRange
+            | undefined,
+          range: getActiveRange(selectedYear, entity?.ranges) as
+            | EntityRange
+            | undefined,
         };
       }),
-    }),
+    })
   ),
   withMethods(
     (
       store,
       advancedSearchStore = inject(AdvancedSearchStore),
       entityService = inject(EntityService),
-      errorsStore = inject(ErrorsStore),
+      errorsStore = inject(ErrorsStore)
     ) => ({
       addEntities: rxMethod<Entity[]>(
         pipe(
-          switchMap(entities =>
+          switchMap((entities) =>
             entityService.addEntities(entities).pipe(
               tapResponse({
                 next: () => {
@@ -58,51 +76,56 @@ export const EntitiesStore = signalStore(
                     all: [...store.all(), ...entities],
                   });
                 },
-                error: error => errorsStore.addError(error),
-              }),
-            ),
-          ),
-        ),
+                error: (error) => errorsStore.addError(error),
+              })
+            )
+          )
+        )
       ),
       getEntities: rxMethod<string>(
         pipe(
-          tap(selectedId => patchState(store, { selectedId })),
-          switchMap(id =>
+          tap((selectedId) => patchState(store, { selectedId })),
+          switchMap((id) =>
             entityService.getEntityById(id).pipe(
               tapResponse({
-                next: foundEntity => patchState(store, { foundEntity }),
-                error: error => errorsStore.addError(error),
-              }),
-            ),
+                next: (foundEntity) => patchState(store, { foundEntity }),
+                error: (error) => errorsStore.addError(error),
+              })
+            )
           ),
-          switchMap(parentEntity =>
+          switchMap((parentEntity) =>
             entityService.getEntitiesByParentId(parentEntity.id).pipe(
               tapResponse({
-                next: current => {
+                next: (current) => {
                   patchState(store, { current });
                   setYears(current, parentEntity, advancedSearchStore);
                 },
-                error: error => errorsStore.addError(error),
-              }),
-            ),
-          ),
-        ),
+                error: (error) => errorsStore.addError(error),
+              })
+            )
+          )
+        )
       ),
       getMainEntities: rxMethod<void>(
         pipe(
           switchMap(() =>
-            entityService.getEntitiesByType([EntityType.Continent, EntityType.Organization]).pipe(
-              tapResponse({
-                next: main => patchState(store, { main }),
-                error: error => errorsStore.addError(error),
-              }),
-            ),
-          ),
-        ),
+            entityService
+              .getEntitiesByType([
+                EntityType.Continent,
+                EntityType.Organization,
+              ])
+              .pipe(
+                tapResponse({
+                  next: (main) => patchState(store, { main }),
+                  error: (error) => errorsStore.addError(error),
+                })
+              )
+          )
+        )
       ),
       updateSelectedEntityId(selectedId: string) {
         patchState(store, { selectedId });
       },
-    }),
-  ),
+    })
+  )
 );

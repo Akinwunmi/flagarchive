@@ -6,7 +6,7 @@
     <div class="toggle">
       @for (option of layoutOptions(); track $index) {
         <button
-          flagButton
+          flag-button
           secondary
           [attr.raised]="option.active || undefined"
           (click)="updateLayout(option.value)"
@@ -31,7 +31,7 @@
     <div class="toggle">
       @for (option of sortOptions(); track $index) {
         <button
-          flagButton
+          flag-button
           secondary
           [attr.raised]="option.active || undefined"
           (click)="updateSortDirection(option.value)"

@@ -1,0 +1,85 @@
+:host {
+  --flag-pole-size: 0.125rem;
+
+  aspect-ratio: 3 / 2;
+  display: flex;
+  margin: var(--flag-pole-size);
+  position: relative;
+
+  &::before {
+    background-color: var(--flag-white);
+    border: 1px solid var(--flag-grey-400);
+    content: '';
+    inset-block: calc(var(--flag-pole-size) * -1);
+    inset-inline: calc(var(--flag-space-2xs) * -1) auto;
+    position: absolute;
+    width: var(--flag-pole-size);
+  }
+
+  img {
+    margin: 0 0 auto;
+    max-height: 100%;
+    max-width: 100%;
+  }
+
+  .no-image {
+    align-items: center;
+    color: var(--flag-grey-400);
+    display: none;
+    inset: 0;
+    justify-content: center;
+    position: absolute;
+  }
+
+  &.placeholder {
+    background-color: var(--flag-primary-100);
+
+    img {
+      display: none;
+    }
+
+    .no-image {
+      display: flex;
+    }
+  }
+
+  &.hoisted-right {
+    &::before {
+      inset-inline: auto calc(var(--flag-space-2xs) * -1);
+    }
+
+    img {
+      margin: 0 0 auto auto;
+    }
+  }
+
+  &.reversed {
+    &::before {
+      inset-inline: auto calc(var(--flag-space-2xs) * -1);
+    }
+
+    img {
+      margin: 0 0 auto auto;
+    }
+
+    &.hoisted-right {
+      &::before {
+        inset-inline: calc(var(--flag-space-2xs) * -1) auto;
+      }
+
+      img {
+        margin: 0 0 auto;
+      }
+    }
+  }
+}
+
+/* Fix for displaying images properly in Safari
+ * ? This is needed because some external SVG images do not have a viewBox attribute
+ */
+@supports (-webkit-backdrop-filter: blur(1px)) {
+  img {
+    height: 100%;
+    max-width: 100%;
+  }
+}

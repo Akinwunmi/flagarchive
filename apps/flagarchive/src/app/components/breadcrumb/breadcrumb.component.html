@@ -1,0 +1,29 @@
+@for (item of items(); track $index) {
+  @if (!item.options?.length) {
+    @if (!item.flag) {
+      <button flagButton (click)="item.callback?.()">
+        <flag-icon>{{ item.icon }}</flag-icon>
+        {{ item.label | translate }}
+      </button>
+    } @else {
+      <app-flag-image
+        [alt]="item.flag.alt"
+        [hoistedRight]="item.flag.hoistedRight || false"
+        [isReversed]="item.flag.isReversed || false"
+        [src]="item.flag.src"
+      />
+    }
+  } @else {
+    <flag-dropdown
+      [label]="item.label"
+      [icon]="item.icon"
+    >
+      @for (item of item.options; track $index) {
+        <button flag-list-item (click)="item.callback?.()">
+          {{ item.label }}
+        </button>
+      }
+    </flag-dropdown>
+  }
+  <flag-icon>keyboard_arrow_right</flag-icon>
+}

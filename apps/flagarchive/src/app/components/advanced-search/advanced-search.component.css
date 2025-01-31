@@ -8,7 +8,7 @@
     align-items: center;
     color: var(--flag-secondary-700);
     display: flex;
-    gap: var(--flag-space-lg);
+    gap: var(--flag-space-md);
 
     p {
       display: none;
