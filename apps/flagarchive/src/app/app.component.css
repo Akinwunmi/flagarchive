@@ -1,0 +1,23 @@
+:host {
+  display: block;
+  height: 100%;
+}
+
+app-header {
+  height: var(--app-header-height);
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 2;
+}
+
+main {
+  display: grid;
+  min-height: calc(100% - (var(--app-header-height)));
+  padding-top: var(--app-header-height);
+
+  router-outlet {
+    display: none;
+  }  
+}

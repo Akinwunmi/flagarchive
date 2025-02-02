@@ -1,6 +1,6 @@
 import { TranslateService } from '@ngx-translate/core';
+import { Entity, EntityRange } from '@flagarchive/entities';
 
-import { Entity, EntityRange } from '../../models';
 import { sortBy } from '../../utils';
 import { AdvancedSearchStore } from '../advanced-search/advanced-search.store';
 

@@ -1,9 +1,10 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { FilterOption } from '@flagarchive/advanced-search';
 import { DropdownComponent, IconComponent } from '@flagarchive/ui';
 import { TranslateModule } from '@ngx-translate/core';
 
-import { BreadcrumbItem, FilterOption } from '../../models';
 import { FlagImageComponent } from '../flag-image/flag-image.component';
+import { BreadcrumbItem } from './breadcrumb.model';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -13,7 +14,7 @@ import { FlagImageComponent } from '../flag-image/flag-image.component';
     FlagImageComponent,
     TranslateModule,
   ],
-  selector: 'app-breadcrumb',
+  selector: 'flag-breadcrumb',
   styleUrl: './breadcrumb.component.css',
   templateUrl: './breadcrumb.component.html',
 })

@@ -1,4 +1,9 @@
-import { FlagCategory, Layout, SortDirection, Entity } from '../models';
+import {
+  FlagCategory,
+  Layout,
+  SortDirection,
+} from '@flagarchive/advanced-search';
+import { Entity } from '@flagarchive/entities';
 
 export interface AppState {
   advancedSearch: AdvancedSearchState;

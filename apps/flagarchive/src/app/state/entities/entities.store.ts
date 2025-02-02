@@ -1,4 +1,10 @@
 import { computed, inject } from '@angular/core';
+import {
+  Entity,
+  EntityFlagRange,
+  EntityRange,
+  EntityType,
+} from '@flagarchive/entities';
 import { tapResponse } from '@ngrx/operators';
 import {
   patchState,
@@ -10,7 +16,6 @@ import {
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { pipe, switchMap, tap } from 'rxjs';
 
-import { Entity, EntityFlagRange, EntityRange, EntityType } from '../../models';
 import { EntityService } from '../../services';
 import { getActiveRange } from '../../utils';
 import { AdvancedSearchStore } from '../advanced-search/advanced-search.store';

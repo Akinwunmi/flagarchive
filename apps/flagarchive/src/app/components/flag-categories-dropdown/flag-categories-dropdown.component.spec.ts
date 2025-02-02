@@ -1,16 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { TranslateModule, TranslateLoader, TranslateFakeLoader } from '@ngx-translate/core';
+import {
+  TranslateModule,
+  TranslateLoader,
+  TranslateFakeLoader,
+} from '@ngx-translate/core';
 
-import { FlagCategoriesButtonComponent } from './flag-categories-button.component';
+import { FlagCategoriesDropdownComponent } from './flag-categories-dropdown.component';
 
-describe('FlagCategoriesButtonComponent', () => {
-  let component: FlagCategoriesButtonComponent;
-  let fixture: ComponentFixture<FlagCategoriesButtonComponent>;
+describe(FlagCategoriesDropdownComponent.name, () => {
+  let component: FlagCategoriesDropdownComponent;
+  let fixture: ComponentFixture<FlagCategoriesDropdownComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        FlagCategoriesButtonComponent,
+        FlagCategoriesDropdownComponent,
         TranslateModule.forRoot({
           loader: {
             provide: TranslateLoader,
@@ -20,7 +24,7 @@ describe('FlagCategoriesButtonComponent', () => {
       ],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(FlagCategoriesButtonComponent);
+    fixture = TestBed.createComponent(FlagCategoriesDropdownComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

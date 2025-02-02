@@ -1,8 +1,10 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  effect,
   input,
   model,
+  viewChild,
 } from '@angular/core';
 
 import { DropdownTriggerDirective } from '../../directives';
@@ -29,4 +31,14 @@ export class DropdownComponent {
   secondary = input(false);
 
   isOpen = model(false);
+
+  flagCategoriesMenu = viewChild.required(DropdownTriggerDirective);
+
+  constructor() {
+    effect(() => {
+      if (!this.isOpen()) {
+        this.flagCategoriesMenu().close();
+      }
+    });
+  }
 }

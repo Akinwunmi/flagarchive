@@ -1,23 +1,28 @@
 <div class="actions">
-  <button flag-button [disabled]="min() === activeRange[0]" (click)="goToStart()">
+  <button flag-button secondary [disabled]="min() === activeRange[0]" (click)="goToStart()">
     <flag-icon>keyboard_double_arrow_left</flag-icon>
   </button>
-  <button flag-button [disabled]="min() === activeRange[0]" (click)="previous()">
+  <button flag-button secondary [disabled]="min() === activeRange[0]" (click)="previous()">
     <flag-icon>keyboard_arrow_left</flag-icon>
   </button>
-  <button flag-button [disabled]="max() === activeRange[1]" (click)="next()">
+  <button flag-button secondary [disabled]="max() === activeRange[1]" (click)="next()">
     <flag-icon>keyboard_arrow_right</flag-icon>
   </button>
-  <button flag-button [disabled]="max() === activeRange[1]" (click)="goToEnd()">
+  <button flag-button secondary [disabled]="max() === activeRange[1]" (click)="goToEnd()">
     <flag-icon>keyboard_double_arrow_right</flag-icon>
   </button>
-  <button flag-button [disabled]="active() === selected()" (click)="reset()">
+  <button flag-button secondary [disabled]="selected() === initial()" (click)="reset()">
     <flag-icon>refresh</flag-icon>
   </button>
 </div>
 <div class="years">
   @for (year of activeRange | range; track $index) {
-    <button flag-button [attr.raised]="year === active() || undefined" (click)="setYear(year)">
+    <button
+      flag-button
+      secondary
+      [attr.raised]="year === selected() || undefined"
+      (click)="setYear(year)"
+    >
       {{ year }}
     </button>
   }

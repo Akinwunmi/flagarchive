@@ -14,7 +14,7 @@ import { IconComponent } from '@flagarchive/ui';
     '[class.reversed]': 'isReversed()',
   },
   imports: [IconComponent],
-  selector: 'app-flag-image',
+  selector: 'flag-image',
   styleUrl: './flag-image.component.css',
   templateUrl: './flag-image.component.html',
 })

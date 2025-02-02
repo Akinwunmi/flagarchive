@@ -1,7 +1,6 @@
 @let MAX_SELECTED_YEAR = max() === selectedYear();
 @let MIN_SELECTED_YEAR = min() === selectedYear();
 
-<p>Timeline</p>
 <button flag-button secondary [disabled]="MIN_SELECTED_YEAR" (click)="previous()">
   <flag-icon>keyboard_arrow_left</flag-icon>
 </button>
@@ -35,8 +34,9 @@
 
 <ng-template #dropdown>
   <flag-year-picker
-    [min]="min()"
+    [initial]="currentYear"
     [max]="max()"
+    [min]="min()"
     [selected]="selectedYear()"
     (selectedChange)="setSelectedYear($event)"
   />

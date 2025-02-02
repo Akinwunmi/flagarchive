@@ -1,6 +1,3 @@
-import { FilterOption } from './advanced-search.model';
-import { FlagImage } from './flag.model';
-
 export enum RouteIndex {
   Topic = 1,
   Entity = 2,
@@ -24,12 +21,4 @@ export interface MenuItem {
   label: string;
   link: SubtopicPath;
   active?: boolean;
-}
-
-export interface BreadcrumbItem {
-  callback?: () => void;
-  flag?: FlagImage;
-  icon?: string;
-  label: string;
-  options?: FilterOption[];
 }

@@ -2,32 +2,31 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
-  inject,
   input,
+  model,
   OnDestroy,
   signal,
 } from '@angular/core';
-import {
-  DropdownTriggerDirective,
-  IconComponent,
-  YearPickerComponent,
-} from '@flagarchive/ui';
 import { interval, Subject, takeUntil } from 'rxjs';
 
-import { AdvancedSearchStore } from '../../state';
+import { DropdownTriggerDirective } from '../../directives';
+import { IconComponent } from '../icon/icon.component';
+import { YearPickerComponent } from '../year-picker/year-picker.component';
+
+import { CURRENT_YEAR } from './year-navigator.constant';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [DropdownTriggerDirective, IconComponent, YearPickerComponent],
-  selector: 'app-year-navigator',
+  selector: 'flag-year-navigator',
   styleUrl: './year-navigator.component.css',
   templateUrl: './year-navigator.component.html',
 })
 export class YearNavigatorComponent implements OnDestroy {
-  readonly #advancedSearchStore = inject(AdvancedSearchStore);
+  max = input(CURRENT_YEAR);
+  min = input(CURRENT_YEAR);
 
-  max = input(new Date().getFullYear());
-  min = input(new Date().getFullYear());
+  selected = model(CURRENT_YEAR);
 
   #isPlayingBackward = signal(false);
   #isPlayingForward = signal(false);
@@ -35,11 +34,10 @@ export class YearNavigatorComponent implements OnDestroy {
   isPlaying = computed(
     () => this.#isPlayingBackward() || this.#isPlayingForward()
   );
+  selectedYear = computed(() => Math.min(this.max(), this.selected()));
 
   dropdownIsOpen = false;
-  selectedYear = computed(() =>
-    Math.min(this.max(), this.#advancedSearchStore.selectedYear())
-  );
+  currentYear = CURRENT_YEAR;
 
   #stop$ = new Subject<void>();
   #playSpeed$ = interval(750);
@@ -47,11 +45,6 @@ export class YearNavigatorComponent implements OnDestroy {
   ngOnDestroy() {
     this.#stop$.next();
     this.#stop$.complete();
-  }
-
-  previous() {
-    this.setSelectedYear(this.selectedYear() - 1);
-    this.stop();
   }
 
   next() {
@@ -78,10 +71,9 @@ export class YearNavigatorComponent implements OnDestroy {
     });
   }
 
-  stop() {
-    this.#stop$.next();
-    this.#isPlayingBackward.set(false);
-    this.#isPlayingForward.set(false);
+  previous() {
+    this.setSelectedYear(this.selectedYear() - 1);
+    this.stop();
   }
 
   setDropdownState() {
@@ -90,7 +82,13 @@ export class YearNavigatorComponent implements OnDestroy {
   }
 
   setSelectedYear(year: number) {
-    this.#advancedSearchStore.updateSelectedYear(year);
+    this.selected.set(year);
     this.dropdownIsOpen = false;
+  }
+
+  stop() {
+    this.#stop$.next();
+    this.#isPlayingBackward.set(false);
+    this.#isPlayingForward.set(false);
   }
 }

@@ -1,4 +1,10 @@
-import { DefaultMainEntity, FlagCategory, Layout, SortDirection } from '../models';
+import {
+  FlagCategory,
+  Layout,
+  SortDirection,
+} from '@flagarchive/advanced-search';
+
+import { DefaultMainEntity } from '../models';
 
 import { AppState } from './state.model';
 

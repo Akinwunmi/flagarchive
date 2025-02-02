@@ -25,6 +25,7 @@ const meta: Meta<StoryArgs> = {
       template: `
         <flag-dropdown
           [icon]="icon"
+          [isOpen]="isOpen"
           [hideChevron]="hideChevron"
           [label]="label"
           [secondary]="secondary"
@@ -45,6 +46,8 @@ const meta: Meta<StoryArgs> = {
   args: {
     amountOfItems: 3,
     hideChevron: false,
+    icon: 'category',
+    isOpen: false,
     label: 'Dropdown',
     listItemSelected: fn(),
     secondary: false,

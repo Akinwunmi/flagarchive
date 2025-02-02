@@ -1,4 +1,4 @@
-import { FlagCategory } from './advanced-search.model';
+import { FlagCategory } from '@flagarchive/advanced-search';
 
 export interface Entity {
   baseId: string;

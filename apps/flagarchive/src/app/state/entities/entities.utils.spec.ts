@@ -1,7 +1,7 @@
 import { signal } from '@angular/core';
+import { SortDirection } from '@flagarchive/advanced-search';
+import { ENTITIES_STUB } from '@flagarchive/entities';
 
-import { ENTITIES_STUB } from '../../mocks';
-import { SortDirection } from '../../models';
 import { AdvancedSearchStore } from '../advanced-search/advanced-search.store';
 
 import { setFilteredEntities } from './entities.utils';
