@@ -11,9 +11,11 @@ import {
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Meta } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Layout } from '@flagarchive/advanced-search';
+import { Entity } from '@flagarchive/entities';
 
 import { EntityComponent } from '../../components';
-import { Entity, Layout, RouteIndex } from '../../models';
+import { RouteIndex } from '../../models';
 import { AdvancedSearchStore, EntitiesStore } from '../../state';
 import { getActiveRange } from '../../utils';
 

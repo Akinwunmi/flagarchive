@@ -2,9 +2,8 @@ import {
   ChangeDetectionStrategy,
   Component,
   input,
-  linkedSignal,
+  model,
   OnInit,
-  output,
 } from '@angular/core';
 
 import { RangePipe } from '../../pipes';
@@ -19,19 +18,17 @@ import { IconComponent } from '../icon/icon.component';
   templateUrl: './year-picker.component.html',
 })
 export class YearPickerComponent implements OnInit {
+  initial = input(0);
   max = input(0);
   min = input(0);
   rangeSize = input(9);
-  selected = input(0);
 
-  selectedChange = output<number>();
-
-  active = linkedSignal(() => this.selected());
+  selected = model(0);
 
   activeRange!: [number, number];
 
   ngOnInit() {
-    const difference = this.max() - this.active();
+    const difference = this.max() - this.selected();
     const multiplier = Math.floor(difference / this.rangeSize());
     const range = this.rangeSize() * multiplier;
     const minValue = this.max() - this.rangeSize() + 1 - range;
@@ -65,12 +62,10 @@ export class YearPickerComponent implements OnInit {
 
   reset() {
     this.goToEnd();
-    this.active.set(this.selected());
-    this.selectedChange.emit(this.selected());
+    this.selected.set(this.initial());
   }
 
   setYear(year: number) {
-    this.active.set(year);
-    this.selectedChange.emit(year);
+    this.selected.set(year);
   }
 }

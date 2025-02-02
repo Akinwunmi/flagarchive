@@ -1,17 +1,23 @@
+import {
+  FlagCategory,
+  Layout,
+  SortDirection,
+} from '@flagarchive/advanced-search';
 import { patchState, signalStore, withMethods, withState } from '@ngrx/signals';
 
-import { FlagCategory, Layout, SortDirection } from '../../models';
 import { initialState } from '../state';
 
 export const AdvancedSearchStore = signalStore(
   { providedIn: 'root' },
   withState(initialState.advancedSearch),
-  withMethods(store => ({
+  withMethods((store) => ({
     triggerSortDirection() {
       Array.from({ length: 2 }).forEach(() => {
         patchState(store, {
           sortDirection:
-            store.sortDirection() === SortDirection.Asc ? SortDirection.Desc : SortDirection.Asc,
+            store.sortDirection() === SortDirection.Asc
+              ? SortDirection.Desc
+              : SortDirection.Asc,
         });
       });
     },
@@ -33,5 +39,5 @@ export const AdvancedSearchStore = signalStore(
     updateSortDirection(sortDirection: SortDirection) {
       patchState(store, { sortDirection });
     },
-  })),
+  }))
 );

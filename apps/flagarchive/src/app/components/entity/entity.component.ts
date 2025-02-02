@@ -5,19 +5,19 @@ import {
   inject,
   input,
 } from '@angular/core';
-import { IconComponent, PillComponent } from '@flagarchive/ui';
-import { TranslateModule } from '@ngx-translate/core';
-
+import { FlagCategory } from '@flagarchive/advanced-search';
 import {
   Entity,
   EntityFlag,
   EntityFullRange,
   EntityRange,
-  FlagCategory,
-} from '../../models';
+  FlagImageComponent,
+} from '@flagarchive/entities';
+import { IconComponent, PillComponent } from '@flagarchive/ui';
+import { TranslateModule } from '@ngx-translate/core';
+
 import { TranslationKeyPipe } from '../../pipes';
 import { AdvancedSearchStore } from '../../state';
-import { FlagImageComponent } from '../flag-image/flag-image.component';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,

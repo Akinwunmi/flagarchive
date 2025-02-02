@@ -1,7 +1,15 @@
-<app-year-navigator [max]="maxYear()" [min]="minYear()" />
+<div class="timeline">
+  <p>{{ 'COMMON.TIMELINE' | translate }}</p>
+  <flag-year-navigator
+    [max]="maxYear()"
+    [min]="minYear()"
+    [selected]="selectedYear()"
+    (selectedChange)="setSelectedYear($event)"
+  />
+</div>
 <div class="advanced-search">
-  <p>Advanced search</p>
-  <app-flag-categories-button />
+  <p>{{ 'COMMON.ADVANCED_SEARCH' | translate }}</p>
+  <app-flag-categories-dropdown />
   <button flag-button secondary [flagDropdownTrigger]="advancedSearchDropdown">
     <flag-icon>tune</flag-icon>
   </button>

@@ -1,4 +1,6 @@
-import { SubtopicPath, FilterOption } from '../../models';
+import { FilterOption } from '@flagarchive/advanced-search';
+
+import { SubtopicPath } from '../../models';
 
 export const MENU_ITEMS: FilterOption[] = [
   {

@@ -10,11 +10,10 @@ import {
 import { of } from 'rxjs';
 
 import { FIREBASE_CONFIG } from '../../firebase.config';
-import { ENTITIES_STUB } from '../../mocks';
-import { DiscoverSection, EntityType } from '../../models';
+import { DiscoverSection } from '../../models';
+import { TranslationKeyPipe } from '../../pipes';
 
 import { MainNavigationComponent } from './main-navigation.component';
-import { TranslationKeyPipe } from '../../pipes';
 
 describe('MainNavigationComponent', () => {
   const mockRouter = {

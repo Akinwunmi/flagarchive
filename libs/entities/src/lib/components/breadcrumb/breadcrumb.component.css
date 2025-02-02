@@ -13,7 +13,7 @@
     }
   }
 
-  app-flag-image {
+  flag-image {
     height: var(--flag-size-lg);
   }
 

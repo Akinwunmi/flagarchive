@@ -1,7 +1,7 @@
 @let NAME_TRANSLATION = 'ENTITIES' | translationKey: translationKey() | translate;
 
 <figure [class.card]="card()">
-  <app-flag-image
+  <flag-image
     [alt]="NAME_TRANSLATION"
     [src]="(isReversed ? reverseUrl() : url()) ?? ''"
     [hoistedRight]="entity().hoistedRight ?? false"

@@ -3,12 +3,15 @@ import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import {
+  FlagCategory,
+  Layout,
+  SortDirection,
+} from '@flagarchive/advanced-search';
+import {
   TranslateFakeLoader,
   TranslateLoader,
   TranslateModule,
 } from '@ngx-translate/core';
-
-import { FlagCategory, Layout, SortDirection } from '../../models';
 
 import { AdvancedSearchMenuComponent } from './advanced-search-menu.component';
 import { AuthService } from '../../services';

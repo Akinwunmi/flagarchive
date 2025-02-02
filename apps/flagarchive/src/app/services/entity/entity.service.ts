@@ -9,9 +9,8 @@ import {
   where,
   writeBatch,
 } from '@angular/fire/firestore';
+import { Entity, EntityWithoutBaseId } from '@flagarchive/entities';
 import { combineLatest, from, map, Observable } from 'rxjs';
-
-import { Entity, EntityWithoutBaseId } from '../../models';
 
 @Injectable({
   providedIn: 'root',

@@ -1,7 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { TranslateFakeLoader, TranslateLoader, TranslateModule } from '@ngx-translate/core';
-
-import { ENTITIES_STUB } from '../../mocks';
+import { ENTITIES_STUB } from '@flagarchive/entities';
+import {
+  TranslateFakeLoader,
+  TranslateLoader,
+  TranslateModule,
+} from '@ngx-translate/core';
 
 import { EntityComponent } from './entity.component';
 

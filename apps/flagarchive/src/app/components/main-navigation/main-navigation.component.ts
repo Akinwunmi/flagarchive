@@ -11,22 +11,24 @@ import {
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { FilterOption } from '@flagarchive/advanced-search';
+import {
+  BreadcrumbComponent,
+  BreadcrumbItem,
+  Entity,
+  EntityType,
+} from '@flagarchive/entities';
 import { TranslateModule } from '@ngx-translate/core';
 import { filter, map, startWith } from 'rxjs';
 
 import {
-  BreadcrumbItem,
   DefaultMainEntity,
   DiscoverSection,
-  Entity,
-  EntityType,
-  FilterOption,
   RootPath,
   RouteIndex,
 } from '../../models';
 import { TranslationKeyPipe } from '../../pipes';
 import { EntitiesStore } from '../../state';
-import { BreadcrumbComponent } from '../breadcrumb/breadcrumb.component';
 import { MENU_ITEMS } from './main-navigation.constants';
 
 @Component({

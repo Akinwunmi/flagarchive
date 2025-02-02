@@ -1,13 +1,17 @@
 import { fakeAsync, TestBed, tick } from '@angular/core/testing';
 import {
+  ENTITIES_STUB,
+  Entity,
+  EntityServiceStub,
+  EntityType,
+} from '@flagarchive/entities';
+import {
   TranslateFakeLoader,
   TranslateLoader,
   TranslateModule,
 } from '@ngx-translate/core';
 import { Subject, throwError } from 'rxjs';
 
-import { ENTITIES_STUB, EntityServiceStub } from '../../mocks';
-import { Entity, EntityType } from '../../models';
 import { EntityService } from '../../services';
 import { AdvancedSearchStore } from '../advanced-search/advanced-search.store';
 

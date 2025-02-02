@@ -9,4 +9,5 @@ export * from './list-item/list-item.component';
 export * from './pill/pill.component';
 export * from './pill/pill.model';
 export * from './skeleton/skeleton.component';
+export * from './year-navigator/year-navigator.component';
 export * from './year-picker/year-picker.component';

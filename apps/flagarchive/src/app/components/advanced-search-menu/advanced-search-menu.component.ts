@@ -4,23 +4,23 @@ import {
   computed,
   inject,
 } from '@angular/core';
-import { CardComponent, IconComponent } from '@flagarchive/ui';
-import { TranslateModule } from '@ngx-translate/core';
-
 import {
   FilterOption,
   FlagCategory,
   Layout,
   SortDirection,
-} from '../../models';
+} from '@flagarchive/advanced-search';
+import { CardComponent, IconComponent } from '@flagarchive/ui';
+import { TranslateModule } from '@ngx-translate/core';
+
 import { AdvancedSearchStore } from '../../state';
-import { FlagCategoriesButtonComponent } from '../flag-categories-button/flag-categories-button.component';
+import { FlagCategoriesDropdownComponent } from '../flag-categories-dropdown/flag-categories-dropdown.component';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     CardComponent,
-    FlagCategoriesButtonComponent,
+    FlagCategoriesDropdownComponent,
     IconComponent,
     TranslateModule,
   ],
