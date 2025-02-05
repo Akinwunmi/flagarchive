@@ -11,7 +11,7 @@ flag-card {
     padding: var(--flag-space-sm);
 
     &.flag-categories {
-      app-flag-categories-button {
+      app-flag-categories-dropdown {
         width: 100%;
       }
 

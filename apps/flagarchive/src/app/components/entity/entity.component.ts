@@ -14,20 +14,13 @@ import {
   FlagImageComponent,
 } from '@flagarchive/entities';
 import { IconComponent, PillComponent } from '@flagarchive/ui';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
-import { TranslationKeyPipe } from '../../pipes';
 import { AdvancedSearchStore } from '../../state';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
-    IconComponent,
-    FlagImageComponent,
-    PillComponent,
-    TranslateModule,
-    TranslationKeyPipe,
-  ],
+  imports: [IconComponent, FlagImageComponent, PillComponent, TranslatePipe],
   selector: 'app-entity',
   styleUrl: './entity.component.css',
   templateUrl: './entity.component.html',
@@ -49,9 +42,7 @@ export class EntityComponent {
       (this.range() as EntityFullRange)?.reverseUrl ??
       this.#getActiveFlagReverseUrl(this.entity().flags)
   );
-  translationKey = computed(
-    () => this.range()?.translationKey ?? this.entity().translationKey
-  );
+  name = computed(() => this.range()?.name ?? this.entity().name);
   url = computed(
     () =>
       (this.range() as EntityFullRange)?.url ??

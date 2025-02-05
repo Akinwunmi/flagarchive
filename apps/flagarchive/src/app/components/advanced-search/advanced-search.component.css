@@ -23,12 +23,12 @@
   }
 
   .advanced-search {
-    app-flag-categories-button {
+    app-flag-categories-dropdown {
       display: none;
     }
 
     @media screen and (min-width: 50rem) {
-      app-flag-categories-button {
+      app-flag-categories-dropdown {
         display: block;
       }
     }

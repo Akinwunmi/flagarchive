@@ -2,23 +2,17 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
-import {
-  FlagCategory,
-  Layout,
-  SortDirection,
-} from '@flagarchive/advanced-search';
+import { Layout, SortDirection } from '@flagarchive/advanced-search';
 import {
   TranslateFakeLoader,
   TranslateLoader,
   TranslateModule,
 } from '@ngx-translate/core';
 
-import { AdvancedSearchMenuComponent } from './advanced-search-menu.component';
-import { AuthService } from '../../services';
 import { FIREBASE_CONFIG } from '../../firebase.config';
+import { AdvancedSearchMenuComponent } from './advanced-search-menu.component';
 
 describe('AdvancedSearchMenuComponent', () => {
-  let authService: AuthService;
   let component: AdvancedSearchMenuComponent;
   let fixture: ComponentFixture<AdvancedSearchMenuComponent>;
 
@@ -40,7 +34,6 @@ describe('AdvancedSearchMenuComponent', () => {
       ],
     }).compileComponents();
 
-    authService = TestBed.inject(AuthService);
     fixture = TestBed.createComponent(AdvancedSearchMenuComponent);
     component = fixture.componentInstance;
   });
@@ -52,22 +45,6 @@ describe('AdvancedSearchMenuComponent', () => {
   it('should create', () => {
     setup();
     expect(component).toBeTruthy();
-  });
-
-  it('should get the selected flag category label', () => {
-    setup();
-    component.updateFlagCategory(FlagCategory.NavalJack);
-    const label = component.getSelectedFlagCategoryLabel();
-    expect(label).toEqual(
-      `ADVANCED_SEARCH.FLAG_CATEGORY.${FlagCategory.NavalJack.toUpperCase()}`
-    );
-  });
-
-  it('should get the fallback flag category label', () => {
-    setup();
-    component.updateFlagCategory(null!);
-    const label = component.getSelectedFlagCategoryLabel();
-    expect(label).toEqual('COMMON.FLAG_CATEGORIES');
   });
 
   it('should update the layout options', () => {

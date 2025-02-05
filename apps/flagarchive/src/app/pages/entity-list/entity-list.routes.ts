@@ -26,12 +26,12 @@ export const ENTITY_LIST_ROUTES: Routes = [
       {
         path: 'details',
         component: EntityListComponent,
-        title: 'Flag Archive - Discover - Entity - Regions',
+        title: 'Flag Archive - Discover - Entity - Details',
       },
       {
         path: 'history',
         component: EntityListComponent,
-        title: 'Flag Archive - Discover - Entity - Regions',
+        title: 'Flag Archive - Discover - Entity - History',
       },
     ],
   },

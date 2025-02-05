@@ -19,7 +19,7 @@ describe('FlagImageComponent', () => {
 
   function setup() {
     fixture.componentRef.setInput('src', ENTITIES_STUB[0].flags?.official.url);
-    fixture.componentRef.setInput('alt', ENTITIES_STUB[0].translationKey);
+    fixture.componentRef.setInput('alt', ENTITIES_STUB[0].name);
     fixture.detectChanges();
   }
 

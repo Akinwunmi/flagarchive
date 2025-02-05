@@ -3,7 +3,7 @@ import { FlagCategory } from '@flagarchive/advanced-search';
 export interface Entity {
   baseId: string;
   id: string;
-  translationKey: string;
+  name: string;
   type: string;
   altId?: string;
   altParentId?: string;
@@ -38,7 +38,7 @@ export interface EntityFlagRange extends EntityStartEnd {
 export interface EntityRange extends EntityStartEnd {
   altParentId?: string;
   parentId?: string;
-  translationKey?: string;
+  name?: string;
   type?: string;
 }
 

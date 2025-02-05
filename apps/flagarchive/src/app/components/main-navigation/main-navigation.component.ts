@@ -18,7 +18,7 @@ import {
   Entity,
   EntityType,
 } from '@flagarchive/entities';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { filter, map, startWith } from 'rxjs';
 
 import {
@@ -27,18 +27,12 @@ import {
   RootPath,
   RouteIndex,
 } from '../../models';
-import { TranslationKeyPipe } from '../../pipes';
 import { EntitiesStore } from '../../state';
 import { MENU_ITEMS } from './main-navigation.constants';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
-    BreadcrumbComponent,
-    NgTemplateOutlet,
-    TranslateModule,
-    TranslationKeyPipe,
-  ],
+  imports: [BreadcrumbComponent, NgTemplateOutlet, TranslatePipe],
   selector: 'app-main-navigation',
   styleUrl: './main-navigation.component.css',
   templateUrl: './main-navigation.component.html',
@@ -49,56 +43,51 @@ export class MainNavigationComponent implements OnInit {
   readonly #entitiesStore = inject(EntitiesStore);
   readonly #route = inject(ActivatedRoute);
   readonly #router = inject(Router);
-  readonly #translationKeyPipe = inject(TranslationKeyPipe);
+  readonly #translate = inject(TranslateService);
 
   mainEntities = this.#entitiesStore.main;
   selected = this.#entitiesStore.selected;
 
-  entityMenuItems = signal(
-    MENU_ITEMS.map((item) => ({
-      ...item,
-      callback: () => this.#setActiveEntityMenuItem(item.value),
-    }))
-  );
   selectedMainEntityId = signal<string>(DefaultMainEntity.Continents);
+
   #activeEntityMenuItem = signal(
     this.#router.url.split('/')[RouteIndex.Subtopic]
+  );
+  #entityMenuItems = signal(
+    MENU_ITEMS.map((item) => ({
+      ...item,
+      label: this.#translate.instant(item.label ?? ''),
+      callback: () => this.#setActiveEntityMenuItem(item.value),
+    }))
   );
 
   continents = computed(() => this.#getEntities(EntityType.Continent));
   organizations = computed(() => this.#getEntities(EntityType.Organization));
 
-  activeEntity = computed(() =>
+  #activeEntity = computed(() =>
     this.mainEntities().find(
       (entity) => entity.id === this.selectedMainEntityId()
     )
   );
-  activeSection = computed(() =>
+  #activeSection = computed(() =>
     this.selectedMainEntityId().startsWith('o')
       ? DiscoverSection.Organizations
       : DiscoverSection.Continents
   );
-  isMainEntity = computed(() =>
+  #isMainEntity = computed(() =>
     Object.values(EntityType).includes(
       this.selected().entity?.type as EntityType
     )
   );
-  mainEntityItems = computed(() => this.#setMainEntityItems());
-  sectionItems = computed<FilterOption[]>(() =>
-    Object.values(DiscoverSection).map((section) => ({
-      active: this.activeSection() === section,
-      label: section,
-      value: DefaultMainEntity[section],
-    }))
-  );
+  #mainEntityItems = computed(() => this.#setMainEntityItems());
 
-  mainBreadcrumbItems = computed<BreadcrumbItem[]>(() => [
+  #mainBreadcrumbItems = computed<BreadcrumbItem[]>(() => [
     {
-      label: this.activeSection(),
+      label: this.#activeSection(),
       options: Object.values(DiscoverSection).map(
         (section) =>
           ({
-            active: this.activeSection() === section,
+            active: this.#activeSection() === section,
             callback: () => this.setActiveSection(DefaultMainEntity[section]),
             label: section,
             value: DefaultMainEntity[section],
@@ -106,44 +95,38 @@ export class MainNavigationComponent implements OnInit {
       ),
     },
     {
-      label: this.#translationKeyPipe.transform(
-        'ENTITIES',
-        this.activeEntity()?.translationKey ?? ''
+      label: this.#translate.instant(
+        `entities.${this.#activeEntity()?.name ?? ''}`
       ),
       options: this.#setMainEntityItems(),
     },
   ]);
-  entityBreadcrumbItems = computed<BreadcrumbItem[]>(() => [
+  #entityBreadcrumbItems = computed<BreadcrumbItem[]>(() => [
     {
       icon: 'more_horiz',
       label: '',
-      options: this.mainEntityItems(),
+      options: this.#mainEntityItems(),
     },
     {
       flag: {
-        alt: this.#translationKeyPipe.transform(
-          'ENTITIES',
-          this.selected().entity?.translationKey
-        ),
+        alt: `entities.${this.selected().entity?.name}`,
         src: this.selected().entity?.flags?.official.url ?? '',
       },
-      label: this.#translationKeyPipe.transform(
-        'ENTITIES',
-        this.selected().entity?.translationKey
+      label: this.#translate.instant(
+        `entities.${this.selected().entity?.name}`
       ),
     },
     {
-      label: this.#translationKeyPipe.transform(
-        'DISCOVER',
-        this.#activeEntityMenuItem()
+      label: this.#translate.instant(
+        `discover.${this.#activeEntityMenuItem()}`
       ),
-      options: this.entityMenuItems(),
+      options: this.#entityMenuItems(),
     },
   ]);
   breadcrumbItems = computed<BreadcrumbItem[]>(() =>
-    this.isMainEntity()
-      ? this.mainBreadcrumbItems()
-      : this.entityBreadcrumbItems()
+    this.#isMainEntity()
+      ? this.#mainBreadcrumbItems()
+      : this.#entityBreadcrumbItems()
   );
 
   defaultMainEntity = DefaultMainEntity;
@@ -194,14 +177,14 @@ export class MainNavigationComponent implements OnInit {
       value,
     ]);
     this.#activeEntityMenuItem.set(value);
-    this.entityMenuItems().forEach(
+    this.#entityMenuItems().forEach(
       (item) => (item.active = item.value === value)
     );
   }
 
   #setMainEntityItems(): FilterOption[] {
     return (
-      this.activeSection() === DiscoverSection.Continents
+      this.#activeSection() === DiscoverSection.Continents
         ? this.continents()
         : this.organizations()
     ).map(
@@ -209,7 +192,7 @@ export class MainNavigationComponent implements OnInit {
         ({
           active: entity.id === this.selectedMainEntityId(),
           callback: () => this.selectMainEntity(entity.id),
-          label: `ENTITIES.${entity.translationKey.toUpperCase()}`,
+          label: this.#translate.instant(`entities.${entity.name}`),
           value: entity.id,
         } as FilterOption)
     );
