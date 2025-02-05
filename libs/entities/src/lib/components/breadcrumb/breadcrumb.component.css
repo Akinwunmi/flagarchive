@@ -14,7 +14,7 @@
   }
 
   flag-image {
-    height: var(--flag-size-lg);
+    height: var(--flag-space-3xl);
   }
 
   @media (min-width: 40rem) {

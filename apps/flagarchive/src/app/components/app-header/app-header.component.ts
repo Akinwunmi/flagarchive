@@ -1,4 +1,3 @@
-import { UpperCasePipe } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -14,7 +13,7 @@ import {
   IconComponent,
   PillComponent,
 } from '@flagarchive/ui';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { map, tap } from 'rxjs';
 
 import { Language } from '../../models';
@@ -28,8 +27,7 @@ import { AdvancedSearchStore, EntitiesStore } from '../../state';
     DropdownTriggerDirective,
     IconComponent,
     PillComponent,
-    TranslateModule,
-    UpperCasePipe,
+    TranslatePipe,
   ],
   selector: 'app-header',
   styleUrl: './app-header.component.css',

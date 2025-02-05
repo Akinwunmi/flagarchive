@@ -1,7 +1,7 @@
 <header>
   <div class="title" role="button" tabindex="0" (click)="goToHome()" (keydown)="goToHome()">
     <img src="images/logo.svg" alt="Flag Archive Logo" />
-    {{ 'COMMON.APP_NAME' | translate }}
+    {{ 'common.app-name' | translate }}
     <flag-pill type="secondary">Beta 2.0</flag-pill>
   </div>
   <div class="menu-list">
@@ -20,17 +20,17 @@
       @if (isAdmin()) {
         <button flag-list-item (click)="goToCreate()">
           <flag-icon>create</flag-icon>
-          {{ 'COMMON.CREATE' | translate }}
+          {{ 'common.create' | translate }}
         </button>
       }
       <button flag-list-item (click)="logOut()">
         <flag-icon>logout</flag-icon>
-        {{ 'COMMON.LOGOUT' | translate }}
+        {{ 'common.logout' | translate }}
       </button>
     } @else {
       <button flag-list-item (click)="goToLogin()">
         <flag-icon>login</flag-icon>
-        {{ 'COMMON.LOGIN' | translate }}
+        {{ 'common.login' | translate }}
       </button>
     }
   </flag-card>
@@ -44,7 +44,7 @@
         [attr.active]="activeLanguage() === language || undefined"
         (click)="setLanguage(language)"
       >
-        {{ 'LANGUAGES.' + language | uppercase | translate }}
+        {{ 'languages.' + language | translate }}
       </button>
     }
   </flag-card>

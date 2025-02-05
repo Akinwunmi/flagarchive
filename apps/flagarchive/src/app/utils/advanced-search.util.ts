@@ -5,19 +5,13 @@ export function sortBy<T, K extends keyof T>(
   array: T[],
   rawKey: K,
   sortDirection: SortDirection,
-  translateService?: TranslateService
+  translate?: TranslateService
 ): T[] {
   const direction = sortDirection === SortDirection.Desc ? -1 : 1;
 
   return [...array].sort((a, b) => {
-    const aValue = getEntitiesTranslationKey(
-      a[rawKey] as string,
-      translateService
-    );
-    const bValue = getEntitiesTranslationKey(
-      b[rawKey] as string,
-      translateService
-    );
+    const aValue = getEntityName(a[rawKey] as string, translate);
+    const bValue = getEntityName(b[rawKey] as string, translate);
     if (typeof aValue === 'string' && typeof bValue === 'string') {
       return aValue.localeCompare(bValue) * direction;
     }
@@ -26,11 +20,6 @@ export function sortBy<T, K extends keyof T>(
   });
 }
 
-function getEntitiesTranslationKey(
-  key: string,
-  translateService?: TranslateService
-): string {
-  return translateService
-    ? translateService.instant('ENTITIES.' + key.toUpperCase())
-    : key;
+function getEntityName(key: string, translate?: TranslateService): string {
+  return translate ? translate.instant('entities.' + key) : key;
 }

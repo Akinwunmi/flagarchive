@@ -1,4 +1,4 @@
-@let FLAG_CATEGORY_TRANSLATION = 'ADVANCED_SEARCH.FLAG_CATEGORY' | translationKey: flagCategory() | translate;
+@let FLAG_CATEGORY_TRANSLATION = 'advanced-search.flag-category.' + flagCategory() | translate;
 
 <flag-dropdown
   [(isOpen)]="isOpen"
@@ -13,7 +13,7 @@
       [attr.active]="category === flagCategory() || undefined"
       (click)="updateFlagCategory(category)"
     >
-      {{ 'ADVANCED_SEARCH.FLAG_CATEGORY' | translationKey: category | translate }}
+      {{ 'advanced-search.flag-category.' + category | translate }}
     </button>
   }
 </flag-dropdown>

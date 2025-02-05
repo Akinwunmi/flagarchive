@@ -12,11 +12,11 @@ export function setFilteredEntities(
   const filteredEntities = entities.filter((entity) =>
     isEntityInRange(entity, advancedSearchStore)
   );
-  return sortBy<Entity, 'translationKey'>(
+  return sortBy<Entity, 'name'>(
     filteredEntities.map((entity) =>
       setEntityByActiveRange(entity, advancedSearchStore)
     ),
-    'translationKey',
+    'name',
     advancedSearchStore.sortDirection(),
     translateService
   );
@@ -106,9 +106,9 @@ function setEntityByActiveRange(
     ...entity,
     altParentId: activeRange?.altParentId ?? entity.altParentId,
     flags: entity.flags,
+    name: activeRange?.name ?? entity.name,
     parentId: activeRange?.parentId ?? entity.parentId,
     ranges,
-    translationKey: activeRange?.translationKey ?? entity.translationKey,
     type: activeRange?.type ?? entity.type,
   };
 }

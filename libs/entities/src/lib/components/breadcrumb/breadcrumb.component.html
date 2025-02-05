@@ -3,7 +3,7 @@
     @if (!item.flag) {
       <button flagButton (click)="item.callback?.()">
         <flag-icon>{{ item.icon }}</flag-icon>
-        {{ item.label | translate }}
+        {{ item.label }}
       </button>
     } @else {
       <flag-image

@@ -1,4 +1,4 @@
-import { getGreeting } from '../support/app.po';
+// import { getGreeting } from '../support/app.po';
 
 describe('flagarchive-e2e', () => {
   beforeEach(() => cy.visit('/'));

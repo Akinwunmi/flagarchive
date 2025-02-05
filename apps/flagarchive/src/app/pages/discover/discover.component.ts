@@ -11,7 +11,6 @@ import {
   AppFooterComponent,
   MainNavigationComponent,
 } from '../../components';
-import { TranslationKeyPipe } from '../../pipes';
 import { EntitiesStore } from '../../state';
 
 @Component({
@@ -22,7 +21,6 @@ import { EntitiesStore } from '../../state';
     MainNavigationComponent,
     RouterOutlet,
   ],
-  providers: [TranslationKeyPipe],
   selector: 'app-discover',
   styleUrl: './discover.component.css',
   templateUrl: './discover.component.html',

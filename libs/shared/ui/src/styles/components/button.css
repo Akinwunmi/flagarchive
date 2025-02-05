@@ -42,15 +42,14 @@
   }
 
   &[secondary] {
-    background-color: var(--flag-secondary-100);
     color: var(--flag-secondary-700);
 
     &:hover {
-      background-color: var(--flag-secondary-300);
+      background-color: var(--flag-secondary-200);
     }
 
     &:active {
-      background-color: var(--flag-secondary-200);
+      background-color: var(--flag-secondary-100);
     }
   }
 

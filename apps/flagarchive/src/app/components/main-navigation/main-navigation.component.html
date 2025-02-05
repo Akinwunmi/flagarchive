@@ -1,5 +1,5 @@
-@let CONTINENTS_TRANSLATION = 'DISCOVER.CONTINENTS' | translate;
-@let ORGANIZATIONS_TRANSLATION = 'DISCOVER.ORGANIZATIONS' | translate;
+@let CONTINENTS_TRANSLATION = 'discover.continents' | translate;
+@let ORGANIZATIONS_TRANSLATION = 'discover.organizations' | translate;
 
 <flag-breadcrumb [items]="breadcrumbItems()" />
 <ng-container
@@ -31,7 +31,7 @@
         (click)="selectMainEntity(entity.id)"
         (keydown)="selectMainEntity(entity.id, $event)"
       >
-        {{ 'ENTITIES' | translationKey: entity.translationKey | translate }}
+        {{ 'entities.' + entity.name | translate }}
       </button>
     }
   </section>

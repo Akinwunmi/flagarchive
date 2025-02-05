@@ -6,19 +6,19 @@ export const MENU_ITEMS: FilterOption[] = [
   {
     active: true,
     icon: 'category',
-    label: 'DISCOVER.REGIONS',
+    label: 'discover.regions',
     value: SubtopicPath.Regions,
   },
   {
     active: false,
     icon: 'list',
-    label: 'DISCOVER.DETAILS',
+    label: 'discover.details',
     value: SubtopicPath.Details,
   },
   {
     active: false,
     icon: 'timeline',
-    label: 'DISCOVER.HISTORY',
+    label: 'discover.history',
     value: SubtopicPath.History,
   },
 ];

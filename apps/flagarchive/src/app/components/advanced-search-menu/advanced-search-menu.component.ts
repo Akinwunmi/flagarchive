@@ -6,12 +6,11 @@ import {
 } from '@angular/core';
 import {
   FilterOption,
-  FlagCategory,
   Layout,
   SortDirection,
 } from '@flagarchive/advanced-search';
 import { CardComponent, IconComponent } from '@flagarchive/ui';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 import { AdvancedSearchStore } from '../../state';
 import { FlagCategoriesDropdownComponent } from '../flag-categories-dropdown/flag-categories-dropdown.component';
@@ -22,7 +21,7 @@ import { FlagCategoriesDropdownComponent } from '../flag-categories-dropdown/fla
     CardComponent,
     FlagCategoriesDropdownComponent,
     IconComponent,
-    TranslateModule,
+    TranslatePipe,
   ],
   selector: 'app-advanced-search-menu',
   styleUrl: './advanced-search-menu.component.css',
@@ -31,19 +30,8 @@ import { FlagCategoriesDropdownComponent } from '../flag-categories-dropdown/fla
 export class AdvancedSearchMenuComponent {
   readonly #advancedSearchStore = inject(AdvancedSearchStore);
 
-  flagCategory = this.#advancedSearchStore.flagCategory;
   #layout = this.#advancedSearchStore.layout;
   #sortDirection = this.#advancedSearchStore.sortDirection;
-
-  flagCategoryOptions = computed<FilterOption<FlagCategory>[]>(() =>
-    Object.values(FlagCategory)
-      .map((value) => ({
-        active: this.flagCategory() === value,
-        label: 'ADVANCED_SEARCH.FLAG_CATEGORY.' + value.toUpperCase(),
-        value,
-      }))
-      .reverse()
-  );
 
   layoutOptions = computed<FilterOption<Layout>[]>(() =>
     Object.values(Layout)
@@ -58,21 +46,10 @@ export class AdvancedSearchMenuComponent {
   sortOptions = computed<FilterOption<SortDirection>[]>(() =>
     Object.values(SortDirection).map((value) => ({
       active: this.#sortDirection() === value,
-      label: 'ADVANCED_SEARCH.SORTING.NAME.' + value.toUpperCase(),
+      label: 'advanced-search.sorting.name.' + value,
       value,
     }))
   );
-
-  getSelectedFlagCategoryLabel(): string {
-    return (
-      this.flagCategoryOptions().find((option) => option.active)?.label ??
-      'COMMON.FLAG_CATEGORIES'
-    );
-  }
-
-  updateFlagCategory(category: FlagCategory) {
-    this.#advancedSearchStore.updateFlagCategory(category);
-  }
 
   updateLayout(layout: Layout) {
     this.#advancedSearchStore.updateLayout(layout);

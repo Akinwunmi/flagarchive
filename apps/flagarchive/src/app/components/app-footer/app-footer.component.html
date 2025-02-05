@@ -1,9 +1,11 @@
 <section>
   <div>
-    <a routerLink="/">{{ 'PAGES.HOME' | translate }}</a>
-    <a routerLink="/about">{{ 'PAGES.ABOUT' | translate }}</a>
+    <a routerLink="/">{{ 'pages.home' | translate }}</a>
+    <a routerLink="/about">{{ 'pages.about' | translate }}</a>
   </div>
 </section>
 <section class="copyright">
-  <p>&copy; Flag Archive / Jurrit van der Ploeg, {{ currentYear }}</p>
+  <p>
+    &copy; {{ 'common.app-name' | translate }} / Jurrit van der Ploeg, {{ currentYear }}
+  </p>
 </section>
