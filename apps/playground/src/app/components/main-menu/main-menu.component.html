@@ -1,0 +1,29 @@
+<div cdkTrapFocus class="main-menu" [cdkTrapFocusAutoCapture]="true">
+  <div class="header">
+    <button flag-button type="button" (click)="close()">
+      <flag-icon>close</flag-icon>
+    </button>
+    <a class="logo" [routerLink]="['/']">
+      <img src="images/flagarchive_logo.svg" alt="Flag Archive logo" />
+    </a>
+  </div>
+  <div cdkMenu class="menu">
+    <flag-list>
+      @for (item of topMenu(); track $index) {
+        <a
+          cdkMenuItem
+          flag-list-item
+          [attr.active]="item.active || undefined"
+          [routerLink]="item.path"
+        >
+          {{ item.label }}
+        </a>
+      }
+    </flag-list>
+    <flag-list cdkMenu>
+      <hr flag-divider />
+      <a cdkMenuItem flag-list-item>Sign up</a>
+      <a cdkMenuItem flag-list-item>Log in</a>
+    </flag-list>
+  </div>
+</div>

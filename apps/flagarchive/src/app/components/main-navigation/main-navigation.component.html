@@ -1,7 +1,27 @@
-@let CONTINENTS_TRANSLATION = 'discover.continents' | translate;
-@let ORGANIZATIONS_TRANSLATION = 'discover.organizations' | translate;
+@let CONTINENTS_TRANSLATION = 'discover.continents' | translate; @let
+ORGANIZATIONS_TRANSLATION = 'discover.organizations' | translate;
 
-<flag-breadcrumb [items]="breadcrumbItems()" />
+<flag-breadcrumb-group>
+  @for (item of breadcrumbItems(); track $index) {
+  <flag-breadcrumb [label]="item.label" [link]="item.link ?? []">
+    @if (item.options) {
+    <flag-dropdown
+      [hideChevron]="!item.label"
+      [icon]="item.label ? '' : 'more_horiz'"
+      [label]="item.label"
+    >
+      @for (option of item.options; track $index) {
+      <a flag-list-item [routerLink]="option.link ?? []">
+        {{ option.label }}
+      </a>
+      }
+    </flag-dropdown>
+    } @if (item.flag) {
+    <flag-image [src]="item.flag.src" [alt]="item.flag.alt" />
+    }
+  </flag-breadcrumb>
+  }
+</flag-breadcrumb-group>
 <ng-container
   *ngTemplateOutlet="
     entitiesTemplate;
@@ -25,14 +45,14 @@
   <section>
     <h2>{{ title }}</h2>
     @for (entity of entities; track entity.id) {
-      <button
-        flag-button
-        [attr.ghost]="entity.id !== selectedMainEntityId() || undefined"
-        (click)="selectMainEntity(entity.id)"
-        (keydown)="selectMainEntity(entity.id, $event)"
-      >
-        {{ 'entities.' + entity.name | translate }}
-      </button>
+    <button
+      flag-button
+      [attr.ghost]="entity.id !== selectedMainEntityId() || undefined"
+      (click)="selectMainEntity(entity.id)"
+      (keydown)="selectMainEntity(entity.id, $event)"
+    >
+      {{ 'entities.' + entity.name | translate }}
+    </button>
     }
   </section>
 </ng-template>

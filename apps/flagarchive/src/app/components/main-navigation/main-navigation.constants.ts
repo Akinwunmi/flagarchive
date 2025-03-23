@@ -1,8 +1,7 @@
-import { FilterOption } from '@flagarchive/advanced-search';
-
 import { SubtopicPath } from '../../models';
+import { BreadcrumbItem } from './main-navigation.model';
 
-export const MENU_ITEMS: FilterOption[] = [
+export const MENU_ITEMS: BreadcrumbItem[] = [
   {
     active: true,
     icon: 'category',

@@ -7,9 +7,11 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     role: 'listitem',
+    '[attr.secondary]': 'secondary() || undefined',
     '[class.disabled]': 'disabled()',
   },
 })
 export class ListItemComponent {
   disabled = input(false);
+  secondary = input(false);
 }

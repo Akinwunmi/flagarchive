@@ -1,0 +1,6 @@
+:host {
+  background-color: var(--flag-grey-bg);
+  display: block;
+  height: calc(100% - 3.5rem);
+  padding: var(--flag-space-xl) var(--flag-space-md);
+}

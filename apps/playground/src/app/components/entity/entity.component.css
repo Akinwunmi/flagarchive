@@ -1,0 +1,49 @@
+:host {
+  > a {
+    border-radius: var(--flag-radius-sm);
+    display: grid;
+    gap: var(--flag-space-xs);
+    padding: var(--flag-space-xs);
+    text-decoration: none;
+    transition: background-color 150ms ease-in-out;
+  }
+}
+
+a {
+  figure {
+    display: grid;
+    gap: var(--flag-space-xs);
+  
+    figcaption {
+      display: -webkit-box;
+      line-clamp: 1;
+      overflow: hidden;
+      word-break: break-all;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+    }
+  }
+  
+  .info {
+    align-items: center;
+    display: flex;
+    gap: var(--flag-space-xs);
+    width: fit-content;
+  }
+
+  &:visited {
+    color: inherit;
+  }
+
+  &:not(:has(.info:hover)) {
+    &:hover {
+      background-color: var(--flag-grey-300);
+      color: var(--flag-primary-700);
+    }
+  
+    &:active {
+      background-color: var(--flag-grey-100);
+      color: var(--flag-primary-600);
+    }
+  }
+}

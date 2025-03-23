@@ -1,0 +1,23 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  color: var(--flag-primary);
+  font-family: var(--flag-font-family);
+  margin: 0;
+}
+
+body {
+  inset: 0;
+  position: fixed;
+}
+
+p {
+  margin: 0;
+}
+
+figure {
+  margin: 0;
+}

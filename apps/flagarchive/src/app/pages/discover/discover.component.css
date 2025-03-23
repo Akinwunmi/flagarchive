@@ -16,7 +16,7 @@
   gap: var(--flag-space-lg);
   height: var(--navigation-height);
   position: fixed;
-  inset-block: calc(var(--app-header-height) + var(--advanced-search-height) - var(--flag-space-md)) 0;
+  inset-block: calc(var(--app-header-height) + var(--advanced-search-height) - var(--flag-space-sm)) 0;
   width: 100%;
   z-index: 2;
 

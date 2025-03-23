@@ -1,7 +1,12 @@
-@let MAX_SELECTED_YEAR = max() === selectedYear();
-@let MIN_SELECTED_YEAR = min() === selectedYear();
+@let MAX_SELECTED_YEAR = max() === selectedYear(); @let MIN_SELECTED_YEAR =
+min() === selectedYear();
 
-<button flag-button secondary [disabled]="MIN_SELECTED_YEAR" (click)="previous()">
+<button
+  flag-button
+  secondary
+  [disabled]="MIN_SELECTED_YEAR"
+  (click)="previous()"
+>
   <flag-icon>keyboard_arrow_left</flag-icon>
 </button>
 <button
@@ -21,13 +26,23 @@
 </button>
 
 <div class="play">
-  <button flag-button secondary [disabled]="MIN_SELECTED_YEAR || isPlaying()" (click)="play(true)">
+  <button
+    flag-button
+    secondary
+    [disabled]="MIN_SELECTED_YEAR || isPlaying()"
+    (click)="play(true)"
+  >
     <flag-icon>arrow_back_2</flag-icon>
   </button>
   <button flag-button secondary [disabled]="!isPlaying()" (click)="stop()">
     <flag-icon>pause</flag-icon>
   </button>
-  <button flag-button secondary [disabled]="MAX_SELECTED_YEAR || isPlaying()" (click)="play()">
+  <button
+    flag-button
+    secondary
+    [disabled]="MAX_SELECTED_YEAR || isPlaying()"
+    (click)="play()"
+  >
     <flag-icon>play_arrow</flag-icon>
   </button>
 </div>

@@ -1,0 +1,9 @@
+:host {
+  background-color: var(--flag-white);
+  border-radius: var(--flag-radius-lg);
+  display: block;
+  padding: var(--flag-space-xs);
+  position: sticky;
+  inset-inline: 0;
+  top: 0;
+}

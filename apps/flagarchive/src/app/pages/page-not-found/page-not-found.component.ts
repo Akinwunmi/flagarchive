@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { FlagImageComponent } from '@flagarchive/entities';
+import { FlagImageComponent } from '@flagarchive/ui';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,

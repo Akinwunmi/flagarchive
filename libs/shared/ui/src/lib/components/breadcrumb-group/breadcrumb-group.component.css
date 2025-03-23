@@ -1,0 +1,8 @@
+ol {
+  align-items: center;
+  display: flex;
+  gap: var(--flag-space-2xs);
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}

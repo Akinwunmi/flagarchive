@@ -1,5 +1,11 @@
 <header>
-  <div class="title" role="button" tabindex="0" (click)="goToHome()" (keydown)="goToHome()">
+  <div
+    class="title"
+    role="button"
+    tabindex="0"
+    (click)="goToHome()"
+    (keydown)="goToHome()"
+  >
     <img src="images/logo.svg" alt="Flag Archive Logo" />
     {{ 'common.app-name' | translate }}
     <flag-pill type="secondary">Beta 2.0</flag-pill>
@@ -16,22 +22,21 @@
 
 <ng-template #mainMenuTemplate>
   <flag-card>
-    @if (currentUser()) {
-      @if (isAdmin()) {
-        <button flag-list-item (click)="goToCreate()">
-          <flag-icon>create</flag-icon>
-          {{ 'common.create' | translate }}
-        </button>
-      }
-      <button flag-list-item (click)="logOut()">
-        <flag-icon>logout</flag-icon>
-        {{ 'common.logout' | translate }}
-      </button>
+    @if (currentUser()) { @if (isAdmin()) {
+    <button flag-list-item (click)="goToCreate()">
+      <flag-icon>create</flag-icon>
+      {{ 'common.create' | translate }}
+    </button>
+    }
+    <button flag-list-item (click)="logOut()">
+      <flag-icon>logout</flag-icon>
+      {{ 'common.logout' | translate }}
+    </button>
     } @else {
-      <button flag-list-item (click)="goToLogin()">
-        <flag-icon>login</flag-icon>
-        {{ 'common.login' | translate }}
-      </button>
+    <button flag-list-item (click)="goToLogin()">
+      <flag-icon>login</flag-icon>
+      {{ 'common.login' | translate }}
+    </button>
     }
   </flag-card>
 </ng-template>
@@ -39,13 +44,13 @@
 <ng-template #translateMenuTemplate>
   <flag-card>
     @for (language of languages; track language) {
-      <button
-        flag-list-item
-        [attr.active]="activeLanguage() === language || undefined"
-        (click)="setLanguage(language)"
-      >
-        {{ 'languages.' + language | translate }}
-      </button>
+    <button
+      flag-list-item
+      [attr.active]="activeLanguage() === language || undefined"
+      (click)="setLanguage(language)"
+    >
+      {{ 'languages.' + language | translate }}
+    </button>
     }
   </flag-card>
 </ng-template>
