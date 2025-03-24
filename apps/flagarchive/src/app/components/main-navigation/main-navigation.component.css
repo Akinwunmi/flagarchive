@@ -3,7 +3,20 @@
   font-weight: var(--flag-font-weight-regular);
   gap: var(--flag-space-md) var(--flag-space-3xl);
   height: fit-content;
+  padding: var(--flag-space-md) var(--app-horizontal-padding);
   z-index: 1;
+
+  @media (min-width: 40rem) {
+    padding: 0;
+  }
+}
+
+flag-breadcrumb-group {
+  display: block;
+
+  @media (min-width: 40rem) {
+    display: none;
+  }
 }
 
 section {
@@ -26,7 +39,7 @@ section {
     text-transform: uppercase;
   }
   
-  [flagButton] {
+  [flag-button] {
     justify-content: flex-start;
   }
 

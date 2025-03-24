@@ -1,0 +1,42 @@
+<a [routerLink]="['../..', entity().id]">
+  <figure>
+    <flag-image
+      [alt]="'Flag of' + entity().name"
+      [hoistedRight]="entity().hoistedRight ?? false"
+      [isReversed]="isReversed()"
+      [src]="
+        (isReversed() ? entity().flags?.official?.reverseUrl : entity().flags?.official?.url) ?? ''
+      "
+    />
+    <figcaption>
+      {{ entity().name }}
+    </figcaption>
+  </figure>
+  <div class="info">
+    @if (entity().altParentId) {
+      <a
+        flag-button
+        extra-small
+        rounded
+        type="button"
+        [routerLink]="['../..', entity().altParentId]"
+        (click)="handleClickEvent($event)"
+      >
+        {{ entity().altParentId?.toUpperCase() }}
+      </a>
+    }
+    @if (entity().flags?.official?.reverseUrl) {
+      <button
+        flag-button
+        extra-small
+        rounded
+        secondary
+        type="button"
+        [attr.raised]="isReversed() || undefined"
+        (click)="toggleReversed($event)"
+      >
+        <flag-icon>swap_horiz</flag-icon>
+      </button>
+    }
+  </div>
+</a>

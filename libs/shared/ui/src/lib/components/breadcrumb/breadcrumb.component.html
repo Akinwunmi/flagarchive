@@ -1,0 +1,25 @@
+<li>
+  <a
+    extra-small
+    secondary
+    [attr.aria-label]="label()"
+    [attr.aria-current]="active() ? 'page' : null"
+    [attr.flag-button]="!active() && !dropdown() && !flagImage() ? '' : null"
+    [attr.ghost]="active() || undefined"
+    [class.active]="active() && !dropdown()"
+    [routerLink]="!active() && !dropdown() ? link() : null"
+  >
+    @if (!dropdown() && !flagImage()) {
+      @if (icon()) {
+        <flag-icon>{{ icon() }}</flag-icon>
+      }
+      @if (!hideLabel()) {
+        {{ label() }}
+      }
+    }
+    <ng-content />
+  </a>
+</li>
+@if (!active() && !hideArrow()) {
+  <flag-icon class="arrow">keyboard_arrow_right</flag-icon>
+}

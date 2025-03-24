@@ -8,6 +8,7 @@ export interface Entity {
   altId?: string;
   altParentId?: string;
   flags?: Record<FlagCategory, EntityFlag>;
+  hasNoChildren?: boolean;
   hoistedRight?: boolean;
   parentId?: string;
   parentIds?: string[];

@@ -55,7 +55,6 @@ export class EntityListComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('entity list');
     const id = this.#router.url.split('/')[RouteIndex.EntityId];
     this.#getEntities(id);
 

@@ -1,5 +1,6 @@
 :host {
+  aspect-ratio: 1;
   display: inline-block;
-  font-size: var(--flag-space-xl);
+  font-size: var(--flag-font-size-xl);
   user-select: none;
 }

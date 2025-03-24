@@ -9,9 +9,13 @@
   gap: var(--flag-space-xs);
   grid-template-columns: auto 1fr auto;
   line-height: var(--flag-line-height-md);
-  min-height: var(--flag-space-4xl);
-  padding-inline: var(--flag-space-sm);
+  min-height: var(--flag-space-3xl);
+  padding: var(--flag-space-xs) var(--flag-space-sm);
   width: 100%;
+
+  &[secondary] {
+    color: var(--flag-secondary-700);
+  }
 
   &.disabled {
     background-color: var(--flag-grey-100);

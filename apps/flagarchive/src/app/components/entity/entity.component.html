@@ -3,16 +3,16 @@
 <figure [class.card]="card()">
   <flag-image
     [alt]="NAME_TRANSLATION"
-    [src]="(isReversed ? reverseUrl() : url()) ?? ''"
     [hoistedRight]="entity().hoistedRight ?? false"
     [isReversed]="isReversed"
     [placeholder]="isReversed ? !reverseUrl() : !url()"
+    [src]="(isReversed ? reverseUrl() : url()) ?? ''"
   />
   <figcaption>
     @if (altParentId()) {
-      <span class="alt-parent">
-        {{ setAltParentId(altParentId()) }}
-      </span>
+    <span class="alt-parent">
+      {{ setAltParentId(altParentId()) }}
+    </span>
     }
     <span class="name">
       {{ NAME_TRANSLATION }}
@@ -20,19 +20,18 @@
   </figcaption>
   <div class="info">
     @if (range(); as range) {
-      <flag-pill> {{ range.start }} &ndash; {{ range.end }} </flag-pill>
-    }
-    @if (reverseUrl()) {
-      <button
-        flag-button
-        rounded
-        secondary
-        class="reverse-button"
-        [attr.raised]="isReversed || undefined"
-        (click)="toggleReversed($event)"
-      >
-        <flag-icon>swap_horiz</flag-icon>
-      </button>
+    <flag-pill> {{ range.start }} &ndash; {{ range.end }} </flag-pill>
+    } @if (reverseUrl()) {
+    <button
+      flag-button
+      rounded
+      secondary
+      class="reverse-button"
+      [attr.raised]="isReversed || undefined"
+      (click)="toggleReversed($event)"
+    >
+      <flag-icon>swap_horiz</flag-icon>
+    </button>
     }
   </div>
 </figure>

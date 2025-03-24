@@ -11,9 +11,12 @@ import {
   EntityFlag,
   EntityFullRange,
   EntityRange,
-  FlagImageComponent,
 } from '@flagarchive/entities';
-import { IconComponent, PillComponent } from '@flagarchive/ui';
+import {
+  FlagImageComponent,
+  IconComponent,
+  PillComponent,
+} from '@flagarchive/ui';
 import { TranslatePipe } from '@ngx-translate/core';
 
 import { AdvancedSearchStore } from '../../state';

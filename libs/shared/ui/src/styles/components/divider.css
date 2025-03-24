@@ -1,0 +1,11 @@
+hr[flag-divider] {
+  background-color: var(--flag-primary-100);
+  border: none;
+  height: var(--flag-border-width-sm);
+  margin-block: var(--flag-space-xs);
+  width: 100%;
+
+  &[no-margin] {
+    margin-block: 0;
+  }
+}

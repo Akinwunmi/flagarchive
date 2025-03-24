@@ -10,29 +10,38 @@ import {
   signal,
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { FilterOption } from '@flagarchive/advanced-search';
+import {
+  ActivatedRoute,
+  NavigationEnd,
+  Router,
+  RouterLink,
+} from '@angular/router';
+import { Entity, EntityType } from '@flagarchive/entities';
 import {
   BreadcrumbComponent,
-  BreadcrumbItem,
-  Entity,
-  EntityType,
-} from '@flagarchive/entities';
+  BreadcrumbGroupComponent,
+  DropdownComponent,
+  FlagImageComponent,
+} from '@flagarchive/ui';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { filter, map, startWith } from 'rxjs';
 
-import {
-  DefaultMainEntity,
-  DiscoverSection,
-  RootPath,
-  RouteIndex,
-} from '../../models';
+import { DefaultMainEntity, DiscoverSection, RouteIndex } from '../../models';
 import { EntitiesStore } from '../../state';
 import { MENU_ITEMS } from './main-navigation.constants';
+import { BreadcrumbItem } from './main-navigation.model';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [BreadcrumbComponent, NgTemplateOutlet, TranslatePipe],
+  imports: [
+    BreadcrumbComponent,
+    BreadcrumbGroupComponent,
+    DropdownComponent,
+    FlagImageComponent,
+    NgTemplateOutlet,
+    RouterLink,
+    TranslatePipe,
+  ],
   selector: 'app-main-navigation',
   styleUrl: './main-navigation.component.css',
   templateUrl: './main-navigation.component.html',
@@ -57,12 +66,9 @@ export class MainNavigationComponent implements OnInit {
     MENU_ITEMS.map((item) => ({
       ...item,
       label: this.#translate.instant(item.label ?? ''),
-      callback: () => this.#setActiveEntityMenuItem(item.value),
+      link: ['entity', this.selected().entity?.id, item.value] as string[],
     }))
   );
-
-  continents = computed(() => this.#getEntities(EntityType.Continent));
-  organizations = computed(() => this.#getEntities(EntityType.Organization));
 
   #activeEntity = computed(() =>
     this.mainEntities().find(
@@ -74,12 +80,14 @@ export class MainNavigationComponent implements OnInit {
       ? DiscoverSection.Organizations
       : DiscoverSection.Continents
   );
-  #isMainEntity = computed(() =>
+
+  continents = computed(() => this.#getEntities(EntityType.Continent));
+  organizations = computed(() => this.#getEntities(EntityType.Organization));
+  isMainEntity = computed(() =>
     Object.values(EntityType).includes(
       this.selected().entity?.type as EntityType
     )
   );
-  #mainEntityItems = computed(() => this.#setMainEntityItems());
 
   #mainBreadcrumbItems = computed<BreadcrumbItem[]>(() => [
     {
@@ -88,10 +96,10 @@ export class MainNavigationComponent implements OnInit {
         (section) =>
           ({
             active: this.#activeSection() === section,
-            callback: () => this.setActiveSection(DefaultMainEntity[section]),
             label: section,
+            link: ['entity', DefaultMainEntity[section]],
             value: DefaultMainEntity[section],
-          } as FilterOption)
+          } as BreadcrumbItem)
       ),
     },
     {
@@ -101,6 +109,8 @@ export class MainNavigationComponent implements OnInit {
       options: this.#setMainEntityItems(),
     },
   ]);
+  #mainEntityItems = computed(() => this.#setMainEntityItems());
+
   #entityBreadcrumbItems = computed<BreadcrumbItem[]>(() => [
     {
       icon: 'more_horiz',
@@ -124,7 +134,7 @@ export class MainNavigationComponent implements OnInit {
     },
   ]);
   breadcrumbItems = computed<BreadcrumbItem[]>(() =>
-    this.#isMainEntity()
+    this.isMainEntity()
       ? this.#mainBreadcrumbItems()
       : this.#entityBreadcrumbItems()
   );
@@ -168,21 +178,7 @@ export class MainNavigationComponent implements OnInit {
     return this.mainEntities().filter((entity) => entity.type === type);
   }
 
-  #setActiveEntityMenuItem(value: string) {
-    // TODO: Find out why navigation relative to the current route does not work
-    this.#router.navigate([
-      RootPath.Discover,
-      RootPath.Entity,
-      this.selected().entity.id,
-      value,
-    ]);
-    this.#activeEntityMenuItem.set(value);
-    this.#entityMenuItems().forEach(
-      (item) => (item.active = item.value === value)
-    );
-  }
-
-  #setMainEntityItems(): FilterOption[] {
+  #setMainEntityItems(): BreadcrumbItem[] {
     return (
       this.#activeSection() === DiscoverSection.Continents
         ? this.continents()
@@ -191,10 +187,10 @@ export class MainNavigationComponent implements OnInit {
       (entity) =>
         ({
           active: entity.id === this.selectedMainEntityId(),
-          callback: () => this.selectMainEntity(entity.id),
           label: this.#translate.instant(`entities.${entity.name}`),
+          link: ['entity', entity.id],
           value: entity.id,
-        } as FilterOption)
+        } as BreadcrumbItem)
     );
   }
 }

@@ -1,0 +1,15 @@
+<button
+  flag-button
+  type="button"
+  [attr.disabled]="isMainMenuOpen() || undefined"
+  (click)="openMainMenu()"
+>
+  <flag-icon>menu</flag-icon>
+</button>
+<a class="logo" [routerLink]="['/']">
+  <img src="images/flagarchive_logo.svg" alt="Flag Archive logo" />
+</a>
+
+<ng-template cdkPortal>
+  <app-main-menu (closed)="closeMainMenu()" />
+</ng-template>

@@ -1,0 +1,6 @@
+<app-filter-and-sort-bar />
+<div class="entity-list">
+  @for (entity of entities(); track $index) {
+    <app-entity [entity]="entity" />
+  }
+</div>

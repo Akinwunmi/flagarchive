@@ -1,0 +1,64 @@
+<app-header />
+@if (isMainEntity()) {
+  <flag-list cdkMenu>
+    <flag-list-item [secondary]="true">Continents</flag-list-item>
+    @for (continent of continents(); track $index) {
+      <a
+        cdkMenuItem
+        flag-list-item
+        [attr.active]="continent.id === selectedEntity()?.id || undefined"
+        [routerLink]="['flags', continent.id]"
+      >
+        {{ continent.name }}
+      </a>
+    }
+  </flag-list>
+  <flag-list cdkMenu>
+    <flag-list-item [secondary]="true">Global</flag-list-item>
+    @for (organization of organizations(); track $index) {
+      <a
+        cdkMenuItem
+        flag-list-item
+        [attr.active]="organization.id === selectedEntity()?.id || undefined"
+        [routerLink]="['flags', organization.id]"
+      >
+        {{ organization.name }}
+      </a>
+    }
+  </flag-list>
+} @else {
+  @if (selectedEntity(); as selectedEntity) {
+    <div class="flag">
+      <flag-image
+        [src]="selectedEntity.flags?.official?.url ?? ''"
+        [alt]="'Flag of ' + selectedEntity.name"
+      />
+      <div class="actions">
+        <button flag-button rounded small>
+          <flag-icon>favorite</flag-icon>
+        </button>
+        <button flag-button ghost rounded small>
+          <flag-icon>open_in_full</flag-icon>
+        </button>
+      </div>
+    </div>
+  }
+  <flag-list cdkMenu>
+    @for (item of entityItems(); track $index) {
+      <a
+        cdkMenuItem
+        flag-list-item
+        [attr.active]="item.active || undefined"
+        [attr.disabled]="
+          (item.label === 'Entities' && selectedEntity()?.hasNoChildren) || undefined
+        "
+        [routerLink]="item.path"
+      >
+        @if (item.icon) {
+          <flag-icon>{{ item.icon }}</flag-icon>
+        }
+        {{ item.label }}
+      </a>
+    }
+  </flag-list>
+}

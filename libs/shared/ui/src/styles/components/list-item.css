@@ -10,9 +10,10 @@
   font-size: var(--flag-font-size-sm);
   gap: var(--flag-space-xs);
   grid-template-columns: auto 1fr auto;
+  justify-items: flex-start;
   line-height: var(--flag-line-height-md);
-  min-height: var(--flag-space-4xl);
-  padding-inline: var(--flag-space-sm);
+  min-height: var(--flag-space-3xl);
+  padding: var(--flag-space-xs) var(--flag-space-sm);
   text-decoration: none;
   transition: background-color 150ms ease-in-out;
   transition-property: background-color, color;
@@ -42,7 +43,7 @@
     }
   }
 
-  &.disabled {
+  &[disabled] {
     background-color: var(--flag-grey-100);
     color: var(--flag-grey-500);
     pointer-events: none;
