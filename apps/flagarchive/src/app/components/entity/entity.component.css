@@ -1,19 +1,20 @@
-figure {
-  align-items: center;
-  cursor: pointer;
-  display: grid;
-  gap: var(--flag-space-xs);
-  grid-template-columns: var(--flag-space-3xl) auto 1fr;
-  grid-template-rows: auto;
-  margin: 0;
-  width: 100%;
-
-  figcaption {
-    align-items: baseline;
-    display: flex;
+:host {
+  > a {
+    border-radius: var(--flag-radius-sm);
+    display: grid;
     gap: var(--flag-space-xs);
+    padding: var(--flag-space-xs);
+    text-decoration: none;
+    transition: background-color 150ms ease-in-out;
+  }
+}
 
-    .name {
+a {
+  figure {
+    display: grid;
+    gap: var(--flag-space-xs);
+  
+    figcaption {
       display: -webkit-box;
       line-clamp: 1;
       overflow: hidden;
@@ -21,43 +22,33 @@ figure {
       -webkit-line-clamp: 1;
       -webkit-box-orient: vertical;
     }
-
-    .alt-parent {
-      color: var(--flag-secondary-700);
-      font-size: var(--flag-font-size-xs);
-      font-weight: var(--flag-font-weight-bold);
-      text-transform: uppercase;
-    }
   }
-
+  
   .info {
     align-items: center;
     display: flex;
     gap: var(--flag-space-xs);
-    margin-left: var(--flag-space-2xs);
+    width: fit-content;
 
-    flag-pill {
-      width: max-content;
-    }
-
-    .reverse-button {
-      height: var(--flag-space-xl);
-      width: fit-content;
+    .alt-parent-id {
+      font-size: var(--flag-font-size-xs);
+      font-weight: var(--flag-font-weight-medium);  
     }
   }
 
-  &.card {
-    gap: var(--flag-space-2xs);
-    grid-template-columns: auto;
-    grid-template-rows: auto var(--flag-space-xl);
+  &:visited {
+    color: inherit;
+  }
 
-    figcaption {
-      height: var(--flag-space-lg);
-      overflow: hidden;
+  &:not(:has(.info:hover)) {
+    &:hover {
+      background-color: var(--flag-grey-300);
+      color: var(--flag-primary-700);
     }
-
-    .info {
-      margin-left: 0;
+  
+    &:active {
+      background-color: var(--flag-grey-100);
+      color: var(--flag-primary-600);
     }
   }
 }

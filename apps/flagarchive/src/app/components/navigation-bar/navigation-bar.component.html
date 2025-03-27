@@ -1,0 +1,52 @@
+@if (!isTablet() || (isTablet() && !isMainEntity())) {
+  <flag-breadcrumb-group>
+    <flag-breadcrumb icon="home" label="Home" [hideLabel]="true" [link]="['']" />
+    @if (selectedEntity(); as selectedEntity) {
+      @for (parentId of selectedEntity.parentIds; track $index) {
+        <flag-breadcrumb
+          class="parent"
+          [hideArrow]="selectedEntity.parentIds?.length !== $index + 1"
+          [label]="parentId"
+          [link]="['flags', parentId]"
+        />
+        @if (selectedEntity.parentIds?.length !== $index + 1) {
+          <flag-icon class="arrow">pen_size_2</flag-icon>
+        }
+      }
+      <flag-breadcrumb [label]="selectedEntity.name" [link]="[]" />
+    }
+  </flag-breadcrumb-group>
+}
+@if (isTablet() && isMainEntity()) {
+  @if (selectedEntity(); as selectedEntity) {
+    <flag-dropdown
+      [extraSmall]="true"
+      [icon]="isMobile() ? 'more_horiz' : undefined"
+      [label]="setMainEntityDropdownLabel()"
+      [secondary]="true"
+      [(isOpen)]="isMainEntityTypesMenuOpen"
+    >
+      @for (type of mainEntityTypes; track $index) {
+        <a
+          flag-list-item
+          [routerLink]="['flags', type === 'continents' ? 'af' : 'oc']"
+          (click)="closeMainEntityTypesMenu()"
+        >
+          {{ type }}
+        </a>
+      }
+    </flag-dropdown>
+    <flag-icon class="arrow-right">keyboard_arrow_right</flag-icon>
+    <flag-dropdown
+      [extraSmall]="true"
+      [label]="selectedEntity.name"
+      [(isOpen)]="isMainEntitiesMenuOpen"
+    >
+      @for (entity of mainEntities(); track $index) {
+        <a flag-list-item [routerLink]="['flags', entity.id]" (click)="closeMainEntitiesMenu()">
+          {{ entity.name }}
+        </a>
+      }
+    </flag-dropdown>
+  }
+}

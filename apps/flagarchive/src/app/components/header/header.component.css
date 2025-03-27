@@ -1,0 +1,32 @@
+:host {
+  align-items: center;
+  background-color: var(--flag-white);
+  box-sizing: border-box;
+  display: flex;
+  gap: var(--flag-space-xs);
+  height: 3.5rem;
+  padding-inline: var(--flag-space-xs);
+  
+  @media screen and (max-width: 50rem) {
+    flex-flow: row-reverse;
+    height: 2.75rem;
+    justify-content: space-between;
+    padding-top: var(--flag-space-sm);
+  }
+}
+
+[flag-button] {
+  background-color: var(--flag-white);
+}
+
+.logo {
+  height: 2.25rem;
+
+  img {
+    height: 100%;
+  }
+
+  @media screen and (max-width: 50rem) {
+    margin-inline-start: var(--flag-space-2xs);
+  }
+}

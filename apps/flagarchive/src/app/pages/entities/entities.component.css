@@ -1,0 +1,28 @@
+:host {
+  align-content: flex-start;
+  display: grid;
+  gap: var(--flag-space-lg);
+  height: 100%;
+  overflow-y: auto;
+  padding-block: var(--flag-space-sm) var(--flag-space-xl);
+  position: relative;
+  width: 100%;
+
+  &:not([main-entity]) {
+    @media screen and (max-width: 50rem) {
+      padding-block-start: 0;
+    }
+  }
+}
+
+app-filter-and-sort-bar {
+  margin-inline: var(--flag-space-sm);
+  z-index: 2;
+}
+
+.entity-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
+  padding-block-end: var(--flag-space-xl);
+  padding-inline: var(--flag-space-xs);
+}

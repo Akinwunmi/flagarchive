@@ -1,4 +1,11 @@
-<app-header />
+<div class="main-navigation">
+  <app-header />
+  <app-sidenav [entityId]="entityId()" [entityItems]="entityItems()" />
+</div>
 <main>
+  <app-navigation-bar />
+  @if (!isMainEntity() && isTablet()) {
+    <app-mobile-entity-bar [entityItems]="entityItems()" />
+  }
   <router-outlet />
 </main>

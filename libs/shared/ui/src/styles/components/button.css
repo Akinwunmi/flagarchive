@@ -1,6 +1,6 @@
 [flag-button] {
   align-items: center;
-  background-color: var(--flag-white);
+  background-color: var(--flag-primary-100);
   border: none;
   border-radius: var(--flag-radius-sm);
   color: var(--flag-primary-500);
@@ -44,7 +44,7 @@
   
     &:active {
       background-color: var(--flag-primary-100);
-      color: var(--flag-primary-600);
+      color: var(--flag-primary-700);
     }
   
     &[secondary] {
