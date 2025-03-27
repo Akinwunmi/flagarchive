@@ -15,9 +15,6 @@
         "outputPath": "dist/apps/flagarchive",
         "index": "apps/flagarchive/src/index.html",
         "browser": "apps/flagarchive/src/main.ts",
-        "polyfills": [
-          "zone.js"
-        ],
         "tsConfig": "apps/flagarchive/tsconfig.app.json",
         "assets": [
           {
@@ -55,16 +52,10 @@
       },
       "defaultConfiguration": "production"
     },
-    "deploy": {
-      "dependsOn": [
-        "build"
-      ],
-      "command": "netlify deploy --dir=dist/apps/flagarchive "
-    },
     "serve": {
       "executor": "@angular-devkit/build-angular:dev-server",
       "options": {
-        "port": 1991
+        "port": 5660
       },
       "configurations": {
         "production": {
@@ -98,7 +89,7 @@
       "executor": "@nx/web:file-server",
       "options": {
         "buildTarget": "flagarchive:build",
-        "port": 4200,
+        "port": 5660,
         "staticFilePath": "dist/apps/flagarchive/browser",
         "spa": true
       }

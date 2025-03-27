@@ -1,23 +1,35 @@
 :host {
-  display: block;
-  height: 100%;
+  display: grid;
+  grid-template-columns: 12.5rem 1fr;
+  height: 100svh;
+  overflow: hidden;
+  position: absolute;
+  width: 100svw;
+
+  @media screen and (max-width: 50rem) {
+    grid-template-columns: 1fr;
+  }
 }
 
-app-header {
-  height: var(--app-header-height);
-  left: 0;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 2;
+.main-navigation {
+  app-sidenav {
+    @media screen and (max-width: 50rem) {
+      display: none;
+    }
+  }
 }
 
 main {
-  display: grid;
-  min-height: calc(100% - (var(--app-header-height)));
-  padding-top: var(--app-header-height);
+  display: flex;
+  flex-direction: column;
+  height: 100svh;
+  width: 100%;
 
   router-outlet {
     display: none;
-  }  
+  }
+
+  @media screen and (max-width: 50rem) {
+    height: calc(100svh - 2.75rem);
+  }
 }

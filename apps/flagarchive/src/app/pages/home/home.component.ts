@@ -2,10 +2,10 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [RouterOutlet],
   selector: 'app-home',
-  styleUrl: './home.component.css',
+  imports: [RouterOutlet],
   templateUrl: './home.component.html',
+  styleUrl: './home.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeComponent {}

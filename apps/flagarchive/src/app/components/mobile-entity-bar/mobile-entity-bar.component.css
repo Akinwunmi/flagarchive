@@ -1,0 +1,18 @@
+:host {
+  align-items: center;
+  background-color: var(--flag-grey-bg);
+  display: flex;
+  height: var(--flag-space-6xl);
+  justify-content: space-between;
+  padding-inline: var(--flag-space-sm);
+}
+
+.flag {
+  align-items: center;
+  display: flex;
+  gap: var(--flag-space-xs);
+
+  flag-image {
+    width: 3.75rem;
+  }
+}

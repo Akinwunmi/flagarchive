@@ -1,16 +1,17 @@
 <button
   flag-button
   type="button"
+  [attr.extra-small]="extraSmall() || undefined"
   [attr.secondary]="secondary() || undefined"
   [flagDropdownTrigger]="dropdown"
   [(isOpen)]="isOpen"
 >
   @if (icon(); as icon) {
-  <flag-icon>{{ icon }}</flag-icon>
+    <flag-icon>{{ icon }}</flag-icon>
   }
   {{ label() }}
   @if (!hideChevron()) {
-  <flag-icon [class.rotated]="isOpen()">keyboard_arrow_down</flag-icon>
+    <flag-icon [class.rotated]="isOpen()">keyboard_arrow_down</flag-icon>
   }
 </button>
 

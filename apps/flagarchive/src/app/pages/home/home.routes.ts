@@ -5,18 +5,42 @@ import { HomeComponent } from './home.component';
 export const HOME_ROUTES: Routes = [
   {
     path: '',
+    pathMatch: 'full',
+    redirectTo: 'flags',
+  },
+  {
+    path: 'flags',
     component: HomeComponent,
-    title: 'Flag Archive',
     children: [
       {
         path: '',
         pathMatch: 'full',
-        redirectTo: 'discover',
+        redirectTo: 'af',
       },
       {
-        path: 'discover',
-        loadChildren: () =>
-          import('../discover/discover.routes').then((m) => m.DISCOVER_ROUTES),
+        path: ':entityId',
+        children: [
+          {
+            path: '',
+            pathMatch: 'full',
+            redirectTo: 'entities',
+          },
+          {
+            path: 'entities',
+            loadChildren: () =>
+              import('../entities').then((m) => m.ENTITIES_ROUTES),
+          },
+          {
+            path: 'details',
+            loadChildren: () =>
+              import('../details').then((m) => m.DETAILS_ROUTES),
+          },
+          {
+            path: 'history',
+            loadChildren: () =>
+              import('../history').then((m) => m.HISTORY_ROUTES),
+          },
+        ],
       },
     ],
   },
