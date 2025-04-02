@@ -1,10 +1,11 @@
 export enum FlagCategory {
-  CivilEnsign = 'civil-ensign',
-  NavalEnsign = 'naval-ensign',
-  NavalJack = 'naval-jack',
+  CivilEnsign = 'civil_ensign',
+  CivilFlag = 'civil_flag',
+  NavalEnsign = 'naval_ensign',
+  NavalJack = 'naval_jack',
   Official = 'official',
-  PresidentialStandard = 'presidential-standard',
-  RoyalStandard = 'royal-standard',
+  PresidentialStandard = 'presidential_standard',
+  RoyalStandard = 'royal_standard',
   Unofficial = 'unofficial',
 }
 

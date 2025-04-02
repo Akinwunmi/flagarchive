@@ -1,8 +1,8 @@
 :host {
-  background-color: var(--flag-grey-bg);
+  background-color: var(--flag-white);
   border-radius: var(--flag-radius-lg);
   box-shadow: var(--flag-elevation-xs);
-  color: var(--flag-color-primary);
+  color: var(--flag-primary);
   display: grid;
   font-family: var(--flag-font-family);
   grid-template-rows: auto 1fr auto;

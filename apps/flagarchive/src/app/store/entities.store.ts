@@ -1,12 +1,13 @@
 import { computed, inject } from '@angular/core';
-import { Entity } from '@flagarchive/entities';
+import { Entity, EntityType } from '@flagarchive/entities';
 import { tapResponse } from '@ngrx/operators';
 import { patchState, signalStore, withComputed, withMethods, withState } from '@ngrx/signals';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { pipe, switchMap } from 'rxjs';
 
 import { EntityService } from '../services';
-import { sortEntities } from './entities.utils';
+import { AdvancedSearchStore } from './advanced-search.store';
+import { setFilteredEntities, sortEntities } from './entities.utils';
 
 interface EntitiesState {
   entities: Entity[];
@@ -23,17 +24,20 @@ const INITIAL_STATE: EntitiesState = {
 export const EntitiesStore = signalStore(
   { providedIn: 'root' },
   withState(INITIAL_STATE),
-  withComputed((state) => ({
+  withComputed((state, advancedSearchStore = inject(AdvancedSearchStore)) => ({
     continents: computed(() =>
-      state.mainEntities().filter((entity) => entity.type === 'continent'),
+      state.mainEntities().filter((entity) => entity.type === EntityType.Continent),
+    ),
+    filteredEntities: computed(() =>
+      setFilteredEntities(advancedSearchStore, state.entities(), state.selectedEntity()),
     ),
     globalEntities: computed(() =>
-      state.mainEntities().filter((entity) => entity.type === 'organization'),
+      state.mainEntities().filter((entity) => entity.type === EntityType.Organization),
     ),
     isMainEntity: computed(
       () =>
-        state.selectedEntity()?.type === 'continent' ||
-        state.selectedEntity()?.type === 'organization',
+        state.selectedEntity()?.type === EntityType.Continent ||
+        state.selectedEntity()?.type === EntityType.Organization,
     ),
   })),
   withMethods((store, entityService = inject(EntityService)) => ({
@@ -48,7 +52,7 @@ export const EntitiesStore = signalStore(
           ),
         ),
         switchMap((entity) =>
-          entityService.getEntitiesByParentId(entity.id).pipe(
+          entityService.getEntitiesByParentId(entity.id, true).pipe(
             tapResponse({
               next: (entities) => patchState(store, { entities: sortEntities(entities) }),
               error: (error) => console.error({ error }),

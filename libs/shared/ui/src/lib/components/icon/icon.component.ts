@@ -1,12 +1,12 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  selector: 'flag-icon',
-  templateUrl: './icon.component.html',
-  styleUrl: './icon.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     class: 'material-symbols-rounded',
   },
+  selector: 'flag-icon',
+  styleUrl: './icon.component.css',
+  templateUrl: './icon.component.html',
 })
 export class IconComponent {}

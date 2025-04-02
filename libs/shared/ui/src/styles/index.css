@@ -1,9 +1,5 @@
 @import './colors.css';
-@import './components/breadcrumb.css';
-@import './components/button.css';
-@import './components/divider.css';
-@import './components/list-item.css';
-@import './components/pill.css';
+@import './components/index.css';
 @import './fonts.css';
 @import './typography.css';
 @import './variables.css';

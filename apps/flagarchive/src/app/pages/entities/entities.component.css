@@ -15,14 +15,18 @@
   }
 }
 
-app-filter-and-sort-bar {
+app-advanced-search-bar {
   margin-inline: var(--flag-space-sm);
   z-index: 2;
 }
 
-.entity-list {
+.entities {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
   padding-block-end: var(--flag-space-xl);
   padding-inline: var(--flag-space-xs);
+
+  &.list {
+    grid-template-columns: 1fr;
+  }
 }

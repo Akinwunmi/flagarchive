@@ -1,0 +1,29 @@
+:host {
+  align-items: center;
+  background-color: var(--flag-white);
+  border-radius: var(--flag-radius-lg);
+  display: flex;
+  justify-content: space-between;
+  padding: var(--flag-space-xs);
+  position: sticky;
+  inset-inline: 0;
+  top: 0;
+}
+
+.actions {
+  display: flex;
+  gap: var(--flag-space-md);
+
+  @media screen and (max-width: 80rem) {
+    display: none;
+    
+  }
+}
+
+.filter-button {
+  display: none;
+
+  @media screen and (max-width: 80rem) {
+    display: block;
+  }
+}

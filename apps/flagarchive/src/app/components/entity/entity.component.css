@@ -10,10 +10,19 @@
 }
 
 a {
+  display: grid;
+  grid-template-columns: 1fr auto;
+
   figure {
+    align-items: center;
     display: grid;
     gap: var(--flag-space-xs);
-  
+    grid-template-columns: auto 1fr;
+
+    flag-image {
+      height: var(--flag-space-2xl);
+    }
+
     figcaption {
       display: -webkit-box;
       line-clamp: 1;
@@ -49,6 +58,18 @@ a {
     &:active {
       background-color: var(--flag-grey-100);
       color: var(--flag-primary-600);
+    }
+  }
+
+  &.card {
+    grid-template-columns: 1fr;
+
+    figure {
+      grid-template-columns: 1fr;
+
+      flag-image {
+        height: auto;
+      }
     }
   }
 }

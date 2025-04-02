@@ -1,12 +1,12 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  selector: 'flag-list',
-  templateUrl: './list.component.html',
-  styleUrl: './list.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     role: 'list',
   },
+  selector: 'flag-list',
+  styleUrl: './list.component.css',
+  templateUrl: './list.component.html',
 })
 export class ListComponent {}
