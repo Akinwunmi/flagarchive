@@ -1,6 +1,9 @@
-export interface MenuItem {
+export interface Item {
   label: string;
-  path: string[] | string;
   icon?: string;
+}
+
+export interface MenuItem extends Item {
+  path: string[] | string;
   active?: boolean;
 }

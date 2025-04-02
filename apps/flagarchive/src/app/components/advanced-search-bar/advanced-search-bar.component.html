@@ -1,0 +1,84 @@
+<flag-year-navigator />
+<div class="actions">
+  <flag-checkbox
+    label="Show overseas regions"
+    [checked]="showOverseasRegions()"
+    [disabled]="isMainEntity()"
+    [secondary]="true"
+    (click)="toggleShowOverseasRegions()"
+  />
+  <flag-dropdown
+    label="Type of region"
+    [amountSelected]="amountOfSelectedEntityTypes()"
+    [secondary]="true"
+    [small]="true"
+  >
+    @for (entityType of currentEntityTypes(); track $index) {
+      <flag-list-item [secondary]="true">
+        <flag-checkbox
+          [checked]="isSelectedEntityType(entityType.label)"
+          [label]="entityType.label"
+          [secondary]="true"
+          (checkedChange)="toggleEntityType(entityType, $event)"
+        />
+      </flag-list-item>
+    }
+    <hr flag-divider />
+    <flag-list-item [secondary]="true">
+      <flag-checkbox
+        label="(De)select all"
+        [checked]="amountOfSelectedEntityTypes() === currentEntityTypes().length"
+        [indeterminate]="isPartialEntityTypeSelection()"
+        [secondary]="true"
+        (checkedChange)="toggleAllEntityTypes($event)"
+      />
+    </flag-list-item>
+  </flag-dropdown>
+  <flag-dropdown icon="flag" [label]="activeFlagCategory()" [secondary]="true" [small]="true">
+    @for (flagCategory of flagCategories; track $index) {
+      <button
+        flag-list-item
+        secondary
+        [attr.active]="flagCategory === activeFlagCategory() || undefined"
+        (click)="setFlagCategory(flagCategory)"
+      >
+        {{ flagCategory }}
+      </button>
+    }
+  </flag-dropdown>
+  <flag-dropdown icon="sort" label="" [hideChevron]="true" [secondary]="true" [small]="true">
+    @for (sortDirection of sortDirections; track $index) {
+      <button
+        flag-list-item
+        secondary
+        [attr.active]="sortDirection === activeSortDirection() || undefined"
+        (click)="setSortDirection(sortDirection)"
+      >
+        {{ sortDirection }}
+      </button>
+    }
+  </flag-dropdown>
+  <div flag-button-group>
+    @for (option of layoutOptions; track $index) {
+      <button
+        flag-button
+        secondary
+        small
+        [attr.raised]="option.label === layout() || undefined"
+        (click)="setLayout(option.label)"
+      >
+        <flag-icon>{{ option.icon }}</flag-icon>
+      </button>
+    }
+  </div>
+</div>
+<flag-dropdown
+  class="filter-button"
+  icon="tune"
+  label=""
+  [hideChevron]="true"
+  [secondary]="true"
+  [small]="true"
+>
+  Mobile filters
+</flag-dropdown>

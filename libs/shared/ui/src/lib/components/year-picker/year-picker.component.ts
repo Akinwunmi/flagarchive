@@ -1,10 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  input,
-  model,
-  OnInit,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, model, OnInit } from '@angular/core';
 
 import { RangePipe } from '../../pipes';
 import { IconComponent } from '../icon/icon.component';
@@ -13,7 +7,6 @@ import { IconComponent } from '../icon/icon.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [IconComponent, RangePipe],
   selector: 'flag-year-picker',
-  standalone: true,
   styleUrls: ['./year-picker.component.css'],
   templateUrl: './year-picker.component.html',
 })
@@ -32,10 +25,7 @@ export class YearPickerComponent implements OnInit {
     const multiplier = Math.floor(difference / this.rangeSize());
     const range = this.rangeSize() * multiplier;
     const minValue = this.max() - this.rangeSize() + 1 - range;
-    this.activeRange = [
-      minValue < this.min() ? this.min() : minValue,
-      this.max() - range,
-    ];
+    this.activeRange = [minValue < this.min() ? this.min() : minValue, this.max() - range];
   }
 
   goToEnd() {

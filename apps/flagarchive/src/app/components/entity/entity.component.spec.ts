@@ -1,7 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { getAuth, provideAuth } from '@angular/fire/auth';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { provideRouter } from '@angular/router';
 import { ENTITIES_STUB } from '@flagarchive/entities';
 
+import { FIREBASE_CONFIG } from '../../configs';
 import { EntityComponent } from './entity.component';
 
 describe(EntityComponent.name, () => {
@@ -11,7 +15,12 @@ describe(EntityComponent.name, () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [EntityComponent],
-      providers: [provideRouter([])],
+      providers: [
+        provideAuth(() => getAuth()),
+        provideFirebaseApp(() => initializeApp(FIREBASE_CONFIG)),
+        provideFirestore(() => getFirestore()),
+        provideRouter([]),
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(EntityComponent);

@@ -8,7 +8,7 @@ import {
   where,
 } from '@angular/fire/firestore';
 import { Entity } from '@flagarchive/entities';
-import { map, Observable } from 'rxjs';
+import { combineLatest, map, Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -30,15 +30,30 @@ export class EntityService {
     });
   }
 
-  getEntitiesByParentId(id: string): Observable<Entity[]> {
+  getEntitiesByParentId(id: string, altParentId?: boolean): Observable<Entity[]> {
     // Injection context is needed when using zoneless change detection
     return runInInjectionContext(this.#environmentInjector, () => {
-      const entitiesQuery = query(
+      const entitiesWithAltParentId = query(
+        this.#entitiesCollection,
+        where('altParentId', '==', id),
+        limit(75),
+      );
+      const entitiesWithParentId = query(
         this.#entitiesCollection,
         where('parentIds', 'array-contains', id),
         limit(75),
       );
-      return collectionData(entitiesQuery, { idField: 'baseId' }) as Observable<Entity[]>;
+      return combineLatest([
+        altParentId
+          ? (collectionData(entitiesWithAltParentId, { idField: 'baseId' }) as Observable<Entity[]>)
+          : of([]),
+        collectionData(entitiesWithParentId, { idField: 'baseId' }) as Observable<Entity[]>,
+      ]).pipe(
+        map(([entitiesWithAltParentId, entitiesWithParentId]) => [
+          ...entitiesWithAltParentId,
+          ...entitiesWithParentId,
+        ]),
+      );
     });
   }
 

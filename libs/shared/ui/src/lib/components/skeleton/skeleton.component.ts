@@ -8,7 +8,6 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
     '[class.soft]': 'soft()',
   },
   selector: 'flag-skeleton',
-  standalone: true,
   styleUrl: './skeleton.component.css',
   template: '',
 })

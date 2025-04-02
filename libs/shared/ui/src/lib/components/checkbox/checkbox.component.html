@@ -1,0 +1,14 @@
+<input type="checkbox" [checked]="checked()" [id]="uuid" [name]="name()" />
+<div
+  class="checkbox"
+  role="checkbox"
+  [attr.aria-checked]="indeterminate() ? 'mixed' : checked()"
+  [attr.aria-disabled]="disabled()"
+  [attr.aria-label]="label()"
+  [tabindex]="disabled() ? -1 : 0"
+>
+  <flag-icon>{{ indeterminate() ? 'remove' : 'check' }}</flag-icon>
+</div>
+<label tabindex="-1" [for]="uuid">
+  {{ label() }}
+</label>

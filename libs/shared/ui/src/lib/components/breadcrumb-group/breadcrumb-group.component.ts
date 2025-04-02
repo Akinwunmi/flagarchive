@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, contentChildren, effect } from '@angular/core';
 
-import { BreadcrumbComponent } from '../breadcrumb/breadcrumb.component';
+import { BreadcrumbComponent } from '../breadcrumb';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
