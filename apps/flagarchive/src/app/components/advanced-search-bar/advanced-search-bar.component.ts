@@ -30,8 +30,10 @@ export class AdvancedSearchBarComponent {
 
   #entities = this.#entitiesStore.entities;
   #entityTypes = this.#advancedSearchStore.entityTypes;
+  #selectedYear = this.#advancedSearchStore.selectedYear;
   activeFlagCategory = this.#advancedSearchStore.flagCategory;
   activeSortDirection = this.#advancedSearchStore.sortDirection;
+  currentRange = this.#entitiesStore.currentRange;
   isMainEntity = this.#entitiesStore.isMainEntity;
   layout = this.#advancedSearchStore.layout;
   showOverseasRegions = this.#advancedSearchStore.showOverseasRegions;
@@ -56,6 +58,21 @@ export class AdvancedSearchBarComponent {
   flagCategories = Object.values(FlagCategory);
   sortDirections = Object.values(SortDirection);
 
+  getSelectedYear(): number {
+    const [firstYear, lastYear] = this.currentRange();
+    const selectedYear = this.#selectedYear();
+
+    if (selectedYear < firstYear) {
+      return firstYear;
+    }
+
+    if (selectedYear > lastYear) {
+      return lastYear;
+    }
+
+    return selectedYear;
+  }
+
   isPartialEntityTypeSelection(): boolean {
     return (
       this.amountOfSelectedEntityTypes() > 0 &&
@@ -73,6 +90,10 @@ export class AdvancedSearchBarComponent {
 
   setLayout(layout: string) {
     this.#advancedSearchStore.setLayout(layout as Layout);
+  }
+
+  setSelectedYear(selectedYear: number) {
+    this.#advancedSearchStore.setSelectedYear(selectedYear);
   }
 
   setSortDirection(sortDirection: SortDirection) {

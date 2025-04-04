@@ -1,6 +1,6 @@
-import { Component, ChangeDetectionStrategy, input, signal, inject } from '@angular/core';
+import { Component, ChangeDetectionStrategy, input, signal, inject, computed } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { Entity } from '@flagarchive/entities';
+import { Entity, EntityFlagRange, EntityRange, getActiveRange } from '@flagarchive/entities';
 import { FlagImageComponent, IconComponent } from '@flagarchive/ui';
 
 import { AdvancedSearchStore, EntitiesStore } from '../../store';
@@ -19,23 +19,46 @@ export class EntityComponent {
   entity = input.required<Entity>();
   cardView = input(true);
 
-  selectedEntity = this.#entitiesStore.selectedEntity;
   #flagCategory = this.#advancedSearchStore.flagCategory;
+  #selectedEntity = this.#entitiesStore.selectedEntity;
+  #selectedYear = this.#advancedSearchStore.selectedYear;
 
   isReversed = signal(false);
+
+  #activeFlagCategory = computed(() => this.entity().flags?.[this.#flagCategory()]);
+  activeAltParentId = computed(() => this.activeRange()?.altParentId ?? this.entity().altParentId);
+  activeFlagRange = computed(() => this.#setActiveFlagRange());
+  activeRange = computed(() => this.#setActiveRange());
+  flagImageSrc = computed(() => this.#setFlagImageSrc());
+  hasAltParentId = computed(() => {
+    const altParentId = this.activeAltParentId();
+    return !!altParentId && altParentId !== this.#selectedEntity()?.id;
+  });
 
   handleClickEvent(event: Event) {
     event.preventDefault();
     event.stopPropagation();
   }
 
-  setFlagImageSrc() {
-    const activeFlagCategory = this.entity().flags?.[this.#flagCategory()];
-    return this.isReversed() ? activeFlagCategory?.reverseUrl : activeFlagCategory?.url;
-  }
-
   toggleReversed(event: Event) {
     this.handleClickEvent(event);
     this.isReversed.update((isReversed) => (isReversed = !isReversed));
+  }
+
+  #setActiveFlagRange(): EntityFlagRange | undefined {
+    return getActiveRange(this.#selectedYear(), this.#activeFlagCategory()?.ranges);
+  }
+
+  #setActiveRange(): EntityRange | undefined {
+    return getActiveRange(this.#selectedYear(), this.entity().ranges);
+  }
+
+  #setFlagImageSrc() {
+    const activeFlagCategory = this.#activeFlagCategory();
+    const activeFlagRange = this.activeFlagRange();
+
+    return this.isReversed()
+      ? (activeFlagRange?.reverseUrl ?? activeFlagCategory?.reverseUrl)
+      : (activeFlagRange?.url ?? activeFlagCategory?.url);
   }
 }

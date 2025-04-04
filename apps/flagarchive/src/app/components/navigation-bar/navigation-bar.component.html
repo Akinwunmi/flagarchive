@@ -5,13 +5,23 @@
       @for (parentId of selectedEntity.parentIds; track $index) {
         <flag-breadcrumb
           class="parent"
-          [hideArrow]="selectedEntity.parentIds?.length !== $index + 1"
+          [hideArrow]="
+            selectedEntity.parentIds?.length !== $index + 1 || !!selectedEntity.altParentId
+          "
           [label]="parentId"
           [link]="['flags', parentId]"
         />
-        @if (selectedEntity.parentIds?.length !== $index + 1) {
+        @if (selectedEntity.parentIds?.length !== $index + 1 && !selectedEntity.altParentId) {
           <flag-icon class="arrow">pen_size_2</flag-icon>
         }
+      }
+      @if (selectedEntity.altParentId) {
+        <flag-icon class="arrow">pen_size_2</flag-icon>
+        <flag-breadcrumb
+          class="parent"
+          [label]="selectedEntity.altParentId"
+          [link]="['flags', selectedEntity.altParentId]"
+        />
       }
       <flag-breadcrumb [label]="selectedEntity.name" [link]="[]" />
     }

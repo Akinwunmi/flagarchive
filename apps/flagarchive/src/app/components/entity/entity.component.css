@@ -37,11 +37,17 @@ a {
     align-items: center;
     display: flex;
     gap: var(--flag-space-xs);
+    height: var(--flag-space-xl);
     width: fit-content;
 
     .alt-parent-id {
       font-size: var(--flag-font-size-xs);
       font-weight: var(--flag-font-weight-medium);  
+    }
+
+    .range {
+      color: var(--flag-secondary-700);
+      font-size: var(--flag-font-size-xs);
     }
   }
 

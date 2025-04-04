@@ -21,7 +21,7 @@
 
 <ng-template #dropdown>
   <flag-card>
-    <flag-list>
+    <flag-list cdkTrapFocus cdkTrapFocusAutoCapture (keydown)="onKeydown($event)">
       <ng-content />
     </flag-list>
   </flag-card>
