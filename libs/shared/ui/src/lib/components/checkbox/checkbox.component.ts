@@ -11,6 +11,7 @@ import { IconComponent } from '../icon';
     '[class.indeterminate]': 'indeterminate()',
     '[class.secondary]': 'secondary()',
     '(click)': 'toggle()',
+    '(keydown)': 'onKeydown($event)',
   },
   imports: [IconComponent],
   providers: [
@@ -34,6 +35,13 @@ export class CheckboxComponent implements ControlValueAccessor {
   indeterminate = model(false);
 
   uuid = crypto.randomUUID();
+
+  onKeydown(event: KeyboardEvent) {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      this.toggle();
+    }
+  }
 
   registerOnChange(fn: (checked: boolean) => void) {
     this.checked.subscribe(fn);

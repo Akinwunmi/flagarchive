@@ -7,23 +7,26 @@
       [alt]="'Flag of' + entity().name"
       [hoistedRight]="entity().hoistedRight ?? false"
       [isReversed]="isReversed()"
-      [src]="setFlagImageSrc() ?? ''"
+      [src]="flagImageSrc() ?? ''"
     />
     <figcaption>
-      {{ entity().name }}
+      {{ activeRange()?.name ?? entity().name }}
     </figcaption>
   </figure>
   <div class="info">
-    @if (entity().altParentId && entity().altParentId !== selectedEntity()?.id) {
+    @if (hasAltParentId()) {
       <a
         flag-pill
         class="alt-parent-id"
         type="button"
-        [routerLink]="['../..', entity().altParentId]"
+        [routerLink]="['../..', activeAltParentId()]"
         (click)="handleClickEvent($event)"
       >
-        {{ entity().altParentId?.toUpperCase() }}
+        {{ activeAltParentId()?.toUpperCase() }}
       </a>
+    }
+    @if (activeRange()?.start) {
+      <span class="range">{{ activeRange()?.start }} &ndash; {{ activeRange()?.end }}</span>
     }
     @if (entity().flags?.official?.reverseUrl) {
       <button

@@ -7,7 +7,7 @@ import { pipe, switchMap } from 'rxjs';
 
 import { EntityService } from '../services';
 import { AdvancedSearchStore } from './advanced-search.store';
-import { setFilteredEntities, sortEntities } from './entities.utils';
+import { setCurrentRange, setFilteredEntities, sortEntities } from './entities.utils';
 
 interface EntitiesState {
   entities: Entity[];
@@ -27,6 +27,9 @@ export const EntitiesStore = signalStore(
   withComputed((state, advancedSearchStore = inject(AdvancedSearchStore)) => ({
     continents: computed(() =>
       state.mainEntities().filter((entity) => entity.type === EntityType.Continent),
+    ),
+    currentRange: computed(() =>
+      setCurrentRange(state.selectedEntity()?.ranges ?? [], state.entities()),
     ),
     filteredEntities: computed(() =>
       setFilteredEntities(advancedSearchStore, state.entities(), state.selectedEntity()),

@@ -10,7 +10,7 @@
   font-weight: var(--flag-font-weight-medium);
   height: var(--flag-space-xl);
   line-height: var(--flag-line-height-xs);
-  padding-inline: var(--flag-space-sm);
+  padding-inline: var(--flag-space-xs);
   text-decoration: none;
 
   &[dark] {

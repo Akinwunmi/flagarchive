@@ -1,3 +1,4 @@
+import { CdkTrapFocus } from '@angular/cdk/a11y';
 import { ChangeDetectionStrategy, Component, effect, input, model, viewChild } from '@angular/core';
 
 import { DropdownTriggerDirective } from '../../directives';
@@ -8,7 +9,14 @@ import { ListComponent } from '../list';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [BadgeComponent, CardComponent, DropdownTriggerDirective, IconComponent, ListComponent],
+  imports: [
+    BadgeComponent,
+    CardComponent,
+    CdkTrapFocus,
+    DropdownTriggerDirective,
+    IconComponent,
+    ListComponent,
+  ],
   selector: 'flag-dropdown',
   styleUrl: './dropdown.component.css',
   templateUrl: './dropdown.component.html',
@@ -32,5 +40,11 @@ export class DropdownComponent {
         this.flagCategoriesMenu().close();
       }
     });
+  }
+
+  onKeydown(event: KeyboardEvent) {
+    if (event.key === 'Escape') {
+      this.isOpen.set(false);
+    }
   }
 }

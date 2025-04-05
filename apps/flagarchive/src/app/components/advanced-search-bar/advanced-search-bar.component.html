@@ -1,4 +1,9 @@
-<flag-year-navigator />
+<flag-year-navigator
+  [max]="currentRange()[1]"
+  [min]="currentRange()[0]"
+  [selected]="getSelectedYear()"
+  (selectedChange)="setSelectedYear($event)"
+/>
 <div class="actions">
   <flag-checkbox
     label="Show overseas regions"

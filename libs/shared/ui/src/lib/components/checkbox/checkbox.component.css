@@ -3,6 +3,7 @@
   color: var(--flag-primary);
   cursor: pointer;
   display: inline-grid;
+  font-family: var(--flag-font-family);
   gap: var(--flag-space-xs);
   grid-template-columns: var(--flag-space-lg) 1fr;
   

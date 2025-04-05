@@ -1,7 +1,10 @@
 .sb-bar.css-1f2i9e8,
 .sb-bar.css-1yedr2a {
-  background-color: var(--flag-grey-bg);
+  align-items: center;
+  background-color: var(--flag-white);
   color: var(--flag-primary);
+  display: flex;
+  min-height: 3.5rem;
 }
 
 div.css-lf8gv9 {
@@ -14,7 +17,7 @@ div.css-lf8gv9 {
 
 .sidebar-container.css-r1cy5n,
 .sidebar-container.css-1ybqm8n {
-  background-color: var(--flag-grey-bg);
+  background-color: var(--flag-white);
   color: var(--flag-primary);
 
   div.sidebar-header.css-1be7p8e {
