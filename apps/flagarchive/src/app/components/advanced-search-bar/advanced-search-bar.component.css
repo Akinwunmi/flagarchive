@@ -2,7 +2,9 @@
   align-items: center;
   background-color: var(--flag-white);
   border-radius: var(--flag-radius-lg);
-  display: flex;
+  display: grid;
+  gap: var(--flag-space-md);
+  grid-template-columns: 1fr repeat(2, auto);
   justify-content: space-between;
   padding: var(--flag-space-xs);
   position: sticky;
@@ -14,9 +16,14 @@
   display: flex;
   gap: var(--flag-space-md);
 
+  .show-overseas-regions {
+    @media screen and (max-width: 90rem) {
+      display: none;
+    }
+  }
+
   @media screen and (max-width: 80rem) {
     display: none;
-    
   }
 }
 

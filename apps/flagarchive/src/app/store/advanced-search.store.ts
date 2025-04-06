@@ -50,5 +50,13 @@ export const AdvancedSearchStore = signalStore(
     toggleShowOverseasRegions() {
       patchState(state, { showOverseasRegions: !state.showOverseasRegions() });
     },
+    triggerSortDirection() {
+      Array.from({ length: 2 }).forEach(() => {
+        patchState(state, {
+          sortDirection:
+            state.sortDirection() === SortDirection.Asc ? SortDirection.Desc : SortDirection.Asc,
+        });
+      });
+    },
   })),
 );

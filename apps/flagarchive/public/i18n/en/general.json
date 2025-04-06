@@ -1,0 +1,36 @@
+{
+  "advanced-search": {
+    "asc": "Ascending",
+    "desc": "Descending",
+    "deselect-all": "Deselect all",
+    "select-all": "Select all",
+    "show-overseas-regions": "Show overseas regions",
+    "type-of-region": "Type of region"
+  },
+  "common": {
+    "continents": "Continents",
+    "details": "Details",
+    "entities": "Entities",
+    "global": "Global",
+    "history": "History"
+  },
+  "flag-categories": {
+    "civil-ensign": "Civil ensign",
+    "civil-flag": "Civil flag",
+    "naval-ensign": "Naval ensign",
+    "naval-jack": "Naval jack",
+    "official": "Official",
+    "presidential-standard": "Presidential standard",
+    "royal-standard": "Royal standard",
+    "unofficial": "Unofficial"
+  },
+  "flag-image": {
+    "alt-text": "Flag of {{ name }}"
+  },
+  "pages": {
+    "about-the-project": "About the project",
+    "flags": "Flags",
+    "log-in": "Log in",
+    "sign-up": "Sign up"
+  }
+}

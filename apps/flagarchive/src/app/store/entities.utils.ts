@@ -1,6 +1,7 @@
-import { SortDirection } from '@flagarchive/advanced-search';
+import { sortBy } from '@flagarchive/advanced-search';
 import { Entity, EntityRange, getActiveRange } from '@flagarchive/entities';
 import { CURRENT_YEAR } from '@flagarchive/ui';
+import { TranslateService } from '@ngx-translate/core';
 
 import { AdvancedSearchStore } from './advanced-search.store';
 
@@ -22,6 +23,7 @@ export function setFilteredEntities(
   advancedSearchStore: InstanceType<typeof AdvancedSearchStore>,
   entities: Entity[],
   selectedEntity?: Entity,
+  translateService?: TranslateService,
 ) {
   const filteredEntities = entities.filter((entity) => {
     const activeRange = getActiveRange(advancedSearchStore.selectedYear(), entity.ranges);
@@ -36,15 +38,10 @@ export function setFilteredEntities(
     return isSelectedEntityType && isWithinRange && (isChild || isOverseasRegion);
   });
 
-  return sortEntities(filteredEntities, advancedSearchStore.sortDirection());
-}
-
-export function sortEntities(entities: Entity[], sortDirection?: SortDirection) {
-  return entities.sort((a, b) => {
-    if (!sortDirection || sortDirection === SortDirection.Asc) {
-      return a.name.localeCompare(b.name);
-    }
-
-    return b.name.localeCompare(a.name);
-  });
+  return sortBy<Entity, 'name'>(
+    filteredEntities,
+    'name',
+    advancedSearchStore.sortDirection(),
+    translateService,
+  );
 }
