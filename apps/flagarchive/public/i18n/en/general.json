@@ -8,11 +8,15 @@
     "type-of-region": "Type of region"
   },
   "common": {
+    "about-the-project": "About the project",
     "continents": "Continents",
     "details": "Details",
     "entities": "Entities",
+    "flags": "Flags",
     "global": "Global",
-    "history": "History"
+    "history": "History",
+    "log-in": "Log in",
+    "sign-up": "Sign up"
   },
   "flag-categories": {
     "civil-ensign": "Civil ensign",
@@ -26,11 +30,5 @@
   },
   "flag-image": {
     "alt-text": "Flag of {{ name }}"
-  },
-  "pages": {
-    "about-the-project": "About the project",
-    "flags": "Flags",
-    "log-in": "Log in",
-    "sign-up": "Sign up"
   }
 }

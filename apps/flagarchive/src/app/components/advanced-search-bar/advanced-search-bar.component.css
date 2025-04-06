@@ -10,6 +10,17 @@
   position: sticky;
   inset-inline: 0;
   top: 0;
+
+  @media screen and (max-width: 27.5rem) {
+    grid-template-columns: repeat(2, auto);
+    justify-content: flex-end;
+  }
+}
+
+flag-year-navigator {
+  @media screen and (max-width: 27.5rem) {
+    display: none;
+  }
 }
 
 .actions {
@@ -27,7 +38,7 @@
   }
 }
 
-.filter-button {
+.filters-dropdown {
   display: none;
 
   @media screen and (max-width: 80rem) {
