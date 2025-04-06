@@ -2,7 +2,7 @@
   align-items: center;
   background-color: var(--flag-grey-bg);
   display: flex;
-  height: var(--flag-space-6xl);
+  min-height: var(--flag-space-6xl);
   justify-content: space-between;
   padding-inline: var(--flag-space-sm);
 }

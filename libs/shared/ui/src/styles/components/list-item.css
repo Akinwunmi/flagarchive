@@ -13,6 +13,7 @@
   justify-items: flex-start;
   line-height: var(--flag-line-height-md);
   min-height: var(--flag-space-3xl);
+  outline-offset: calc(var(--flag-border-width-xs) * -1);
   padding: var(--flag-space-xs) var(--flag-space-sm);
   text-decoration: none;
   transition: background-color 150ms ease-in-out;

@@ -4,13 +4,13 @@
 >
   <figure>
     <flag-image
-      [alt]="'Flag of' + entity().name"
+      [alt]="'flag-image.alt-text' | translate: { name: 'entities.' + entity().name | translate }"
       [hoistedRight]="entity().hoistedRight ?? false"
       [isReversed]="isReversed()"
       [src]="flagImageSrc() ?? ''"
     />
     <figcaption>
-      {{ activeRange()?.name ?? entity().name }}
+      {{ 'entities.' + (activeRange()?.name ?? entity().name) | translate }}
     </figcaption>
   </figure>
   <div class="info">
@@ -22,7 +22,7 @@
         [routerLink]="['../..', activeAltParentId()]"
         (click)="handleClickEvent($event)"
       >
-        {{ activeAltParentId()?.toUpperCase() }}
+        {{ activeAltParentId() ?? '' | uppercase }}
       </a>
     }
     @if (activeRange()?.start) {

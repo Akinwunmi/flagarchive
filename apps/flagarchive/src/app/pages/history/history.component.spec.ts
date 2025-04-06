@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideTranslateService, TranslateLoader, TranslateFakeLoader } from '@ngx-translate/core';
+
 import { HistoryComponent } from './history.component';
 
 describe('HistoryComponent', () => {
@@ -8,6 +10,14 @@ describe('HistoryComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [HistoryComponent],
+      providers: [
+        provideTranslateService({
+          loader: {
+            provide: TranslateLoader,
+            useClass: TranslateFakeLoader,
+          },
+        }),
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(HistoryComponent);

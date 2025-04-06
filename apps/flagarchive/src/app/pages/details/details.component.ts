@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-details',
-  imports: [CommonModule],
+  imports: [TranslatePipe],
   templateUrl: './details.component.html',
   styleUrl: './details.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,

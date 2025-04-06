@@ -6,15 +6,15 @@
 />
 <div class="actions">
   <flag-checkbox
-    label="Show overseas regions"
     [checked]="showOverseasRegions()"
     [disabled]="isMainEntity()"
+    [label]="'advanced-search.show-overseas-regions' | translate"
     [secondary]="true"
     (click)="toggleShowOverseasRegions()"
   />
   <flag-dropdown
-    label="Type of region"
     [amountSelected]="amountOfSelectedEntityTypes()"
+    [label]="'advanced-search.type-of-region' | translate"
     [secondary]="true"
     [small]="true"
   >
@@ -22,7 +22,7 @@
       <flag-list-item [secondary]="true">
         <flag-checkbox
           [checked]="isSelectedEntityType(entityType.label)"
-          [label]="entityType.label"
+          [label]="'entity-types.' + entityType.label | translate"
           [secondary]="true"
           (checkedChange)="toggleEntityType(entityType, $event)"
         />
@@ -31,7 +31,7 @@
     <hr flag-divider />
     <flag-list-item [secondary]="true">
       <flag-checkbox
-        label="(De)select all"
+        [label]="'advanced-search.' + selectAllTranslation() | translate"
         [checked]="amountOfSelectedEntityTypes() === currentEntityTypes().length"
         [indeterminate]="isPartialEntityTypeSelection()"
         [secondary]="true"
@@ -39,7 +39,12 @@
       />
     </flag-list-item>
   </flag-dropdown>
-  <flag-dropdown icon="flag" [label]="activeFlagCategory()" [secondary]="true" [small]="true">
+  <flag-dropdown
+    icon="flag"
+    [label]="'flag-categories.' + (activeFlagCategory() | hyphenate) | translate"
+    [secondary]="true"
+    [small]="true"
+  >
     @for (flagCategory of flagCategories; track $index) {
       <button
         flag-list-item
@@ -47,7 +52,7 @@
         [attr.active]="flagCategory === activeFlagCategory() || undefined"
         (click)="setFlagCategory(flagCategory)"
       >
-        {{ flagCategory }}
+        {{ 'flag-categories.' + (flagCategory | hyphenate) | translate }}
       </button>
     }
   </flag-dropdown>
@@ -59,7 +64,7 @@
         [attr.active]="sortDirection === activeSortDirection() || undefined"
         (click)="setSortDirection(sortDirection)"
       >
-        {{ sortDirection }}
+        {{ 'advanced-search.' + sortDirection | translate }}
       </button>
     }
   </flag-dropdown>

@@ -4,20 +4,24 @@ import { EntityTypeItem } from '@flagarchive/entities';
 import {
   CheckboxComponent,
   DropdownComponent,
+  HyphenatePipe,
   IconComponent,
   ListItemComponent,
   YearNavigatorComponent,
 } from '@flagarchive/ui';
+import { TranslatePipe } from '@ngx-translate/core';
 
-import { AdvancedSearchStore, EntitiesStore } from '../../store';
 import { Item } from '../../models';
+import { AdvancedSearchStore, EntitiesStore } from '../../store';
 
 @Component({
   imports: [
     CheckboxComponent,
     DropdownComponent,
+    HyphenatePipe,
     IconComponent,
     ListItemComponent,
+    TranslatePipe,
     YearNavigatorComponent,
   ],
   selector: 'app-advanced-search-bar',
@@ -48,6 +52,11 @@ export class AdvancedSearchBarComponent {
         .map((entity) => entity.type)
         .includes(type.label),
     ),
+  );
+  selectAllTranslation = computed(() =>
+    this.amountOfSelectedEntityTypes() === this.currentEntityTypes().length
+      ? 'deselect-all'
+      : 'select-all',
   );
 
   layoutOptions: Item[] = [

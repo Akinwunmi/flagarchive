@@ -1,13 +1,14 @@
 import { Component, computed, inject, input, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { DropdownComponent, FlagImageComponent, IconComponent } from '@flagarchive/ui';
+import { TranslatePipe } from '@ngx-translate/core';
 
 import { EntitiesStore } from '../../store';
 import { MenuItem } from '../../models';
 
 @Component({
   selector: 'app-mobile-entity-bar',
-  imports: [DropdownComponent, FlagImageComponent, IconComponent, RouterLink],
+  imports: [DropdownComponent, FlagImageComponent, IconComponent, RouterLink, TranslatePipe],
   templateUrl: './mobile-entity-bar.component.html',
   styleUrl: './mobile-entity-bar.component.css',
 })

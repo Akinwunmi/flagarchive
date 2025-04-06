@@ -1,6 +1,6 @@
 @if (isMainEntity()) {
   <flag-list cdkMenu>
-    <flag-list-item [secondary]="true">Continents</flag-list-item>
+    <flag-list-item [secondary]="true">{{ 'common.continents' | translate }}</flag-list-item>
     @for (entity of continents(); track $index) {
       <a
         cdkMenuItem
@@ -8,12 +8,12 @@
         [attr.active]="entity.id === selectedEntity()?.id || undefined"
         [routerLink]="['flags', entity.id]"
       >
-        {{ entity.name }}
+        {{ 'entities.' + entity.name | translate }}
       </a>
     }
   </flag-list>
   <flag-list cdkMenu>
-    <flag-list-item [secondary]="true">Global</flag-list-item>
+    <flag-list-item [secondary]="true">{{ 'common.global' | translate }}</flag-list-item>
     @for (entity of globalEntities(); track $index) {
       <a
         cdkMenuItem
@@ -21,7 +21,7 @@
         [attr.active]="entity.id === selectedEntity()?.id || undefined"
         [routerLink]="['flags', entity.id]"
       >
-        {{ entity.name }}
+        {{ 'entities.' + entity.name | translate }}
       </a>
     }
   </flag-list>
@@ -30,7 +30,9 @@
     <div class="flag">
       <flag-image
         [src]="selectedEntity.flags?.official?.url ?? ''"
-        [alt]="'Flag of ' + selectedEntity.name"
+        [alt]="
+          'flag-image.alt-text' | translate: { name: 'entities.' + selectedEntity.name | translate }
+        "
       />
       <div class="actions">
         <button flag-button rounded small>
@@ -56,7 +58,7 @@
         @if (item.icon) {
           <flag-icon>{{ item.icon }}</flag-icon>
         }
-        {{ item.label }}
+        {{ item.label | translate }}
       </a>
     }
   </flag-list>

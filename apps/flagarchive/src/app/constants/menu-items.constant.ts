@@ -3,17 +3,17 @@ import { MenuItem } from '../models';
 export const ENTITY_MENU_ITEMS: MenuItem[] = [
   {
     icon: 'info',
-    label: 'Details',
+    label: 'common.details',
     path: ['details'],
   },
   {
     icon: 'flag',
-    label: 'Entities',
+    label: 'common.entities',
     path: ['entities'],
   },
   {
     icon: 'history',
-    label: 'History',
+    label: 'common.history',
     path: ['history'],
   },
 ];
