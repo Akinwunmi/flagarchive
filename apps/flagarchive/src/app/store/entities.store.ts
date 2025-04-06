@@ -7,7 +7,9 @@ import { pipe, switchMap } from 'rxjs';
 
 import { EntityService } from '../services';
 import { AdvancedSearchStore } from './advanced-search.store';
-import { setCurrentRange, setFilteredEntities, sortEntities } from './entities.utils';
+import { setCurrentRange, setFilteredEntities } from './entities.utils';
+import { TranslateService } from '@ngx-translate/core';
+import { sortBy } from '@flagarchive/advanced-search';
 
 interface EntitiesState {
   entities: Entity[];
@@ -24,58 +26,91 @@ const INITIAL_STATE: EntitiesState = {
 export const EntitiesStore = signalStore(
   { providedIn: 'root' },
   withState(INITIAL_STATE),
-  withComputed((state, advancedSearchStore = inject(AdvancedSearchStore)) => ({
-    continents: computed(() =>
-      state.mainEntities().filter((entity) => entity.type === EntityType.Continent),
-    ),
-    currentRange: computed(() =>
-      setCurrentRange(state.selectedEntity()?.ranges ?? [], state.entities()),
-    ),
-    filteredEntities: computed(() =>
-      setFilteredEntities(advancedSearchStore, state.entities(), state.selectedEntity()),
-    ),
-    globalEntities: computed(() =>
-      state.mainEntities().filter((entity) => entity.type === EntityType.Organization),
-    ),
-    isMainEntity: computed(
-      () =>
-        state.selectedEntity()?.type === EntityType.Continent ||
-        state.selectedEntity()?.type === EntityType.Organization,
-    ),
-  })),
-  withMethods((store, entityService = inject(EntityService)) => ({
-    loadEntities: rxMethod<string>(
-      pipe(
-        switchMap((id) =>
-          entityService.getEntityById(id).pipe(
-            tapResponse({
-              next: (selectedEntity) => patchState(store, { selectedEntity }),
-              error: (error) => console.error({ error }),
-            }),
-          ),
+  withComputed(
+    (
+      state,
+      advancedSearchStore = inject(AdvancedSearchStore),
+      translateService = inject(TranslateService),
+    ) => ({
+      continents: computed(() =>
+        state.mainEntities().filter((entity) => entity.type === EntityType.Continent),
+      ),
+      currentRange: computed(() =>
+        setCurrentRange(state.selectedEntity()?.ranges ?? [], state.entities()),
+      ),
+      filteredEntities: computed(() =>
+        setFilteredEntities(
+          advancedSearchStore,
+          state.entities(),
+          state.selectedEntity(),
+          translateService,
         ),
-        switchMap((entity) =>
-          entityService.getEntitiesByParentId(entity.id, true).pipe(
-            tapResponse({
-              next: (entities) => patchState(store, { entities: sortEntities(entities) }),
-              error: (error) => console.error({ error }),
-            }),
+      ),
+      globalEntities: computed(() =>
+        state.mainEntities().filter((entity) => entity.type === EntityType.Organization),
+      ),
+      isMainEntity: computed(
+        () =>
+          state.selectedEntity()?.type === EntityType.Continent ||
+          state.selectedEntity()?.type === EntityType.Organization,
+      ),
+    }),
+  ),
+  withMethods(
+    (
+      store,
+      advancedSearchStore = inject(AdvancedSearchStore),
+      entityService = inject(EntityService),
+      translateService = inject(TranslateService),
+    ) => ({
+      loadEntities: rxMethod<string>(
+        pipe(
+          switchMap((id) =>
+            entityService.getEntityById(id).pipe(
+              tapResponse({
+                next: (selectedEntity) => patchState(store, { selectedEntity }),
+                error: (error) => console.error({ error }),
+              }),
+            ),
+          ),
+          switchMap((entity) =>
+            entityService.getEntitiesByParentId(entity.id, true).pipe(
+              tapResponse({
+                next: (entities) =>
+                  patchState(store, {
+                    entities: sortBy(
+                      entities,
+                      'name',
+                      advancedSearchStore.sortDirection(),
+                      translateService,
+                    ),
+                  }),
+                error: (error) => console.error({ error }),
+              }),
+            ),
           ),
         ),
       ),
-    ),
-    loadMainEntities: rxMethod<void>(
-      pipe(
-        switchMap(() =>
-          entityService.getEntitiesByType(['continent', 'organization']).pipe(
-            tapResponse({
-              next: (mainEntities) =>
-                patchState(store, { mainEntities: sortEntities(mainEntities) }),
-              error: (error) => console.error({ error }),
-            }),
+      loadMainEntities: rxMethod<void>(
+        pipe(
+          switchMap(() =>
+            entityService.getEntitiesByType(['continent', 'organization']).pipe(
+              tapResponse({
+                next: (mainEntities) =>
+                  patchState(store, {
+                    mainEntities: sortBy(
+                      mainEntities,
+                      'name',
+                      advancedSearchStore.sortDirection(),
+                      translateService,
+                    ),
+                  }),
+                error: (error) => console.error({ error }),
+              }),
+            ),
           ),
         ),
       ),
-    ),
-  })),
+    }),
+  ),
 );

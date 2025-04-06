@@ -1,4 +1,5 @@
-import { Component, computed, inject } from '@angular/core';
+import { Component, computed, DestroyRef, inject } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FlagCategory, Layout, SortDirection } from '@flagarchive/advanced-search';
 import { EntityTypeItem } from '@flagarchive/entities';
 import {
@@ -9,10 +10,11 @@ import {
   ListItemComponent,
   YearNavigatorComponent,
 } from '@flagarchive/ui';
-import { TranslatePipe } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 
 import { Item } from '../../models';
 import { AdvancedSearchStore, EntitiesStore } from '../../store';
+import { tap } from 'rxjs';
 
 @Component({
   imports: [
@@ -30,7 +32,9 @@ import { AdvancedSearchStore, EntitiesStore } from '../../store';
 })
 export class AdvancedSearchBarComponent {
   readonly #advancedSearchStore = inject(AdvancedSearchStore);
+  readonly #destroyRef = inject(DestroyRef);
   readonly #entitiesStore = inject(EntitiesStore);
+  readonly #translate = inject(TranslateService);
 
   #entities = this.#entitiesStore.entities;
   #entityTypes = this.#advancedSearchStore.entityTypes;
@@ -67,6 +71,10 @@ export class AdvancedSearchBarComponent {
   flagCategories = Object.values(FlagCategory);
   sortDirections = Object.values(SortDirection);
 
+  getCurrentLanguage(): string {
+    return this.#translate.currentLang;
+  }
+
   getSelectedYear(): number {
     const [firstYear, lastYear] = this.currentRange();
     const selectedYear = this.#selectedYear();
@@ -95,6 +103,16 @@ export class AdvancedSearchBarComponent {
 
   setFlagCategory(flagCategory: FlagCategory) {
     this.#advancedSearchStore.setFlagCategory(flagCategory);
+  }
+
+  setLanguage(language: string) {
+    this.#translate
+      .use(language)
+      .pipe(
+        tap(() => this.#advancedSearchStore.triggerSortDirection()),
+        takeUntilDestroyed(this.#destroyRef),
+      )
+      .subscribe();
   }
 
   setLayout(layout: string) {

@@ -35,7 +35,7 @@
     <flag-dropdown
       [extraSmall]="true"
       [icon]="isMobile() ? 'more_horiz' : undefined"
-      [label]="'common.' + selectedMainEntityType() | translate"
+      [label]="isMobile() ? '' : ('common.' + selectedMainEntityType() | translate)"
       [secondary]="true"
       [(isOpen)]="isMainEntityTypesMenuOpen"
     >

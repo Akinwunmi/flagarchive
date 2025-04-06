@@ -6,6 +6,7 @@
 />
 <div class="actions">
   <flag-checkbox
+    class="show-overseas-regions"
     [checked]="showOverseasRegions()"
     [disabled]="isMainEntity()"
     [label]="'advanced-search.show-overseas-regions' | translate"
@@ -91,4 +92,20 @@
   [small]="true"
 >
   Mobile filters
+</flag-dropdown>
+<flag-dropdown icon="translate" label="" [hideChevron]="true" [small]="true">
+  <button
+    flag-list-item
+    [attr.active]="getCurrentLanguage() === 'en' || undefined"
+    (click)="setLanguage('en')"
+  >
+    English
+  </button>
+  <button
+    flag-list-item
+    [attr.active]="getCurrentLanguage() === 'nl' || undefined"
+    (click)="setLanguage('nl')"
+  >
+    Nederlands
+  </button>
 </flag-dropdown>

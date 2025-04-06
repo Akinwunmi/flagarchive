@@ -50,6 +50,7 @@ export enum EntityType {
   OverseasDepartment = 'overseas-department',
   OverseasStatePrivateProperty = 'overseas-state-private-property',
   OverseasTerritory = 'overseas-territory',
+  Parish = 'parish',
   Province = 'province',
   RegionalState = 'regional-state',
   RuralDistrict = 'rural-district',

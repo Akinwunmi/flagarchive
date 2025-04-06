@@ -3,14 +3,29 @@ import { ApplicationConfig, provideExperimentalZonelessChangeDetection } from '@
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { provideRouter } from '@angular/router';
-import { provideTranslateService, TranslateLoader } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { provideTranslateService, TranslateLoader, TranslationObject } from '@ngx-translate/core';
 
 import { APP_ROUTES } from '../app.routes';
 import { FIREBASE_CONFIG } from './firebase.config';
+import { forkJoin, map, Observable } from 'rxjs';
 
-const httpLoaderFactory: (http: HttpClient) => TranslateHttpLoader = (http: HttpClient) =>
-  new TranslateHttpLoader(http, './i18n/', '.json');
+class TranslateHttpModuleloader implements TranslateLoader {
+  constructor(private http: HttpClient) {}
+
+  getTranslation(language: string): Observable<TranslationObject> {
+    const modules = ['entities', 'entity-types', 'general'];
+    const translations = modules.map((module) => this.http.get(`i18n/${language}/${module}.json`));
+    return forkJoin(translations).pipe(
+      map((translations) => translations.reduce((acc, curr) => ({ ...acc, ...curr }))),
+    );
+  }
+}
+
+const httpLoaderFactory: (http: HttpClient) => TranslateHttpModuleloader = (http: HttpClient) =>
+  new TranslateHttpModuleloader(http);
+
+// const httpLoaderFactory: (http: HttpClient) => TranslateHttpModuleLoader = (http: HttpClient) =>
+//   new TranslateHttpModuleLoader(http, './i18n/', '.json');
 
 export const APP_CONFIG: ApplicationConfig = {
   providers: [
