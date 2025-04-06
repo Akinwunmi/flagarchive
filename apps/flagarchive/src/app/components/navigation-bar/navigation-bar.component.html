@@ -8,7 +8,7 @@
           [hideArrow]="
             selectedEntity.parentIds?.length !== $index + 1 || !!selectedEntity.altParentId
           "
-          [label]="parentId"
+          [label]="parentId | uppercase"
           [link]="['flags', parentId]"
         />
         @if (selectedEntity.parentIds?.length !== $index + 1 && !selectedEntity.altParentId) {
@@ -19,11 +19,14 @@
         <flag-icon class="arrow">pen_size_2</flag-icon>
         <flag-breadcrumb
           class="parent"
-          [label]="selectedEntity.altParentId"
+          [label]="selectedEntity.altParentId | uppercase"
           [link]="['flags', selectedEntity.altParentId]"
         />
       }
-      <flag-breadcrumb [label]="selectedEntity.name" [link]="[]" />
+      <flag-breadcrumb
+        [label]="'entities.' + (selectedEntity.name | hyphenate) | translate"
+        [link]="[]"
+      />
     }
   </flag-breadcrumb-group>
 }
@@ -32,29 +35,36 @@
     <flag-dropdown
       [extraSmall]="true"
       [icon]="isMobile() ? 'more_horiz' : undefined"
-      [label]="setMainEntityDropdownLabel()"
+      [label]="'common.' + selectedMainEntityType() | translate"
       [secondary]="true"
       [(isOpen)]="isMainEntityTypesMenuOpen"
     >
       @for (type of mainEntityTypes; track $index) {
         <a
           flag-list-item
+          secondary
+          [attr.active]="type === selectedMainEntityType() || undefined"
           [routerLink]="['flags', type === 'continents' ? 'af' : 'oc']"
           (click)="closeMainEntityTypesMenu()"
         >
-          {{ type }}
+          {{ 'common.' + type | translate }}
         </a>
       }
     </flag-dropdown>
     <flag-icon class="arrow-right">keyboard_arrow_right</flag-icon>
     <flag-dropdown
       [extraSmall]="true"
-      [label]="selectedEntity.name"
+      [label]="'entities.' + selectedEntity.name | translate"
       [(isOpen)]="isMainEntitiesMenuOpen"
     >
       @for (entity of mainEntities(); track $index) {
-        <a flag-list-item [routerLink]="['flags', entity.id]" (click)="closeMainEntitiesMenu()">
-          {{ entity.name }}
+        <a
+          flag-list-item
+          [attr.active]="entity.id === selectedEntity.id || undefined"
+          [routerLink]="['flags', entity.id]"
+          (click)="closeMainEntitiesMenu()"
+        >
+          {{ 'entities.' + entity.name | translate }}
         </a>
       }
     </flag-dropdown>

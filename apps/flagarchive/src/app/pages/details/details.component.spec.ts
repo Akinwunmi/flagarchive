@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideTranslateService, TranslateLoader, TranslateFakeLoader } from '@ngx-translate/core';
+
 import { DetailsComponent } from './details.component';
 
 describe('DetailsComponent', () => {
@@ -8,6 +10,14 @@ describe('DetailsComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [DetailsComponent],
+      providers: [
+        provideTranslateService({
+          loader: {
+            provide: TranslateLoader,
+            useClass: TranslateFakeLoader,
+          },
+        }),
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(DetailsComponent);

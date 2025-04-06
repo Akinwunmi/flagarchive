@@ -4,6 +4,7 @@ import { getAuth, provideAuth } from '@angular/fire/auth';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { provideRouter } from '@angular/router';
 import { ENTITIES_STUB } from '@flagarchive/entities';
+import { provideTranslateService, TranslateLoader, TranslateFakeLoader } from '@ngx-translate/core';
 
 import { FIREBASE_CONFIG } from '../../configs';
 import { EntityComponent } from './entity.component';
@@ -20,6 +21,12 @@ describe(EntityComponent.name, () => {
         provideFirebaseApp(() => initializeApp(FIREBASE_CONFIG)),
         provideFirestore(() => getFirestore()),
         provideRouter([]),
+        provideTranslateService({
+          loader: {
+            provide: TranslateLoader,
+            useClass: TranslateFakeLoader,
+          },
+        }),
       ],
     }).compileComponents();
 

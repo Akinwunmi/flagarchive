@@ -12,12 +12,21 @@ import {
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Router, RouterLink } from '@angular/router';
 import { IconComponent, ListComponent } from '@flagarchive/ui';
+import { TranslatePipe } from '@ngx-translate/core';
 
 import { MenuItem } from '../../models';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CdkMenu, CdkMenuItem, CdkTrapFocus, IconComponent, ListComponent, RouterLink],
+  imports: [
+    CdkMenu,
+    CdkMenuItem,
+    CdkTrapFocus,
+    IconComponent,
+    ListComponent,
+    RouterLink,
+    TranslatePipe,
+  ],
   selector: 'app-main-menu',
   templateUrl: './main-menu.component.html',
   styleUrl: './main-menu.component.css',
@@ -30,11 +39,11 @@ export class MainMenuComponent implements OnInit {
 
   topMenu = signal<MenuItem[]>([
     {
-      label: 'Flags',
+      label: 'pages.flags',
       path: ['flags'],
     },
     {
-      label: 'About the project',
+      label: 'pages.about-the-project',
       path: ['about'],
     },
   ]);

@@ -1,13 +1,15 @@
+import { UpperCasePipe } from '@angular/common';
 import { Component, ChangeDetectionStrategy, input, signal, inject, computed } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Entity, EntityFlagRange, EntityRange, getActiveRange } from '@flagarchive/entities';
 import { FlagImageComponent, IconComponent } from '@flagarchive/ui';
+import { TranslatePipe } from '@ngx-translate/core';
 
 import { AdvancedSearchStore, EntitiesStore } from '../../store';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [FlagImageComponent, IconComponent, RouterLink],
+  imports: [FlagImageComponent, IconComponent, RouterLink, TranslatePipe, UpperCasePipe],
   selector: 'app-entity',
   styleUrl: './entity.component.css',
   templateUrl: './entity.component.html',

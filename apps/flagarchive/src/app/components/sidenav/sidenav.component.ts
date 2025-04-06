@@ -15,6 +15,7 @@ import {
   ListComponent,
   ListItemComponent,
 } from '@flagarchive/ui';
+import { TranslatePipe } from '@ngx-translate/core';
 
 import { ENTITY_MENU_ITEMS } from '../../constants';
 import { MenuItem } from '../../models';
@@ -30,6 +31,7 @@ import { EntitiesStore } from '../../store';
     ListComponent,
     ListItemComponent,
     RouterLink,
+    TranslatePipe,
   ],
   selector: 'app-sidenav',
   templateUrl: './sidenav.component.html',

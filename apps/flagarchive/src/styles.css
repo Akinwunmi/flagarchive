@@ -6,6 +6,7 @@ html,
 body {
   color: var(--flag-primary);
   font-family: var(--flag-font-family);
+  font-size: var(--flag-base-font-size);
   margin: 0;
 }
 

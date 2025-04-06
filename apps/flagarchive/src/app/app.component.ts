@@ -1,6 +1,7 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { filter, map } from 'rxjs';
 
 import { HeaderComponent } from './components/header';
@@ -26,6 +27,7 @@ import { EntitiesStore } from './store';
 export class AppComponent {
   readonly #entitiesStore = inject(EntitiesStore);
   readonly #router = inject(Router);
+  readonly #translate = inject(TranslateService);
   readonly #windowResizeService = inject(WindowResizeService);
 
   isMainEntity = this.#entitiesStore.isMainEntity;
@@ -49,4 +51,10 @@ export class AppComponent {
     })),
   );
   #entityPage = computed(() => this.#routerPath()?.[2] ?? '');
+
+  constructor() {
+    this.#translate.addLangs(['en']);
+    this.#translate.setDefaultLang('en');
+    this.#translate.use('en');
+  }
 }

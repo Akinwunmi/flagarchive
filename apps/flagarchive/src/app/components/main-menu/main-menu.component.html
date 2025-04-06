@@ -16,14 +16,18 @@
           [attr.active]="item.active || undefined"
           [routerLink]="item.path"
         >
-          {{ item.label }}
+          {{ item.label | translate }}
         </a>
       }
     </flag-list>
     <flag-list cdkMenu>
       <hr flag-divider />
-      <a cdkMenuItem flag-list-item>Sign up</a>
-      <a cdkMenuItem flag-list-item>Log in</a>
+      <a cdkMenuItem flag-list-item>
+        {{ 'pages.sign-up' | translate }}
+      </a>
+      <a cdkMenuItem flag-list-item>
+        {{ 'pages.log-in' | translate }}
+      </a>
     </flag-list>
   </div>
 </div>
