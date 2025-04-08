@@ -1,3 +1,4 @@
+import { NgTemplateOutlet } from '@angular/common';
 import { Component, computed, DestroyRef, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FlagCategory, Layout, SortDirection } from '@flagarchive/advanced-search';
@@ -11,10 +12,10 @@ import {
   YearNavigatorComponent,
 } from '@flagarchive/ui';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { tap } from 'rxjs';
 
 import { Item } from '../../models';
 import { AdvancedSearchStore, EntitiesStore } from '../../store';
-import { tap } from 'rxjs';
 
 @Component({
   imports: [
@@ -23,6 +24,7 @@ import { tap } from 'rxjs';
     HyphenatePipe,
     IconComponent,
     ListItemComponent,
+    NgTemplateOutlet,
     TranslatePipe,
     YearNavigatorComponent,
   ],
@@ -42,7 +44,6 @@ export class AdvancedSearchBarComponent {
   activeFlagCategory = this.#advancedSearchStore.flagCategory;
   activeSortDirection = this.#advancedSearchStore.sortDirection;
   currentRange = this.#entitiesStore.currentRange;
-  isMainEntity = this.#entitiesStore.isMainEntity;
   layout = this.#advancedSearchStore.layout;
   showOverseasRegions = this.#advancedSearchStore.showOverseasRegions;
 

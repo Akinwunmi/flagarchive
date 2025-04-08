@@ -15,7 +15,7 @@
   line-height: inherit;
   outline-offset: calc(var(--flag-border-width-xs) * -1);
   overflow: hidden;
-  padding-inline: var(--flag-space-xs);
+  padding-inline: var(--flag-space-2xs);
   position: relative;
   text-decoration: none;
   transition: background-color 150ms ease-in-out;

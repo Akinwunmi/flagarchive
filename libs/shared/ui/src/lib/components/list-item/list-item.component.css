@@ -3,11 +3,10 @@
   background-color: var(--flag-white);
   box-sizing: border-box;
   color: var(--flag-primary);
-  display: grid;
+  display: flex;
   font-family: var(--flag-font-family);
   font-size: var(--flag-font-size-sm);
   gap: var(--flag-space-xs);
-  grid-template-columns: auto 1fr auto;
   line-height: var(--flag-line-height-md);
   min-height: var(--flag-space-3xl);
   padding: var(--flag-space-xs) var(--flag-space-sm);

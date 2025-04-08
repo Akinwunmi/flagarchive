@@ -5,7 +5,14 @@ hr[flag-divider] {
   margin-block: var(--flag-space-xs);
   width: 100%;
 
+  &[vertical] {
+    height: 100%;
+    margin-inline: var(--flag-space-xs);
+    min-height: var(--flag-space-xl);
+    width: var(--flag-border-width-sm);
+  }
+
   &[no-margin] {
-    margin-block: 0;
+    margin: 0;
   }
 }

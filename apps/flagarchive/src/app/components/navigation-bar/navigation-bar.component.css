@@ -11,6 +11,10 @@
 }
 
 flag-breadcrumb-group {
+  [flag-divider] {
+    margin-inline: var(--flag-space-2xs);
+  }
+
   flag-icon {
     color: var(--flag-secondary);
   }

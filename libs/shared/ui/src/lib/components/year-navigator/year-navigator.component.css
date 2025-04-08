@@ -7,7 +7,7 @@
 
 .year-button {
   transition: font-weight 250ms ease-in-out;
-  width: 4rem;
+  width: 3.25rem;
 
   &.pulse {
     animation: pulse 3s infinite;

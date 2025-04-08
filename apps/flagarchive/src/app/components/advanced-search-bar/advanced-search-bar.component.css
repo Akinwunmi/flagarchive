@@ -4,22 +4,19 @@
   border-radius: var(--flag-radius-lg);
   display: grid;
   gap: var(--flag-space-md);
-  grid-template-columns: 1fr repeat(2, auto);
+  grid-template-columns: 1fr auto;
   justify-content: space-between;
   padding: var(--flag-space-xs);
   position: sticky;
   inset-inline: 0;
   top: 0;
 
-  @media screen and (max-width: 27.5rem) {
-    grid-template-columns: repeat(2, auto);
-    justify-content: flex-end;
+  @media screen and (max-width: 85rem) {
+    grid-template-columns: 1fr repeat(2, auto);
   }
-}
 
-flag-year-navigator {
-  @media screen and (max-width: 27.5rem) {
-    display: none;
+  @media screen and (max-width: 75rem) {
+    grid-template-columns: 1fr auto;
   }
 }
 
@@ -27,21 +24,30 @@ flag-year-navigator {
   display: flex;
   gap: var(--flag-space-md);
 
-  .show-overseas-regions {
-    @media screen and (max-width: 90rem) {
+  .show-overseas-regions,
+  .sorting-dropdown {
+    @media screen and (max-width: 85rem) {
       display: none;
     }
   }
-
-  @media screen and (max-width: 80rem) {
+  
+  @media screen and (max-width: 75rem) {
     display: none;
   }
 }
 
 .filters-dropdown {
   display: none;
+  
+  @media screen and (max-width: 85rem) {
+    display: block;
+  }
+}
 
-  @media screen and (max-width: 80rem) {
+.region-filters {
+  display: none;
+
+  @media screen and (max-width: 75rem) {
     display: block;
   }
 }
