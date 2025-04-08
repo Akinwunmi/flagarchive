@@ -1,34 +1,35 @@
 {
   "advanced-search": {
-    "asc": "Oplopend",
-    "desc": "Aflopend",
+    "asc": "Naam A-Z",
+    "desc": "Naam Z-A",
     "deselect-all": "Deselecteer alles",
+    "flag-category": "Vlagcategorie",
     "select-all": "Selecteer alles",
     "show-overseas-regions": "Toon overzeese gebieden",
     "type-of-region": "Regiotype"
   },
   "common": {
-    "about-the-project": "About the project",
-    "continents": "Continents",
+    "about-the-project": "Over het project",
+    "continents": "Continenten",
     "details": "Details",
-    "entities": "Entities",
-    "flags": "Flags",
-    "global": "Global",
-    "history": "History",
-    "log-in": "Log in",
-    "sign-up": "Sign up"
+    "entities": "Entiteiten",
+    "flags": "Vlaggen",
+    "global": "Wereldwijd",
+    "history": "Historie",
+    "log-in": "Inloggen",
+    "sign-up": "Aanmelden"
   },
   "flag-categories": {
-    "civil-ensign": "Civil ensign",
-    "civil-flag": "Civil flag",
-    "naval-ensign": "Naval ensign",
-    "naval-jack": "Naval jack",
-    "official": "Official",
-    "presidential-standard": "Presidential standard",
-    "royal-standard": "Royal standard",
-    "unofficial": "Unofficial"
+    "civil-ensign": "Handelsvlag",
+    "civil-flag": "Civiele vlag",
+    "naval-ensign": "Marinevlag",
+    "naval-jack": "Geus",
+    "official": "Officieel",
+    "presidential-standard": "Presidentiële standaard",
+    "royal-standard": "Koninklijke standaard",
+    "unofficial": "Onofficieel"
   },
   "flag-image": {
-    "alt-text": "Flag of {{ name }}"
+    "alt-text": "Vlag van {{ name }}"
   }
 }

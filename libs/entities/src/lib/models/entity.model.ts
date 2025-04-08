@@ -38,6 +38,7 @@ export enum EntityType {
   Country = 'country',
   Department = 'department',
   DependentTerritory = 'dependent-territory',
+  District = 'district',
   EthnicGroup = 'ethnic-group',
   ExternalTerritory = 'external-territory',
   FederalDistrict = 'federal-district',

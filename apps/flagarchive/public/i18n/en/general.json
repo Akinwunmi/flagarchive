@@ -1,8 +1,9 @@
 {
   "advanced-search": {
-    "asc": "Ascending",
-    "desc": "Descending",
+    "asc": "Name A-Z",
+    "desc": "Name Z-A",
     "deselect-all": "Deselect all",
+    "flag-category": "Flag category",
     "select-all": "Select all",
     "show-overseas-regions": "Show overseas regions",
     "type-of-region": "Type of region"

@@ -5,40 +5,14 @@
   (selectedChange)="setSelectedYear($event)"
 />
 <div class="actions">
-  <flag-checkbox
-    class="show-overseas-regions"
-    [checked]="showOverseasRegions()"
-    [disabled]="isMainEntity()"
-    [label]="'advanced-search.show-overseas-regions' | translate"
-    [secondary]="true"
-    (click)="toggleShowOverseasRegions()"
-  />
+  <ng-container *ngTemplateOutlet="showOverseasRegionsTemplate" />
   <flag-dropdown
     [amountSelected]="amountOfSelectedEntityTypes()"
     [label]="'advanced-search.type-of-region' | translate"
     [secondary]="true"
     [small]="true"
   >
-    @for (entityType of currentEntityTypes(); track $index) {
-      <flag-list-item [secondary]="true">
-        <flag-checkbox
-          [checked]="isSelectedEntityType(entityType.label)"
-          [label]="'entity-types.' + entityType.label | translate"
-          [secondary]="true"
-          (checkedChange)="toggleEntityType(entityType, $event)"
-        />
-      </flag-list-item>
-    }
-    <hr flag-divider />
-    <flag-list-item [secondary]="true">
-      <flag-checkbox
-        [label]="'advanced-search.' + selectAllTranslation() | translate"
-        [checked]="amountOfSelectedEntityTypes() === currentEntityTypes().length"
-        [indeterminate]="isPartialEntityTypeSelection()"
-        [secondary]="true"
-        (checkedChange)="toggleAllEntityTypes($event)"
-      />
-    </flag-list-item>
+    <ng-container *ngTemplateOutlet="typeOfRegionTemplate" />
   </flag-dropdown>
   <flag-dropdown
     icon="flag"
@@ -46,28 +20,17 @@
     [secondary]="true"
     [small]="true"
   >
-    @for (flagCategory of flagCategories; track $index) {
-      <button
-        flag-list-item
-        secondary
-        [attr.active]="flagCategory === activeFlagCategory() || undefined"
-        (click)="setFlagCategory(flagCategory)"
-      >
-        {{ 'flag-categories.' + (flagCategory | hyphenate) | translate }}
-      </button>
-    }
+    <ng-container *ngTemplateOutlet="flagCategoriesTemplate" />
   </flag-dropdown>
-  <flag-dropdown icon="sort" label="" [hideChevron]="true" [secondary]="true" [small]="true">
-    @for (sortDirection of sortDirections; track $index) {
-      <button
-        flag-list-item
-        secondary
-        [attr.active]="sortDirection === activeSortDirection() || undefined"
-        (click)="setSortDirection(sortDirection)"
-      >
-        {{ 'advanced-search.' + sortDirection | translate }}
-      </button>
-    }
+  <flag-dropdown
+    class="sorting-dropdown"
+    icon="sort"
+    label=""
+    [hideChevron]="true"
+    [secondary]="true"
+    [small]="true"
+  >
+    <ng-container *ngTemplateOutlet="sortingTemplate" />
   </flag-dropdown>
   <div flag-button-group>
     @for (option of layoutOptions; track $index) {
@@ -82,6 +45,9 @@
       </button>
     }
   </div>
+  <flag-dropdown icon="translate" label="" [hideChevron]="true" [small]="true">
+    <ng-container *ngTemplateOutlet="languageTemplate" />
+  </flag-dropdown>
 </div>
 <flag-dropdown
   class="filters-dropdown"
@@ -91,9 +57,47 @@
   [secondary]="true"
   [small]="true"
 >
-  Mobile filters
+  <ng-container *ngTemplateOutlet="languageTemplate" />
+  <hr flag-divider />
+  <div class="region-filters">
+    <flag-list-item [secondary]="true">
+      <flag-icon>category</flag-icon>
+      {{ 'advanced-search.type-of-region' | translate }}
+    </flag-list-item>
+    <ng-container *ngTemplateOutlet="typeOfRegionTemplate" />
+    <hr flag-divider />
+    <flag-list-item [secondary]="true">
+      <flag-icon>flag</flag-icon>
+      {{ 'advanced-search.flag-category' | translate }}
+    </flag-list-item>
+    <ng-container *ngTemplateOutlet="flagCategoriesTemplate" />
+    <hr flag-divider />
+  </div>
+  <ng-container *ngTemplateOutlet="sortingTemplate" />
+  <hr flag-divider />
+  <flag-list-item [secondary]="true">
+    <ng-container *ngTemplateOutlet="showOverseasRegionsTemplate" />
+  </flag-list-item>
 </flag-dropdown>
-<flag-dropdown icon="translate" label="" [hideChevron]="true" [small]="true">
+
+<ng-template #flagCategoriesTemplate>
+  @for (flagCategory of flagCategories; track $index) {
+    <button
+      flag-list-item
+      secondary
+      [attr.active]="flagCategory === activeFlagCategory() || undefined"
+      (click)="setFlagCategory(flagCategory)"
+    >
+      {{ 'flag-categories.' + (flagCategory | hyphenate) | translate }}
+    </button>
+  }
+</ng-template>
+
+<ng-template #languageTemplate>
+  <flag-list-item>
+    <flag-icon>translate</flag-icon>
+    Language
+  </flag-list-item>
   <button
     flag-list-item
     [attr.active]="getCurrentLanguage() === 'en' || undefined"
@@ -108,4 +112,58 @@
   >
     Nederlands
   </button>
-</flag-dropdown>
+</ng-template>
+
+<ng-template #showOverseasRegionsTemplate>
+  <flag-checkbox
+    class="show-overseas-regions"
+    [checked]="showOverseasRegions()"
+    [label]="'advanced-search.show-overseas-regions' | translate"
+    [secondary]="true"
+    (click)="toggleShowOverseasRegions()"
+  />
+</ng-template>
+
+<ng-template #sortingTemplate>
+  <flag-list-item [secondary]="true">
+    <flag-icon>sort</flag-icon>
+    Sorting
+  </flag-list-item>
+  <flag-list-item [secondary]="true">
+    <div flag-button-group>
+      @for (sortDirection of sortDirections; track $index) {
+        <button
+          flag-button
+          secondary
+          [attr.raised]="sortDirection === activeSortDirection() || undefined"
+          (click)="setSortDirection(sortDirection)"
+        >
+          {{ 'advanced-search.' + sortDirection | translate }}
+        </button>
+      }
+    </div>
+  </flag-list-item>
+</ng-template>
+
+<ng-template #typeOfRegionTemplate>
+  @for (entityType of currentEntityTypes(); track $index) {
+    <flag-list-item [secondary]="true">
+      <flag-checkbox
+        [checked]="isSelectedEntityType(entityType.label)"
+        [label]="'entity-types.' + entityType.label | translate"
+        [secondary]="true"
+        (checkedChange)="toggleEntityType(entityType, $event)"
+      />
+    </flag-list-item>
+  }
+  <hr flag-divider />
+  <flag-list-item [secondary]="true">
+    <flag-checkbox
+      [label]="'advanced-search.' + selectAllTranslation() | translate"
+      [checked]="amountOfSelectedEntityTypes() === currentEntityTypes().length"
+      [indeterminate]="isPartialEntityTypeSelection()"
+      [secondary]="true"
+      (checkedChange)="toggleAllEntityTypes($event)"
+    />
+  </flag-list-item>
+</ng-template>

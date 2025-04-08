@@ -74,7 +74,7 @@ export const EntitiesStore = signalStore(
             ),
           ),
           switchMap((entity) =>
-            entityService.getEntitiesByParentId(entity.id, true).pipe(
+            entityService.getEntitiesByParentId(entity?.id ?? '', true).pipe(
               tapResponse({
                 next: (entities) =>
                   patchState(store, {
