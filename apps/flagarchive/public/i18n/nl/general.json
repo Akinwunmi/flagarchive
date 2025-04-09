@@ -4,18 +4,21 @@
     "desc": "Naam Z-A",
     "deselect-all": "Deselecteer alles",
     "flag-category": "Vlagcategorie",
+    "regions": "Regio's",
     "select-all": "Selecteer alles",
     "show-overseas-regions": "Toon overzeese gebieden",
-    "type-of-region": "Regiotype"
+    "sorting": "Sorteren"
   },
   "common": {
     "about-the-project": "Over het project",
     "continents": "Continenten",
     "details": "Details",
     "entities": "Entiteiten",
+    "filters-and-sorting": "Filters en sorteren",
     "flags": "Vlaggen",
     "global": "Wereldwijd",
     "history": "Historie",
+    "language": "Taal",
     "log-in": "Inloggen",
     "sign-up": "Aanmelden"
   },

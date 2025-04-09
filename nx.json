@@ -1,7 +1,10 @@
 {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
   "namedInputs": {
-    "default": ["{projectRoot}/**/*", "sharedGlobals"],
+    "default": [
+      "{projectRoot}/**/*",
+      "sharedGlobals"
+    ],
     "production": [
       "default",
       "!{projectRoot}/.eslintrc.json",
@@ -18,14 +21,21 @@
       "!{projectRoot}/.storybook/**/*",
       "!{projectRoot}/tsconfig.storybook.json"
     ],
-    "sharedGlobals": ["{workspaceRoot}/.github/workflows/ci.yml"]
+    "sharedGlobals": [
+      "{workspaceRoot}/.github/workflows/ci.yml"
+    ]
   },
   "nxCloudId": "678683d734f5017923a532bf",
   "targetDefaults": {
     "@angular-devkit/build-angular:application": {
       "cache": true,
-      "dependsOn": ["^build"],
-      "inputs": ["production", "^production"]
+      "dependsOn": [
+        "^build"
+      ],
+      "inputs": [
+        "production",
+        "^production"
+      ]
     },
     "@nx/eslint:lint": {
       "cache": true,
@@ -38,7 +48,11 @@
     },
     "@nx/jest:jest": {
       "cache": true,
-      "inputs": ["default", "^production", "{workspaceRoot}/jest.preset.js"],
+      "inputs": [
+        "default",
+        "^production",
+        "{workspaceRoot}/jest.preset.js"
+      ],
       "options": {
         "passWithNoTests": true
       },
@@ -50,7 +64,9 @@
       }
     },
     "e2e-ci--**/*": {
-      "dependsOn": ["^build"]
+      "dependsOn": [
+        "^build"
+      ]
     },
     "build-storybook": {
       "cache": true,
@@ -63,8 +79,13 @@
     },
     "@nx/angular:package": {
       "cache": true,
-      "dependsOn": ["^build"],
-      "inputs": ["production", "^production"]
+      "dependsOn": [
+        "^build"
+      ],
+      "inputs": [
+        "production",
+        "^production"
+      ]
     }
   },
   "plugins": [
@@ -107,6 +128,10 @@
     "@nx/angular:component": {
       "style": "css",
       "changeDetection": "OnPush"
-    }
+    },
+    "@schematics/angular:component": {
+      "style": "css",
+      "changeDetection": "OnPush"
+    },
   }
 }

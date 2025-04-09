@@ -1,26 +1,32 @@
 :host {
   align-items: center;
-  display: flex;
+  display: grid;
+  gap: var(--flag-space-md);
+  grid-template-columns: 1fr auto;
   min-height: 3.5rem;
-  padding-inline: var(--flag-space-md);
+  padding-inline: var(--flag-space-sm);
 
   @media screen and (max-width: 50rem) {
     height: 2.5rem;
-    padding-inline: var(--flag-space-sm);
   }
 }
 
-flag-breadcrumb-group {
-  [flag-divider] {
+.breadcrumbs {
+  align-items: center;
+  display: flex;
+  
+  flag-breadcrumb-group {
+    [flag-divider] {
+      margin-inline: var(--flag-space-2xs);
+    }
+  
+    flag-icon {
+      color: var(--flag-secondary);
+    }
+  }
+  
+  .arrow-right {
+    color: var(--flag-secondary);
     margin-inline: var(--flag-space-2xs);
   }
-
-  flag-icon {
-    color: var(--flag-secondary);
-  }
-}
-
-.arrow-right {
-  color: var(--flag-secondary);
-  margin-inline: var(--flag-space-2xs);
 }

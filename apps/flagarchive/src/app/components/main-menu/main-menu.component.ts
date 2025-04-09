@@ -28,8 +28,8 @@ import { MenuItem } from '../../models';
     TranslatePipe,
   ],
   selector: 'app-main-menu',
-  templateUrl: './main-menu.component.html',
   styleUrl: './main-menu.component.css',
+  templateUrl: './main-menu.component.html',
 })
 export class MainMenuComponent implements OnInit {
   readonly #destroyRef = inject(DestroyRef);

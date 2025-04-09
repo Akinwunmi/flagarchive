@@ -9,11 +9,11 @@ import { WindowResizeService } from '../../services';
 import { MainMenuComponent } from '../main-menu';
 
 @Component({
-  selector: 'app-header',
-  imports: [CdkPortal, IconComponent, MainMenuComponent, RouterLink],
-  templateUrl: './header.component.html',
-  styleUrl: './header.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [CdkPortal, IconComponent, MainMenuComponent, RouterLink],
+  selector: 'app-header',
+  styleUrl: './header.component.css',
+  templateUrl: './header.component.html',
 })
 export class HeaderComponent {
   readonly #overlay = inject(Overlay);

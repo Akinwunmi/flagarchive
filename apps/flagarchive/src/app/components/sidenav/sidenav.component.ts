@@ -34,8 +34,8 @@ import { EntitiesStore } from '../../store';
     TranslatePipe,
   ],
   selector: 'app-sidenav',
-  templateUrl: './sidenav.component.html',
   styleUrl: './sidenav.component.css',
+  templateUrl: './sidenav.component.html',
 })
 export class SidenavComponent implements OnInit {
   readonly #entitiesStore = inject(EntitiesStore);

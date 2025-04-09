@@ -1,3 +1,4 @@
+export * from './accordion';
 export * from './badge';
 export * from './breadcrumb';
 export * from './breadcrumb-group';
@@ -6,6 +7,7 @@ export * from './card-content';
 export * from './card-footer';
 export * from './card-header';
 export * from './checkbox';
+export * from './collapsible';
 export * from './dropdown';
 export * from './flag-image';
 export * from './icon';

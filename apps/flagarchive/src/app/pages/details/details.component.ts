@@ -2,10 +2,10 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-details',
-  imports: [TranslatePipe],
-  templateUrl: './details.component.html',
-  styleUrl: './details.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [TranslatePipe],
+  selector: 'app-details',
+  styleUrl: './details.component.css',
+  templateUrl: './details.component.html',
 })
 export class DetailsComponent {}

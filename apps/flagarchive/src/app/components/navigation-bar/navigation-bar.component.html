@@ -1,75 +1,99 @@
-@if (!isTablet() || (isTablet() && !isMainEntity())) {
-  <flag-breadcrumb-group>
-    <flag-breadcrumb icon="home" label="Home" [hideLabel]="true" [link]="['']" />
-    @if (selectedEntity(); as selectedEntity) {
-      @for (parentId of selectedEntity.parentIds; track $index) {
-        <flag-breadcrumb
-          class="parent"
-          [hideArrow]="
-            selectedEntity.parentIds?.length !== $index + 1 || !!selectedEntity.altParentId
-          "
-          [label]="parentId | uppercase"
-          [link]="['flags', parentId]"
-        />
-        @if (
-          selectedEntity.parentIds?.length !== $index + 1 ||
-          (selectedEntity.parentIds?.length !== $index + 1 && !selectedEntity.altParentId)
-        ) {
-          <flag-icon class="arrow">pen_size_2</flag-icon>
+<div class="breadcrumbs">
+  @if (!isTablet() || (isTablet() && !isMainEntity())) {
+    <flag-breadcrumb-group>
+      <flag-breadcrumb icon="home" label="Home" [hideLabel]="true" [link]="['']" />
+      @if (selectedEntity(); as selectedEntity) {
+        @for (parentId of selectedEntity.parentIds; track $index) {
+          <flag-breadcrumb
+            class="parent"
+            [hideArrow]="
+              selectedEntity.parentIds?.length !== $index + 1 || !!selectedEntity.altParentId
+            "
+            [label]="parentId | uppercase"
+            [link]="['flags', parentId]"
+          />
+          @if (
+            selectedEntity.parentIds?.length !== $index + 1 ||
+            (selectedEntity.parentIds?.length !== $index + 1 && !selectedEntity.altParentId)
+          ) {
+            <flag-icon class="arrow">pen_size_2</flag-icon>
+          }
         }
-      }
-      @if (selectedEntity.altParentId) {
-        <flag-icon class="arrow">pen_size_2</flag-icon>
+        @if (selectedEntity.altParentId) {
+          <flag-icon class="arrow">pen_size_2</flag-icon>
+          <flag-breadcrumb
+            class="parent"
+            [label]="selectedEntity.altParentId | uppercase"
+            [link]="['flags', selectedEntity.altParentId]"
+          />
+        }
         <flag-breadcrumb
-          class="parent"
-          [label]="selectedEntity.altParentId | uppercase"
-          [link]="['flags', selectedEntity.altParentId]"
+          [label]="'entities.' + (selectedEntity.name | hyphenate) | translate"
+          [link]="[]"
         />
       }
-      <flag-breadcrumb
-        [label]="'entities.' + (selectedEntity.name | hyphenate) | translate"
-        [link]="[]"
-      />
-    }
-  </flag-breadcrumb-group>
-}
-@if (isTablet() && isMainEntity()) {
-  @if (selectedEntity(); as selectedEntity) {
-    <flag-dropdown
-      [extraSmall]="true"
-      [icon]="isMobile() ? 'more_horiz' : undefined"
-      [label]="isMobile() ? '' : ('common.' + selectedMainEntityType() | translate)"
-      [secondary]="true"
-      [(isOpen)]="isMainEntityTypesMenuOpen"
-    >
-      @for (type of mainEntityTypes; track $index) {
-        <a
-          flag-list-item
-          secondary
-          [attr.active]="type === selectedMainEntityType() || undefined"
-          [routerLink]="['flags', type === 'continents' ? 'af' : 'oc']"
-          (click)="closeMainEntityTypesMenu()"
-        >
-          {{ 'common.' + type | translate }}
-        </a>
-      }
-    </flag-dropdown>
-    <flag-icon class="arrow-right">keyboard_arrow_right</flag-icon>
-    <flag-dropdown
-      [extraSmall]="true"
-      [label]="'entities.' + selectedEntity.name | translate"
-      [(isOpen)]="isMainEntitiesMenuOpen"
-    >
-      @for (entity of mainEntities(); track $index) {
-        <a
-          flag-list-item
-          [attr.active]="entity.id === selectedEntity.id || undefined"
-          [routerLink]="['flags', entity.id]"
-          (click)="closeMainEntitiesMenu()"
-        >
-          {{ 'entities.' + entity.name | translate }}
-        </a>
-      }
-    </flag-dropdown>
+    </flag-breadcrumb-group>
   }
-}
+  @if (isTablet() && isMainEntity()) {
+    @if (selectedEntity(); as selectedEntity) {
+      <flag-dropdown
+        [extraSmall]="true"
+        [icon]="isMobile() ? 'more_horiz' : undefined"
+        [label]="isMobile() ? '' : ('common.' + selectedMainEntityType() | translate)"
+        [secondary]="true"
+        [(isOpen)]="isMainEntityTypesMenuOpen"
+      >
+        @for (type of mainEntityTypes; track $index) {
+          <a
+            flag-list-item
+            secondary
+            [attr.active]="type === selectedMainEntityType() || undefined"
+            [routerLink]="['flags', type === 'continents' ? 'af' : 'oc']"
+            (click)="closeMainEntityTypesMenu()"
+          >
+            {{ 'common.' + type | translate }}
+          </a>
+        }
+      </flag-dropdown>
+      <flag-icon class="arrow-right">keyboard_arrow_right</flag-icon>
+      <flag-dropdown
+        [extraSmall]="true"
+        [label]="'entities.' + selectedEntity.name | translate"
+        [(isOpen)]="isMainEntitiesMenuOpen"
+      >
+        @for (entity of mainEntities(); track $index) {
+          <a
+            flag-list-item
+            [attr.active]="entity.id === selectedEntity.id || undefined"
+            [routerLink]="['flags', entity.id]"
+            (click)="closeMainEntitiesMenu()"
+          >
+            {{ 'entities.' + entity.name | translate }}
+          </a>
+        }
+      </flag-dropdown>
+    }
+  }
+</div>
+<flag-dropdown
+  icon="translate"
+  label=""
+  [hideChevron]="true"
+  [small]="true"
+  [(isOpen)]="isLanguageMenuOpen"
+>
+  <button
+    flag-list-item
+    [attr.active]="getCurrentLanguage() === 'en' || undefined"
+    (click)="setLanguage('en')"
+  >
+    English
+  </button>
+  <button
+    flag-list-item
+    [attr.active]="getCurrentLanguage() === 'nl' || undefined"
+    (click)="setLanguage('nl')"
+  >
+    Nederlands
+  </button>
+</flag-dropdown>

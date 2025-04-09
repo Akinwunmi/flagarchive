@@ -25,15 +25,14 @@ import { CURRENT_YEAR } from './year-navigator.constant';
 export class YearNavigatorComponent implements OnDestroy {
   max = input(CURRENT_YEAR);
   min = input(CURRENT_YEAR);
+  showPlayBar = input(true);
 
   selected = model(CURRENT_YEAR);
 
   #isPlayingBackward = signal(false);
   #isPlayingForward = signal(false);
 
-  isPlaying = computed(
-    () => this.#isPlayingBackward() || this.#isPlayingForward()
-  );
+  isPlaying = computed(() => this.#isPlayingBackward() || this.#isPlayingForward());
   selectedYear = computed(() => Math.min(this.max(), this.selected()));
 
   dropdownIsOpen = false;
@@ -56,17 +55,13 @@ export class YearNavigatorComponent implements OnDestroy {
     this.#isPlayingBackward.set(!!backward);
     this.#isPlayingForward.set(!backward);
     this.#playSpeed$.pipe(takeUntil(this.#stop$)).subscribe(() => {
-      const maxReached =
-        this.#isPlayingForward() && this.max() === this.selectedYear();
-      const minReached =
-        this.#isPlayingBackward() && this.min() === this.selectedYear();
+      const maxReached = this.#isPlayingForward() && this.max() === this.selectedYear();
+      const minReached = this.#isPlayingBackward() && this.min() === this.selectedYear();
       if (maxReached || minReached) {
         this.stop();
       }
       this.setSelectedYear(
-        this.#isPlayingBackward()
-          ? this.selectedYear() - 1
-          : this.selectedYear() + 1
+        this.#isPlayingBackward() ? this.selectedYear() - 1 : this.selectedYear() + 1,
       );
     });
   }
