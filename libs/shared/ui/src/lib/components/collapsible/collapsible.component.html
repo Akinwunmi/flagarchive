@@ -1,0 +1,15 @@
+<button flag-list-item [attr.secondary]="secondary() || undefined" (click)="toggle()">
+  <flag-icon>{{ icon() }}</flag-icon>
+  <div class="label">
+    {{ label() }}
+    @if (count(); as count) {
+      <flag-badge>{{ count }}</flag-badge>
+    }
+  </div>
+  <flag-icon class="collapse-arrow" [class.expanded]="expanded()">keyboard_arrow_down</flag-icon>
+</button>
+@if (expanded()) {
+  <div @collapsibleState class="content">
+    <ng-content />
+  </div>
+}

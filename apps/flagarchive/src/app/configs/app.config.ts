@@ -2,6 +2,7 @@ import { HttpClient, provideHttpClient } from '@angular/common/http';
 import { ApplicationConfig, provideExperimentalZonelessChangeDetection } from '@angular/core';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideRouter } from '@angular/router';
 import { provideTranslateService, TranslateLoader, TranslationObject } from '@ngx-translate/core';
 
@@ -29,6 +30,7 @@ const httpLoaderFactory: (http: HttpClient) => TranslateHttpModuleloader = (http
 
 export const APP_CONFIG: ApplicationConfig = {
   providers: [
+    provideAnimationsAsync(),
     provideExperimentalZonelessChangeDetection(),
     provideFirebaseApp(() => initializeApp(FIREBASE_CONFIG)),
     provideFirestore(() => getFirestore()),

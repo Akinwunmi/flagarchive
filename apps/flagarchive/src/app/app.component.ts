@@ -1,9 +1,13 @@
-import { Component, computed, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { filter, map } from 'rxjs';
 
+import {
+  FiltersAndSortingPanelComponent,
+  FiltersAndSortingPanelService,
+} from './components/filters-and-sorting-panel';
 import { HeaderComponent } from './components/header';
 import { MobileEntityBarComponent } from './components/mobile-entity-bar';
 import { NavigationBarComponent } from './components/navigation-bar';
@@ -13,7 +17,9 @@ import { WindowResizeService } from './services';
 import { EntitiesStore } from './store';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
+    FiltersAndSortingPanelComponent,
     HeaderComponent,
     MobileEntityBarComponent,
     NavigationBarComponent,
@@ -26,11 +32,13 @@ import { EntitiesStore } from './store';
 })
 export class AppComponent {
   readonly #entitiesStore = inject(EntitiesStore);
+  readonly #filtersAndSortingPanelService = inject(FiltersAndSortingPanelService);
   readonly #router = inject(Router);
   readonly #translate = inject(TranslateService);
   readonly #windowResizeService = inject(WindowResizeService);
 
   isMainEntity = this.#entitiesStore.isMainEntity;
+  isFilterSidePanelOpen = this.#filtersAndSortingPanelService.isOpen;
   isTablet = this.#windowResizeService.isTablet;
 
   initialEntityItems = signal(ENTITY_MENU_ITEMS);

@@ -4,18 +4,21 @@
     "desc": "Name Z-A",
     "deselect-all": "Deselect all",
     "flag-category": "Flag category",
+    "regions": "Regions",
     "select-all": "Select all",
     "show-overseas-regions": "Show overseas regions",
-    "type-of-region": "Type of region"
+    "sorting": "Sorting"
   },
   "common": {
     "about-the-project": "About the project",
     "continents": "Continents",
     "details": "Details",
     "entities": "Entities",
+    "filters-and-sorting": "Filters and sorting",
     "flags": "Flags",
     "global": "Global",
     "history": "History",
+    "language": "Language",
     "log-in": "Log in",
     "sign-up": "Sign up"
   },

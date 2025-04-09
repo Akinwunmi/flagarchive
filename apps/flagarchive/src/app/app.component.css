@@ -1,6 +1,6 @@
 :host {
   display: grid;
-  grid-template-columns: 12.5rem 1fr;
+  grid-template-columns: 12.5rem 1fr auto;
   height: 100svh;
   overflow: hidden;
   position: absolute;
@@ -31,5 +31,15 @@ main {
 
   @media screen and (max-width: 50rem) {
     height: calc(100svh - 2.75rem);
+  }
+}
+
+app-filters-and-sorting-panel {
+  z-index: 2;
+
+  @media screen and (max-width: 75rem) {
+    height: 100svh;
+    position: fixed;
+    right: 0;
   }
 }

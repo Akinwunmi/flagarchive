@@ -1,0 +1,20 @@
+:host {
+  background-color: var(--flag-white);
+  box-shadow: var(--flag-elevation-xs);
+  overflow-x: hidden;
+  width: 20rem;
+}
+
+header {
+  align-items: center;
+  display: grid;
+  gap: var(--flag-space-xs);
+  grid-template-columns: auto 1fr auto;
+  padding: var(--flag-space-xs);
+}
+
+section {
+  .layout {
+    justify-content: space-between;
+  }
+}
