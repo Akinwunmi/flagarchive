@@ -19,6 +19,7 @@ export class EntityComponent {
   readonly #entitiesStore = inject(EntitiesStore);
 
   entity = input.required<Entity>();
+  basePath = input('../..');
   cardView = input(true);
 
   #flagCategory = this.#advancedSearchStore.flagCategory;
