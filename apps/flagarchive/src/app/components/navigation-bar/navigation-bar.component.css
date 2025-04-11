@@ -1,5 +1,6 @@
 :host {
   align-items: center;
+  background-color: var(--flag-white);
   display: grid;
   gap: var(--flag-space-md);
   grid-template-columns: 1fr auto;

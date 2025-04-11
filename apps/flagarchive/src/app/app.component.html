@@ -1,10 +1,14 @@
 <div class="main-navigation">
   <app-header />
   <app-sidenav [entityId]="entityId()" [entityItems]="entityItems()" />
+  <div class="main-navigation-actions">
+    <button flag-button ghost>Sign up</button>
+    <button flag-button>Log in</button>
+  </div>
 </div>
 <main>
   <app-navigation-bar />
-  @if (!isMainEntity() && isTablet()) {
+  @if (!isMainEntity() && isTablet() && mainPage() !== 'home') {
     <app-mobile-entity-bar [entityItems]="entityItems()" />
   }
   <router-outlet />

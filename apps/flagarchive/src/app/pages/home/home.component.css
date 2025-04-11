@@ -1,6 +1,67 @@
 :host {
-  background-color: var(--flag-grey-200);
   display: flex;
+  flex-direction: column;
   flex-grow: 1;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.hero {
+  background-color: var(--flag-white);
+  display: grid;
+  height: fit-content;
+  justify-content: center;
+  padding-block: var(--flag-space-5xl);
+  width: 100%;
+
+  h2 {
+    font-size: var(--flag-font-size-2xl);
+    font-weight: var(--flag-font-weight-regular);
+    line-height: var(--flag-line-height-2xl);
+    max-width: 30rem;
+    text-align: center;
+    width: 100%;
+  }
+
+  .cta {
+    align-items: center;
+    color: var(--flag-grey-700);
+    display: flex;
+    gap: var(--flag-space-md);
+    justify-content: center;
+  
+    @media screen and (max-width: 25rem) {
+      flex-direction: column;
+    }
+  }
+}
+
+.content {
+  display: flex;
+  gap: var(--flag-space-md);
+  justify-content: center;
+  padding-block: var(--flag-space-2xl) var(--flag-space-8xl);
+  padding-inline: var(--flag-space-md);
+
+  .new,
+  .flag-of-the-day {
+    h3 {
+      color: var(--flag-secondary-700);
+      font-weight: var(--flag-font-weight-regular);
+    }
+  }
+
+  .new {
+    max-width: 30rem;
+    width: 100%;
+  }
+
+  .flag-of-the-day {
+    width: 12.5rem;
+  }
+
+  @media screen and (max-width: 50rem) {
+    align-items: center;
+    flex-direction: column-reverse;
+  }
 }

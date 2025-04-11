@@ -2,13 +2,19 @@ import { EnvironmentInjector, inject, Injectable, runInInjectionContext } from '
 import {
   collection,
   collectionData,
+  doc,
   Firestore,
+  getDoc,
+  getDocs,
   limit,
+  orderBy,
   query,
+  setDoc,
   where,
 } from '@angular/fire/firestore';
 import { Entity } from '@flagarchive/entities';
-import { combineLatest, map, Observable, of } from 'rxjs';
+import { format } from 'date-fns';
+import { combineLatest, map, Observable, of, from, switchMap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -18,6 +24,9 @@ export class EntityService {
   readonly #environmentInjector = inject(EnvironmentInjector);
 
   #entitiesCollection = collection(this.#firestore, 'entities');
+  #metadataCollection = collection(this.#firestore, 'metadata');
+
+  isLoggedIn = false;
 
   getEntityById(id: string): Observable<Entity> {
     return runInInjectionContext(this.#environmentInjector, () => {
@@ -57,10 +66,59 @@ export class EntityService {
     });
   }
 
+  getEntitiesByCreatedOn(): Observable<Entity[]> {
+    return runInInjectionContext(this.#environmentInjector, () => {
+      const entities = query(
+        this.#entitiesCollection,
+        where('createdOn', '!=', null),
+        orderBy('createdOn', 'desc'),
+        limit(5),
+      );
+      return collectionData(entities, { idField: 'baseId' }) as Observable<Entity[]>;
+    });
+  }
+
   getEntitiesByType(types: string[]): Observable<Entity[]> {
     return runInInjectionContext(this.#environmentInjector, () => {
       const entities = query(this.#entitiesCollection, where('type', 'in', types), limit(75));
       return collectionData(entities, { idField: 'baseId' }) as Observable<Entity[]>;
+    });
+  }
+
+  getFlagOfTheDay(): Observable<Entity> {
+    return runInInjectionContext(this.#environmentInjector, () => {
+      const today = format(new Date(), 'yyyy-MM-dd');
+      const currentFlagOfTheDay = doc(this.#metadataCollection, 'flag-of-the-day');
+
+      return from(getDoc(currentFlagOfTheDay)).pipe(
+        switchMap((snapshot) => {
+          const flagIsUpToDate = snapshot.exists() && snapshot.data()['date'] === today;
+          // If the flag is up to date, we can return the entity directly
+          if (flagIsUpToDate || !this.isLoggedIn) {
+            const id = (snapshot.data()?.['id'] ?? '') as string;
+
+            return this.getEntityById(id);
+          }
+
+          // If the flag is not up to date, we need to get a new random entity
+          // and set the flag of the day to that entity
+          return from(getDocs(this.#entitiesCollection)).pipe(
+            switchMap((snapshot) => {
+              const entities = snapshot.docs.map(
+                (doc) => ({ id: doc.id, ...doc.data() }) as Entity,
+              );
+              const randomFlag = entities[Math.floor(Math.random() * entities.length)];
+
+              return from(
+                setDoc(currentFlagOfTheDay, {
+                  date: today,
+                  id: randomFlag.id,
+                }),
+              ).pipe(map(() => randomFlag));
+            }),
+          );
+        }),
+      );
     });
   }
 }

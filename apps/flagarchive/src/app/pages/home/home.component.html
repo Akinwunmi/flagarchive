@@ -1,1 +1,24 @@
-<router-outlet />
+<div class="hero">
+  <h2>Discover flags throughout history</h2>
+  <div class="cta">
+    Start at the beginning
+    <a flag-button raised [routerLink]="['/flags']">
+      Browse flags
+      <flag-icon>east</flag-icon>
+    </a>
+  </div>
+</div>
+<div class="content">
+  <div class="new">
+    <h3>Newest additions</h3>
+    @for (entity of newestAdditions(); track $index) {
+      <app-entity basePath="../flags" [cardView]="false" [entity]="entity" />
+    }
+  </div>
+  @if (flagOfTheDay(); as flagOfTheDay) {
+    <div class="flag-of-the-day">
+      <h3>Flag of the day</h3>
+      <app-entity basePath="../flags" [entity]="flagOfTheDay" />
+    </div>
+  }
+</div>

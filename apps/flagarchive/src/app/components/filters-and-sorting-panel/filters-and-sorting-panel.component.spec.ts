@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FilterSidePanelComponent } from './filters-and-sorting-panel.component';
+import { FiltersAndSortingPanelComponent } from './filters-and-sorting-panel.component';
 
-describe('FilterSidePanelComponent', () => {
-  let component: FilterSidePanelComponent;
-  let fixture: ComponentFixture<FilterSidePanelComponent>;
+describe('FiltersAndSortingPanelComponent', () => {
+  let component: FiltersAndSortingPanelComponent;
+  let fixture: ComponentFixture<FiltersAndSortingPanelComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FilterSidePanelComponent],
+      imports: [FiltersAndSortingPanelComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(FilterSidePanelComponent);
+    fixture = TestBed.createComponent(FiltersAndSortingPanelComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

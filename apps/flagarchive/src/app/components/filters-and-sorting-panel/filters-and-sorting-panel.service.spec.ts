@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { FilterSidePanelService } from './filters-and-sorting-panel.service';
+import { FiltersAndSortingPanelService } from './filters-and-sorting-panel.service';
 
-describe('FilterSidePanelService', () => {
-  let service: FilterSidePanelService;
+describe('FiltersAndSortingPanelService', () => {
+  let service: FiltersAndSortingPanelService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(FilterSidePanelService);
+    service = TestBed.inject(FiltersAndSortingPanelService);
   });
 
   it('should be created', () => {
