@@ -18,6 +18,9 @@ import { EntitiesStore } from './store';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '[class.home]': 'mainPage() === "home"',
+  },
   imports: [
     FiltersAndSortingPanelComponent,
     HeaderComponent,
@@ -50,6 +53,7 @@ export class AppComponent {
     ),
   );
 
+  #entityPage = computed(() => this.#routerPath()?.[2] ?? '');
   entityId = computed(() => this.#routerPath()?.[1] ?? '');
   entityItems = computed(() =>
     this.initialEntityItems().map((item) => ({
@@ -58,7 +62,7 @@ export class AppComponent {
       active: item.path.slice(-1)[0] === this.#entityPage(),
     })),
   );
-  #entityPage = computed(() => this.#routerPath()?.[2] ?? '');
+  mainPage = computed(() => this.#routerPath()?.[0] ?? '');
 
   constructor() {
     this.#translate.addLangs(['en']);

@@ -1,25 +1,29 @@
 import { computed, inject } from '@angular/core';
+import { sortBy } from '@flagarchive/advanced-search';
 import { Entity, EntityType } from '@flagarchive/entities';
 import { tapResponse } from '@ngrx/operators';
 import { patchState, signalStore, withComputed, withMethods, withState } from '@ngrx/signals';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
+import { TranslateService } from '@ngx-translate/core';
 import { pipe, switchMap } from 'rxjs';
 
 import { EntityService } from '../services';
 import { AdvancedSearchStore } from './advanced-search.store';
 import { setCurrentRange, setFilteredEntities } from './entities.utils';
-import { TranslateService } from '@ngx-translate/core';
-import { sortBy } from '@flagarchive/advanced-search';
 
 interface EntitiesState {
   entities: Entity[];
+  flagOfTheDay: Entity | undefined;
   mainEntities: Entity[];
+  newestAdditions: Entity[];
   selectedEntity: Entity | undefined;
 }
 
 const INITIAL_STATE: EntitiesState = {
   entities: [],
+  flagOfTheDay: undefined,
   mainEntities: [],
+  newestAdditions: [],
   selectedEntity: undefined,
 };
 
@@ -91,6 +95,18 @@ export const EntitiesStore = signalStore(
           ),
         ),
       ),
+      loadFlagOfTheDay: rxMethod<void>(
+        pipe(
+          switchMap(() =>
+            entityService.getFlagOfTheDay().pipe(
+              tapResponse({
+                next: (flagOfTheDay) => patchState(store, { flagOfTheDay }),
+                error: (error) => console.error({ error }),
+              }),
+            ),
+          ),
+        ),
+      ),
       loadMainEntities: rxMethod<void>(
         pipe(
           switchMap(() =>
@@ -105,6 +121,18 @@ export const EntitiesStore = signalStore(
                       translateService,
                     ),
                   }),
+                error: (error) => console.error({ error }),
+              }),
+            ),
+          ),
+        ),
+      ),
+      loadNewestAdditions: rxMethod<void>(
+        pipe(
+          switchMap(() =>
+            entityService.getEntitiesByCreatedOn().pipe(
+              tapResponse({
+                next: (newestAdditions) => patchState(store, { newestAdditions }),
                 error: (error) => console.error({ error }),
               }),
             ),
