@@ -9,9 +9,7 @@
   
   @media screen and (max-width: 50rem) {
     flex-flow: row-reverse;
-    height: 2.75rem;
     justify-content: space-between;
-    padding-top: var(--flag-space-sm);
   }
 }
 

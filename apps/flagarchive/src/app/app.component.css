@@ -33,15 +33,11 @@
 main {
   display: flex;
   flex-direction: column;
-  height: 100svh;
+  height: calc(100svh - 3.5rem);
   width: 100%;
 
   router-outlet {
     display: none;
-  }
-
-  @media screen and (max-width: 50rem) {
-    height: calc(100svh - 2.75rem);
   }
 }
 
@@ -62,10 +58,6 @@ app-filters-and-sorting-panel {
     display: grid;
     grid-template-columns: auto 1fr;
 
-    app-sidenav {
-      display: none;
-    }
-
     .main-navigation-actions {
       display: flex;
     }
@@ -76,12 +68,6 @@ app-filters-and-sorting-panel {
       .main-navigation-actions {
         display: none;
       }
-    }
-  }
-
-  main {
-    app-navigation-bar {
-      display: none;
     }
   }
 }

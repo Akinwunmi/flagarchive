@@ -1,5 +1,12 @@
 :host {
   display: flex;
+  flex-direction: column;
+  height: 100svh;
+  width: 100%;
+}
+
+.flags {
+  display: flex;
   flex-grow: 1;
   overflow: hidden;
 }

@@ -1,6 +1,6 @@
 <a
   [class.card]="cardView()"
-  [routerLink]="[basePath(), entity().id, entity().hasNoChildren ? 'details' : 'entities']"
+  [routerLink]="[basePath, entity().id, entity().hasNoChildren ? 'details' : 'entities']"
 >
   <figure>
     <flag-image
@@ -19,7 +19,7 @@
         flag-pill
         class="alt-parent-id"
         type="button"
-        [routerLink]="[basePath(), activeAltParentId()]"
+        [routerLink]="[basePath, activeAltParentId()]"
         (click)="handleClickEvent($event)"
       >
         {{ activeAltParentId() ?? '' | uppercase }}

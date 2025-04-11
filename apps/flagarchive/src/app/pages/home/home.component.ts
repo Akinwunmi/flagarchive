@@ -3,11 +3,12 @@ import { RouterLink } from '@angular/router';
 import { IconComponent } from '@flagarchive/ui';
 
 import { EntityComponent } from '../../components/entity';
+import { FooterComponent } from '../../components/footer';
 import { EntitiesStore } from '../../store';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [EntityComponent, IconComponent, RouterLink],
+  imports: [EntityComponent, FooterComponent, IconComponent, RouterLink],
   selector: 'app-home',
   styleUrl: './home.component.css',
   templateUrl: './home.component.html',
