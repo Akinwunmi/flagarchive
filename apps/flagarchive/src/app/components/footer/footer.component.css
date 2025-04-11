@@ -1,0 +1,16 @@
+:host {
+  background-color: var(--flag-white);
+}
+
+.bar,
+.sitemap {
+  align-items: center;
+  display: flex;
+  gap: var(--flag-space-md);
+  justify-content: center;
+  padding: var(--flag-space-md);
+}
+
+.bar {
+  background-color: var(--flag-secondary-100);
+}

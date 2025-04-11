@@ -1,0 +1,14 @@
+<div class="bar">
+  <a flag-button secondary [routerLink]="['/about']">
+    {{ 'common.about-the-project' | translate }}
+    <flag-icon>keyboard_arrow_right</flag-icon>
+  </a>
+</div>
+<div class="sitemap">
+  <a flag-button ghost [routerLink]="['/flags']">
+    {{ 'common.flags' | translate }}
+  </a>
+  <a flag-button ghost [routerLink]="['/about']">
+    {{ 'common.about' | translate }}
+  </a>
+</div>

@@ -6,7 +6,7 @@
         cdkMenuItem
         flag-list-item
         [attr.active]="entity.id === selectedEntity()?.id || undefined"
-        [routerLink]="['flags', entity.id]"
+        [routerLink]="['/flags', entity.id]"
       >
         {{ 'entities.' + entity.name | translate }}
       </a>
@@ -19,7 +19,7 @@
         cdkMenuItem
         flag-list-item
         [attr.active]="entity.id === selectedEntity()?.id || undefined"
-        [routerLink]="['flags', entity.id]"
+        [routerLink]="['/flags', entity.id]"
       >
         {{ 'entities.' + entity.name | translate }}
       </a>

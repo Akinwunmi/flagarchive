@@ -10,7 +10,7 @@
               selectedEntity.parentIds?.length !== $index + 1 || !!selectedEntity.altParentId
             "
             [label]="parentId | uppercase"
-            [link]="['flags', parentId]"
+            [link]="[basePath, parentId]"
           />
           @if (
             selectedEntity.parentIds?.length !== $index + 1 ||
@@ -24,7 +24,7 @@
           <flag-breadcrumb
             class="parent"
             [label]="selectedEntity.altParentId | uppercase"
-            [link]="['flags', selectedEntity.altParentId]"
+            [link]="[basePath, selectedEntity.altParentId]"
           />
         }
         <flag-breadcrumb
@@ -48,7 +48,7 @@
             flag-list-item
             secondary
             [attr.active]="type === selectedMainEntityType() || undefined"
-            [routerLink]="['flags', type === 'continents' ? 'af' : 'oc']"
+            [routerLink]="[basePath, type === 'continents' ? 'af' : 'oc']"
             (click)="closeMainEntityTypesMenu()"
           >
             {{ 'common.' + type | translate }}
@@ -65,7 +65,7 @@
           <a
             flag-list-item
             [attr.active]="entity.id === selectedEntity.id || undefined"
-            [routerLink]="['flags', entity.id]"
+            [routerLink]="[basePath, entity.id]"
             (click)="closeMainEntitiesMenu()"
           >
             {{ 'entities.' + entity.name | translate }}

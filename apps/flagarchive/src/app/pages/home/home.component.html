@@ -12,13 +12,14 @@
   <div class="new">
     <h3>Newest additions</h3>
     @for (entity of newestAdditions(); track $index) {
-      <app-entity basePath="../flags" [cardView]="false" [entity]="entity" />
+      <app-entity [cardView]="false" [entity]="entity" />
     }
   </div>
   @if (flagOfTheDay(); as flagOfTheDay) {
     <div class="flag-of-the-day">
       <h3>Flag of the day</h3>
-      <app-entity basePath="../flags" [entity]="flagOfTheDay" />
+      <app-entity [entity]="flagOfTheDay" />
     </div>
   }
 </div>
+<app-footer />

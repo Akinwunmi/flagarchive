@@ -1,1 +1,7 @@
-<router-outlet />
+<app-navigation-bar />
+@if (!isMainEntity() && isTablet() && mainPage() !== 'home') {
+  <app-mobile-entity-bar [entityItems]="entityItems()" />
+}
+<div class="flags">
+  <router-outlet />
+</div>

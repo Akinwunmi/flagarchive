@@ -53,6 +53,7 @@ export class NavigationBarComponent {
   isMobile = this.#windowResizeService.isMobile;
   isTablet = this.#windowResizeService.isTablet;
 
+  basePath = '/flags';
   isLanguageMenuOpen = signal(false);
   isMainEntityTypesMenuOpen = signal(false);
   isMainEntitiesMenuOpen = signal(false);

@@ -8,12 +8,13 @@ describe('CollapsibleComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CollapsibleComponent]
-    })
-    .compileComponents();
+      imports: [CollapsibleComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(CollapsibleComponent);
     component = fixture.componentInstance;
+    fixture.componentRef.setInput('icon', 'heart');
+    fixture.componentRef.setInput('label', 'Test Label');
     fixture.detectChanges();
   });
 

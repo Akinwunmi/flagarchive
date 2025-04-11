@@ -1,24 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
-import { provideAuth, getAuth } from '@angular/fire/auth';
-import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { provideRouter } from '@angular/router';
 import { provideTranslateService, TranslateLoader, TranslateFakeLoader } from '@ngx-translate/core';
 
-import { FIREBASE_CONFIG } from '../../configs';
-import { SidenavComponent } from './sidenav.component';
+import { FooterComponent } from './footer.component';
 
-describe('SidenavComponent', () => {
-  let component: SidenavComponent;
-  let fixture: ComponentFixture<SidenavComponent>;
+describe('FooterComponent', () => {
+  let component: FooterComponent;
+  let fixture: ComponentFixture<FooterComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SidenavComponent],
+      imports: [FooterComponent],
       providers: [
-        provideAuth(() => getAuth()),
-        provideFirebaseApp(() => initializeApp(FIREBASE_CONFIG)),
-        provideFirestore(() => getFirestore()),
         provideRouter([]),
         provideTranslateService({
           loader: {
@@ -29,7 +22,7 @@ describe('SidenavComponent', () => {
       ],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(SidenavComponent);
+    fixture = TestBed.createComponent(FooterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

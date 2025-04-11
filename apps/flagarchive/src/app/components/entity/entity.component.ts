@@ -19,7 +19,6 @@ export class EntityComponent {
   readonly #entitiesStore = inject(EntitiesStore);
 
   entity = input.required<Entity>();
-  basePath = input('../..');
   cardView = input(true);
 
   #flagCategory = this.#advancedSearchStore.flagCategory;
@@ -37,6 +36,8 @@ export class EntityComponent {
     const altParentId = this.activeAltParentId();
     return !!altParentId && altParentId !== this.#selectedEntity()?.id;
   });
+
+  basePath = '/flags';
 
   handleClickEvent(event: Event) {
     event.preventDefault();
