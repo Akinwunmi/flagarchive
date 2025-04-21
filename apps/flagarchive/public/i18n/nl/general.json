@@ -4,6 +4,7 @@
     "desc": "Naam Z-A",
     "deselect-all": "Deselecteer alles",
     "flag-category": "Vlagcategorie",
+    "layout": "Lay-out",
     "regions": "Regio's",
     "select-all": "Selecteer alles",
     "show-overseas-regions": "Toon overzeese gebieden",
@@ -12,6 +13,7 @@
   "common": {
     "about": "Over",
     "about-the-project": "Over het project",
+    "cancel": "Annuleren",
     "continents": "Continenten",
     "details": "Details",
     "entities": "Entiteiten",
@@ -21,7 +23,32 @@
     "history": "Historie",
     "language": "Taal",
     "log-in": "Inloggen",
-    "sign-up": "Aanmelden"
+    "log-out": "Uitloggen",
+    "login": "Inloggen",
+    "profile": "Profiel",
+    "save-changes": "Wijzigingen opslaan",
+    "sign-up": "Aanmelden",
+    "signup": "Aanmelden",
+    "update": "Bijwerken",
+    "update-password": "Wachtwoord bijwerken"
+  },
+  "errors": {
+    "confirm-password": {
+      "required": "Bevestig wachtwoord is vereist",
+      "mismatch": "Wachtwoorden komen niet overeen"
+    },
+    "email": {
+      "required": "Email is vereist",
+      "invalid": "Email is ongeldig"
+    },
+    "password": {
+      "required": "Wachtwoord is vereist",
+      "min-length": "Wachtwoord moet minimaal 6 tekens lang zijn"
+    },
+    "username": {
+      "required": "Gebruikersnaam is vereist",
+      "min-length": "Gebruikersnaam moet minimaal 3 tekens lang zijn"
+    }
   },
   "flag-categories": {
     "civil-ensign": "Handelsvlag",
@@ -35,5 +62,35 @@
   },
   "flag-image": {
     "alt-text": "Vlag van {{ name }}"
+  },
+  "form": {
+    "email": {
+      "label": "E-mail",
+      "placeholder": "Voer je e-mailadres in"
+    },
+    "password": {
+      "label": "Wachtwoord",
+      "placeholder": "Voer je wachtwoord in"
+    },
+    "username": {
+      "label": "Gebruikersnaam",
+      "placeholder": "Voer je gebruikersnaam in"
+    }
+  },
+  "pages": {
+    "login": {
+      "signup-message": "Nog geen account?",
+      "welcome-message": "Fijn je weer te zien!"
+    },
+    "profile": {
+      "change-password": "Wachtwoord wijzigen",
+      "delete-account": "Account verwijderen",
+      "edit-profile": "Profiel bewerken",
+      "logout-message": "Het is mooi geweest."
+    },
+    "signup": {
+      "login-message": "Al een account?",
+      "welcome-message": "Fijn je hier te zien!"
+    }
   }
 }

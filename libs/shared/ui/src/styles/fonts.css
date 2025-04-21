@@ -12,14 +12,16 @@
   --flag-line-height-md: 1.5rem;
   --flag-line-height-lg: 1.75rem;
   --flag-line-height-xl: 2rem;
-  --flag-line-height-2xl: 3rem;
+  --flag-line-height-2xl: 2.5rem;
+  --flag-line-height-3xl: 3rem;
 
   --flag-font-size-xs: 0.75rem;
   --flag-font-size-sm: 1rem;
   --flag-font-size-md: 1.25rem;
   --flag-font-size-lg: 1.375rem;
   --flag-font-size-xl: 1.5rem;
-  --flag-font-size-2xl: 2.5rem;
+  --flag-font-size-2xl: 2rem;
+  --flag-font-size-3xl: 2.5rem;
 
   --flag-font-weight-regular: 400;
   --flag-font-weight-medium: 500;

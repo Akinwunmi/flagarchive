@@ -75,25 +75,3 @@
     }
   }
 </div>
-<flag-dropdown
-  icon="translate"
-  label=""
-  [hideChevron]="true"
-  [small]="true"
-  [(isOpen)]="isLanguageMenuOpen"
->
-  <button
-    flag-list-item
-    [attr.active]="getCurrentLanguage() === 'en' || undefined"
-    (click)="setLanguage('en')"
-  >
-    English
-  </button>
-  <button
-    flag-list-item
-    [attr.active]="getCurrentLanguage() === 'nl' || undefined"
-    (click)="setLanguage('nl')"
-  >
-    Nederlands
-  </button>
-</flag-dropdown>

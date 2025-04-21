@@ -1,3 +1,5 @@
+@import './styles/auth-page.css';
+
 * {
   box-sizing: border-box;
 }

@@ -15,6 +15,7 @@ import { IconComponent, ListComponent } from '@flagarchive/ui';
 import { TranslatePipe } from '@ngx-translate/core';
 
 import { MenuItem } from '../../models';
+import { AuthService } from '../../services';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -32,10 +33,13 @@ import { MenuItem } from '../../models';
   templateUrl: './main-menu.component.html',
 })
 export class MainMenuComponent implements OnInit {
+  readonly #authService = inject(AuthService);
   readonly #destroyRef = inject(DestroyRef);
   readonly #router = inject(Router);
 
   closed = output();
+
+  currentUser = this.#authService.currentUser;
 
   topMenu = signal<MenuItem[]>([
     {
@@ -64,5 +68,9 @@ export class MainMenuComponent implements OnInit {
 
   close() {
     this.closed.emit();
+  }
+
+  logOut() {
+    this.#authService.logOut();
   }
 }

@@ -43,9 +43,13 @@ Thumbs.db
 
 .angular
 
-
+# Storybook
 storybook-static
+
 # Firebase
 .firebase
 *-debug.log
 .runtimeconfig.json
+
+# Supabase
+supabase

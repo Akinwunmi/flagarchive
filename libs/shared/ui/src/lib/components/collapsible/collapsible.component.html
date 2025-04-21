@@ -1,4 +1,9 @@
-<button flag-list-item [attr.secondary]="secondary() || undefined" (click)="toggle()">
+<button
+  flag-list-item
+  [attr.highlighted]="expanded() || undefined"
+  [attr.secondary]="secondary() || undefined"
+  (click)="toggle()"
+>
   <flag-icon>{{ icon() }}</flag-icon>
   <div class="label">
     {{ label() }}
@@ -9,7 +14,7 @@
   <flag-icon class="collapse-arrow" [class.expanded]="expanded()">keyboard_arrow_down</flag-icon>
 </button>
 @if (expanded()) {
-  <div @collapsibleState class="content">
+  <div @collapsibleState class="content" [class.secondary]="secondary()">
     <ng-content />
   </div>
 }

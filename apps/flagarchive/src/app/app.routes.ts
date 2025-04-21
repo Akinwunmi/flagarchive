@@ -18,4 +18,20 @@ export const APP_ROUTES: Routes = [
     path: 'about',
     loadChildren: () => import('./pages/about').then((m) => m.ABOUT_ROUTES),
   },
+  {
+    path: 'signup',
+    loadChildren: () => import('./pages/signup').then((m) => m.SIGNUP_ROUTES),
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('./pages/login').then((m) => m.LOGIN_ROUTES),
+  },
+  {
+    path: 'profile',
+    loadChildren: () => import('./pages/profile').then((m) => m.PROFILE_ROUTES),
+  },
+  {
+    path: 'update-password',
+    loadChildren: () => import('./pages/update-password').then((m) => m.UPDATE_PASSWORD_ROUTES),
+  },
 ];

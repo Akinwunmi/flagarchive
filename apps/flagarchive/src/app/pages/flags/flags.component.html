@@ -1,7 +1,7 @@
-<app-navigation-bar />
-@if (!isMainEntity() && isTablet() && mainPage() !== 'home') {
-  <app-mobile-entity-bar [entityItems]="entityItems()" />
-}
+<app-sidenav [entityId]="entityId()" [entityItems]="entityItems()" />
 <div class="flags">
+  @if (!isMainEntity()) {
+    <app-mobile-entity-bar [entityItems]="entityItems()" />
+  }
   <router-outlet />
 </div>

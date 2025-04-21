@@ -40,7 +40,7 @@ import { EntitiesStore } from '../../store';
 export class SidenavComponent implements OnInit {
   readonly #entitiesStore = inject(EntitiesStore);
 
-  entityId = input('');
+  entityId = input<string>();
   entityItems = input<MenuItem[]>([]);
 
   continents = this.#entitiesStore.continents;
@@ -52,8 +52,9 @@ export class SidenavComponent implements OnInit {
 
   constructor() {
     effect(() => {
-      if (this.entityId() !== this.selectedEntity()?.id) {
-        this.#entitiesStore.loadEntities(this.entityId());
+      const entityId = this.entityId();
+      if (entityId && entityId !== this.selectedEntity()?.id) {
+        this.#entitiesStore.loadEntities(entityId);
       }
     });
   }

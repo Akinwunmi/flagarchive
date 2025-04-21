@@ -1,0 +1,14 @@
+.username {
+  align-items: center;
+  display: flex;
+  gap: var(--flag-space-xs);
+}
+
+.action {
+  &.profile {
+    @media screen and (max-width: 25rem) {
+      flex-direction: column-reverse;
+      align-items: flex-end;
+    }
+  }
+}

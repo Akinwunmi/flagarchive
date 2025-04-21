@@ -1,0 +1,45 @@
+<h2>
+  {{ 'common.signup' | translate }}
+</h2>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <flag-input
+    formControlName="email"
+    label="Email"
+    type="email"
+    [errorMessage]="
+      getControlErrorMessage(email) ? (getControlErrorMessage(email) | translate) : undefined
+    "
+    [required]="true"
+  />
+  <flag-input
+    formControlName="password"
+    label="Password"
+    type="password"
+    [errorMessage]="
+      getControlErrorMessage(password) ? (getControlErrorMessage(password) | translate) : undefined
+    "
+    [required]="true"
+  />
+  <flag-input
+    formControlName="username"
+    label="Username"
+    type="text"
+    [errorMessage]="
+      getControlErrorMessage(username) ? (getControlErrorMessage(username) | translate) : undefined
+    "
+    [required]="true"
+  />
+  <div class="action">
+    {{ 'pages.signup.welcome-message' | translate }}
+    <button flag-button raised type="submit">
+      {{ 'common.sign-up' | translate }}
+    </button>
+  </div>
+  <hr flag-divider />
+  <div class="action">
+    {{ 'pages.signup.login-message' | translate }}
+    <a flag-button routerLink="/login">
+      {{ 'common.log-in' | translate }}
+    </a>
+  </div>
+</form>

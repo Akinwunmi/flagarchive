@@ -1,16 +1,17 @@
-<div class="main-navigation">
-  <app-header />
-  @if (entityId(); as entityId) {
-    <app-sidenav [entityId]="entityId" [entityItems]="entityItems()" />
-  }
-  <div class="main-navigation-actions">
-    <button flag-button ghost>Sign up</button>
-    <button flag-button>Log in</button>
+<div class="main">
+  <div class="header">
+    <div class="navigation">
+      <app-header />
+      @if (mainPage() === 'flags') {
+        <app-navigation-bar />
+      }
+    </div>
+    <app-main-navigation-actions />
   </div>
+  <main>
+    <router-outlet />
+  </main>
 </div>
-<main>
-  <router-outlet />
-</main>
 @if (isFilterSidePanelOpen()) {
   <app-filters-and-sorting-panel />
 }

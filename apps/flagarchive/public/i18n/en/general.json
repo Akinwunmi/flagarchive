@@ -4,6 +4,7 @@
     "desc": "Name Z-A",
     "deselect-all": "Deselect all",
     "flag-category": "Flag category",
+    "layout": "Layout",
     "regions": "Regions",
     "select-all": "Select all",
     "show-overseas-regions": "Show overseas regions",
@@ -12,6 +13,7 @@
   "common": {
     "about": "About",
     "about-the-project": "About the project",
+    "cancel": "Cancel",
     "continents": "Continents",
     "details": "Details",
     "entities": "Entities",
@@ -21,7 +23,32 @@
     "history": "History",
     "language": "Language",
     "log-in": "Log in",
-    "sign-up": "Sign up"
+    "log-out": "Log out",
+    "login": "Login",
+    "profile": "Profile",
+    "save-changes": "Save changes",
+    "sign-up": "Sign up",
+    "signup": "Sign up",
+    "update": "Update",
+    "update-password": "Update password"
+  },
+  "errors": {
+    "confirm-password": {
+      "required": "Confirm password is required",
+      "mismatch": "Passwords do not match"
+    },
+    "email": {
+      "required": "Email is required",
+      "invalid": "Email is invalid"
+    },
+    "password": {
+      "required": "Password is required",
+      "min-length": "Password must be at least 6 characters long"
+    },
+    "username": {
+      "required": "Username is required",
+      "min-length": "Username must be at least 3 characters long"
+    }
   },
   "flag-categories": {
     "civil-ensign": "Civil ensign",
@@ -35,5 +62,35 @@
   },
   "flag-image": {
     "alt-text": "Flag of {{ name }}"
+  },
+  "form": {
+    "email": {
+      "label": "Email",
+      "placeholder": "Enter your email address"
+    },
+    "password": {
+      "label": "Password",
+      "placeholder": "Enter your password"
+    },
+    "username": {
+      "label": "Username",
+      "placeholder": "Enter your username"
+    }
+  },
+  "pages": {
+    "login": {
+      "signup-message": "No account yet?",
+      "welcome-message": "Good to have you back!"
+    },
+    "profile": {
+      "change-password": "Change password",
+      "delete-account": "Delete account",
+      "edit-profile": "Edit profile",
+      "logout-message": "I've seen enough."
+    },
+    "signup": {
+      "login-message": "Already have an account?",
+      "welcome-message": "Good to have you here!"
+    }
   }
 }
