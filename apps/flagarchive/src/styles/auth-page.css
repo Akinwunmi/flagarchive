@@ -1,0 +1,52 @@
+.auth-page {
+  align-items: center;
+  background-color: var(--flag-white);
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: var(--flag-space-3xl);
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding-block: var(--flag-space-2xl);
+  width: 100%;
+  
+  h2,
+  form {
+    max-width: 22.5rem;
+    padding-inline: var(--flag-space-md);
+    width: 100%;
+  }
+  
+  h2 {
+    text-align: center;
+  }
+  
+  form {
+    display: grid;
+    gap: var(--flag-space-md);
+  
+    .action {
+      align-items: center;
+      color: var(--flag-grey-700);
+      display: flex;
+      gap: var(--flag-space-md);
+      justify-content: flex-end;
+      padding-block: var(--flag-space-md);
+
+      button {
+        .loading-icon {
+          animation: rotate 1s linear infinite;
+        }
+      }
+    }
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

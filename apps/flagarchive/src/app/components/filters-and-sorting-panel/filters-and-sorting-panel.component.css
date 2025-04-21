@@ -10,7 +10,8 @@ header {
   display: grid;
   gap: var(--flag-space-xs);
   grid-template-columns: auto 1fr auto;
-  padding: var(--flag-space-xs);
+  height: var(--flag-space-5xl);
+  padding-inline: var(--flag-space-xs);
 }
 
 section {

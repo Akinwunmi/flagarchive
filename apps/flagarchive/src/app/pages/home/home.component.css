@@ -1,9 +1,11 @@
 :host {
+  background-color: var(--flag-grey-bg);
   display: flex;
   flex-direction: column;
   flex-grow: 1;
   overflow-x: hidden;
   overflow-y: auto;
+  width: 100%;
 }
 
 .hero {
@@ -15,10 +17,8 @@
   width: 100%;
 
   h2 {
-    font-size: var(--flag-font-size-2xl);
-    font-weight: var(--flag-font-weight-regular);
-    line-height: var(--flag-line-height-2xl);
     max-width: 30rem;
+    padding-block-end: var(--flag-space-3xl);
     text-align: center;
     width: 100%;
   }
@@ -38,6 +38,7 @@
 
 .content {
   display: flex;
+  flex-grow: 1;
   gap: var(--flag-space-md);
   justify-content: center;
   padding-block: var(--flag-space-2xl) var(--flag-space-8xl);

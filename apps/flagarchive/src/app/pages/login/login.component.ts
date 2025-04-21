@@ -1,0 +1,57 @@
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { AbstractControl, FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router, RouterLink } from '@angular/router';
+import { getErrorMessage } from '@flagarchive/forms';
+import { InputComponent } from '@flagarchive/ui';
+import { TranslatePipe } from '@ngx-translate/core';
+
+import { AuthService } from '../../services';
+
+@Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    class: 'auth-page',
+  },
+  imports: [InputComponent, ReactiveFormsModule, RouterLink, TranslatePipe],
+  templateUrl: './login.component.html',
+})
+export class LoginComponent {
+  readonly #authService = inject(AuthService);
+  readonly #fb = inject(FormBuilder);
+  readonly #router = inject(Router);
+
+  form = this.#fb.nonNullable.group({
+    email: ['', [Validators.email, Validators.required]],
+    password: ['', [Validators.minLength(6), Validators.required]],
+  });
+
+  get email() {
+    return this.form.get('email');
+  }
+
+  get password() {
+    return this.form.get('password');
+  }
+
+  getControlErrorMessage(control: AbstractControl | null): string {
+    return getErrorMessage(control);
+  }
+
+  onSubmit() {
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
+      return;
+    }
+
+    const { email, password } = this.form.getRawValue();
+    this.#authService.logIn(email, password).subscribe(({ error }) => {
+      if (error) {
+        // TODO: Add toast service
+        console.error('Error logging in:', error);
+        return;
+      }
+
+      this.#router.navigate(['/']);
+    });
+  }
+}

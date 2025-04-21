@@ -4,6 +4,7 @@ import {
   computed,
   effect,
   inject,
+  OnInit,
   signal,
 } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
@@ -16,20 +17,26 @@ import {
   FiltersAndSortingPanelService,
 } from './components/filters-and-sorting-panel';
 import { HeaderComponent } from './components/header';
-import { SidenavComponent } from './components/sidenav';
+import { MainNavigationActionsComponent } from './components/main-navigation-actions';
+import { NavigationBarComponent } from './components/navigation-bar';
 import { ENTITY_MENU_ITEMS } from './constants';
+import { AuthService } from './services';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: {
-    '[class.home]': 'mainPage() === "home"',
-  },
-  imports: [FiltersAndSortingPanelComponent, HeaderComponent, RouterOutlet, SidenavComponent],
+  imports: [
+    FiltersAndSortingPanelComponent,
+    HeaderComponent,
+    MainNavigationActionsComponent,
+    NavigationBarComponent,
+    RouterOutlet,
+  ],
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+  readonly #authService = inject(AuthService);
   readonly #filtersAndSortingPanelService = inject(FiltersAndSortingPanelService);
   readonly #router = inject(Router);
   readonly #translate = inject(TranslateService);
@@ -45,15 +52,6 @@ export class AppComponent {
     ),
   );
 
-  #entityPage = computed(() => this.#routerPath()?.[2] ?? '');
-  entityId = computed(() => this.#routerPath()?.[1]);
-  entityItems = computed(() =>
-    this.initialEntityItems().map((item) => ({
-      ...item,
-      path: ['flags', this.entityId() ?? '', ...item.path],
-      active: item.path.slice(-1)[0] === this.#entityPage(),
-    })),
-  );
   mainPage = computed(() => this.#routerPath()?.[0] ?? '');
 
   constructor() {
@@ -65,6 +63,12 @@ export class AppComponent {
       if (this.mainPage() === 'home') {
         this.#filtersAndSortingPanelService.close();
       }
+    });
+  }
+
+  ngOnInit() {
+    this.#authService.supabase.auth.onAuthStateChange((event, session) => {
+      this.#authService.setCurrentUser(event, session);
     });
   }
 }

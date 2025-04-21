@@ -4,7 +4,6 @@ import { TranslatePipe } from '@ngx-translate/core';
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [TranslatePipe],
-  selector: 'app-details',
   styleUrl: './details.component.css',
   templateUrl: './details.component.html',
 })

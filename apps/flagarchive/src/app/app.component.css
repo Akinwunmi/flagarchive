@@ -1,43 +1,50 @@
 :host {
-  background-color: var(--flag-grey-200);
+  background-color: var(--flag-white);
   display: grid;
-  grid-template-columns: 12.5rem 1fr auto;
+  grid-template-columns: 1fr auto;
   height: 100svh;
   overflow: hidden;
   position: absolute;
   width: 100svw;
-
-  @media screen and (max-width: 50rem) {
-    grid-template-columns: 1fr;
-  }
 }
 
-.main-navigation {
-  background-color: var(--flag-white);
-
-  app-sidenav {
-    @media screen and (max-width: 50rem) {
-      display: none;
-    }
-  }
-
-  .main-navigation-actions {
-    display: none;
-    align-items: center;
-    gap: var(--flag-space-xs);
-    justify-content: flex-end;
-    padding-inline: var(--flag-space-md);
-  }
-}
-
-main {
+.main {
   display: flex;
   flex-direction: column;
-  height: calc(100svh - 3.5rem);
-  width: 100%;
 
-  router-outlet {
-    display: none;
+  .header {
+    background-color: var(--flag-white);
+    display: flex;
+    justify-content: space-between;
+
+    .navigation {
+      display: flex;
+    }
+  
+    @media screen and (max-width: 50rem) {
+      grid-template-columns: 1fr;
+
+      .navigation {
+        flex-direction: column;
+        width: 100%;
+      }
+  
+      app-main-navigation-actions {
+        display: none;
+      }
+    }
+  }
+  
+  main {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: calc(100svh - 3.5rem);
+    width: 100%;
+  
+    router-outlet {
+      display: none;
+    }
   }
 }
 
@@ -48,26 +55,5 @@ app-filters-and-sorting-panel {
     height: 100svh;
     position: fixed;
     right: 0;
-  }
-}
-
-:host.home {
-  grid-template-columns: 1fr;
-
-  .main-navigation {
-    display: grid;
-    grid-template-columns: auto 1fr;
-
-    .main-navigation-actions {
-      display: flex;
-    }
-
-    @media screen and (max-width: 50rem) {
-      grid-template-columns: 1fr;
-
-      .main-navigation-actions {
-        display: none;
-      }
-    }
   }
 }

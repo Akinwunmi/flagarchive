@@ -4,3 +4,15 @@ h1 {
   line-height: var(--flag-line-height-sm);
   margin: 0;
 }
+
+h2 {
+  font-size: var(--flag-font-size-3xl);
+  font-weight: var(--flag-font-weight-regular);
+  line-height: var(--flag-line-height-3xl);
+  margin: 0;
+
+  @media screen and (max-width: 25rem) {
+    font-size: var(--flag-font-size-2xl);
+    line-height: var(--flag-line-height-2xl);
+  }
+}

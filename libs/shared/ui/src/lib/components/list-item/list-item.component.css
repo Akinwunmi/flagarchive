@@ -12,6 +12,14 @@
   padding: var(--flag-space-xs) var(--flag-space-sm);
   width: 100%;
 
+  &[highlighted] {
+    background-color: var(--flag-primary-100);
+
+    &[secondary] {
+      background-color: var(--flag-secondary-100);
+    }
+  }
+
   &[secondary] {
     color: var(--flag-secondary-700);
   }

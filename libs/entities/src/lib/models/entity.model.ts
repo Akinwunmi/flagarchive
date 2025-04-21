@@ -30,6 +30,7 @@ export enum EntityType {
   Canton = 'canton',
   CapitalDistrict = 'capital-district',
   City = 'city',
+  Commune = 'commune',
   Community = 'community',
   ConstituentCountry = 'constituent-country',
   ConstituentPart = 'constituent-part',

@@ -11,7 +11,6 @@ import { AdvancedSearchStore, EntitiesStore } from '../../store';
     '[attr.main-entity]': 'isMainEntity() || undefined',
   },
   imports: [EntityComponent, AdvancedSearchBarComponent],
-  selector: 'app-entities',
   styleUrl: './entities.component.css',
   templateUrl: './entities.component.html',
 })

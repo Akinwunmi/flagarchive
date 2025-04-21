@@ -1,0 +1,21 @@
+<label flag-label [for]="uuid" [attr.required]="required() || undefined">
+  {{ label() }}
+</label>
+<input
+  [attr.error]="errorMessage()"
+  [disabled]="disabled()"
+  [id]="uuid"
+  [placeholder]="placeholder()"
+  [readonly]="readonly()"
+  [required]="required() || undefined"
+  [type]="type()"
+  [value]="value()"
+  (blur)="onBlur()"
+  (input)="onInput($event)"
+/>
+@if (infoMessage()) {
+  <p>{{ infoMessage() }}</p>
+}
+@if (errorMessage()) {
+  <p class="error">{{ errorMessage() }}</p>
+}

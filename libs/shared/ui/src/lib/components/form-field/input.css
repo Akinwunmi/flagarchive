@@ -1,0 +1,48 @@
+input,
+textarea {
+  background-color: var(--flag-grey-100);
+  border: 1px solid transparent;
+  border-radius: var(--flag-radius-sm);
+  box-sizing: border-box;
+  color: var(--flag-primary);
+  font-family: var(--flag-font-family);
+  font-size: var(--flag-font-size-sm);
+  height: var(--flag-space-4xl);
+  line-height: var(--flag-font-line-height-md);
+  outline-color: var(--flag-primary);
+  padding-inline: var(--flag-space-md);
+  transition: background-color 150ms ease-in-out;
+
+  &::placeholder {
+    color: var(--flag-grey-500);
+  }
+
+  &:hover {
+    background-color: var(--flag-primary-100);
+  }
+
+  &[error] {
+    border-color: var(--flag-error-500);
+  }
+
+  &[readonly] {
+    background-color: var(--flag-grey-300);
+    border-color: transparent;
+    pointer-events: none;
+
+    &::placeholder {
+      visibility: hidden;
+    }
+  }
+
+  &[disabled] {
+    background-color: var(--flag-grey-300);
+    border-color: transparent;
+    color: var(--flag-grey-500);
+    pointer-events: none;
+
+    &::placeholder {
+      color: inherit;
+    }
+  }
+}

@@ -9,7 +9,6 @@ import { EntitiesStore } from '../../store';
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [EntityComponent, FooterComponent, IconComponent, RouterLink],
-  selector: 'app-home',
   styleUrl: './home.component.css',
   templateUrl: './home.component.html',
 })

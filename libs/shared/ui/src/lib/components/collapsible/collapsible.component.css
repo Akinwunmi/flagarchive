@@ -1,3 +1,9 @@
+.label {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
 .collapse-arrow {
   transition: transform 150ms ease-in-out;
 
@@ -6,12 +12,12 @@
   }
 }
 
-.label {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-}
-
 .content {
+  background-color: var(--flag-primary-100);
   height: fit-content;
+  padding-block: var(--flag-space-xs);
+
+  &.secondary {
+    background-color: var(--flag-secondary-100);
+  }
 }

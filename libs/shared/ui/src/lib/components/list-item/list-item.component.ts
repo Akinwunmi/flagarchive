@@ -4,6 +4,7 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     role: 'listitem',
+    '[attr.highlighted]': 'highlighted() || undefined',
     '[attr.secondary]': 'secondary() || undefined',
     '[class.disabled]': 'disabled()',
   },
@@ -13,5 +14,6 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 })
 export class ListItemComponent {
   disabled = input(false);
+  highlighted = input(false);
   secondary = input(false);
 }

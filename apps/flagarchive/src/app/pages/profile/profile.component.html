@@ -1,0 +1,40 @@
+<h2>{{ 'common.profile' | translate }}</h2>
+<span class="username">
+  <flag-icon>account_circle</flag-icon>
+  {{ currentUser()?.username }}
+</span>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <flag-input formControlName="email" label="Email" [readonly]="!editing()" />
+  <hr flag-divider />
+  @if (editing()) {
+    <div class="action">
+      <button flag-button ghost type="button" (click)="setEditMode(false)">
+        {{ 'common.cancel' | translate }}
+      </button>
+      <button flag-button raised type="button" (click)="onSubmit()">
+        @if (loading()) {
+          <flag-icon class="loading-icon">progress_activity</flag-icon>
+        }
+        {{ 'common.save-changes' | translate }}
+      </button>
+    </div>
+  } @else {
+    <div class="action profile">
+      <button flag-button ghost type="button" (click)="sendPasswordResetEmail()">
+        {{ 'pages.profile.change-password' | translate }}
+      </button>
+      <button flag-button raised type="button" (click)="setEditMode(true)">
+        <flag-icon>edit</flag-icon>
+        {{ 'pages.profile.edit-profile' | translate }}
+      </button>
+    </div>
+  }
+  <hr flag-divider />
+  <div class="action">
+    {{ 'pages.profile.logout-message' | translate }}
+    <button flag-button type="button" (click)="logOut()">
+      <flag-icon>logout</flag-icon>
+      {{ 'common.log-out' | translate }}
+    </button>
+  </div>
+</form>

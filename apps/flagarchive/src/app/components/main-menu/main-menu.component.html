@@ -22,12 +22,22 @@
     </flag-list>
     <flag-list cdkMenu>
       <hr flag-divider />
-      <a cdkMenuItem flag-list-item>
-        {{ 'common.sign-up' | translate }}
-      </a>
-      <a cdkMenuItem flag-list-item>
-        {{ 'common.log-in' | translate }}
-      </a>
+      @if (!currentUser()) {
+        <a cdkMenuItem flag-list-item routerLink="/signup">
+          {{ 'common.sign-up' | translate }}
+        </a>
+        <a cdkMenuItem flag-list-item routerLink="/login">
+          {{ 'common.log-in' | translate }}
+        </a>
+      } @else {
+        <a flag-list-item routerLink="/profile">
+          <flag-icon>account_circle</flag-icon>
+          {{ currentUser()?.username }}
+        </a>
+        <button flag-list-item ghost (click)="logOut()">
+          {{ 'common.log-out' | translate }}
+        </button>
+      }
     </flag-list>
   </div>
 </div>
