@@ -77,6 +77,40 @@
       "placeholder": "Voer je gebruikersnaam in"
     }
   },
+  "notifications": {
+    "change-password": {
+      "success": "Wachtwoord reset e-mail verzonden",
+      "error": "Fout bij het verzenden van de wachtwoord reset e-mail"
+    },
+    "delete-account": {
+      "success": "Account verwijderd",
+      "error": "Fout bij het verwijderen van het account"
+    },
+    "login": {
+      "success": "Ingelogd",
+      "error": "Inloggen mislukt"
+    },
+    "logout": {
+      "success": "Uitgelogd",
+      "error": "Fout bij uitloggen"
+    },
+    "not-logged-in": {
+      "action": "Je moet ingelogd zijn om deze actie uit te voeren",
+      "page": "Je moet ingelogd zijn om deze pagina te bekijken"
+    },
+    "signup": {
+      "success": "Account aangemaakt",
+      "error": "Fout bij het aanmaken van account"
+    },
+    "update-password": {
+      "success": "Wachtwoord bijgewerkt",
+      "error": "Fout bij het bijwerken van het wachtwoord"
+    },
+    "update-profile": {
+      "success": "Profiel bijgewerkt",
+      "error": "Fout bij het bijwerken van het profiel"
+    }
+  },
   "pages": {
     "login": {
       "signup-message": "Nog geen account?",

@@ -1,11 +1,9 @@
 import { Routes } from '@angular/router';
 
-import { FlagsComponent } from './flags.component';
-
 export const FLAGS_ROUTES: Routes = [
   {
     path: '',
-    component: FlagsComponent,
+    loadComponent: () => import('./flags.component').then((m) => m.FlagsComponent),
     children: [
       {
         path: '',
