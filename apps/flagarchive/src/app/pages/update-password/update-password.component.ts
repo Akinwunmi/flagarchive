@@ -1,10 +1,11 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { AbstractControl, FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { getErrorMessage, passwordsValidator } from '@flagarchive/forms';
-import { InputComponent } from '@flagarchive/ui';
-import { TranslatePipe } from '@ngx-translate/core';
+import { InputComponent, ToastService } from '@flagarchive/ui';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 
 import { AuthService } from '../../services';
+import { Router } from '@angular/router';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -17,6 +18,9 @@ import { AuthService } from '../../services';
 export class UpdatePasswordComponent {
   readonly #authService = inject(AuthService);
   readonly #fb = inject(FormBuilder);
+  readonly #router = inject(Router);
+  readonly #toastService = inject(ToastService);
+  readonly #translate = inject(TranslateService);
 
   form = this.#fb.group(
     {
@@ -49,10 +53,19 @@ export class UpdatePasswordComponent {
 
     this.#authService.updatePassword(password).subscribe(({ error }) => {
       if (error) {
-        // TODO: Add toast service
-        console.error('Error updating password:', error);
+        // TODO: Move to store
+        this.#toastService.open(
+          this.#translate.instant('notifications.update-password.error'),
+          'error',
+        );
         return;
       }
+
+      this.#toastService.open(
+        this.#translate.instant('notifications.update-password.success'),
+        'success',
+      );
+      this.#router.navigate(['/']);
     });
   }
 }

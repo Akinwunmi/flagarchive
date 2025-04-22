@@ -17,5 +17,6 @@ export * from './list';
 export * from './list-item';
 export * from './pill';
 export * from './skeleton';
+export * from './toast';
 export * from './year-navigator';
 export * from './year-picker';

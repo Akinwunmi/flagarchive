@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, effect, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { IconComponent, InputComponent } from '@flagarchive/ui';
-import { TranslatePipe } from '@ngx-translate/core';
+import { IconComponent, InputComponent, ToastService } from '@flagarchive/ui';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 
 import { Profile } from '../../models';
 import { AuthService } from '../../services';
@@ -20,6 +20,8 @@ export class ProfileComponent {
   readonly #authService = inject(AuthService);
   readonly #fb = inject(FormBuilder);
   readonly #router = inject(Router);
+  readonly #toastService = inject(ToastService);
+  readonly #translate = inject(TranslateService);
 
   currentUser = this.#authService.currentUser;
 
@@ -43,6 +45,7 @@ export class ProfileComponent {
 
   logOut() {
     this.#authService.logOut();
+    this.#toastService.open(this.#translate.instant('notifications.logout.success'));
     this.#router.navigate(['/']);
   }
 
@@ -54,11 +57,18 @@ export class ProfileComponent {
 
     this.#authService.updateEmail(email).subscribe(({ error }) => {
       if (error) {
-        // TODO: Add toast service
-        console.error('Error updating email:', error);
+        // TODO: Move to store
+        this.#toastService.open(
+          this.#translate.instant('notifications.update-profile.error'),
+          'error',
+        );
         return;
       }
 
+      this.#toastService.open(
+        this.#translate.instant('notifications.update-profile.success'),
+        'success',
+      );
       this.editing.set(false);
     });
   }
@@ -66,12 +76,15 @@ export class ProfileComponent {
   sendPasswordResetEmail() {
     this.#authService.sendPasswordResetEmail().subscribe((error) => {
       if (error) {
-        // TODO: Add toast service
-        console.error('Error sending reset password email:', error);
+        // TODO: Move to store
+        this.#toastService.open(
+          this.#translate.instant('notifications.change-password.error'),
+          'error',
+        );
         return;
       }
 
-      console.log('Password reset email sent');
+      this.#toastService.open(this.#translate.instant('notifications.change-password.success'));
     });
   }
 

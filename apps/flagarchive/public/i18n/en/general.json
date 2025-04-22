@@ -77,6 +77,36 @@
       "placeholder": "Enter your username"
     }
   },
+  "notifications": {
+    "change-password": {
+      "success": "Password reset email sent",
+      "error": "Failed to send password reset email"
+    },
+    "login": {
+      "success": "Logged in",
+      "error": "Login failed"
+    },
+    "logout": {
+      "success": "Logged out",
+      "error": "Logout failed"
+    },
+    "signup": {
+      "success": "Account created",
+      "error": "Failed to create account"
+    },
+    "update-profile": {
+      "success": "Profile updated",
+      "error": "Failed to update profile"
+    },
+    "update-password": {
+      "success": "Password updated",
+      "error": "Failed to update password"
+    },
+    "delete-account": {
+      "success": "Account deleted",
+      "error": "Failed to delete account"
+    }
+  },
   "pages": {
     "login": {
       "signup-message": "No account yet?",

@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { NavigationEnd, Router, RouterLink } from '@angular/router';
-import { DropdownComponent, IconComponent } from '@flagarchive/ui';
+import { DropdownComponent, IconComponent, ToastService } from '@flagarchive/ui';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { filter, map, tap } from 'rxjs';
 
@@ -27,6 +27,7 @@ export class MainNavigationActionsComponent {
   readonly #authService = inject(AuthService);
   readonly #destroyRef = inject(DestroyRef);
   readonly #router = inject(Router);
+  readonly #toastService = inject(ToastService);
   readonly #translate = inject(TranslateService);
 
   currentUser = this.#authService.currentUser;
@@ -59,7 +60,8 @@ export class MainNavigationActionsComponent {
       )
       .subscribe({
         next: () => this.isLanguageMenuOpen.set(false),
-        error: (error) => console.error('Error changing language:', error),
+        error: () =>
+          this.#toastService.open(this.#translate.instant('Error changing language.'), 'error'),
       });
   }
 }
