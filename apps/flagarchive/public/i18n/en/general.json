@@ -82,6 +82,10 @@
       "success": "Password reset email sent",
       "error": "Failed to send password reset email"
     },
+    "delete-account": {
+      "success": "Account deleted",
+      "error": "Failed to delete account"
+    },
     "login": {
       "success": "Logged in",
       "error": "Login failed"
@@ -90,21 +94,21 @@
       "success": "Logged out",
       "error": "Logout failed"
     },
+    "not-logged-in": {
+      "action": "You must be logged in to perform this action",
+      "page": "You must be logged in to view this page"
+    },
     "signup": {
       "success": "Account created",
       "error": "Failed to create account"
-    },
-    "update-profile": {
-      "success": "Profile updated",
-      "error": "Failed to update profile"
     },
     "update-password": {
       "success": "Password updated",
       "error": "Failed to update password"
     },
-    "delete-account": {
-      "success": "Account deleted",
-      "error": "Failed to delete account"
+    "update-profile": {
+      "success": "Profile updated",
+      "error": "Failed to update profile"
     }
   },
   "pages": {

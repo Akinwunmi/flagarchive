@@ -1,5 +1,7 @@
 import { Routes } from '@angular/router';
 
+import { authGuard } from './guards';
+
 export const APP_ROUTES: Routes = [
   {
     path: '',
@@ -28,10 +30,12 @@ export const APP_ROUTES: Routes = [
   },
   {
     path: 'profile',
+    canActivate: [authGuard],
     loadChildren: () => import('./pages/profile').then((m) => m.PROFILE_ROUTES),
   },
   {
     path: 'update-password',
+    canActivate: [authGuard],
     loadChildren: () => import('./pages/update-password').then((m) => m.UPDATE_PASSWORD_ROUTES),
   },
 ];
