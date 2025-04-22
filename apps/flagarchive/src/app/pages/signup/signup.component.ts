@@ -2,8 +2,8 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { AbstractControl, FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { getErrorMessage } from '@flagarchive/forms';
-import { InputComponent } from '@flagarchive/ui';
-import { TranslatePipe } from '@ngx-translate/core';
+import { InputComponent, ToastService } from '@flagarchive/ui';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 
 import { AuthService } from '../../services';
 
@@ -20,6 +20,8 @@ export class SignupComponent {
   readonly #authService = inject(AuthService);
   readonly #fb = inject(FormBuilder);
   readonly #router = inject(Router);
+  readonly #toastService = inject(ToastService);
+  readonly #translate = inject(TranslateService);
 
   form = this.#fb.nonNullable.group({
     email: ['', [Validators.email, Validators.required]],
@@ -52,11 +54,12 @@ export class SignupComponent {
     const { email, password, username } = this.form.getRawValue();
     this.#authService.signUp(email, username, password).subscribe(({ error }) => {
       if (error) {
-        // TODO: Add toast service
-        console.error('Error signing up:', error);
+        // TODO: Move to store
+        this.#toastService.open(this.#translate.instant('notifications.signup.error'), 'error');
         return;
       }
 
+      this.#toastService.open(this.#translate.instant('notifications.signup.success'), 'success');
       this.#router.navigate(['/']);
     });
   }

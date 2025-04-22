@@ -18,12 +18,12 @@ import { EntitiesStore } from '../../store';
   imports: [
     BreadcrumbComponent,
     BreadcrumbGroupComponent,
-    UpperCasePipe,
     DropdownComponent,
     HyphenatePipe,
     IconComponent,
     RouterLink,
     TranslatePipe,
+    UpperCasePipe,
   ],
   selector: 'app-navigation-bar',
   styleUrl: './navigation-bar.component.css',

@@ -1,0 +1,119 @@
+:host {
+  align-items: center;
+  background-color: var(--flag-grey-600);
+  border-radius: var(--flag-radius-lg);
+  color: var(--flag-white);
+  display: grid;
+  font-family: var(--flag-font-family);
+  font-size: var(--flag-font-size-xs);
+  font-weight: var(--flag-font-weight-regular);
+  line-height: var(--flag-line-height-xs);
+  gap: var(--flag-space-sm);
+  grid-template-columns: auto 1fr auto;
+  overflow: hidden;
+  padding-block: var(--flag-space-xs);
+  padding-inline: var(--flag-space-sm) var(--flag-space-xs);
+  position: relative;
+  width: 20rem;
+  z-index: 2;
+
+  &::before {
+    animation: 5000ms linear 0s 1 normal scale;
+    background-color: var(--flag-grey-700);
+    inset-block: 0;
+    content: '';
+    left: -100%;
+    position: absolute;
+    width: 100%;
+    z-index: -1;
+  }
+  
+  > flag-icon {
+    font-size: var(--flag-space-lg);
+  }
+}
+
+[flag-button][ghost] {
+  color: var(--flag-white);
+  padding-inline: var(--flag-space-3xs);
+
+  &:hover {
+    background-color: var(--flag-grey-500);
+  }
+
+  &:active {
+    background-color: var(--flag-grey-600);
+  }
+}
+
+:host(.success) {
+  background-color: var(--flag-success-300);
+  color: var(--flag-success-700);
+
+  &::before {
+    background-color: var(--flag-success-400);
+  }
+
+  [flag-button][ghost] {
+    color: var(--flag-success-700);
+
+    &:hover {
+      background-color: var(--flag-success-400);
+    }
+
+    &:active {
+      background-color: var(--flag-success-300);
+    }
+  }
+}
+
+:host(.warning) {
+  background-color: var(--flag-warning-300);
+  color: var(--flag-warning-700);
+
+  &::before {
+    background-color: var(--flag-warning-400);
+  }
+
+  [flag-button][ghost] {
+    color: var(--flag-warning-700);
+
+    &:hover {
+      background-color: var(--flag-warning-400);
+    }
+
+    &:active {
+      background-color: var(--flag-warning-300);
+    }
+  }
+}
+
+:host(.error) {
+  background-color: var(--flag-error-300);
+  color: var(--flag-error-700);
+
+  &::before {
+    background-color: var(--flag-error-400);
+  }
+
+  [flag-button][ghost] {
+    color: var(--flag-error-700);
+
+    &:hover {
+      background-color: var(--flag-error-400);
+    }
+
+    &:active {
+      background-color: var(--flag-error-300);
+    }
+  }
+}
+
+@keyframes scale {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}

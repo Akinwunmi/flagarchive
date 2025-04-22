@@ -1,6 +1,7 @@
 import { computed, inject } from '@angular/core';
 import { sortBy } from '@flagarchive/advanced-search';
 import { Entity, EntityType } from '@flagarchive/entities';
+import { ToastService } from '@flagarchive/ui';
 import { tapResponse } from '@ngrx/operators';
 import { patchState, signalStore, withComputed, withMethods, withState } from '@ngrx/signals';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
@@ -65,6 +66,7 @@ export const EntitiesStore = signalStore(
       store,
       advancedSearchStore = inject(AdvancedSearchStore),
       entityService = inject(EntityService),
+      toastService = inject(ToastService),
       translateService = inject(TranslateService),
     ) => ({
       loadEntities: rxMethod<string>(
@@ -73,7 +75,7 @@ export const EntitiesStore = signalStore(
             entityService.getEntityById(id).pipe(
               tapResponse({
                 next: (selectedEntity) => patchState(store, { selectedEntity }),
-                error: (error) => console.error({ error }),
+                error: (error: Error) => toastService.open(error.message),
               }),
             ),
           ),
@@ -89,7 +91,7 @@ export const EntitiesStore = signalStore(
                       translateService,
                     ),
                   }),
-                error: (error) => console.error({ error }),
+                error: (error: Error) => toastService.open(error.message),
               }),
             ),
           ),
@@ -101,7 +103,7 @@ export const EntitiesStore = signalStore(
             entityService.getFlagOfTheDay().pipe(
               tapResponse({
                 next: (flagOfTheDay) => patchState(store, { flagOfTheDay }),
-                error: (error) => console.error({ error }),
+                error: (error: Error) => toastService.open(error.message),
               }),
             ),
           ),
@@ -121,7 +123,7 @@ export const EntitiesStore = signalStore(
                       translateService,
                     ),
                   }),
-                error: (error) => console.error({ error }),
+                error: (error: Error) => toastService.open(error.message),
               }),
             ),
           ),
@@ -133,7 +135,7 @@ export const EntitiesStore = signalStore(
             entityService.getEntitiesByCreatedOn().pipe(
               tapResponse({
                 next: (newestAdditions) => patchState(store, { newestAdditions }),
-                error: (error) => console.error({ error }),
+                error: (error: Error) => toastService.open(error.message),
               }),
             ),
           ),
