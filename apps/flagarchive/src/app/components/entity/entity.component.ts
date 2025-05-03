@@ -28,13 +28,15 @@ export class EntityComponent {
   isReversed = signal(false);
 
   #activeFlagCategory = computed(() => this.entity().flags?.[this.#flagCategory()]);
-  activeAltParentId = computed(() => this.activeRange()?.altParentId ?? this.entity().altParentId);
+  activeAltParentId = computed(
+    () => this.activeRange()?.alt_parent_id ?? this.entity().alt_parent_id,
+  );
   activeFlagRange = computed(() => this.#setActiveFlagRange());
   activeRange = computed(() => this.#setActiveRange());
   flagImageSrc = computed(() => this.#setFlagImageSrc());
   hasAltParentId = computed(() => {
     const altParentId = this.activeAltParentId();
-    return !!altParentId && altParentId !== this.#selectedEntity()?.id;
+    return !!altParentId && altParentId !== this.#selectedEntity()?.unique_id;
   });
 
   basePath = '/flags';
@@ -62,7 +64,7 @@ export class EntityComponent {
     const activeFlagRange = this.activeFlagRange();
 
     return this.isReversed()
-      ? (activeFlagRange?.reverseUrl ?? activeFlagCategory?.reverseUrl)
+      ? (activeFlagRange?.reverse_url ?? activeFlagCategory?.reverse_url)
       : (activeFlagRange?.url ?? activeFlagCategory?.url);
   }
 }

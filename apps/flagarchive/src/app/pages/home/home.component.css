@@ -39,7 +39,7 @@
 .content {
   display: flex;
   flex-grow: 1;
-  gap: var(--flag-space-md);
+  gap: var(--flag-space-5xl);
   justify-content: center;
   padding-block: var(--flag-space-2xl) var(--flag-space-8xl);
   padding-inline: var(--flag-space-md);

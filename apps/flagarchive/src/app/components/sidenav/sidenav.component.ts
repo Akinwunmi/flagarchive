@@ -53,7 +53,7 @@ export class SidenavComponent implements OnInit {
   constructor() {
     effect(() => {
       const entityId = this.entityId();
-      if (entityId && entityId !== this.selectedEntity()?.id) {
+      if (entityId && entityId !== this.selectedEntity()?.unique_id) {
         this.#entitiesStore.loadEntities(entityId);
       }
     });

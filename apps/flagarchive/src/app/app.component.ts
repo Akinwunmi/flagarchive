@@ -67,7 +67,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.#authService.supabase.auth.onAuthStateChange((event, session) => {
+    this.#authService.auth.onAuthStateChange((event, session) => {
       this.#authService.setCurrentUser(event, session);
     });
   }

@@ -11,7 +11,7 @@
         flag-list-item
         [routerLink]="item.path"
         [attr.active]="item.active || undefined"
-        [attr.disabled]="(item.label === 'Entities' && entity.hasNoChildren) || undefined"
+        [attr.disabled]="(item.label === 'Entities' && entity.has_no_children) || undefined"
         (click)="closeDropdown()"
       >
         {{ item.label | translate }}

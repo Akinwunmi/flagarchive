@@ -3,28 +3,28 @@
     <flag-breadcrumb-group>
       <flag-breadcrumb icon="home" label="Home" [hideLabel]="true" [link]="['']" />
       @if (selectedEntity(); as selectedEntity) {
-        @for (parentId of selectedEntity.parentIds; track $index) {
+        @for (parentId of selectedEntity.parent_ids; track $index) {
           <flag-breadcrumb
             class="parent"
             [hideArrow]="
-              selectedEntity.parentIds?.length !== $index + 1 || !!selectedEntity.altParentId
+              selectedEntity.parent_ids?.length !== $index + 1 || !!selectedEntity.alt_parent_id
             "
             [label]="parentId | uppercase"
             [link]="[basePath, parentId]"
           />
           @if (
-            selectedEntity.parentIds?.length !== $index + 1 ||
-            (selectedEntity.parentIds?.length !== $index + 1 && !selectedEntity.altParentId)
+            selectedEntity.parent_ids?.length !== $index + 1 ||
+            (selectedEntity.parent_ids?.length !== $index + 1 && !selectedEntity.alt_parent_id)
           ) {
             <flag-icon class="arrow">pen_size_2</flag-icon>
           }
         }
-        @if (selectedEntity.altParentId) {
+        @if (selectedEntity.alt_parent_id) {
           <flag-icon class="arrow">pen_size_2</flag-icon>
           <flag-breadcrumb
             class="parent"
-            [label]="selectedEntity.altParentId | uppercase"
-            [link]="[basePath, selectedEntity.altParentId]"
+            [label]="selectedEntity.alt_parent_id | uppercase"
+            [link]="[basePath, selectedEntity.alt_parent_id]"
           />
         }
         <flag-breadcrumb
@@ -65,7 +65,7 @@
           <a
             flag-list-item
             [attr.active]="entity.id === selectedEntity.id || undefined"
-            [routerLink]="[basePath, entity.id]"
+            [routerLink]="[basePath, entity.unique_id]"
             (click)="closeMainEntitiesMenu()"
           >
             {{ 'entities.' + entity.name | translate }}

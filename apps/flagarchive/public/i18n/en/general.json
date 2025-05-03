@@ -20,11 +20,13 @@
     "filters-and-sorting": "Filters and sorting",
     "flags": "Flags",
     "global": "Global",
+    "go-to-home": "Go to home",
     "history": "History",
     "language": "Language",
     "log-in": "Log in",
     "log-out": "Log out",
     "login": "Login",
+    "page-not-found": "Page not found",
     "profile": "Profile",
     "save-changes": "Save changes",
     "sign-up": "Sign up",
@@ -112,6 +114,13 @@
     }
   },
   "pages": {
+    "home": {
+      "browse-flags": "Browse flags",
+      "cta": "Start at the beginning",
+      "flag-of-the-day": "Flag of the day",
+      "newest-additions": "Newest additions",
+      "title": "Discover flags throughout history"
+    },
     "login": {
       "signup-message": "No account yet?",
       "welcome-message": "Good to have you back!"

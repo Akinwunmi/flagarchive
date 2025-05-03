@@ -1,11 +1,10 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { AbstractControl, FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { getErrorMessage, passwordsValidator } from '@flagarchive/forms';
-import { InputComponent, ToastService } from '@flagarchive/ui';
-import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { InputComponent } from '@flagarchive/ui';
+import { TranslatePipe } from '@ngx-translate/core';
 
-import { AuthService } from '../../services';
-import { Router } from '@angular/router';
+import { UserStore } from '../../store';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -16,11 +15,8 @@ import { Router } from '@angular/router';
   templateUrl: './update-password.component.html',
 })
 export class UpdatePasswordComponent {
-  readonly #authService = inject(AuthService);
   readonly #fb = inject(FormBuilder);
-  readonly #router = inject(Router);
-  readonly #toastService = inject(ToastService);
-  readonly #translate = inject(TranslateService);
+  readonly #userStore = inject(UserStore);
 
   form = this.#fb.group(
     {
@@ -51,21 +47,6 @@ export class UpdatePasswordComponent {
       return;
     }
 
-    this.#authService.updatePassword(password).subscribe(({ error }) => {
-      if (error) {
-        // TODO: Move to store
-        this.#toastService.open(
-          this.#translate.instant('notifications.update-password.error'),
-          'error',
-        );
-        return;
-      }
-
-      this.#toastService.open(
-        this.#translate.instant('notifications.update-password.success'),
-        'success',
-      );
-      this.#router.navigate(['/']);
-    });
+    this.#userStore.updatePassword(password);
   }
 }
