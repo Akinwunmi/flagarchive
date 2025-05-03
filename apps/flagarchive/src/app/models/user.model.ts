@@ -1,12 +1,16 @@
+export interface Credentials {
+  email: string;
+  password: string;
+}
+
 export interface CurrentUser {
   email: string;
   username: string;
 }
 
 export interface Profile {
-  avatar_url: string;
-  full_name: string;
-  username: string;
-  website: string;
+  firstName: string;
+  lastName: string;
+  avatar?: string;
   id?: string;
 }

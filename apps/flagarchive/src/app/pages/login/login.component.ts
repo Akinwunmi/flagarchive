@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { AbstractControl, FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { getErrorMessage } from '@flagarchive/forms';
-import { IconComponent, InputComponent, ToastService } from '@flagarchive/ui';
-import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { IconComponent, InputComponent } from '@flagarchive/ui';
+import { TranslatePipe } from '@ngx-translate/core';
 
-import { AuthService } from '../../services';
+import { UserStore } from '../../store';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -16,11 +16,8 @@ import { AuthService } from '../../services';
   templateUrl: './login.component.html',
 })
 export class LoginComponent {
-  readonly #authService = inject(AuthService);
   readonly #fb = inject(FormBuilder);
-  readonly #router = inject(Router);
-  readonly #toastService = inject(ToastService);
-  readonly #translate = inject(TranslateService);
+  readonly #userStore = inject(UserStore);
 
   form = this.#fb.nonNullable.group({
     email: ['', [Validators.email, Validators.required]],
@@ -46,14 +43,6 @@ export class LoginComponent {
     }
 
     const { email, password } = this.form.getRawValue();
-    this.#authService.logIn(email, password).subscribe(({ error }) => {
-      if (error) {
-        this.#toastService.open(this.#translate.instant('notifications.login.error'), 'error');
-        return;
-      }
-
-      this.#toastService.open(this.#translate.instant('notifications.login.success'));
-      this.#router.navigate(['/']);
-    });
+    this.#userStore.logIn({ email, password });
   }
 }

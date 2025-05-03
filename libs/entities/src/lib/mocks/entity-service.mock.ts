@@ -10,11 +10,11 @@ export class EntityServiceStub {
   }
 
   getEntityById(id: string) {
-    return of(ENTITIES_STUB.find((entity) => entity.id === id));
+    return of(ENTITIES_STUB.find((entity) => entity.unique_id === id));
   }
 
   getEntitiesByParentId(parentId: string) {
-    return of(ENTITIES_STUB.filter((entity) => entity.parentId === parentId));
+    return of(ENTITIES_STUB.filter((entity) => entity.parent_ids?.includes(parentId)));
   }
 
   getEntitiesByType(types: string[]) {

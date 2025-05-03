@@ -1,23 +1,21 @@
 import { FlagCategory } from '@flagarchive/advanced-search';
 
 export interface Entity {
-  baseId: string;
-  id: string;
+  id: number;
   name: string;
   type: EntityType;
-  altId?: string;
-  altParentId?: string;
+  unique_id: string;
+  alt_parent_id?: string;
   flags?: Record<FlagCategory, EntityFlag>;
-  hasNoChildren?: boolean;
-  hoistedRight?: boolean;
-  parentId?: string;
-  parentIds?: string[];
+  has_no_children?: boolean;
+  hoisted_right?: boolean;
+  parent_ids?: string[];
   ranges?: EntityRange[];
 }
 
 export interface EntityFlag {
   ranges?: EntityFlagRange[];
-  reverseUrl?: string;
+  reverse_url?: string;
   url: string;
 }
 
@@ -78,18 +76,16 @@ interface EntityStartEnd {
   end?: number;
 }
 
-export interface EntityFlagRange extends EntityStartEnd {
-  reverseUrl?: string;
+export interface EntityFlagCategory {
+  reverse_url?: string;
   url?: string;
 }
 
+export interface EntityFlagRange extends EntityStartEnd, EntityFlagCategory {}
+
 export interface EntityRange extends EntityStartEnd {
-  altParentId?: string;
-  parentId?: string;
+  alt_parent_id?: string;
+  parent_ids?: string[];
   name?: string;
   type?: EntityType;
 }
-
-export type EntityFullRange = EntityFlagRange & EntityRange;
-
-export type EntityWithoutBaseId = Omit<Entity, 'baseId'>;

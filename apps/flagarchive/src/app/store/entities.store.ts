@@ -71,8 +71,8 @@ export const EntitiesStore = signalStore(
     ) => ({
       loadEntities: rxMethod<string>(
         pipe(
-          switchMap((id) =>
-            entityService.getEntityById(id).pipe(
+          switchMap((uniqueId) =>
+            entityService.getEntityById(uniqueId).pipe(
               tapResponse({
                 next: (selectedEntity) => patchState(store, { selectedEntity }),
                 error: (error: Error) => toastService.open(error.message),
@@ -80,7 +80,7 @@ export const EntitiesStore = signalStore(
             ),
           ),
           switchMap((entity) =>
-            entityService.getEntitiesByParentId(entity?.id ?? '', true).pipe(
+            entityService.getEntitiesByParentId(entity?.unique_id ?? '', true).pipe(
               tapResponse({
                 next: (entities) =>
                   patchState(store, {
@@ -132,7 +132,7 @@ export const EntitiesStore = signalStore(
       loadNewestAdditions: rxMethod<void>(
         pipe(
           switchMap(() =>
-            entityService.getEntitiesByCreatedOn().pipe(
+            entityService.getRecentEntities().pipe(
               tapResponse({
                 next: (newestAdditions) => patchState(store, { newestAdditions }),
                 error: (error: Error) => toastService.open(error.message),

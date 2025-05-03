@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { IconComponent } from '@flagarchive/ui';
+import { TranslatePipe } from '@ngx-translate/core';
 
 import { EntityComponent } from '../../components/entity';
 import { FooterComponent } from '../../components/footer';
@@ -8,7 +9,7 @@ import { EntitiesStore } from '../../store';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [EntityComponent, FooterComponent, IconComponent, RouterLink],
+  imports: [EntityComponent, FooterComponent, IconComponent, RouterLink, TranslatePipe],
   styleUrl: './home.component.css',
   templateUrl: './home.component.html',
 })

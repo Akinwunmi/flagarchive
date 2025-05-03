@@ -31,6 +31,12 @@
   > flag-icon {
     font-size: var(--flag-space-lg);
   }
+
+  &:hover {
+    &::before {
+      animation-play-state: paused;
+    }
+  }
 }
 
 [flag-button][ghost] {

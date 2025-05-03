@@ -38,4 +38,13 @@ export const APP_ROUTES: Routes = [
     canActivate: [authGuard],
     loadChildren: () => import('./pages/update-password').then((m) => m.UPDATE_PASSWORD_ROUTES),
   },
+  {
+    path: '404',
+    loadComponent: () => import('./pages/page-not-found').then((m) => m.PageNotFoundComponent),
+  },
+  {
+    path: '**',
+    pathMatch: 'full',
+    redirectTo: '404',
+  },
 ];
