@@ -27,7 +27,7 @@
   },
   "nxCloudId": "678683d734f5017923a532bf",
   "targetDefaults": {
-    "@angular-devkit/build-angular:application": {
+    "@ngx-env/builder:application": {
       "cache": true,
       "dependsOn": [
         "^build"
@@ -132,6 +132,6 @@
     "@schematics/angular:component": {
       "style": "css",
       "changeDetection": "OnPush"
-    },
+    }
   }
 }

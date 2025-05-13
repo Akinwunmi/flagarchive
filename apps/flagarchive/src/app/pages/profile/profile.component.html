@@ -4,11 +4,13 @@
   {{ currentUser()?.username }}
 </span>
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <flag-input formControlName="email" label="Email" [readonly]="!editing()" />
+  <flag-input formControlName="email" label="Email" type="email" [readonly]="!editing()" />
+  <flag-input formControlName="firstName" label="First name" [readonly]="!editing()" />
+  <flag-input formControlName="lastName" label="Last name" [readonly]="!editing()" />
   <hr flag-divider />
   @if (editing()) {
     <div class="action">
-      <button flag-button ghost type="button" (click)="setEditMode(false)">
+      <button flag-button ghost type="button" (click)="setEditing(false)">
         {{ 'common.cancel' | translate }}
       </button>
       <button flag-button raised type="button" (click)="onSubmit()">
@@ -23,7 +25,7 @@
       <button flag-button ghost type="button" (click)="sendPasswordResetEmail()">
         {{ 'pages.profile.change-password' | translate }}
       </button>
-      <button flag-button raised type="button" (click)="setEditMode(true)">
+      <button flag-button raised type="button" (click)="setEditing(true)">
         <flag-icon>edit</flag-icon>
         {{ 'pages.profile.edit-profile' | translate }}
       </button>

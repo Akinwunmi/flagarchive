@@ -1,11 +1,10 @@
-import { ChangeDetectionStrategy, Component, effect, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, effect, inject, OnInit, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
-import { IconComponent, InputComponent, ToastService } from '@flagarchive/ui';
-import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { IconComponent, InputComponent } from '@flagarchive/ui';
+import { TranslatePipe } from '@ngx-translate/core';
 
 import { Profile } from '../../models';
-import { AuthService } from '../../services';
+import { UserStore } from '../../store';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -16,37 +15,49 @@ import { AuthService } from '../../services';
   styleUrl: './profile.component.css',
   templateUrl: './profile.component.html',
 })
-export class ProfileComponent {
-  readonly #authService = inject(AuthService);
+export class ProfileComponent implements OnInit {
   readonly #fb = inject(FormBuilder);
-  readonly #router = inject(Router);
-  readonly #toastService = inject(ToastService);
-  readonly #translate = inject(TranslateService);
+  readonly #userStore = inject(UserStore);
 
-  currentUser = this.#authService.currentUser;
+  #profile = this.#userStore.profile;
+  currentUser = this.#userStore.currentUser;
+  editing = this.#userStore.editing;
 
-  editing = signal(false);
   loading = signal(false);
   profile = signal<Profile | null>(null);
 
   form = this.#fb.group({
     email: '',
+    firstName: '',
+    lastName: '',
   });
 
   constructor() {
     effect(() => {
-      if (this.currentUser()) {
+      const currentUser = this.currentUser();
+      const profile = this.#profile();
+
+      if (currentUser) {
         this.form.patchValue({
-          email: this.currentUser()?.email,
+          email: currentUser.email,
+        });
+      }
+
+      if (profile) {
+        this.form.patchValue({
+          firstName: profile.firstName,
+          lastName: profile.lastName,
         });
       }
     });
   }
 
+  ngOnInit() {
+    this.#userStore.loadProfile();
+  }
+
   logOut() {
-    this.#authService.logOut();
-    this.#toastService.open(this.#translate.instant('notifications.logout.success'));
-    this.#router.navigate(['/']);
+    this.#userStore.logOut();
   }
 
   onSubmit() {
@@ -55,40 +66,14 @@ export class ProfileComponent {
       return;
     }
 
-    this.#authService.updateEmail(email).subscribe(({ error }) => {
-      if (error) {
-        // TODO: Move to store
-        this.#toastService.open(
-          this.#translate.instant('notifications.update-profile.error'),
-          'error',
-        );
-        return;
-      }
-
-      this.#toastService.open(
-        this.#translate.instant('notifications.update-profile.success'),
-        'success',
-      );
-      this.editing.set(false);
-    });
+    this.#userStore.updateEmail(email);
   }
 
   sendPasswordResetEmail() {
-    this.#authService.sendPasswordResetEmail().subscribe((error) => {
-      if (error) {
-        // TODO: Move to store
-        this.#toastService.open(
-          this.#translate.instant('notifications.change-password.error'),
-          'error',
-        );
-        return;
-      }
-
-      this.#toastService.open(this.#translate.instant('notifications.change-password.success'));
-    });
+    this.#userStore.sendPasswordResetEmail();
   }
 
-  setEditMode(editing: boolean) {
-    this.editing.set(editing);
+  setEditing(editing: boolean) {
+    this.#userStore.setEditing(editing);
   }
 }

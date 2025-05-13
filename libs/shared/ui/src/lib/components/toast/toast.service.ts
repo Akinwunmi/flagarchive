@@ -1,8 +1,17 @@
 import { Overlay, OverlayRef } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
-import { DestroyRef, inject, Injectable } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { BehaviorSubject, switchMap, timer } from 'rxjs';
+import { inject, Injectable } from '@angular/core';
+import {
+  BehaviorSubject,
+  EMPTY,
+  filter,
+  interval,
+  scan,
+  startWith,
+  switchMap,
+  take,
+  tap,
+} from 'rxjs';
 
 import { ToastComponent } from './toast.component';
 import { ToastType } from './toast.model';
@@ -11,15 +20,43 @@ import { ToastType } from './toast.model';
   providedIn: 'root',
 })
 export class ToastService {
-  readonly #destroyRef = inject(DestroyRef);
   readonly #overlay = inject(Overlay);
 
   #overlayRef?: OverlayRef;
+  #remainingTime = 5000;
 
-  displaying = new BehaviorSubject(false);
+  #paused$ = new BehaviorSubject(false);
+  #active$ = new BehaviorSubject(false);
+  completed$ = this.#paused$.pipe(
+    switchMap((paused) => {
+      // If paused, do not emit anything
+      if (paused || !this.#active$.value) {
+        return EMPTY;
+      }
+
+      return interval(50).pipe(
+        startWith(0),
+        // Start the timer with the remaining time
+        scan(
+          (acc) => {
+            const now = Date.now();
+            // Delta is the time since the last emission
+            const delta = now - acc.previous;
+            const remaining = acc.remaining - delta;
+            return { previous: now, remaining };
+          },
+          // Initialize the accumulator with the current time and remaining time
+          { previous: Date.now(), remaining: this.#remainingTime },
+        ),
+        tap((state) => (this.#remainingTime = state.remaining)),
+        filter((state) => state.remaining <= 0),
+        take(1),
+      );
+    }),
+  );
 
   close() {
-    this.displaying.next(false);
+    this.#active$.next(false);
     this.#overlayRef?.detach();
   }
 
@@ -42,14 +79,16 @@ export class ToastService {
       toastComponentRef.setInput('type', type);
     }
 
-    this.displaying.next(true);
-    this.displaying
-      .pipe(
-        switchMap(() => timer(5000)),
-        takeUntilDestroyed(this.#destroyRef),
-      )
-      .subscribe(() => {
-        this.close();
-      });
+    this.#remainingTime = 5000;
+    this.#paused$.next(false);
+    this.#active$.next(true);
+  }
+
+  pause() {
+    this.#paused$.next(true);
+  }
+
+  resume() {
+    this.#paused$.next(false);
   }
 }

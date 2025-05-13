@@ -42,14 +42,10 @@ Thumbs.db
 .nx/workspace-data
 
 .angular
+.env
 
 # Storybook
 storybook-static
-
-# Firebase
-.firebase
-*-debug.log
-.runtimeconfig.json
 
 # Supabase
 supabase

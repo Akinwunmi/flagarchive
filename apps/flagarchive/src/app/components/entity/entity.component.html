@@ -1,11 +1,11 @@
 <a
   [class.card]="cardView()"
-  [routerLink]="[basePath, entity().id, entity().hasNoChildren ? 'details' : 'entities']"
+  [routerLink]="[basePath, entity().unique_id, entity().has_no_children ? 'details' : 'entities']"
 >
   <figure>
     <flag-image
       [alt]="'flag-image.alt-text' | translate: { name: 'entities.' + entity().name | translate }"
-      [hoistedRight]="entity().hoistedRight ?? false"
+      [hoistedRight]="entity().hoisted_right ?? false"
       [isReversed]="isReversed()"
       [src]="flagImageSrc() ?? ''"
     />
@@ -28,7 +28,7 @@
     @if (activeRange()?.start) {
       <span class="range">{{ activeRange()?.start }} &ndash; {{ activeRange()?.end }}</span>
     }
-    @if (entity().flags?.official?.reverseUrl) {
+    @if (entity().flags?.[flagCategory()]?.reverse_url) {
       <button
         flag-button
         extra-small

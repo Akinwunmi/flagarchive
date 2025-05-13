@@ -20,11 +20,13 @@
     "filters-and-sorting": "Filters en sorteren",
     "flags": "Vlaggen",
     "global": "Wereldwijd",
+    "go-to-home": "Ga naar home",
     "history": "Historie",
     "language": "Taal",
     "log-in": "Inloggen",
     "log-out": "Uitloggen",
     "login": "Inloggen",
+    "page-not-found": "Pagina niet gevonden",
     "profile": "Profiel",
     "save-changes": "Wijzigingen opslaan",
     "sign-up": "Aanmelden",
@@ -112,6 +114,13 @@
     }
   },
   "pages": {
+    "home": {
+      "browse-flags": "Ga naar vlaggen",
+      "cta": "Begin met ontdekken",
+      "flag-of-the-day": "Vlag van de dag",
+      "newest-additions": "Nieuwste toevoegingen",
+      "title": "Ontdek vlaggen door de geschiedenis heen"
+    },
     "login": {
       "signup-message": "Nog geen account?",
       "welcome-message": "Fijn je weer te zien!"

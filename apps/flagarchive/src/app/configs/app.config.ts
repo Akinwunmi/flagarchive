@@ -1,13 +1,10 @@
 import { HttpClient, provideHttpClient } from '@angular/common/http';
 import { ApplicationConfig, provideExperimentalZonelessChangeDetection } from '@angular/core';
-import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
-import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideRouter } from '@angular/router';
 import { provideTranslateService, TranslateLoader, TranslationObject } from '@ngx-translate/core';
 
 import { APP_ROUTES } from '../app.routes';
-import { FIREBASE_CONFIG } from './firebase.config';
 import { forkJoin, map, Observable } from 'rxjs';
 
 class TranslateHttpModuleloader implements TranslateLoader {
@@ -32,8 +29,6 @@ export const APP_CONFIG: ApplicationConfig = {
   providers: [
     provideAnimationsAsync(),
     provideExperimentalZonelessChangeDetection(),
-    provideFirebaseApp(() => initializeApp(FIREBASE_CONFIG)),
-    provideFirestore(() => getFirestore()),
     provideHttpClient(),
     provideRouter(APP_ROUTES),
     provideTranslateService({

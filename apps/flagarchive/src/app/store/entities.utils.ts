@@ -28,8 +28,9 @@ export function setFilteredEntities(
   const filteredEntities = entities.filter((entity) => {
     const activeRange = getActiveRange(advancedSearchStore.selectedYear(), entity.ranges);
 
-    const isChild = !entity.altParentId || entity.parentIds?.includes(selectedEntity?.id || '');
-    const isOverseasRegion = advancedSearchStore.showOverseasRegions() && entity.altParentId;
+    const isChild =
+      !entity.alt_parent_id || entity.parent_ids?.includes(selectedEntity?.unique_id || '');
+    const isOverseasRegion = advancedSearchStore.showOverseasRegions() && entity.alt_parent_id;
     const isSelectedEntityType = advancedSearchStore
       .entityTypes()
       .find((type) => type.label === entity.type)?.checked;
