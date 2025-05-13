@@ -6,7 +6,7 @@
         cdkMenuItem
         flag-list-item
         [attr.active]="entity.id === selectedEntity()?.id || undefined"
-        [routerLink]="['/flags', entity.id]"
+        [routerLink]="['/flags', entity.unique_id]"
       >
         {{ 'entities.' + entity.name | translate }}
       </a>
@@ -19,7 +19,7 @@
         cdkMenuItem
         flag-list-item
         [attr.active]="entity.id === selectedEntity()?.id || undefined"
-        [routerLink]="['/flags', entity.id]"
+        [routerLink]="['/flags', entity.unique_id]"
       >
         {{ 'entities.' + entity.name | translate }}
       </a>
@@ -51,7 +51,7 @@
         flag-list-item
         [attr.active]="item.active || undefined"
         [attr.disabled]="
-          (item.label === 'Entities' && selectedEntity()?.hasNoChildren) || undefined
+          (item.label === 'Entities' && selectedEntity()?.has_no_children) || undefined
         "
         [routerLink]="item.path"
       >

@@ -21,20 +21,22 @@ export class EntityComponent {
   entity = input.required<Entity>();
   cardView = input(true);
 
-  #flagCategory = this.#advancedSearchStore.flagCategory;
+  flagCategory = this.#advancedSearchStore.flagCategory;
   #selectedEntity = this.#entitiesStore.selectedEntity;
   #selectedYear = this.#advancedSearchStore.selectedYear;
 
   isReversed = signal(false);
 
-  #activeFlagCategory = computed(() => this.entity().flags?.[this.#flagCategory()]);
-  activeAltParentId = computed(() => this.activeRange()?.altParentId ?? this.entity().altParentId);
+  #activeFlag = computed(() => this.entity().flags?.[this.flagCategory()]);
+  activeAltParentId = computed(
+    () => this.activeRange()?.alt_parent_id ?? this.entity().alt_parent_id,
+  );
   activeFlagRange = computed(() => this.#setActiveFlagRange());
   activeRange = computed(() => this.#setActiveRange());
   flagImageSrc = computed(() => this.#setFlagImageSrc());
   hasAltParentId = computed(() => {
     const altParentId = this.activeAltParentId();
-    return !!altParentId && altParentId !== this.#selectedEntity()?.id;
+    return !!altParentId && altParentId !== this.#selectedEntity()?.unique_id;
   });
 
   basePath = '/flags';
@@ -50,7 +52,7 @@ export class EntityComponent {
   }
 
   #setActiveFlagRange(): EntityFlagRange | undefined {
-    return getActiveRange(this.#selectedYear(), this.#activeFlagCategory()?.ranges);
+    return getActiveRange(this.#selectedYear(), this.#activeFlag()?.ranges);
   }
 
   #setActiveRange(): EntityRange | undefined {
@@ -58,11 +60,11 @@ export class EntityComponent {
   }
 
   #setFlagImageSrc() {
-    const activeFlagCategory = this.#activeFlagCategory();
+    const activeFlag = this.#activeFlag();
     const activeFlagRange = this.activeFlagRange();
 
     return this.isReversed()
-      ? (activeFlagRange?.reverseUrl ?? activeFlagCategory?.reverseUrl)
-      : (activeFlagRange?.url ?? activeFlagCategory?.url);
+      ? (activeFlagRange?.reverse_url ?? activeFlag?.reverse_url)
+      : (activeFlagRange?.url ?? activeFlag?.url);
   }
 }

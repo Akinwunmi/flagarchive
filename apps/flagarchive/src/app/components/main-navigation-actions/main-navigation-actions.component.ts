@@ -13,7 +13,7 @@ import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { filter, map, tap } from 'rxjs';
 
 import { AuthService } from '../../services';
-import { AdvancedSearchStore } from '../../store';
+import { AdvancedSearchStore, UserStore } from '../../store';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -29,8 +29,9 @@ export class MainNavigationActionsComponent {
   readonly #router = inject(Router);
   readonly #toastService = inject(ToastService);
   readonly #translate = inject(TranslateService);
+  readonly #userStore = inject(UserStore);
 
-  currentUser = this.#authService.currentUser;
+  currentUser = this.#userStore.currentUser;
 
   isLanguageMenuOpen = signal(false);
 

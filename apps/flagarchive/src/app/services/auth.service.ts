@@ -1,27 +1,28 @@
-import { Injectable, signal } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import {
   AuthChangeEvent,
   AuthError,
   AuthResponse,
-  createClient,
   Session,
   UserResponse,
 } from '@supabase/supabase-js';
 import { from, map, Observable } from 'rxjs';
 
-import { SUPABASE_CONFIG } from '../configs';
 import { CurrentUser } from '../models';
+import { SupabaseService } from './supabase.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
+  readonly #supabaseService = inject(SupabaseService);
+
   currentUser = signal<CurrentUser | null>(null);
 
-  supabase = createClient(SUPABASE_CONFIG.supabaseUrl, SUPABASE_CONFIG.supabaseKey);
+  readonly auth = this.#supabaseService.supabase.auth;
 
   logIn(email: string, password: string): Observable<AuthResponse> {
-    const promise = this.supabase.auth.signInWithPassword({
+    const promise = this.auth.signInWithPassword({
       email,
       password,
     });
@@ -30,11 +31,11 @@ export class AuthService {
   }
 
   logOut() {
-    this.supabase.auth.signOut();
+    this.auth.signOut();
   }
 
   sendPasswordResetEmail(): Observable<AuthError | null> {
-    const promise = this.supabase.auth.resetPasswordForEmail(this.currentUser()?.email ?? '', {
+    const promise = this.auth.resetPasswordForEmail(this.currentUser()?.email ?? '', {
       redirectTo: `${window.location.origin}/update-password`,
     });
 
@@ -57,7 +58,7 @@ export class AuthService {
   }
 
   signUp(email: string, username: string, password: string): Observable<AuthResponse> {
-    const promise = this.supabase.auth.signUp({
+    const promise = this.auth.signUp({
       email,
       password,
       options: {
@@ -71,7 +72,7 @@ export class AuthService {
   }
 
   updateEmail(email: string): Observable<UserResponse> {
-    const promise = this.supabase.auth.updateUser({
+    const promise = this.auth.updateUser({
       email,
     });
 
@@ -79,7 +80,7 @@ export class AuthService {
   }
 
   updatePassword(password: string): Observable<UserResponse> {
-    const promise = this.supabase.auth.updateUser({
+    const promise = this.auth.updateUser({
       password,
     });
 

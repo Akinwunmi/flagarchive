@@ -16,6 +16,7 @@ import { TranslatePipe } from '@ngx-translate/core';
 
 import { MenuItem } from '../../models';
 import { AuthService } from '../../services';
+import { UserStore } from '../../store';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -36,10 +37,11 @@ export class MainMenuComponent implements OnInit {
   readonly #authService = inject(AuthService);
   readonly #destroyRef = inject(DestroyRef);
   readonly #router = inject(Router);
+  readonly #userStore = inject(UserStore);
 
   closed = output();
 
-  currentUser = this.#authService.currentUser;
+  currentUser = this.#userStore.currentUser;
 
   topMenu = signal<MenuItem[]>([
     {

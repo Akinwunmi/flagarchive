@@ -1,23 +1,23 @@
 <div class="hero">
-  <h2>Discover flags throughout history</h2>
+  <h2>{{ 'pages.home.title' | translate }}</h2>
   <div class="cta">
-    Start at the beginning
+    {{ 'pages.home.cta' | translate }}
     <a flag-button raised [routerLink]="['/flags']">
-      Browse flags
+      {{ 'pages.home.browse-flags' | translate }}
       <flag-icon>east</flag-icon>
     </a>
   </div>
 </div>
 <div class="content">
   <div class="new">
-    <h3>Newest additions</h3>
+    <h3>{{ 'pages.home.newest-additions' | translate }}</h3>
     @for (entity of newestAdditions(); track $index) {
       <app-entity [cardView]="false" [entity]="entity" />
     }
   </div>
   @if (flagOfTheDay(); as flagOfTheDay) {
     <div class="flag-of-the-day">
-      <h3>Flag of the day</h3>
+      <h3>{{ 'pages.home.flag-of-the-day' | translate }}</h3>
       <app-entity [entity]="flagOfTheDay" />
     </div>
   }
