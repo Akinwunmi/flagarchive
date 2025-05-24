@@ -1,17 +1,14 @@
 import { Injectable } from '@angular/core';
 import { createClient, PostgrestError } from '@supabase/supabase-js';
 
-import { SUPABASE_CONFIG } from '../configs';
+import { environment } from '../../environments/environment';
 import { Database } from '../models';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SupabaseService {
-  readonly supabase = createClient<Database>(
-    SUPABASE_CONFIG.supabaseUrl,
-    SUPABASE_CONFIG.supabaseKey,
-  );
+  readonly supabase = createClient<Database>(environment.supabase.url, environment.supabase.key);
 
   get entities() {
     return this.supabase.from('entities');
