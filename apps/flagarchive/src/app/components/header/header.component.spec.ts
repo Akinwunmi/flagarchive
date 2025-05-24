@@ -1,7 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 
+import { ENVIRONMENT_STUB } from '../../mocks';
 import { HeaderComponent } from './header.component';
+
+jest.mock('../../../environments/environment', () => ENVIRONMENT_STUB);
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;

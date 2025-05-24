@@ -2,7 +2,11 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideTranslateService, TranslateLoader, TranslateFakeLoader } from '@ngx-translate/core';
 
+import { ENVIRONMENT_STUB, MockSupabaseService } from '../../mocks';
+import { SupabaseService } from '../../services';
 import { FiltersAndSortingPanelComponent } from './filters-and-sorting-panel.component';
+
+jest.mock('../../../environments/environment', () => ENVIRONMENT_STUB);
 
 describe('FiltersAndSortingPanelComponent', () => {
   let component: FiltersAndSortingPanelComponent;
@@ -19,6 +23,10 @@ describe('FiltersAndSortingPanelComponent', () => {
             useClass: TranslateFakeLoader,
           },
         }),
+        {
+          provide: SupabaseService,
+          useClass: MockSupabaseService,
+        },
       ],
     }).compileComponents();
 

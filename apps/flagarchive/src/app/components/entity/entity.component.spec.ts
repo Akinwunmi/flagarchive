@@ -3,7 +3,11 @@ import { provideRouter } from '@angular/router';
 import { ENTITIES_STUB } from '@flagarchive/entities';
 import { provideTranslateService, TranslateLoader, TranslateFakeLoader } from '@ngx-translate/core';
 
+import { ENVIRONMENT_STUB, MockSupabaseService } from '../../mocks';
+import { SupabaseService } from '../../services';
 import { EntityComponent } from './entity.component';
+
+jest.mock('../../../environments/environment', () => ENVIRONMENT_STUB);
 
 describe(EntityComponent.name, () => {
   let component: EntityComponent;
@@ -20,6 +24,10 @@ describe(EntityComponent.name, () => {
             useClass: TranslateFakeLoader,
           },
         }),
+        {
+          provide: SupabaseService,
+          useClass: MockSupabaseService,
+        },
       ],
     }).compileComponents();
 

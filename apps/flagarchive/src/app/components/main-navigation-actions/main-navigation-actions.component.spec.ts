@@ -1,7 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideTranslateService, TranslateFakeLoader, TranslateLoader } from '@ngx-translate/core';
 
+import { ENVIRONMENT_STUB, MockSupabaseService } from '../../mocks';
+import { SupabaseService } from '../../services';
 import { MainNavigationActionsComponent } from './main-navigation-actions.component';
+
+jest.mock('../../../environments/environment', () => ENVIRONMENT_STUB);
 
 describe(MainNavigationActionsComponent.name, () => {
   let component: MainNavigationActionsComponent;
@@ -17,6 +21,10 @@ describe(MainNavigationActionsComponent.name, () => {
             useClass: TranslateFakeLoader,
           },
         }),
+        {
+          provide: SupabaseService,
+          useClass: MockSupabaseService,
+        },
       ],
     }).compileComponents();
 
