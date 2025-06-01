@@ -55,11 +55,15 @@
   "flag-categories": {
     "civil-ensign": "Handelsvlag",
     "civil-flag": "Civiele vlag",
+    "national-flag": "Nationale vlag",
     "naval-ensign": "Marinevlag",
     "naval-jack": "Geus",
     "official": "Officieel",
     "presidential-standard": "Presidentiële standaard",
     "royal-standard": "Koninklijke standaard",
+    "state-ensign": "Staatsvlag",
+    "state-flag": "Staatsvlag",
+    "subnational-flag": "Subnationale vlag",
     "unofficial": "Onofficieel"
   },
   "flag-image": {

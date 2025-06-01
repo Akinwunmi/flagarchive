@@ -1,0 +1,8 @@
+<header>
+  <flag-icon>{{ icon() }}</flag-icon>
+  <h1>{{ title() }}</h1>
+  <button flag-button ghost small (click)="close()">
+    <flag-icon>close</flag-icon>
+  </button>
+</header>
+<ng-content />

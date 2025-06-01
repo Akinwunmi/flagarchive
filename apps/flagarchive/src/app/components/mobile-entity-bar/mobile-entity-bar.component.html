@@ -1,6 +1,6 @@
 @if (selectedEntity(); as entity) {
   <div class="flag">
-    <flag-image [src]="entity.flags?.official?.url ?? ''" [alt]="'Flag of ' + entity.name" />
+    <flag-image [src]="activeFlag()?.url ?? ''" [alt]="'Flag of ' + entity.name" />
     <button flag-button ghost>
       <flag-icon>open_in_full</flag-icon>
     </button>

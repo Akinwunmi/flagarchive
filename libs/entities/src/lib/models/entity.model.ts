@@ -6,7 +6,7 @@ export interface Entity {
   type: EntityType;
   unique_id: string;
   alt_parent_id?: string;
-  flags?: Record<FlagCategory, EntityFlag>;
+  flags?: EntityFlag[];
   has_no_children?: boolean;
   hoisted_right?: boolean;
   parent_ids?: string[];
@@ -14,9 +14,10 @@ export interface Entity {
 }
 
 export interface EntityFlag {
+  categories: FlagCategory[];
+  url: string;
   ranges?: EntityFlagRange[];
   reverse_url?: string;
-  url: string;
 }
 
 export enum EntityType {
@@ -76,12 +77,9 @@ interface EntityStartEnd {
   end?: number;
 }
 
-export interface EntityFlagCategory {
-  reverse_url?: string;
-  url?: string;
+export interface EntityFlagRange extends EntityStartEnd {
+  categories?: FlagCategory[];
 }
-
-export interface EntityFlagRange extends EntityStartEnd, EntityFlagCategory {}
 
 export interface EntityRange extends EntityStartEnd {
   alt_parent_id?: string;

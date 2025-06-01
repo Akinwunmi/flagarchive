@@ -1,12 +1,14 @@
 :host {
+  --badge-size: var(--flag-space-xl);
+
   align-items: center;
-  aspect-ratio: 1;
   background-color: var(--flag-error-100);
-  border: var(--flag-border-width-xs) solid var(--flag-error-500);
+  border: var(--flag-border-size-xs) solid var(--flag-error-500);
   border-radius: 50%;
   color: var(--flag-error-500);
   display: flex;
   font-size: var(--flag-font-size-xs);
+  height: var(--badge-size);
   justify-content: center;
-  width: var(--flag-space-xl);
+  width: var(--badge-size);
 }

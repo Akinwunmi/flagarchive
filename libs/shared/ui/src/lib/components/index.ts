@@ -16,6 +16,7 @@ export * from './input';
 export * from './list';
 export * from './list-item';
 export * from './pill';
+export * from './sidepanel';
 export * from './skeleton';
 export * from './toast';
 export * from './year-navigator';

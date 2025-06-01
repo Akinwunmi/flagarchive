@@ -1,9 +1,17 @@
 import { Overlay, OverlayRef } from '@angular/cdk/overlay';
 import { CdkPortal } from '@angular/cdk/portal';
-import { ChangeDetectionStrategy, Component, inject, signal, viewChild } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  DestroyRef,
+  inject,
+  signal,
+  viewChild,
+} from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { RouterLink } from '@angular/router';
 import { IconComponent } from '@flagarchive/ui';
-import { find } from 'rxjs';
+import { combineLatest, find, tap } from 'rxjs';
 
 import { WindowResizeService } from '../../services';
 import { MainMenuComponent } from '../main-menu';
@@ -16,6 +24,7 @@ import { MainMenuComponent } from '../main-menu';
   templateUrl: './header.component.html',
 })
 export class HeaderComponent {
+  readonly #destroyRef = inject(DestroyRef);
   readonly #overlay = inject(Overlay);
   readonly #windowResizeService = inject(WindowResizeService);
 
@@ -44,15 +53,14 @@ export class HeaderComponent {
     this.#overlayRef.attach(this.mainMenuPortal());
     this.isMainMenuOpen.set(true);
 
-    this.#overlayRef
-      .keydownEvents()
-      .pipe(find((event) => event.key === 'Escape'))
-      .subscribe(() => {
-        this.closeMainMenu();
-      });
-
-    this.#overlayRef.backdropClick().subscribe(() => {
-      this.closeMainMenu();
-    });
+    combineLatest([
+      this.#overlayRef.backdropClick().pipe(tap(() => this.closeMainMenu())),
+      this.#overlayRef.keydownEvents().pipe(
+        find((event) => event.key === 'Escape'),
+        tap(() => this.closeMainMenu()),
+      ),
+    ])
+      .pipe(takeUntilDestroyed(this.#destroyRef))
+      .subscribe();
   }
 }

@@ -1,0 +1,26 @@
+:host {
+  background-color: var(--flag-white);
+  color: var(--flag-primary);
+  display: block;
+  font-family: var(--flag-font-family);
+  max-width: 100%;
+  width: 20rem;
+
+  &.large {
+    width: 40rem;
+  }
+}
+
+header {
+  align-items: center;
+  display: grid;
+  gap: var(--flag-space-xs);
+  grid-template-columns: auto 1fr auto;
+  height: var(--flag-space-3xl);
+  margin-block: var(--flag-space-xs);
+  padding-inline: var(--flag-space-sm);
+
+  h1 {
+    font-size: var(--flag-font-size-md);
+  }
+}

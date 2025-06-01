@@ -28,7 +28,7 @@
     @if (activeRange()?.start) {
       <span class="range">{{ activeRange()?.start }} &ndash; {{ activeRange()?.end }}</span>
     }
-    @if (entity().flags?.[flagCategory()]?.reverse_url) {
+    @if (activeFlag()?.reverse_url) {
       <button
         flag-button
         extra-small

@@ -17,8 +17,10 @@ const meta: Meta<StoryArgs> = {
         label="${args.label}"
         ${args.checked ? '[checked]="true"' : ''}
         ${args.disabled ? '[disabled]="true"' : ''}
+        ${args.hideLabel ? '[hideLabel]="true"' : ''}
         ${args.indeterminate ? '[indeterminate]="true"' : ''}
         ${args.name ? `name="${args.name}"` : ''}
+        ${args.secondary ? '[secondary]="true"' : ''}
       />
     `,
   }),
@@ -28,6 +30,7 @@ const meta: Meta<StoryArgs> = {
     indeterminate: false,
     label: 'Checkbox',
     name: 'checkbox',
+    secondary: false,
   },
   argTypes: {
     checked: {
@@ -36,6 +39,11 @@ const meta: Meta<StoryArgs> = {
       },
     },
     disabled: {
+      control: {
+        type: 'boolean',
+      },
+    },
+    hideLabel: {
       control: {
         type: 'boolean',
       },
@@ -53,6 +61,11 @@ const meta: Meta<StoryArgs> = {
     name: {
       control: {
         type: 'text',
+      },
+    },
+    secondary: {
+      control: {
+        type: 'boolean',
       },
     },
   },

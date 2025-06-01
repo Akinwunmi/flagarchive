@@ -5,12 +5,10 @@
   [showPlayBar]="false"
   (selectedChange)="setSelectedYear($event)"
 />
-<button
-  flag-button
-  secondary
-  small
-  [attr.raised]="isFilterPanelOpen() || undefined"
-  (click)="openFilterSidePanel()"
->
+<button flag-button secondary small (click)="openFilterSidepanel()">
   <flag-icon>tune</flag-icon>
 </button>
+
+<ng-template #filterSidepanel>
+  <app-filter-sidepanel />
+</ng-template>

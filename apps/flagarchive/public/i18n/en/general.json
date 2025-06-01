@@ -55,11 +55,15 @@
   "flag-categories": {
     "civil-ensign": "Civil ensign",
     "civil-flag": "Civil flag",
+    "national-flag": "National flag",
     "naval-ensign": "Naval ensign",
     "naval-jack": "Naval jack",
     "official": "Official",
     "presidential-standard": "Presidential standard",
     "royal-standard": "Royal standard",
+    "state-ensign": "State ensign",
+    "state-flag": "State flag",
+    "subnational-flag": "Subnational flag",
     "unofficial": "Unofficial"
   },
   "flag-image": {
