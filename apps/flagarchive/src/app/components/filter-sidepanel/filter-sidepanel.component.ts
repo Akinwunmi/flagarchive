@@ -1,11 +1,5 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  computed,
-  inject,
-  OnInit,
-  signal,
-} from '@angular/core';
+import { CdkTrapFocus } from '@angular/cdk/a11y';
+import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { FlagCategory, Layout, SortDirection } from '@flagarchive/advanced-search';
 import { EntityTypeItem } from '@flagarchive/entities';
 import {
@@ -15,38 +9,35 @@ import {
   HyphenatePipe,
   IconComponent,
   ListItemComponent,
+  SidepanelComponent,
+  SidepanelService,
 } from '@flagarchive/ui';
 import { TranslatePipe } from '@ngx-translate/core';
-import { timer } from 'rxjs';
 
 import { Item } from '../../models';
 import { AdvancedSearchStore, EntitiesStore } from '../../store';
-import { PANEL_ANIMATION } from './filters-and-sorting-panel.animation';
-import { FiltersAndSortingPanelService } from './filters-and-sorting-panel.service';
 
 @Component({
-  animations: [PANEL_ANIMATION],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: {
-    '[@panelState]': 'panelState()',
-  },
   imports: [
     AccordionComponent,
+    CdkTrapFocus,
     CheckboxComponent,
     CollapsibleComponent,
     HyphenatePipe,
     IconComponent,
     ListItemComponent,
+    SidepanelComponent,
     TranslatePipe,
   ],
-  selector: 'app-filters-and-sorting-panel',
-  styleUrl: './filters-and-sorting-panel.component.css',
-  templateUrl: './filters-and-sorting-panel.component.html',
+  selector: 'app-filter-sidepanel',
+  styleUrl: './filter-sidepanel.component.css',
+  templateUrl: './filter-sidepanel.component.html',
 })
-export class FiltersAndSortingPanelComponent implements OnInit {
+export class FilterSidepanelComponent {
   readonly #advancedSearchStore = inject(AdvancedSearchStore);
   readonly #entitiesStore = inject(EntitiesStore);
-  readonly #filtersAndSortingPanelService = inject(FiltersAndSortingPanelService);
+  readonly #sidepanelService = inject(SidepanelService);
 
   #entities = this.#entitiesStore.entities;
   #entityTypes = this.#advancedSearchStore.entityTypes;
@@ -61,8 +52,6 @@ export class FiltersAndSortingPanelComponent implements OnInit {
     { label: Layout.Grid, icon: 'grid_view' },
   ];
   sortDirections = Object.values(SortDirection);
-
-  panelState = signal<'open' | 'closed'>('closed');
 
   amountOfSelectedEntityTypes = computed(
     () => this.currentEntityTypes().filter((type) => type.checked).length,
@@ -85,17 +74,8 @@ export class FiltersAndSortingPanelComponent implements OnInit {
       : 'select-all',
   );
 
-  ngOnInit() {
-    requestAnimationFrame(() => {
-      this.panelState.set('open');
-    });
-  }
-
   close() {
-    this.panelState.set('closed');
-    timer(400).subscribe(() => {
-      this.#filtersAndSortingPanelService.close();
-    });
+    this.#sidepanelService.close();
   }
 
   isSelectedEntityType(label: string): boolean {

@@ -4,11 +4,16 @@
   [attr.secondary]="secondary() || undefined"
   (click)="toggle()"
 >
-  <flag-icon>{{ icon() }}</flag-icon>
+  @if (icon(); as icon) {
+    <flag-icon>{{ icon }}</flag-icon>
+  }
   <div class="label">
     {{ label() }}
     @if (count(); as count) {
       <flag-badge>{{ count }}</flag-badge>
+    }
+    @if (pillLabel(); as pillLabel) {
+      <flag-pill>{{ pillLabel }}</flag-pill>
     }
   </div>
   <flag-icon class="collapse-arrow" [class.expanded]="expanded()">keyboard_arrow_down</flag-icon>

@@ -11,24 +11,24 @@ interface DbTable<T, J = []> {
 }
 
 interface DbRawEntity {
-  alt_parent_id?: string | null;
-  has_no_children?: boolean | null;
-  hoisted_right?: boolean | null;
   id: number;
   inserted_at: string;
   name: string;
-  parent_ids?: string[] | null;
   type: EntityType;
   unique_id: string;
-  updated_at?: string;
+  updated_at: string;
+  alt_parent_id?: string | null;
+  has_no_children?: boolean | null;
+  hoisted_right?: boolean | null;
+  parent_ids?: string[] | null;
 }
 
 interface DbRawEntityFlag {
-  category: FlagCategory | null;
-  entity_id: number | null;
+  categories: FlagCategory[];
+  entity_id: number;
   id: number;
+  url: string;
   reverse_url?: string | null;
-  url: string | null;
 }
 
 export interface DbEntityFlag extends DbRawEntityFlag {
@@ -50,12 +50,11 @@ interface DbEntityFlagForeignKey {
 }
 
 export interface DbEntityFlagRange {
-  category_id: number | null;
-  end?: number | null;
+  flag_id: number | null;
   id: number;
-  reverse_url?: string | null;
   start: number;
-  url?: string | null;
+  categories?: FlagCategory[] | null;
+  end?: number | null;
 }
 
 interface DbEntityFlagRangeForeignKey {

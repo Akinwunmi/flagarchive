@@ -3,12 +3,13 @@ import { ChangeDetectionStrategy, Component, inject, input, model } from '@angul
 import { AccordionService } from '../accordion';
 import { BadgeComponent } from '../badge';
 import { IconComponent } from '../icon';
+import { PillComponent } from '../pill';
 import { COLLAPSIBLE_ANIMATION } from './collapsible.animation';
 
 @Component({
   animations: [COLLAPSIBLE_ANIMATION],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [BadgeComponent, IconComponent],
+  imports: [BadgeComponent, IconComponent, PillComponent],
   selector: 'flag-collapsible',
   styleUrl: './collapsible.component.css',
   templateUrl: './collapsible.component.html',
@@ -16,9 +17,10 @@ import { COLLAPSIBLE_ANIMATION } from './collapsible.animation';
 export class CollapsibleComponent {
   readonly #accordionService = inject(AccordionService);
 
-  icon = input.required<string>();
   label = input.required<string>();
   count = input<number>();
+  icon = input<string>();
+  pillLabel = input<string>();
   secondary = input(false);
 
   expanded = model(false);

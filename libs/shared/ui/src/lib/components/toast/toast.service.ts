@@ -71,12 +71,12 @@ export class ToastService {
       this.close();
     }
 
-    const toastPortal = new ComponentPortal(ToastComponent);
-    const toastComponentRef = this.#overlayRef.attach(toastPortal);
+    const portal = new ComponentPortal(ToastComponent);
+    const componentRef = this.#overlayRef.attach(portal);
 
-    toastComponentRef.setInput('message', message);
+    componentRef.setInput('message', message);
     if (type) {
-      toastComponentRef.setInput('type', type);
+      componentRef.setInput('type', type);
     }
 
     this.#remainingTime = 5000;

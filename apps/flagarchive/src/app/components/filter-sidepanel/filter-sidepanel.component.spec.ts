@@ -4,17 +4,17 @@ import { provideTranslateService, TranslateLoader, TranslateFakeLoader } from '@
 
 import { ENVIRONMENT_STUB, MockSupabaseService } from '../../mocks';
 import { SupabaseService } from '../../services';
-import { FiltersAndSortingPanelComponent } from './filters-and-sorting-panel.component';
+import { FilterSidepanelComponent } from './filter-sidepanel.component';
 
 jest.mock('../../../environments/environment', () => ENVIRONMENT_STUB);
 
-describe('FiltersAndSortingPanelComponent', () => {
-  let component: FiltersAndSortingPanelComponent;
-  let fixture: ComponentFixture<FiltersAndSortingPanelComponent>;
+describe(FilterSidepanelComponent.name, () => {
+  let component: FilterSidepanelComponent;
+  let fixture: ComponentFixture<FilterSidepanelComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FiltersAndSortingPanelComponent],
+      imports: [FilterSidepanelComponent],
       providers: [
         provideAnimationsAsync(),
         provideTranslateService({
@@ -30,7 +30,7 @@ describe('FiltersAndSortingPanelComponent', () => {
       ],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(FiltersAndSortingPanelComponent);
+    fixture = TestBed.createComponent(FilterSidepanelComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

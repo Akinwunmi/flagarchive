@@ -1,7 +1,6 @@
 :host {
   background-color: var(--flag-white);
   display: grid;
-  grid-template-columns: 1fr auto;
   height: 100svh;
   overflow: hidden;
   position: absolute;
@@ -45,15 +44,5 @@
     router-outlet {
       display: none;
     }
-  }
-}
-
-app-filters-and-sorting-panel {
-  z-index: 2;
-
-  @media screen and (max-width: 75rem) {
-    height: 100svh;
-    position: fixed;
-    right: 0;
   }
 }

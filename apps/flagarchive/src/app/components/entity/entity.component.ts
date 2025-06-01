@@ -27,9 +27,11 @@ export class EntityComponent {
 
   isReversed = signal(false);
 
-  #activeFlag = computed(() => this.entity().flags?.[this.flagCategory()]);
   activeAltParentId = computed(
     () => this.activeRange()?.alt_parent_id ?? this.entity().alt_parent_id,
+  );
+  activeFlag = computed(() =>
+    this.entity().flags?.find((flag) => flag.categories?.includes(this.flagCategory())),
   );
   activeFlagRange = computed(() => this.#setActiveFlagRange());
   activeRange = computed(() => this.#setActiveRange());
@@ -52,7 +54,7 @@ export class EntityComponent {
   }
 
   #setActiveFlagRange(): EntityFlagRange | undefined {
-    return getActiveRange(this.#selectedYear(), this.#activeFlag()?.ranges);
+    return getActiveRange(this.#selectedYear(), this.activeFlag()?.ranges);
   }
 
   #setActiveRange(): EntityRange | undefined {
@@ -60,11 +62,8 @@ export class EntityComponent {
   }
 
   #setFlagImageSrc() {
-    const activeFlag = this.#activeFlag();
-    const activeFlagRange = this.activeFlagRange();
+    const activeFlag = this.activeFlag();
 
-    return this.isReversed()
-      ? (activeFlagRange?.reverse_url ?? activeFlag?.reverse_url)
-      : (activeFlagRange?.url ?? activeFlag?.url);
+    return this.isReversed() ? activeFlag?.reverse_url : activeFlag?.url;
   }
 }

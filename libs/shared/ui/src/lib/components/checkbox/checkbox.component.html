@@ -9,6 +9,8 @@
 >
   <flag-icon>{{ indeterminate() ? 'remove' : 'check' }}</flag-icon>
 </div>
-<label tabindex="-1" [for]="uuid">
-  {{ label() }}
-</label>
+@if (!hideLabel()) {
+  <label tabindex="-1" [for]="uuid">
+    {{ label() }}
+  </label>
+}

@@ -29,7 +29,7 @@
   @if (selectedEntity(); as selectedEntity) {
     <div class="flag">
       <flag-image
-        [src]="selectedEntity.flags?.official?.url ?? ''"
+        [src]="activeFlag()?.url ?? ''"
         [alt]="
           'flag-image.alt-text' | translate: { name: 'entities.' + selectedEntity.name | translate }
         "

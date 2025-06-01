@@ -2,10 +2,9 @@
   align-items: center;
   color: var(--flag-primary);
   cursor: pointer;
-  display: inline-grid;
+  display: inline-flex;
   font-family: var(--flag-font-family);
   gap: var(--flag-space-xs);
-  grid-template-columns: var(--flag-space-lg) 1fr;
   
   input {
     display: none;
@@ -13,14 +12,16 @@
   
   .checkbox {
     aspect-ratio: 1;
-    border: var(--flag-border-width-sm) solid var(--flag-grey-400);
+    border: var(--flag-border-size-sm) solid var(--flag-grey-400);
     border-radius: var(--flag-radius-sm);
     position: relative;
+    width: var(--flag-space-lg);
   
     flag-icon {
       color: var(--flag-white);
       font-size: var(--flag-font-size-md);
-      margin: calc(var(--flag-border-width-sm) * -1);
+      inset-inline-start: 0;
+      margin: calc(var(--flag-border-size-sm) * -1);
       opacity: 0;
       position: absolute;
     }
@@ -29,6 +30,7 @@
   label {
     cursor: pointer;
     pointer-events: none;
+    text-align: start;
   }
 
   &.checked,

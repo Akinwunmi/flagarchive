@@ -2,6 +2,7 @@ import { CdkMenu, CdkMenuItem } from '@angular/cdk/menu';
 import {
   ChangeDetectionStrategy,
   Component,
+  computed,
   effect,
   inject,
   input,
@@ -19,7 +20,7 @@ import { TranslatePipe } from '@ngx-translate/core';
 
 import { ENTITY_MENU_ITEMS } from '../../constants';
 import { MenuItem } from '../../models';
-import { EntitiesStore } from '../../store';
+import { AdvancedSearchStore, EntitiesStore } from '../../store';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -38,17 +39,23 @@ import { EntitiesStore } from '../../store';
   templateUrl: './sidenav.component.html',
 })
 export class SidenavComponent implements OnInit {
+  readonly #advancedSearchStore = inject(AdvancedSearchStore);
   readonly #entitiesStore = inject(EntitiesStore);
 
   entityId = input<string>();
   entityItems = input<MenuItem[]>([]);
 
   continents = this.#entitiesStore.continents;
+  flagCategory = this.#advancedSearchStore.flagCategory;
   globalEntities = this.#entitiesStore.globalEntities;
   isMainEntity = this.#entitiesStore.isMainEntity;
   selectedEntity = this.#entitiesStore.selectedEntity;
 
   initialEntityItems = signal<MenuItem[]>(ENTITY_MENU_ITEMS);
+
+  activeFlag = computed(() =>
+    this.selectedEntity()?.flags?.find((flag) => flag.categories?.includes(this.flagCategory())),
+  );
 
   constructor() {
     effect(() => {

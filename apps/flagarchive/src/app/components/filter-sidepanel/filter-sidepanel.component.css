@@ -1,6 +1,9 @@
 :host {
+  animation: 150ms ease-in fadeIn;
   background-color: var(--flag-white);
   box-shadow: var(--flag-elevation-xs);
+  height: 100svh;
+  opacity: 1;
   overflow-x: hidden;
   width: 20rem;
 }
@@ -17,5 +20,20 @@ header {
 section {
   .layout {
     justify-content: space-between;
+  }
+
+  flag-list-item {
+    > flag-checkbox {
+      margin-inline: var(--flag-space-3xs);
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }

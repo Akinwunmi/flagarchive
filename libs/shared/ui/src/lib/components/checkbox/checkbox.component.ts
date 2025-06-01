@@ -28,6 +28,7 @@ import { IconComponent } from '../icon';
 export class CheckboxComponent implements ControlValueAccessor {
   label = input.required<string>();
   disabled = input(false);
+  hideLabel = input(false);
   name = input('');
   secondary = input(false);
 

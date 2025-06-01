@@ -17,7 +17,7 @@ const INITIAL_STATE: AdvancedSearchState = {
     checked: true,
     label: type,
   })),
-  flagCategory: FlagCategory.Official,
+  flagCategory: FlagCategory.NationalFlag,
   layout: Layout.Grid,
   selectedYear: CURRENT_YEAR,
   showOverseasRegions: false,

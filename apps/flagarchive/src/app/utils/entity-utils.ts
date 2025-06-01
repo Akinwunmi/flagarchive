@@ -1,4 +1,3 @@
-import { FlagCategory } from '@flagarchive/advanced-search';
 import { Entity, EntityFlag, EntityFlagRange, EntityRange } from '@flagarchive/entities';
 
 import { DbEntity, DbEntityFlag, DbEntityFlagRange, DbEntityRange } from '../models';
@@ -8,30 +7,17 @@ import { DbEntity, DbEntityFlag, DbEntityFlagRange, DbEntityRange } from '../mod
  * @param flags - The list of flags from the database.
  * @returns A record of flags mapped by their category, or undefined if no categories are provided.
  */
-function mapFlags(
-  entityFlags: DbEntityFlag[] | null,
-): Record<FlagCategory, EntityFlag> | undefined {
-  if (!entityFlags) {
+function mapFlags(flags: DbEntityFlag[] | null): EntityFlag[] | undefined {
+  if (!flags?.length) {
     return undefined;
   }
 
-  return entityFlags.reduce(
-    (flags, flag) => {
-      const { category, entity_flag_ranges, url, reverse_url } = flag;
-      if (!category) {
-        return flags;
-      }
-
-      flags[category] = {
-        url: url ?? '',
-        reverse_url: reverse_url ?? undefined,
-        ranges: mapFlagRanges(entity_flag_ranges),
-      };
-
-      return flags;
-    },
-    {} as Record<FlagCategory, EntityFlag>,
-  );
+  return flags.map((flag) => ({
+    categories: flag.categories,
+    url: flag.url,
+    reverse_url: flag.reverse_url ?? undefined,
+    ranges: mapFlagRanges(flag.entity_flag_ranges),
+  }));
 }
 
 /**
@@ -47,8 +33,7 @@ function mapFlagRanges(ranges: DbEntityFlagRange[] | null): EntityFlagRange[] | 
   return ranges.map((range) => ({
     start: range.start,
     end: range.end ?? undefined,
-    reverse_url: range.reverse_url ?? undefined,
-    url: range.url ?? undefined,
+    categories: range.categories ?? undefined,
   })) as EntityFlagRange[];
 }
 

@@ -2,7 +2,7 @@ flag-breadcrumb {
   li {
     a {
       flag-image {
-        height: calc(var(--flag-space-3xl) - var(--flag-border-width-sm));
+        height: calc(var(--flag-space-3xl) - var(--flag-border-size-sm));
       }
     }
   }
