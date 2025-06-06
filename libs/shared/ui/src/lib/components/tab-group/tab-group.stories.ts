@@ -1,4 +1,4 @@
-import { componentWrapperDecorator, type Meta, type StoryObj } from '@storybook/angular';
+import { type Meta, type StoryObj } from '@storybook/angular';
 import { within } from '@storybook/testing-library';
 import { expect } from '@storybook/jest';
 

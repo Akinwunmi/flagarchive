@@ -3,8 +3,8 @@
   font-family: var(--flag-font-family);
   font-size: var(--flag-font-size-sm);
   height: var(--flag-space-lg);
-  line-height: var(--flag-font-line-height-sm);
-  margin-block-end: var(--flag-space-sm);
+  line-height: var(--flag-line-height-sm);
+  margin-block-end: var(--flag-space-xs);
 
   &[required] {
     &::after {

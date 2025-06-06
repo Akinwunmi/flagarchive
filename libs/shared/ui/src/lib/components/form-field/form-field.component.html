@@ -5,8 +5,8 @@
   <ng-content />
 </fieldset>
 @if (infoMessage()) {
-  <p>{{ infoMessage() }}</p>
+  <p class="message">{{ infoMessage() }}</p>
 }
 @if (errorMessage()) {
-  <p class="error">{{ errorMessage() }}</p>
+  <p class="message error">{{ errorMessage() }}</p>
 }

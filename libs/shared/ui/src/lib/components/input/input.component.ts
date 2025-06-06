@@ -9,12 +9,15 @@ import {
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { FormFieldComponent } from '../form-field';
+import { IconComponent } from '../icon';
+import { InputType } from './input.model';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    role: 'input',
+    role: 'textbox',
   },
+  imports: [IconComponent],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -23,13 +26,17 @@ import { FormFieldComponent } from '../form-field';
     },
   ],
   selector: 'flag-input',
-  styleUrls: ['../form-field/form-field.component.css', '../form-field/input.css'],
+  styleUrls: [
+    '../form-field/form-field.component.css',
+    '../form-field/input.css',
+    './input.component.css',
+  ],
   templateUrl: './input.component.html',
 })
 export class InputComponent extends FormFieldComponent implements ControlValueAccessor {
   placeholder = input('');
   readonly = input(false);
-  type = input('text');
+  type = input<InputType>('text');
 
   changed = output<string | number>();
 

@@ -7,11 +7,12 @@ textarea {
   color: var(--flag-primary);
   font-family: var(--flag-font-family);
   font-size: var(--flag-font-size-sm);
-  height: var(--flag-space-4xl);
-  line-height: var(--flag-font-line-height-md);
+  height: var(--flag-space-3xl);
+  line-height: var(--flag-line-height-md);
   outline-color: var(--flag-primary);
   padding-inline: var(--flag-space-md);
   transition: background-color 150ms ease-in-out;
+  width: 100%;
 
   &::placeholder {
     color: var(--flag-grey-500);

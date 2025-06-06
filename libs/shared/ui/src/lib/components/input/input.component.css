@@ -1,0 +1,29 @@
+.input-field {
+  position: relative;
+
+  .search-icon {
+    inset-block-start: var(--flag-space-xs);
+    inset-inline-start: var(--flag-space-xs);
+    pointer-events: none;
+    position: absolute;
+  }
+
+  input[type='search'] {
+    padding-inline-start: calc(var(--flag-space-2xl) + var(--flag-space-2xs));
+
+    &::-webkit-search-cancel-button {
+      appearance: none;
+    }
+
+    &.has-value {
+      padding-inline-end: var(--flag-space-2xl);
+    }
+  }
+
+  .clear-button {
+    inset-block-start: var(--flag-space-xs);
+    inset-inline-end: var(--flag-space-xs);
+    padding-inline: var(--flag-border-size-xs);
+    position: absolute;
+  }
+}
