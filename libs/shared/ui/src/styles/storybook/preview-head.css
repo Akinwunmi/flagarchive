@@ -24,8 +24,14 @@ div.css-k7lbue {
         
         > tr {
           > * {
-            background-color: var(--flag-grey-200);
+            background-color: var(--flag-grey-bg) !important;
             border: none;
+          }
+
+          &.css-1oi7qoy {
+            > * {
+              border-block-end: var(--flag-border-size-xs) solid var(--flag-grey-300) !important;
+            }
           }
         }
       }

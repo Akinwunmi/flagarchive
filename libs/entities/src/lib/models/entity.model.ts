@@ -11,6 +11,7 @@ export interface Entity {
   hoisted_right?: boolean;
   parent_ids?: string[];
   ranges?: EntityRange[];
+  sources?: EntitySource[];
 }
 
 export interface EntityFlag {
@@ -29,6 +30,7 @@ export enum EntityType {
   Canton = 'canton',
   CapitalDistrict = 'capital-district',
   City = 'city',
+  CityState = 'city-state',
   Commune = 'commune',
   Community = 'community',
   ConstituentCountry = 'constituent-country',
@@ -39,6 +41,7 @@ export enum EntityType {
   Department = 'department',
   DependentTerritory = 'dependent-territory',
   District = 'district',
+  Empire = 'empire',
   EthnicGroup = 'ethnic-group',
   ExternalTerritory = 'external-territory',
   FederalDistrict = 'federal-district',
@@ -86,4 +89,9 @@ export interface EntityRange extends EntityStartEnd {
   parent_ids?: string[];
   name?: string;
   type?: EntityType;
+}
+
+export interface EntitySource {
+  name: string;
+  url: string;
 }

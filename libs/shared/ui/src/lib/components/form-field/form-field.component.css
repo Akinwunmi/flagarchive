@@ -12,7 +12,7 @@ fieldset {
   padding: 0;
 
   legend {
-    margin-bottom: var(--flag-space-sm);
+    margin-block-end: var(--flag-space-sm);
     padding: 0;
   }
 }

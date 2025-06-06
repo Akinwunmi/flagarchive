@@ -38,7 +38,7 @@ export interface DbEntityFlag extends DbRawEntityFlag {
 export interface DbEntity extends DbRawEntity {
   entity_flags: DbEntityFlag[] | null;
   entity_ranges: DbEntityRange[] | null;
-  sources: DbEntitySource[] | null;
+  entity_sources: DbEntitySource[] | null;
 }
 
 interface DbEntityFlagForeignKey {

@@ -20,9 +20,9 @@
   &::before {
     animation: 5000ms linear 0s 1 normal scale;
     background-color: var(--flag-grey-700);
-    inset-block: 0;
     content: '';
-    left: -100%;
+    inset-block: 0;
+    inset-inline-start: -100%;
     position: absolute;
     width: 100%;
     z-index: -1;

@@ -2,13 +2,14 @@
   color: var(--flag-primary-500);
   font-family: var(--flag-font-family);
   font-size: var(--flag-font-size-sm);
-  line-height: var(--flag-font-line-height-md);
+  height: var(--flag-space-lg);
+  line-height: var(--flag-font-line-height-sm);
   margin-block-end: var(--flag-space-sm);
 
   &[required] {
     &::after {
       content: '*';
-      padding-left: var(--flag-space-3xs);
+      padding-inline-start: var(--flag-space-3xs);
     }
   }
 }

@@ -6,7 +6,8 @@ import { DbEntity } from '../models';
 import { sanitizeEntity } from '../utils';
 import { SupabaseService } from './supabase.service';
 
-const ENTITY_SELECT_QUERY = '*, entity_flags(*, entity_flag_ranges(*)), entity_ranges(*)';
+const ENTITY_SELECT_QUERY =
+  '*, entity_flags(*, entity_flag_ranges(*)), entity_ranges(*), entity_sources(*)';
 
 @Injectable({
   providedIn: 'root',

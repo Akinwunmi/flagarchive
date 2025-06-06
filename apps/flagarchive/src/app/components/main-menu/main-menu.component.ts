@@ -74,5 +74,6 @@ export class MainMenuComponent implements OnInit {
 
   logOut() {
     this.#authService.logOut();
+    this.close();
   }
 }

@@ -1,1 +1,28 @@
-<p>tab-group works!</p>
+<div role="tablist">
+  @for (tab of tabs(); track $index) {
+    <button
+      #tab
+      role="tab"
+      type="button"
+      [attr.aria-controls]="'tab-panel-' + $index"
+      [attr.aria-selected]="tab.active"
+      [id]="'tab-' + tab.id"
+      [tabindex]="tab.active ? 0 : -1"
+      (click)="selectTab($index)"
+      (keydown)="onKeyDown($event)"
+    >
+      {{ tab.label() }}
+    </button>
+  }
+</div>
+@for (tab of tabs(); track tab.id) {
+  <div
+    tabindex="0"
+    role="tabpanel"
+    [attr.aria-labelledby]="'tab-' + tab.id"
+    [class.hidden]="!tab.active"
+    [id]="'tab-panel-' + tab.id"
+  >
+    <ng-template [cdkPortalOutlet]="tab.panel" />
+  </div>
+}

@@ -1,6 +1,18 @@
-import { Entity, EntityFlag, EntityFlagRange, EntityRange } from '@flagarchive/entities';
+import {
+  Entity,
+  EntityFlag,
+  EntityFlagRange,
+  EntityRange,
+  EntitySource,
+} from '@flagarchive/entities';
 
-import { DbEntity, DbEntityFlag, DbEntityFlagRange, DbEntityRange } from '../models';
+import {
+  DbEntity,
+  DbEntityFlag,
+  DbEntityFlagRange,
+  DbEntityRange,
+  DbEntitySource,
+} from '../models';
 
 /**
  * Maps flags with their associated ranges.
@@ -57,13 +69,21 @@ function mapRanges(ranges: DbEntityRange[] | null): EntityRange[] | undefined {
   })) as EntityRange[];
 }
 
+function mapSources(sources: DbEntitySource[] | null): EntitySource[] | undefined {
+  if (!sources?.length) {
+    return undefined;
+  }
+
+  return sources.map(({ name, url }) => ({ name, url })) as EntitySource[];
+}
+
 /**
  * Sanitizes a raw database entity into an application-level entity.
  * @param rawEntity - The raw entity from the database.
  * @returns The sanitized entity.
  */
 export function sanitizeEntity(rawEntity: DbEntity): Entity {
-  const { entity_flags, entity_ranges, ...entity } = rawEntity;
+  const { entity_flags, entity_ranges, entity_sources, ...entity } = rawEntity;
 
   return {
     id: entity.id,
@@ -76,5 +96,6 @@ export function sanitizeEntity(rawEntity: DbEntity): Entity {
     parent_ids: entity.parent_ids ?? undefined,
     flags: mapFlags(entity_flags),
     ranges: mapRanges(entity_ranges),
+    sources: mapSources(entity_sources),
   };
 }
