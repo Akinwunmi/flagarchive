@@ -1,0 +1,19 @@
+:host {
+  display: flex;
+  flex-direction: column;
+}
+
+[role='tablist'] {
+  border-block-end: var(--flag-border-size-sm) solid var(--flag-grey-200);
+  display: flex;
+  padding-block-start: var(--flag-space-sm);
+  width: 100%;
+}
+
+[role='tabpanel'] {
+  display: block;
+  
+  &.hidden {
+    display: none;
+  }
+}

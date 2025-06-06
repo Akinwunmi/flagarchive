@@ -7,7 +7,7 @@ const preview: Preview = {
       values: [
         {
           name: 'light',
-          value: 'var(--flag-grey-bg)',
+          value: 'var(--flag-white)',
         },
         {
           name: 'primary',

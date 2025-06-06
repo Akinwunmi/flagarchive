@@ -21,8 +21,8 @@ div.css-lf8gv9 {
   color: var(--flag-primary);
 
   div.sidebar-header.css-1be7p8e {
-    padding-left: var(--flag-space-xs);
-    padding-top: var(--flag-space-2xs);
+    padding-inline-start: var(--flag-space-xs);
+    padding-block-start: var(--flag-space-2xs);
 
     img.css-32o4gv {
       max-width: 190px !important;

@@ -9,6 +9,6 @@
 }
 
 flag-card {
-  margin-bottom: var(--flag-space-xs);
+  margin-block-end: var(--flag-space-xs);
   overflow: auto;
 }
