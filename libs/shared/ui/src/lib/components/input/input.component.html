@@ -1,21 +1,39 @@
 <label flag-label [for]="uuid" [attr.required]="required() || undefined">
   {{ label() }}
 </label>
-<input
-  [attr.error]="errorMessage()"
-  [disabled]="disabled()"
-  [id]="uuid"
-  [placeholder]="placeholder()"
-  [readonly]="readonly()"
-  [required]="required() || undefined"
-  [type]="type()"
-  [value]="value()"
-  (blur)="onBlur()"
-  (input)="onInput($event)"
-/>
+<div class="input-field">
+  @if (type() === 'search') {
+    <flag-icon class="search-icon">search</flag-icon>
+  }
+  <input
+    [attr.error]="errorMessage()"
+    [class.has-value]="value()"
+    [disabled]="disabled()"
+    [id]="uuid"
+    [placeholder]="placeholder()"
+    [readonly]="readonly()"
+    [required]="required() || undefined"
+    [type]="type()"
+    [value]="value()"
+    (blur)="onBlur()"
+    (input)="onInput($event)"
+  />
+  @if (value()) {
+    <button
+      flag-button
+      extra-small
+      aria-label="Clear input"
+      class="clear-button"
+      type="button"
+      (click)="writeValue('')"
+    >
+      <flag-icon>close</flag-icon>
+    </button>
+  }
+</div>
 @if (infoMessage()) {
-  <p>{{ infoMessage() }}</p>
+  <p class="message">{{ infoMessage() }}</p>
 }
 @if (errorMessage()) {
-  <p class="error">{{ errorMessage() }}</p>
+  <p class="message error">{{ errorMessage() }}</p>
 }
