@@ -1,0 +1,97 @@
+:host {
+  display: inline-block;
+}
+
+input[type='checkbox'] {
+  &:focus-visible + label {
+    outline: var(--flag-border-size-xs) auto -webkit-focus-ring-color;
+  }
+}
+
+button,
+.tag {
+  align-items: center;
+  background-color: var(--flag-white);
+  border: var(--flag-border-size-xs) solid var(--flag-secondary-700);
+  border-radius: var(--flag-radius-xl);
+  box-sizing: border-box;
+  color: var(--flag-secondary-700);
+  display: flex;
+  font-family: var(--flag-font-family);
+  font-size: var(--flag-font-size-xs);
+  gap: var(--flag-space-2xs);
+  height: var(--flag-space-2xl);
+  line-height: var(--flag-line-height-xs);
+  padding-inline: var(--flag-space-sm);
+  transition: background-color 150ms ease-in-out;
+
+  flag-icon {
+    font-size: var(--flag-font-size-sm);
+  }
+}
+
+button {
+  cursor: pointer;  
+
+  &:has(flag-icon) {
+    padding-inline-end: var(--flag-space-xs);
+  }
+
+  &:hover {
+    background-color: var(--flag-secondary-100);
+  }
+
+  &:active {
+    background-color: var(--flag-secondary-200);
+  }
+}
+
+.tag {
+  &.checkable {
+    cursor: pointer;
+    padding-inline-start: calc(var(--flag-space-2xs) + var(--flag-border-size-xs));
+
+    .checkbox {
+      align-items: center;
+      background-color: var(--flag-secondary-100);
+      border-radius: 50%;
+      display: flex;
+      height: var(--flag-space-lg);
+      justify-content: center;
+      transition: background-color 150ms ease-in-out;
+      width: var(--flag-space-lg);
+    }
+
+    &:hover {
+      background-color: var(--flag-secondary-100);
+
+      .checkbox {
+        background-color: var(--flag-secondary-200);
+      }
+    }
+
+    &:active {
+      .checkbox {
+        background-color: var(--flag-secondary-300);
+      }
+    }
+
+    &.checked {
+      background-color: var(--flag-secondary-600);
+      color: var(--flag-white);
+
+      .checkbox {
+        background-color: inherit;
+        color: inherit;
+      }
+
+      &:hover {
+        background-color: var(--flag-secondary-500);
+      }
+
+      &:active {
+        background-color: var(--flag-secondary-700);
+      }
+    }
+  }
+}
