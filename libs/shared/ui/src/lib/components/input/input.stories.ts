@@ -1,6 +1,6 @@
 import { type Meta, type StoryObj } from '@storybook/angular';
-import { within } from '@storybook/testing-library';
 import { expect } from '@storybook/jest';
+import { within } from '@storybook/testing-library';
 
 import { InputComponent } from './input.component';
 

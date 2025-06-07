@@ -20,6 +20,7 @@ export * from './sidepanel';
 export * from './skeleton';
 export * from './tab';
 export * from './tab-group';
+export * from './tag';
 export * from './toast';
 export * from './year-navigator';
 export * from './year-picker';

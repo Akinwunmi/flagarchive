@@ -5,16 +5,6 @@
 
   --flag-base-font-size: 16px;
 
-  --flag-letter-spacing-md: 0.25rem;
-
-  --flag-line-height-xs: 1.125rem;
-  --flag-line-height-sm: 1.25rem;
-  --flag-line-height-md: 1.5rem;
-  --flag-line-height-lg: 1.75rem;
-  --flag-line-height-xl: 2rem;
-  --flag-line-height-2xl: 2.5rem;
-  --flag-line-height-3xl: 3rem;
-
   --flag-font-size-xs: 0.75rem;
   --flag-font-size-sm: 1rem;
   --flag-font-size-md: 1.25rem;
@@ -26,4 +16,14 @@
   --flag-font-weight-regular: 400;
   --flag-font-weight-medium: 500;
   --flag-font-weight-bold: 600;
+
+  --flag-letter-spacing-md: 0.25rem;
+
+  --flag-line-height-xs: 1.125rem;
+  --flag-line-height-sm: 1.25rem;
+  --flag-line-height-md: 1.5rem;
+  --flag-line-height-lg: 1.75rem;
+  --flag-line-height-xl: 2rem;
+  --flag-line-height-2xl: 2.5rem;
+  --flag-line-height-3xl: 3rem;
 }
