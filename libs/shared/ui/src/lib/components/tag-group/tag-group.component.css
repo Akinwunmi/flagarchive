@@ -1,0 +1,5 @@
+:host {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--flag-space-xs);
+}
