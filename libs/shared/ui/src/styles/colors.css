@@ -61,5 +61,7 @@
   --flag-error-600: hsl(var(--_error), 41%);
   --flag-error-700: hsl(var(--_error), 30%);
 
+  --flag-highlight: hsl(50, 100%, 75%);
+
   --flag-black-alpha-light: hsla(var(--_black), 0.075);
 }

@@ -1,0 +1,13 @@
+<ng-template>
+  <flag-card>
+    <flag-list>
+      @for (option of filteredOptions(); track option.value) {
+        <button
+          flag-list-item
+          [innerHTML]="option.label | highlight: searchValue()"
+          (click)="selectOption(option)"
+        ></button>
+      }
+    </flag-list>
+  </flag-card>
+</ng-template>
