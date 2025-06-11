@@ -1,7 +1,9 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  effect,
   forwardRef,
+  inject,
   input,
   model,
   output,
@@ -11,6 +13,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { FormFieldComponent } from '../form-field';
 import { IconComponent } from '../icon';
 import { InputType } from './input.model';
+import { InputService } from './input.service';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -34,6 +37,8 @@ import { InputType } from './input.model';
   templateUrl: './input.component.html',
 })
 export class InputComponent extends FormFieldComponent implements ControlValueAccessor {
+  readonly #inputService = inject(InputService);
+
   placeholder = input('');
   readonly = input(false);
   type = input<InputType>('text');
@@ -45,6 +50,13 @@ export class InputComponent extends FormFieldComponent implements ControlValueAc
 
   uuid = crypto.randomUUID();
 
+  constructor() {
+    super();
+    effect(() => {
+      this.value.set(this.#inputService.value());
+    });
+  }
+
   #onChange: (value: string | number) => void = () => {
     this.changed.emit(this.value());
   };
@@ -53,11 +65,11 @@ export class InputComponent extends FormFieldComponent implements ControlValueAc
     // noop
   };
 
-  onBlur(): void {
+  onBlur() {
     this.#onTouched();
   }
 
-  onInput(event: Event): void {
+  onInput(event: Event) {
     const { value } = event.target as HTMLInputElement;
     this.#setValue(value);
     this.#onChange(this.value());

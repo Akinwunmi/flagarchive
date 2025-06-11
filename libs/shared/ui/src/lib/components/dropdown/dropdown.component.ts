@@ -1,11 +1,11 @@
 import { CdkTrapFocus } from '@angular/cdk/a11y';
 import { ChangeDetectionStrategy, Component, effect, input, model, viewChild } from '@angular/core';
 
-import { DropdownTriggerDirective } from '../../directives';
 import { BadgeComponent } from '../badge';
 import { CardComponent } from '../card';
 import { IconComponent } from '../icon';
 import { ListComponent } from '../list';
+import { DropdownDirective } from './dropdown.directive';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -13,7 +13,7 @@ import { ListComponent } from '../list';
     BadgeComponent,
     CardComponent,
     CdkTrapFocus,
-    DropdownTriggerDirective,
+    DropdownDirective,
     IconComponent,
     ListComponent,
   ],
@@ -32,7 +32,7 @@ export class DropdownComponent {
 
   isOpen = model(false);
 
-  flagCategoriesMenu = viewChild.required(DropdownTriggerDirective);
+  flagCategoriesMenu = viewChild.required(DropdownDirective);
 
   constructor() {
     effect(() => {

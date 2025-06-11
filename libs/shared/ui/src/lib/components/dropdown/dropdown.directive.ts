@@ -1,4 +1,4 @@
-import { ConnectedPosition, Overlay, OverlayRef } from '@angular/cdk/overlay';
+import { Overlay, OverlayRef } from '@angular/cdk/overlay';
 import { TemplatePortal } from '@angular/cdk/portal';
 import {
   DestroyRef,
@@ -14,21 +14,21 @@ import {
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { EMPTY, merge, Observable } from 'rxjs';
 
+import { CONNECTED_POSITIONS } from '../../constants';
+
 @Directive({
-  selector: '[flagDropdownTrigger]',
+  selector: '[flagDropdown]',
   host: {
     '(click)': 'handleClick()',
   },
 })
-export class DropdownTriggerDirective implements OnDestroy {
+export class DropdownDirective implements OnDestroy {
   #destroyRef = inject(DestroyRef);
   #elementRef = inject(ElementRef<HTMLElement>);
   #overlay = inject(Overlay);
   #viewContainerRef = inject(ViewContainerRef);
 
-  contentRef = input.required<TemplateRef<unknown>>({
-    alias: 'flagDropdownTrigger',
-  });
+  flagDropdown = input.required<TemplateRef<unknown>>();
 
   isOpen = model(false);
 
@@ -50,32 +50,7 @@ export class DropdownTriggerDirective implements OnDestroy {
   }
 
   open() {
-    const xStart: Pick<ConnectedPosition, 'originX' | 'overlayX'> = {
-      originX: 'start',
-      overlayX: 'start',
-    };
-    const xEnd: Pick<ConnectedPosition, 'originX' | 'overlayX'> = {
-      originX: 'end',
-      overlayX: 'end',
-    };
-    const yTop: Pick<ConnectedPosition, 'originY' | 'overlayY'> = {
-      originY: 'top',
-      overlayY: 'bottom',
-    };
-    const yBottom: Pick<ConnectedPosition, 'originY' | 'overlayY'> = {
-      originY: 'bottom',
-      overlayY: 'top',
-    };
-    const positions: ConnectedPosition[] = [
-      { ...xStart, ...yBottom, offsetY: 4 },
-      { ...xEnd, ...yBottom, offsetY: 4 },
-      { ...xStart, ...yTop, offsetY: -4 },
-      { ...xEnd, ...yTop, offsetY: -4 },
-    ];
-    const templatePortal = new TemplatePortal(
-      this.contentRef(),
-      this.#viewContainerRef
-    );
+    const templatePortal = new TemplatePortal(this.flagDropdown(), this.#viewContainerRef);
 
     this.#overlayRef = this.#overlay.create({
       hasBackdrop: true,
@@ -84,7 +59,7 @@ export class DropdownTriggerDirective implements OnDestroy {
       positionStrategy: this.#overlay
         .position()
         .flexibleConnectedTo(this.#elementRef)
-        .withPositions(positions),
+        .withPositions(CONNECTED_POSITIONS),
     });
     this.#overlayRef.attach(templatePortal);
 

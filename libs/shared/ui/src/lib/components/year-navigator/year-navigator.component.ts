@@ -9,15 +9,15 @@ import {
 } from '@angular/core';
 import { interval, Subject, takeUntil } from 'rxjs';
 
-import { DropdownTriggerDirective } from '../../directives';
-import { IconComponent } from '../icon/icon.component';
-import { YearPickerComponent } from '../year-picker/year-picker.component';
+import { DropdownDirective } from '../dropdown';
+import { IconComponent } from '../icon';
+import { YearPickerComponent } from '../year-picker';
 
 import { CURRENT_YEAR } from './year-navigator.constant';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [DropdownTriggerDirective, IconComponent, YearPickerComponent],
+  imports: [DropdownDirective, IconComponent, YearPickerComponent],
   selector: 'flag-year-navigator',
   styleUrl: './year-navigator.component.css',
   templateUrl: './year-navigator.component.html',

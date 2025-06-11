@@ -1,0 +1,8 @@
+p.highlight {
+  margin: 0;
+
+  span {
+    background-color: var(--flag-highlight);
+    font-weight: var(--flag-font-weight-bold);
+  }
+}
