@@ -1,0 +1,22 @@
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--flag-space-lg) var(--flag-space-sm);
+  padding-inline: var(--flag-space-md);
+
+  &.no-padding {
+    padding-inline: 0;
+  }
+
+  .column-12 {
+    width: 100%;
+  }
+
+  .column-6 {
+    width: calc(50% - var(--flag-space-sm) / 2);
+  }
+
+  .column-4 {
+    width: calc(100% / 3 - var(--flag-space-3xs) - var(--flag-space-sm) / 2);
+  }
+}

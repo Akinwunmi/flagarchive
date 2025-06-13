@@ -18,7 +18,10 @@
     "details": "Details",
     "entities": "Entities",
     "filters-and-sorting": "Filters and sorting",
-    "flags": "Flags",
+    "flag": {
+      "singular": "Flag",
+      "plural": "Flags"
+    },
     "global": "Global",
     "go-to-home": "Go to home",
     "history": "History",
@@ -33,6 +36,13 @@
     "signup": "Sign up",
     "update": "Update",
     "update-password": "Update password"
+  },
+  "entity": {
+    "dissolved": "Dissolved",
+    "founded": "Founded",
+    "part-of": "Part of",
+    "region": "Region",
+    "sources": "Sources"
   },
   "errors": {
     "confirm-password": {
@@ -51,6 +61,18 @@
       "required": "Username is required",
       "min-length": "Username must be at least 3 characters long"
     }
+  },
+  "flag": {
+    "colour": {
+      "singular": "Colour",
+      "plural": "Colours"
+    },
+    "designed-by": "Designed by",
+    "nickname": "Nickname",
+    "pms": "PMS",
+    "ratio": "Ratio",
+    "year-abolished": "Year abolished",
+    "year-adopted": "Year adopted"
   },
   "flag-categories": {
     "civil-ensign": "Civil ensign",

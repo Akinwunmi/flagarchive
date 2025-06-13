@@ -18,6 +18,7 @@ export interface EntityFlag {
   categories: FlagCategory[];
   url: string;
   ranges?: EntityFlagRange[];
+  ratio?: string;
   reverse_url?: string;
 }
 
@@ -82,6 +83,7 @@ interface EntityStartEnd {
 
 export interface EntityFlagRange extends EntityStartEnd {
   categories?: FlagCategory[];
+  ratio?: string;
 }
 
 export interface EntityRange extends EntityStartEnd {

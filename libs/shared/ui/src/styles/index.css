@@ -1,6 +1,7 @@
 @import './colors.css';
 @import './components/index.css';
 @import './fonts.css';
+@import './grid.css';
 @import './screenreader.css';
 @import './typography.css';
 @import './variables.css';

@@ -1,5 +1,47 @@
 :host {
-  background-color: lightpink;
-  display: block;
+  align-content: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: var(--flag-space-lg);
+  height: 100%;
+  overflow-y: auto;
+  padding-block: var(--flag-space-sm) var(--flag-space-xl);
+  position: relative;
   width: 100%;
+}
+
+app-advanced-search-bar {
+  margin-inline: var(--flag-space-sm);
+  z-index: 2;
+}
+
+.content {
+  align-content: stretch;
+  display: grid;
+  flex-grow: 1;
+  gap: var(--flag-space-sm);
+  grid-template-columns: 2fr 1fr;
+  padding-inline: var(--flag-space-md);
+
+  .flag-info {
+    flag-card-content {
+      .grid {
+        flag-tag-group {
+          margin-block: var(--flag-space-md);
+        }
+      }
+    }
+  }
+
+  .entity-info {
+    gap: var(--flag-space-xs);
+
+    flag-card-header {
+      gap: var(--flag-space-2xs);
+
+      .subtitle {
+        color: var(--flag-secondary-700);
+      }
+    }
+  }
 }

@@ -16,3 +16,9 @@ h2 {
     line-height: var(--flag-line-height-2xl);
   }
 }
+
+h3 {
+  font-size: var(--flag-font-size-md);
+  line-height: var(--flag-line-height-md);
+  margin: 0;
+}

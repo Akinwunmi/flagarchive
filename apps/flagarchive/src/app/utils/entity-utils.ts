@@ -29,6 +29,7 @@ function mapFlags(flags: DbEntityFlag[] | null): EntityFlag[] | undefined {
     url: flag.url,
     reverse_url: flag.reverse_url ?? undefined,
     ranges: mapFlagRanges(flag.entity_flag_ranges),
+    ratio: flag.ratio ?? undefined,
   }));
 }
 
@@ -46,6 +47,7 @@ function mapFlagRanges(ranges: DbEntityFlagRange[] | null): EntityFlagRange[] | 
     start: range.start,
     end: range.end ?? undefined,
     categories: range.categories ?? undefined,
+    ratio: range.ratio ?? undefined,
   })) as EntityFlagRange[];
 }
 
@@ -69,12 +71,13 @@ function mapRanges(ranges: DbEntityRange[] | null): EntityRange[] | undefined {
   })) as EntityRange[];
 }
 
-function mapSources(sources: DbEntitySource[] | null): EntitySource[] | undefined {
-  if (!sources?.length) {
+function mapSources(rawSources: DbEntitySource[] | null): EntitySource[] | undefined {
+  if (!rawSources?.length) {
     return undefined;
   }
 
-  return sources.map(({ name, url }) => ({ name, url })) as EntitySource[];
+  const sources = rawSources.map(({ name, url }) => ({ name, url })) as EntitySource[];
+  return sources.sort((a, b) => a.name.localeCompare(b.name));
 }
 
 /**
