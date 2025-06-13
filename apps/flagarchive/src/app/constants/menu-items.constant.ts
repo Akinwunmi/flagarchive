@@ -8,7 +8,7 @@ export const ENTITY_MENU_ITEMS: MenuItem[] = [
   },
   {
     icon: 'flag',
-    label: 'common.entities',
+    label: 'common.entity.plural',
     path: ['entities'],
   },
   {

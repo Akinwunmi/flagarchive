@@ -19,7 +19,7 @@
     .navigation {
       display: flex;
     }
-  
+
     @media screen and (max-width: 50rem) {
       grid-template-columns: 1fr;
 
@@ -27,13 +27,13 @@
         flex-direction: column;
         width: 100%;
       }
-  
+
       app-main-navigation-actions {
         display: none;
       }
     }
   }
-  
+
   main {
     align-items: center;
     display: flex;

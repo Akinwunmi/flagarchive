@@ -1,14 +1,18 @@
 <app-advanced-search-bar />
 @if (entity(); as entity) {
   <div class="content">
-    <flag-card class="flag-info">
+    <flag-tab-group (activeChange)="setActiveSection($event)">
+      <flag-tab [label]="'common.flag.singular' | translate" />
+      <flag-tab [label]="'common.entity.singular' | translate" />
+    </flag-tab-group>
+    <flag-card class="flag-info" [class.active]="activeSection() === detailsSection.Flag">
       <flag-card-header>
         {{ 'common.flag.singular' | translate }}
       </flag-card-header>
       <flag-card-content>
         <div class="grid no-padding">
           @if (activeFlag(); as activeFlag) {
-            <flag-tag-group class="column-12">
+            <flag-tag-group class="column-lg-12">
               @for (category of activeFlag.categories; track $index) {
                 <flag-tag>
                   {{ 'flag-categories.' + (category | hyphenate) | translate }}
@@ -17,50 +21,50 @@
             </flag-tag-group>
           }
           @if (activeFlagRange(); as activeFlagRange) {
-            <div class="key-value column-4">
-              <p>{{ 'flag.year-adopted' | translate }}</p>
+            <div class="column-lg-4 column-sm-2 key-value">
+              <p>{{ 'flag.adopted' | translate }}</p>
               <p>{{ activeFlagRange.start }}</p>
             </div>
-            <div class="key-value column-4">
-              <p>{{ 'flag.year-abolished' | translate }}</p>
+            <div class="column-lg-4 column-sm-2 key-value">
+              <p>{{ 'flag.abolished' | translate }}</p>
               <p>{{ activeFlagRange.end ?? '\u2014' }}</p>
             </div>
-            <div class="key-value column-4">
+            <div class="column-lg-4 column-sm-2 key-value">
               <p>{{ 'flag.ratio' | translate }}</p>
               <p>{{ activeFlag()?.ratio ?? activeFlagRange.ratio ?? '\u2014' }}</p>
             </div>
           }
-          <hr flag-divider class="column-12" />
+          <hr flag-divider class="column-lg-12" />
         </div>
       </flag-card-content>
     </flag-card>
-    <flag-card class="entity-info">
+    <flag-card class="entity-info" [class.active]="activeSection() === detailsSection.Entity">
       <flag-card-header>
         <h3>{{ 'entities.' + entity.name | translate }}</h3>
         <p class="subtitle">{{ 'entity-types.' + entity.type | translate }}</p>
       </flag-card-header>
       <flag-card-content>
         <div class="grid no-padding">
-          <div class="column-12 key-value">
+          <div class="column-lg-12 key-value">
             <p>{{ 'entity.region' | translate }}</p>
             <flag-link-group [links]="parentIdLinks()" />
           </div>
           @if (altParentId(); as altParentId) {
-            <div class="column-12 key-value">
+            <div class="column-lg-12 key-value">
               <p>{{ 'entity.part-of' | translate }}</p>
               <a flag-link [routerLink]="['/flags', altParentId]">{{ altParentId }}</a>
             </div>
           }
-          <div class="column-6 key-value">
+          <div class="column-lg-6 column-md-2 column-sm-2 key-value">
             <p>{{ 'entity.founded' | translate }}</p>
             <p>{{ activeRange()?.start }}</p>
           </div>
-          <div class="column-6 key-value">
+          <div class="column-lg-6 column-md-2 column-sm-2 key-value">
             <p>{{ 'entity.dissolved' | translate }}</p>
             <p>{{ activeRange()?.end ?? '\u2014' }}</p>
           </div>
           @if (entity.sources) {
-            <div class="column-12 key-value">
+            <div class="column-lg-12 key-value">
               <p>{{ 'entity.sources' | translate }}</p>
               <flag-link-group [links]="sourceLinks()" />
             </div>
