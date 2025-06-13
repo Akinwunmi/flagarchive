@@ -1,0 +1,9 @@
+.key-value {
+  display: grid;
+  gap: var(--flag-space-2xs);
+
+  > :first-child {
+    color: var(--flag-secondary-700);
+    font-weight: var(--flag-font-weight-bold);
+  }
+}

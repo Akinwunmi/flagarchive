@@ -45,7 +45,7 @@ export class MainMenuComponent implements OnInit {
 
   topMenu = signal<MenuItem[]>([
     {
-      label: 'common.flags',
+      label: 'common.flag.plural',
       path: ['flags'],
     },
     {

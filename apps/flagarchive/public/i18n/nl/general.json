@@ -18,7 +18,10 @@
     "details": "Details",
     "entities": "Entiteiten",
     "filters-and-sorting": "Filters en sorteren",
-    "flags": "Vlaggen",
+    "flag": {
+      "singular": "Vlag",
+      "plural": "Vlaggen"
+    },
     "global": "Wereldwijd",
     "go-to-home": "Ga naar home",
     "history": "Historie",
@@ -33,6 +36,13 @@
     "signup": "Aanmelden",
     "update": "Bijwerken",
     "update-password": "Wachtwoord bijwerken"
+  },
+  "entity": {
+    "dissolved": "Ontbonden",
+    "founded": "Opgericht",
+    "part-of": "Onderdeel van",
+    "region": "Regio",
+    "sources": "Bronnen"
   },
   "errors": {
     "confirm-password": {
@@ -51,6 +61,18 @@
       "required": "Gebruikersnaam is vereist",
       "min-length": "Gebruikersnaam moet minimaal 3 tekens lang zijn"
     }
+  },
+  "flag": {
+    "colour": {
+      "singular": "Kleur",
+      "plural": "Kleuren"
+    },
+    "designed-by": "Ontworpen door",
+    "nickname": "Bijnaam",
+    "pms": "PMS",
+    "ratio": "Ratio",
+    "year-abolished": "Jaar afgeschaft",
+    "year-adopted": "Jaar aangenomen"
   },
   "flag-categories": {
     "civil-ensign": "Handelsvlag",

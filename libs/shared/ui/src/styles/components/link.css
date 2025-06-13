@@ -1,0 +1,4 @@
+[flag-link] {
+  color: var(--flag-primary);
+  text-underline-offset: var(--flag-space-3xs);
+}

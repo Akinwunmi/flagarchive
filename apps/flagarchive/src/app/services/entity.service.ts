@@ -26,7 +26,6 @@ export class EntityService {
     return from(query).pipe(
       map((response) => {
         const entity = this.#supabaseService.handleError<DbEntity[]>(response)[0];
-
         return sanitizeEntity(entity);
       }),
     );
@@ -72,7 +71,6 @@ export class EntityService {
     return from(query).pipe(
       map((response) => {
         const entities = this.#supabaseService.handleError<DbEntity[]>(response);
-
         return entities.map((entity) => sanitizeEntity(entity));
       }),
     );
