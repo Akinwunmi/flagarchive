@@ -16,7 +16,10 @@
     "cancel": "Cancel",
     "continents": "Continents",
     "details": "Details",
-    "entities": "Entities",
+    "entity": {
+      "singular": "Entity",
+      "plural": "Entities"
+    },
     "filters-and-sorting": "Filters and sorting",
     "flag": {
       "singular": "Flag",
@@ -71,8 +74,8 @@
     "nickname": "Nickname",
     "pms": "PMS",
     "ratio": "Ratio",
-    "year-abolished": "Year abolished",
-    "year-adopted": "Year adopted"
+    "abolished": "Abolished",
+    "adopted": "Adopted"
   },
   "flag-categories": {
     "civil-ensign": "Civil ensign",

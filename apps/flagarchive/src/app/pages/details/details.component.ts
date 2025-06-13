@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { EntityFlagRange, EntityRange, getActiveRange } from '@flagarchive/entities';
 import {
   CardComponent,
@@ -7,14 +8,16 @@ import {
   HyphenatePipe,
   Link,
   LinkGroupComponent,
+  TabComponent,
+  TabGroupComponent,
   TagComponent,
   TagGroupComponent,
 } from '@flagarchive/ui';
 import { TranslatePipe } from '@ngx-translate/core';
-import { RouterLink } from '@angular/router';
 
 import { AdvancedSearchBarComponent } from '../../components/advanced-search-bar';
 import { AdvancedSearchStore, EntitiesStore } from '../../store';
+import { DetailsSection } from './details.model';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -26,6 +29,8 @@ import { AdvancedSearchStore, EntitiesStore } from '../../store';
     HyphenatePipe,
     LinkGroupComponent,
     RouterLink,
+    TabComponent,
+    TabGroupComponent,
     TagComponent,
     TagGroupComponent,
     TranslatePipe,
@@ -41,6 +46,8 @@ export class DetailsComponent {
   #selectedYear = this.#advancedSearchStore.selectedYear;
   entity = this.#entitiesStore.selectedEntity;
 
+  activeSection = signal(DetailsSection.Flag);
+
   activeFlag = computed(() =>
     this.entity()?.flags?.find((flag) => flag.categories?.includes(this.#flagCategory())),
   );
@@ -49,6 +56,12 @@ export class DetailsComponent {
   altParentId = computed(() => this.activeRange()?.alt_parent_id ?? this.entity()?.alt_parent_id);
   parentIdLinks = computed(() => this.#setParentIdLinks());
   sourceLinks = computed(() => this.#setSourceLinks());
+
+  detailsSection = DetailsSection;
+
+  setActiveSection(section: DetailsSection) {
+    this.activeSection.set(section);
+  }
 
   #setActiveFlagRange(): EntityFlagRange | undefined {
     return getActiveRange(this.#selectedYear(), this.activeFlag()?.ranges);

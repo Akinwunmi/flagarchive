@@ -1,3 +1,11 @@
+/*
+  Screen sizes:
+  - lg: 64rem
+  - md: 50rem
+  - sm: 25rem
+  - xs: 20rem
+*/
+
 .grid {
   display: flex;
   flex-wrap: wrap;
@@ -8,15 +16,45 @@
     padding-inline: 0;
   }
 
-  .column-12 {
+  .column-lg-12 {
     width: 100%;
   }
 
-  .column-6 {
+  .column-lg-6 {
     width: calc(50% - var(--flag-space-sm) / 2);
   }
 
-  .column-4 {
+  .column-lg-4 {
     width: calc(100% / 3 - var(--flag-space-3xs) - var(--flag-space-sm) / 2);
+  }
+
+  @media screen and (max-width: 50rem) {
+    .column-md-6 {
+      width: 100%;
+    }
+
+    .column-md-3 {
+      width: calc(50% - var(--flag-space-sm) / 2);
+    }
+
+    .column-md-2 {
+      width: calc(100% / 3 - var(--flag-space-3xs) - var(--flag-space-sm) / 2);
+    }
+  }
+
+  @media screen and (max-width: 25rem) {
+    .column-sm-4 {      
+      width: 100%;
+    }
+
+    .column-sm-2 {
+      width: calc(50% - var(--flag-space-sm) / 2);
+    }
+  }
+
+  @media screen and (max-width: 20rem) {
+    .column-xs-3 {
+      width: 100%;
+    }
   }
 }

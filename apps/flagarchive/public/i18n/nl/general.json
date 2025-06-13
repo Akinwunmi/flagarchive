@@ -16,7 +16,10 @@
     "cancel": "Annuleren",
     "continents": "Continenten",
     "details": "Details",
-    "entities": "Entiteiten",
+    "entity": {
+      "singular": "Entiteit",
+      "plural": "Entiteiten"
+    },
     "filters-and-sorting": "Filters en sorteren",
     "flag": {
       "singular": "Vlag",
@@ -71,8 +74,8 @@
     "nickname": "Bijnaam",
     "pms": "PMS",
     "ratio": "Ratio",
-    "year-abolished": "Jaar afgeschaft",
-    "year-adopted": "Jaar aangenomen"
+    "abolished": "Afgeschaft",
+    "adopted": "Aangenomen"
   },
   "flag-categories": {
     "civil-ensign": "Handelsvlag",

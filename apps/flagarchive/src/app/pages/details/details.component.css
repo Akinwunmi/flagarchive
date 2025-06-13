@@ -23,6 +23,10 @@ app-advanced-search-bar {
   grid-template-columns: 2fr 1fr;
   padding-inline: var(--flag-space-md);
 
+  flag-tab-group {
+    display: none;
+  }
+
   .flag-info {
     flag-card-content {
       .grid {
@@ -41,6 +45,38 @@ app-advanced-search-bar {
 
       .subtitle {
         color: var(--flag-secondary-700);
+      }
+    }
+  }
+
+  @media screen and (max-width: 50rem) {
+    align-content: flex-start;
+    grid-template-columns: 1fr;
+
+    flag-tab-group {
+      display: initial;
+    }
+
+    .flag-info,
+    .entity-info {
+      display: none;
+
+      &.active {
+        display: initial;
+      }
+    }
+
+    .flag-info {
+      flag-card-header {
+        display: none;
+      }
+
+      flag-card-content {
+        .grid {
+          flag-tag-group {
+            margin-block: var(--flag-space-xl) var(--flag-space-xs);
+          }
+        }
       }
     }
   }
