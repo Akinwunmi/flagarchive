@@ -1,146 +1,148 @@
-import { computed, inject } from '@angular/core';
-import { sortBy } from '@flagarchive/advanced-search';
-import { Entity, EntityType } from '@flagarchive/entities';
+import { computed, effect, inject, resource } from '@angular/core';
+import { sortBy, SortDirection } from '@flagarchive/advanced-search';
+import { EntityType } from '@flagarchive/entities';
 import { ToastService } from '@flagarchive/ui';
-import { tapResponse } from '@ngrx/operators';
-import { patchState, signalStore, withComputed, withMethods, withState } from '@ngrx/signals';
-import { rxMethod } from '@ngrx/signals/rxjs-interop';
+import {
+  patchState,
+  signalStore,
+  withComputed,
+  withHooks,
+  withMethods,
+  withProps,
+  withState,
+} from '@ngrx/signals';
 import { TranslateService } from '@ngx-translate/core';
-import { pipe, switchMap } from 'rxjs';
 
 import { EntityService } from '../services';
+import { sanitizeEntity } from '../utils';
 import { AdvancedSearchStore } from './advanced-search.store';
 import { setCurrentRange, setFilteredEntities } from './entities.utils';
 
 interface EntitiesState {
-  entities: Entity[];
-  flagOfTheDay: Entity | undefined;
-  mainEntities: Entity[];
-  newestAdditions: Entity[];
-  selectedEntity: Entity | undefined;
+  breadcrumbIds: string[];
+  selectedEntityId: string | undefined;
 }
 
 const INITIAL_STATE: EntitiesState = {
-  entities: [],
-  flagOfTheDay: undefined,
-  mainEntities: [],
-  newestAdditions: [],
-  selectedEntity: undefined,
+  breadcrumbIds: [],
+  selectedEntityId: undefined,
 };
 
 export const EntitiesStore = signalStore(
   { providedIn: 'root' },
   withState(INITIAL_STATE),
-  withComputed(
-    (
-      state,
-      advancedSearchStore = inject(AdvancedSearchStore),
-      translateService = inject(TranslateService),
-    ) => ({
-      continents: computed(() =>
-        state.mainEntities().filter((entity) => entity.type === EntityType.Continent),
-      ),
-      currentRange: computed(() =>
-        setCurrentRange(state.selectedEntity()?.ranges ?? [], state.entities()),
-      ),
-      filteredEntities: computed(() =>
-        setFilteredEntities(
-          advancedSearchStore,
-          state.entities(),
-          state.selectedEntity(),
-          translateService,
-        ),
-      ),
-      globalEntities: computed(() =>
-        state.mainEntities().filter((entity) => entity.type === EntityType.Organization),
-      ),
-      isMainEntity: computed(
-        () =>
-          state.selectedEntity()?.type === EntityType.Continent ||
-          state.selectedEntity()?.type === EntityType.Organization,
-      ),
+  withProps(() => ({
+    _advancedSearchStore: inject(AdvancedSearchStore),
+    _entityService: inject(EntityService),
+    _toastService: inject(ToastService),
+    _translateService: inject(TranslateService),
+  })),
+  withProps((store) => ({
+    _breadcrumbIdsResource: resource({
+      request: () => ({ ids: store.breadcrumbIds() ?? [] }),
+      loader: ({ request }) => store._entityService.getEntitiesByUniqueId(request.ids),
     }),
-  ),
-  withMethods(
-    (
-      store,
-      advancedSearchStore = inject(AdvancedSearchStore),
-      entityService = inject(EntityService),
-      toastService = inject(ToastService),
-      translateService = inject(TranslateService),
-    ) => ({
-      loadEntities: rxMethod<string>(
-        pipe(
-          switchMap((uniqueId) =>
-            entityService.getEntityById(uniqueId).pipe(
-              tapResponse({
-                next: (selectedEntity) => patchState(store, { selectedEntity }),
-                error: (error: Error) => toastService.open(error.message),
-              }),
-            ),
-          ),
-          switchMap((entity) =>
-            entityService.getEntitiesByParentId(entity?.unique_id ?? '', true).pipe(
-              tapResponse({
-                next: (entities) =>
-                  patchState(store, {
-                    entities: sortBy(
-                      entities,
-                      'name',
-                      advancedSearchStore.sortDirection(),
-                      translateService,
-                    ),
-                  }),
-                error: (error: Error) => toastService.open(error.message),
-              }),
-            ),
-          ),
-        ),
-      ),
-      loadFlagOfTheDay: rxMethod<void>(
-        pipe(
-          switchMap(() =>
-            entityService.getFlagOfTheDay().pipe(
-              tapResponse({
-                next: (flagOfTheDay) => patchState(store, { flagOfTheDay }),
-                error: (error: Error) => toastService.open(error.message),
-              }),
-            ),
-          ),
-        ),
-      ),
-      loadMainEntities: rxMethod<void>(
-        pipe(
-          switchMap(() =>
-            entityService.getEntitiesByType(['continent', 'organization']).pipe(
-              tapResponse({
-                next: (mainEntities) =>
-                  patchState(store, {
-                    mainEntities: sortBy(
-                      mainEntities,
-                      'name',
-                      advancedSearchStore.sortDirection(),
-                      translateService,
-                    ),
-                  }),
-                error: (error: Error) => toastService.open(error.message),
-              }),
-            ),
-          ),
-        ),
-      ),
-      loadNewestAdditions: rxMethod<void>(
-        pipe(
-          switchMap(() =>
-            entityService.getRecentEntities().pipe(
-              tapResponse({
-                next: (newestAdditions) => patchState(store, { newestAdditions }),
-                error: (error: Error) => toastService.open(error.message),
-              }),
-            ),
-          ),
-        ),
-      ),
+    _entitiesByAltParentIdResource: resource({
+      request: () => ({ uniqueId: store.selectedEntityId() ?? '' }),
+      loader: ({ request }) => store._entityService.getEntitiesByAltParentId(request.uniqueId),
     }),
-  ),
+    _entitiesByParentIdResource: resource({
+      request: () => ({ uniqueId: store.selectedEntityId() ?? '' }),
+      loader: ({ request }) => store._entityService.getEntitiesByParentId(request.uniqueId),
+    }),
+    _flagOfTheDayResource: resource({
+      loader: () => store._entityService.getFlagOfTheDay(),
+    }),
+    _mainEntitiesResource: resource({
+      loader: () => store._entityService.getMainEntities(),
+    }),
+    _newestAdditionsResource: resource({
+      loader: () => store._entityService.getRecentEntities(),
+    }),
+    _selectedEntityResource: resource({
+      request: () => ({ uniqueId: store.selectedEntityId() ?? '' }),
+      loader: ({ request }) => store._entityService.getEntityById(request.uniqueId),
+    }),
+  })),
+  withComputed((store) => ({
+    breadcrumbEntities: computed(() => {
+      const rawEntities = store._breadcrumbIdsResource.value()?.data ?? [];
+      return rawEntities.map((entity) => sanitizeEntity(entity));
+    }),
+    entities: computed(() => {
+      const rawEntitiesByAltParentId = store._entitiesByAltParentIdResource.value()?.data ?? [];
+      const rawEntitiesByParentId = store._entitiesByParentIdResource.value()?.data ?? [];
+      const entities = [...rawEntitiesByAltParentId, ...rawEntitiesByParentId].map((entity) =>
+        sanitizeEntity(entity),
+      );
+      return sortBy(
+        entities,
+        'name',
+        store._advancedSearchStore.sortDirection(),
+        store._translateService,
+      );
+    }),
+    flagOfTheDay: computed(() => {
+      const rawEntity = store._flagOfTheDayResource.value()?.data?.[0];
+      return rawEntity ? sanitizeEntity(rawEntity) : undefined;
+    }),
+    mainEntities: computed(() => {
+      const rawEntities = store._mainEntitiesResource.value()?.data ?? [];
+      const entities = rawEntities.map((entity) => sanitizeEntity(entity));
+      return sortBy(entities, 'name', SortDirection.Asc, store._translateService);
+    }),
+    newestAdditions: computed(() => {
+      const rawEntities = store._newestAdditionsResource.value()?.data ?? [];
+      return rawEntities.map((entity) => sanitizeEntity(entity));
+    }),
+    selectedEntity: computed(() => {
+      const rawEntity = store._selectedEntityResource.value()?.data?.[0];
+      return rawEntity ? sanitizeEntity(rawEntity) : undefined;
+    }),
+  })),
+  withComputed((store) => ({
+    continents: computed(() =>
+      store.mainEntities().filter((entity) => entity.type === EntityType.Continent),
+    ),
+    currentRange: computed(() =>
+      setCurrentRange(store.selectedEntity()?.ranges ?? [], store.entities()),
+    ),
+    filteredEntities: computed(() =>
+      setFilteredEntities(
+        store._advancedSearchStore,
+        store.entities(),
+        store.selectedEntity(),
+        store._translateService,
+      ),
+    ),
+    globalEntities: computed(() =>
+      store.mainEntities().filter((entity) => entity.type === EntityType.Organization),
+    ),
+    isMainEntity: computed(
+      () =>
+        store.selectedEntity()?.type === EntityType.Continent ||
+        store.selectedEntity()?.type === EntityType.Organization,
+    ),
+  })),
+  withMethods((store) => ({
+    setSelectedEntityId(selectedEntityId: string) {
+      patchState(store, { selectedEntityId });
+    },
+    updateBreadcrumbIds(breadcrumbIds: string[]) {
+      patchState(store, { breadcrumbIds });
+    },
+  })),
+  withHooks({
+    onInit(store) {
+      effect(() => {
+        const selectedEntity = store.selectedEntity();
+        let ids = selectedEntity?.parent_ids ?? [];
+        if (selectedEntity?.alt_parent_id) {
+          ids = [...ids, selectedEntity.alt_parent_id];
+        }
+
+        store.updateBreadcrumbIds(ids ?? []);
+      });
+    },
+  }),
 );

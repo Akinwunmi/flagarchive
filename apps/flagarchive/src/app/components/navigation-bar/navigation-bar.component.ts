@@ -1,4 +1,3 @@
-import { UpperCasePipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import {
@@ -23,7 +22,6 @@ import { EntitiesStore } from '../../store';
     IconComponent,
     RouterLink,
     TranslatePipe,
-    UpperCasePipe,
   ],
   selector: 'app-navigation-bar',
   styleUrl: './navigation-bar.component.css',
@@ -33,6 +31,7 @@ export class NavigationBarComponent {
   readonly #entitiesStore = inject(EntitiesStore);
   readonly #windowResizeService = inject(WindowResizeService);
 
+  breadcrumbEntities = this.#entitiesStore.breadcrumbEntities;
   continents = this.#entitiesStore.continents;
   globalEntities = this.#entitiesStore.globalEntities;
   isMainEntity = this.#entitiesStore.isMainEntity;
