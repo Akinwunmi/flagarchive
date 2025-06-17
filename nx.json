@@ -1,10 +1,7 @@
 {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
   "namedInputs": {
-    "default": [
-      "{projectRoot}/**/*",
-      "sharedGlobals"
-    ],
+    "default": ["{projectRoot}/**/*", "sharedGlobals"],
     "production": [
       "default",
       "!{projectRoot}/.eslintrc.json",
@@ -21,21 +18,14 @@
       "!{projectRoot}/.storybook/**/*",
       "!{projectRoot}/tsconfig.storybook.json"
     ],
-    "sharedGlobals": [
-      "{workspaceRoot}/.github/workflows/ci.yml"
-    ]
+    "sharedGlobals": ["{workspaceRoot}/.github/workflows/ci.yml"]
   },
-  "nxCloudId": "678683d734f5017923a532bf",
+  "nxCloudId": "685114262c3aa5b4a81a4f28",
   "targetDefaults": {
     "@ngx-env/builder:application": {
       "cache": true,
-      "dependsOn": [
-        "^build"
-      ],
-      "inputs": [
-        "production",
-        "^production"
-      ]
+      "dependsOn": ["^build"],
+      "inputs": ["production", "^production"]
     },
     "@nx/eslint:lint": {
       "cache": true,
@@ -48,26 +38,11 @@
     },
     "@nx/jest:jest": {
       "cache": true,
-      "inputs": [
-        "default",
-        "^production",
-        "{workspaceRoot}/jest.preset.js"
-      ],
-      "options": {
-        "passWithNoTests": true
-      },
-      "configurations": {
-        "ci": {
-          "ci": true,
-          "codeCoverage": true
-        }
-      }
+      "inputs": ["default", "^production", "{workspaceRoot}/jest.preset.js"],
+      "options": { "passWithNoTests": true },
+      "configurations": { "ci": { "ci": true, "codeCoverage": true } }
     },
-    "e2e-ci--**/*": {
-      "dependsOn": [
-        "^build"
-      ]
-    },
+    "e2e-ci--**/*": { "dependsOn": ["^build"] },
     "build-storybook": {
       "cache": true,
       "inputs": [
@@ -79,13 +54,8 @@
     },
     "@nx/angular:package": {
       "cache": true,
-      "dependsOn": [
-        "^build"
-      ],
-      "inputs": [
-        "production",
-        "^production"
-      ]
+      "dependsOn": ["^build"],
+      "inputs": ["production", "^production"]
     }
   },
   "plugins": [
@@ -98,12 +68,7 @@
         "ciTargetName": "e2e-ci"
       }
     },
-    {
-      "plugin": "@nx/eslint/plugin",
-      "options": {
-        "targetName": "lint"
-      }
-    },
+    { "plugin": "@nx/eslint/plugin", "options": { "targetName": "lint" } },
     {
       "plugin": "@nx/storybook/plugin",
       "options": {
@@ -121,17 +86,8 @@
       "style": "css",
       "unitTestRunner": "jest"
     },
-    "@nx/angular:library": {
-      "linter": "eslint",
-      "unitTestRunner": "jest"
-    },
-    "@nx/angular:component": {
-      "style": "css",
-      "changeDetection": "OnPush"
-    },
-    "@schematics/angular:component": {
-      "style": "css",
-      "changeDetection": "OnPush"
-    }
+    "@nx/angular:library": { "linter": "eslint", "unitTestRunner": "jest" },
+    "@nx/angular:component": { "style": "css", "changeDetection": "OnPush" },
+    "@schematics/angular:component": { "style": "css", "changeDetection": "OnPush" }
   }
 }
