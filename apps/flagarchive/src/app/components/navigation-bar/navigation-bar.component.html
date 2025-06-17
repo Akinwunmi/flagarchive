@@ -1,31 +1,17 @@
 <div class="breadcrumbs">
   @if (!isTablet() || (isTablet() && !isMainEntity())) {
     <flag-breadcrumb-group>
-      <flag-breadcrumb icon="home" label="Home" [hideLabel]="true" [link]="['']" />
       @if (selectedEntity(); as selectedEntity) {
-        @for (parentId of selectedEntity.parent_ids; track $index) {
+        @for (entity of breadcrumbEntities(); track $index) {
           <flag-breadcrumb
             class="parent"
-            [hideArrow]="
-              selectedEntity.parent_ids?.length !== $index + 1 || !!selectedEntity.alt_parent_id
-            "
-            [label]="parentId | uppercase"
-            [link]="[basePath, parentId]"
+            [hideArrow]="!$last"
+            [label]="'entities.' + entity.name | translate"
+            [link]="[basePath, entity.unique_id]"
           />
-          @if (
-            selectedEntity.parent_ids?.length !== $index + 1 ||
-            (selectedEntity.parent_ids?.length !== $index + 1 && !selectedEntity.alt_parent_id)
-          ) {
+          @if (!$last) {
             <flag-icon class="arrow">pen_size_2</flag-icon>
           }
-        }
-        @if (selectedEntity.alt_parent_id) {
-          <flag-icon class="arrow">pen_size_2</flag-icon>
-          <flag-breadcrumb
-            class="parent"
-            [label]="selectedEntity.alt_parent_id | uppercase"
-            [link]="[basePath, selectedEntity.alt_parent_id]"
-          />
         }
         <flag-breadcrumb
           [label]="'entities.' + (selectedEntity.name | hyphenate) | translate"
