@@ -18,6 +18,7 @@ import { TranslatePipe } from '@ngx-translate/core';
 import { AdvancedSearchBarComponent } from '../../components/advanced-search-bar';
 import { AdvancedSearchStore, EntitiesStore } from '../../store';
 import { DetailsSection } from './details.model';
+import { NgStyle, TitleCasePipe } from '@angular/common';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -28,11 +29,13 @@ import { DetailsSection } from './details.model';
     CardHeaderComponent,
     HyphenatePipe,
     LinkGroupComponent,
+    NgStyle,
     RouterLink,
     TabComponent,
     TabGroupComponent,
     TagComponent,
     TagGroupComponent,
+    TitleCasePipe,
     TranslatePipe,
   ],
   styleUrl: './details.component.css',

@@ -1,5 +1,6 @@
 {
   "entities": {
+    "acadians": "Acadiërs",
     "adelie-land": "Adélieland",
     "africa": "Afrika",
     "albania": "Albanië",
@@ -31,6 +32,7 @@
     "british-indian-ocean-territory": "Brits Indische Oceaanterritorium",
     "british-virgin-islands": "Britse Maagdeneilanden",
     "brunssum": "Brunssum",
+    "buddhism": "Boeddhisme",
     "bulgaria": "Bulgarije",
     "cambodia": "Cambodja",
     "cameroon": "Kameroen",
@@ -40,6 +42,7 @@
     "central-african-republic": "Centraal-Afrikaanse Republiek",
     "chad": "Tsjaad",
     "chile": "Chili",
+    "christianity": "Christendom",
     "christmas-island": "Christmaseiland",
     "clipperton-island": "Clipperton",
     "cocos-keeling-islands": "Cocoseilanden",

@@ -1,6 +1,7 @@
 import {
   Entity,
   EntityFlag,
+  EntityFlagColour,
   EntityFlagRange,
   EntityRange,
   EntitySource,
@@ -9,6 +10,7 @@ import {
 import {
   DbEntity,
   DbEntityFlag,
+  DbEntityFlagColour,
   DbEntityFlagRange,
   DbEntityRange,
   DbEntitySource,
@@ -26,11 +28,33 @@ function mapFlags(flags: DbEntityFlag[] | null): EntityFlag[] | undefined {
 
   return flags.map((flag) => ({
     categories: flag.categories,
-    url: flag.url,
-    reverse_url: flag.reverse_url ?? undefined,
+    colours: mapFlagColours(flag.entity_flag_colours),
     ranges: mapFlagRanges(flag.entity_flag_ranges),
     ratio: flag.ratio ?? undefined,
+    reverse_url: flag.reverse_url ?? undefined,
+    url: flag.url,
   }));
+}
+
+function mapFlagColours(colours: DbEntityFlagColour[] | null): EntityFlagColour[] | undefined {
+  if (!colours?.length) {
+    return undefined;
+  }
+
+  return (
+    colours.map((colour) => ({
+      name: colour.name,
+      hexadecimal: colour.hexadecimal,
+      pms: colour.pms ? colour.pms.replace(/-/g, ' ') : undefined,
+      secondary: colour.secondary,
+    })) as EntityFlagColour[]
+  ).sort((a, b) => {
+    if (a.secondary !== b.secondary) {
+      return a.secondary ? 1 : -1;
+    }
+
+    return a.name.localeCompare(b.name);
+  });
 }
 
 /**
