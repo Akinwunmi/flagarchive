@@ -62,8 +62,9 @@ export class EntityComponent {
   }
 
   #setFlagImageSrc() {
-    const activeFlag = this.activeFlag();
+    const reverseUrl = this.activeFlagRange()?.reverse_url ?? this.activeFlag()?.reverse_url;
+    const url = this.activeFlagRange()?.url ?? this.activeFlag()?.url;
 
-    return this.isReversed() ? activeFlag?.reverse_url : activeFlag?.url;
+    return this.isReversed() ? reverseUrl : url;
   }
 }

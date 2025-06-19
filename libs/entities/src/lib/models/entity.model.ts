@@ -94,6 +94,8 @@ export interface EntityFlagColour {
 export interface EntityFlagRange extends EntityStartEnd {
   categories?: FlagCategory[];
   ratio?: string;
+  reverse_url?: string;
+  url?: string;
 }
 
 export interface EntityRange extends EntityStartEnd {
