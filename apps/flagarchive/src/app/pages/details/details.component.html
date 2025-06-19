@@ -35,6 +35,33 @@
             </div>
           }
           <hr flag-divider class="column-lg-12" />
+          @if (activeFlag()?.colours; as colours) {
+            <h3 class="column-lg-12 colours-header">
+              {{ 'flag.colour.plural' | translate }}
+            </h3>
+            <table flag-table class="column-lg-12">
+              <thead>
+                <tr>
+                  <th>{{ 'flag.colour.singular' | translate }}</th>
+                  <th>{{ 'flag.pms' | translate }}</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (colour of colours; track $index) {
+                  <tr>
+                    <td>
+                      <div
+                        class="colour-circle"
+                        [ngStyle]="{ backgroundColor: '#' + colour.hexadecimal }"
+                      ></div>
+                      {{ 'colours.' + colour.name | translate }}
+                    </td>
+                    <td>{{ colour.pms | titlecase }}</td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          }
         </div>
       </flag-card-content>
     </flag-card>

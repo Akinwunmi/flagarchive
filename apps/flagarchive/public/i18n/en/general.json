@@ -10,6 +10,23 @@
     "show-overseas-regions": "Show overseas regions",
     "sorting": "Sorting"
   },
+  "colours": {
+    "beige": "Beige",
+    "black": "Black",
+    "blue": "Blue",
+    "brown": "Brown",
+    "darkblue": "Dark blue",
+    "gold": "Gold",
+    "green": "Green",
+    "grey": "Grey",
+    "orange": "Orange",
+    "pink": "Pink",
+    "purple": "Purple",
+    "red": "Red",
+    "silver": "Silver",
+    "white": "White",
+    "yellow": "Yellow"
+  },
   "common": {
     "about": "About",
     "about-the-project": "About the project",
@@ -66,16 +83,17 @@
     }
   },
   "flag": {
+    "abolished": "Abolished",
+    "adopted": "Adopted",
     "colour": {
-      "singular": "Colour",
-      "plural": "Colours"
+      "plural": "Colours",
+      "singular": "Colour"
     },
     "designed-by": "Designed by",
+    "hexadecimal": "Hexadecimal",
     "nickname": "Nickname",
     "pms": "PMS",
-    "ratio": "Ratio",
-    "abolished": "Abolished",
-    "adopted": "Adopted"
+    "ratio": "Ratio"
   },
   "flag-categories": {
     "civil-ensign": "Civil ensign",

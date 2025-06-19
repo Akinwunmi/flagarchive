@@ -1,0 +1,30 @@
+table[flag-table] {
+  border-collapse: collapse;
+  border-spacing: 0;
+
+  thead,
+  tbody {
+    tr {
+      > * {
+        font-size: var(--flag-font-size-sm);
+        height: var(--flag-space-3xl);
+        line-height: var(--flag-line-height-xl);
+        padding: 0 var(--flag-space-xs);
+        text-align: start;
+        vertical-align: middle;
+      }
+    }
+  }
+
+  thead {
+    color: var(--flag-secondary-700);
+  }
+
+  tbody {
+    tr {
+      &:nth-of-type(odd) {
+        background-color: var(--flag-primary-100);
+      }
+    }
+  }
+}

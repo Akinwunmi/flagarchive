@@ -33,6 +33,7 @@ interface DbRawEntityFlag {
 }
 
 export interface DbEntityFlag extends DbRawEntityFlag {
+  entity_flag_colours: DbEntityFlagColour[] | null;
   entity_flag_ranges: DbEntityFlagRange[] | null;
 }
 
@@ -40,6 +41,23 @@ export interface DbEntity extends DbRawEntity {
   entity_flags: DbEntityFlag[] | null;
   entity_ranges: DbEntityRange[] | null;
   entity_sources: DbEntitySource[] | null;
+}
+
+interface DbEntityFlagColourForeignKey {
+  foreignKeyName: 'entity_flags_entity_id_fkey';
+  columns: ['entity_id'];
+  isOneToOne: false;
+  referencedRelation: 'entities';
+  referencedColumns: ['id'];
+}
+
+export interface DbEntityFlagColour {
+  flag_id: number | null;
+  id: number;
+  name: string;
+  hexadecimal: string;
+  pms: string | null;
+  secondary: boolean;
 }
 
 interface DbEntityFlagForeignKey {
@@ -125,6 +143,7 @@ export interface DbWorldEvent {
 interface Tables {
   entities: DbTable<DbRawEntity>;
   entity_flags: DbTable<DbRawEntityFlag, [DbEntityFlagForeignKey]>;
+  entity_flag_colours: DbTable<DbEntityFlagColour, [DbEntityFlagColourForeignKey]>;
   entity_flag_ranges: DbTable<DbEntityFlagRange, [DbEntityFlagRangeForeignKey]>;
   entity_ranges: DbTable<DbEntityRange, [DbEntityRangeForeignKey]>;
   entity_sources: DbTable<DbEntitySource, [DbEntitySourceForeignKey]>;

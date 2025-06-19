@@ -33,6 +33,30 @@ app-advanced-search-bar {
         flag-tag-group {
           margin-block: var(--flag-space-md);
         }
+
+        .colours-header {
+          font-size: var(--flag-font-size-sm);
+          font-weight: var(--flag-font-weight-regular);
+        }
+
+        [flag-table] {
+          th,
+          td {
+            &:first-of-type {
+              max-width: calc(50svw - var(--flag-space-xl));
+              width: 12rem;
+            }
+          }
+          .colour-circle {
+            border-radius: 50%;
+            float: left;
+            height: calc(var(--flag-space-lg) + var(--flag-space-2xs));
+            margin-block: var(--flag-space-2xs);
+            margin-inline-end: var(--flag-space-xs);
+            border: var(--flag-border-size-sm) solid var(--flag-grey-300);
+            width: calc(var(--flag-space-lg) + var(--flag-space-2xs));
+          }
+        }
       }
     }
   }

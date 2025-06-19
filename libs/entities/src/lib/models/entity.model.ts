@@ -17,6 +17,7 @@ export interface Entity {
 export interface EntityFlag {
   categories: FlagCategory[];
   url: string;
+  colours?: EntityFlagColour[];
   ranges?: EntityFlagRange[];
   ratio?: string;
   reverse_url?: string;
@@ -79,6 +80,15 @@ export interface EntityTypeItem {
 interface EntityStartEnd {
   start: number;
   end?: number;
+}
+
+export interface EntityFlagColour {
+  flag_id: number | null;
+  id: number;
+  name: string;
+  hexadecimal: string;
+  pms?: string | null;
+  secondary?: boolean;
 }
 
 export interface EntityFlagRange extends EntityStartEnd {
