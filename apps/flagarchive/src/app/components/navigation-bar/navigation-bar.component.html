@@ -2,12 +2,12 @@
   @if (!isTablet() || (isTablet() && !isMainEntity())) {
     <flag-breadcrumb-group>
       @if (selectedEntity(); as selectedEntity) {
-        @for (entity of breadcrumbEntities(); track $index) {
+        @for (entity of breadcrumbs(); track $index) {
           <flag-breadcrumb
             class="parent"
             [hideArrow]="!$last"
-            [label]="'entities.' + entity.name | translate"
-            [link]="[basePath, entity.unique_id]"
+            [label]="'entities.' + entity.label | translate"
+            [link]="[basePath, entity.id]"
           />
           @if (!$last) {
             <flag-icon class="arrow">pen_size_2</flag-icon>

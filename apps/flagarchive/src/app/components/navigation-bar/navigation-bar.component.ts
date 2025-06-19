@@ -31,7 +31,7 @@ export class NavigationBarComponent {
   readonly #entitiesStore = inject(EntitiesStore);
   readonly #windowResizeService = inject(WindowResizeService);
 
-  breadcrumbEntities = this.#entitiesStore.breadcrumbEntities;
+  breadcrumbs = this.#entitiesStore.breadcrumbs;
   continents = this.#entitiesStore.continents;
   globalEntities = this.#entitiesStore.globalEntities;
   isMainEntity = this.#entitiesStore.isMainEntity;

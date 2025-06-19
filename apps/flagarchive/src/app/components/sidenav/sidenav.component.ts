@@ -6,6 +6,7 @@ import {
   effect,
   inject,
   input,
+  OnInit,
   signal,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
@@ -37,7 +38,7 @@ import { AdvancedSearchStore, EntitiesStore } from '../../store';
   styleUrl: './sidenav.component.css',
   templateUrl: './sidenav.component.html',
 })
-export class SidenavComponent {
+export class SidenavComponent implements OnInit {
   readonly #advancedSearchStore = inject(AdvancedSearchStore);
   readonly #entitiesStore = inject(EntitiesStore);
 
@@ -60,8 +61,12 @@ export class SidenavComponent {
     effect(() => {
       const entityId = this.entityId();
       if (entityId && entityId !== this.selectedEntity()?.unique_id) {
-        this.#entitiesStore.setSelectedEntityId(entityId);
+        this.#entitiesStore.loadEntities(entityId);
       }
     });
+  }
+
+  ngOnInit() {
+    this.#entitiesStore.loadMainEntities();
   }
 }
