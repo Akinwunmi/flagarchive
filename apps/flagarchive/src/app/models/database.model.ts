@@ -75,6 +75,8 @@ export interface DbEntityFlagRange {
   categories?: FlagCategory[] | null;
   end?: number | null;
   ratio?: string | null;
+  reverse_url?: string | null;
+  url?: string | null;
 }
 
 interface DbEntityFlagRangeForeignKey {

@@ -29,9 +29,11 @@
   @if (selectedEntity(); as selectedEntity) {
     <div class="flag">
       <flag-image
-        [src]="activeFlag()?.url ?? ''"
+        [src]="activeFlagRange()?.url ?? activeFlag()?.url ?? ''"
         [alt]="
-          'flag-image.alt-text' | translate: { name: 'entities.' + selectedEntity.name | translate }
+          'flag-image.alt-text'
+            | translate
+              : { name: 'entities.' + (activeRange()?.name ?? selectedEntity.name) | translate }
         "
       />
       <div class="actions">

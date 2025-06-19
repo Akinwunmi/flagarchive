@@ -1,6 +1,12 @@
 import { computed, effect, inject } from '@angular/core';
 import { sortBy } from '@flagarchive/advanced-search';
-import { Entity, EntityType } from '@flagarchive/entities';
+import {
+  Entity,
+  EntityFlagRange,
+  EntityRange,
+  EntityType,
+  getActiveRange,
+} from '@flagarchive/entities';
 import { ToastService } from '@flagarchive/ui';
 import { tapResponse } from '@ngrx/operators';
 import {
@@ -49,6 +55,20 @@ export const EntitiesStore = signalStore(
     _translateService: inject(TranslateService),
   })),
   withComputed((store) => ({
+    activeFlag: computed(() => {
+      const flags = store.selectedEntity()?.flags;
+      const flagCategory = store._advancedSearchStore.flagCategory();
+      return flags?.find((flag) => flag.categories?.includes(flagCategory));
+    }),
+    activeRange: computed(() => {
+      const selectedEntity = store.selectedEntity();
+      const selectedYear = store._advancedSearchStore.selectedYear();
+      if (!selectedEntity) {
+        return undefined;
+      }
+
+      return getActiveRange(selectedYear, selectedEntity.ranges) as EntityRange | undefined;
+    }),
     continents: computed(() =>
       store.mainEntities().filter((entity) => entity.type === EntityType.Continent),
     ),
@@ -71,6 +91,13 @@ export const EntitiesStore = signalStore(
         store.selectedEntity()?.type === EntityType.Continent ||
         store.selectedEntity()?.type === EntityType.Organization,
     ),
+  })),
+  withComputed((store) => ({
+    activeFlagRange: computed(() => {
+      const ranges = store.activeFlag()?.ranges;
+      const selectedYear = store._advancedSearchStore.selectedYear();
+      return getActiveRange(selectedYear, ranges) as EntityFlagRange | undefined;
+    }),
   })),
   withMethods((store) => ({
     loadBreadcrumbs: rxMethod<string[]>(

@@ -72,6 +72,8 @@ function mapFlagRanges(ranges: DbEntityFlagRange[] | null): EntityFlagRange[] | 
     end: range.end ?? undefined,
     categories: range.categories ?? undefined,
     ratio: range.ratio ?? undefined,
+    reverse_url: range.reverse_url ?? undefined,
+    url: range.url ?? undefined,
   })) as EntityFlagRange[];
 }
 

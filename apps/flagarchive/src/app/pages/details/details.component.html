@@ -67,7 +67,7 @@
     </flag-card>
     <flag-card class="entity-info" [class.active]="activeSection() === detailsSection.Entity">
       <flag-card-header>
-        <h3>{{ 'entities.' + entity.name | translate }}</h3>
+        <h3>{{ 'entities.' + (activeRange()?.name ?? entity.name) | translate }}</h3>
         <p class="subtitle">{{ 'entity-types.' + entity.type | translate }}</p>
       </flag-card-header>
       <flag-card-content>
