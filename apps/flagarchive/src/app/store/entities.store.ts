@@ -1,7 +1,8 @@
-import { computed, effect, inject, resource } from '@angular/core';
-import { sortBy, SortDirection } from '@flagarchive/advanced-search';
-import { EntityType } from '@flagarchive/entities';
+import { computed, effect, inject } from '@angular/core';
+import { sortBy } from '@flagarchive/advanced-search';
+import { Entity, EntityType } from '@flagarchive/entities';
 import { ToastService } from '@flagarchive/ui';
+import { tapResponse } from '@ngrx/operators';
 import {
   patchState,
   signalStore,
@@ -11,21 +12,31 @@ import {
   withProps,
   withState,
 } from '@ngrx/signals';
+import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { TranslateService } from '@ngx-translate/core';
+import { pipe, switchMap } from 'rxjs';
 
+import { Breadcrumb } from '../models';
 import { EntityService } from '../services';
-import { sanitizeEntity } from '../utils';
 import { AdvancedSearchStore } from './advanced-search.store';
 import { setCurrentRange, setFilteredEntities } from './entities.utils';
 
 interface EntitiesState {
-  breadcrumbIds: string[];
-  selectedEntityId: string | undefined;
+  breadcrumbs: Breadcrumb[];
+  entities: Entity[];
+  flagOfTheDay: Entity | undefined;
+  mainEntities: Entity[];
+  newestAdditions: Entity[];
+  selectedEntity: Entity | undefined;
 }
 
 const INITIAL_STATE: EntitiesState = {
-  breadcrumbIds: [],
-  selectedEntityId: undefined,
+  breadcrumbs: [],
+  entities: [],
+  flagOfTheDay: undefined,
+  mainEntities: [],
+  newestAdditions: [],
+  selectedEntity: undefined,
 };
 
 export const EntitiesStore = signalStore(
@@ -36,69 +47,6 @@ export const EntitiesStore = signalStore(
     _entityService: inject(EntityService),
     _toastService: inject(ToastService),
     _translateService: inject(TranslateService),
-  })),
-  withProps((store) => ({
-    _breadcrumbIdsResource: resource({
-      request: () => ({ ids: store.breadcrumbIds() ?? [] }),
-      loader: ({ request }) => store._entityService.getEntitiesByUniqueId(request.ids),
-    }),
-    _entitiesByAltParentIdResource: resource({
-      request: () => ({ uniqueId: store.selectedEntityId() ?? '' }),
-      loader: ({ request }) => store._entityService.getEntitiesByAltParentId(request.uniqueId),
-    }),
-    _entitiesByParentIdResource: resource({
-      request: () => ({ uniqueId: store.selectedEntityId() ?? '' }),
-      loader: ({ request }) => store._entityService.getEntitiesByParentId(request.uniqueId),
-    }),
-    _flagOfTheDayResource: resource({
-      loader: () => store._entityService.getFlagOfTheDay(),
-    }),
-    _mainEntitiesResource: resource({
-      loader: () => store._entityService.getMainEntities(),
-    }),
-    _newestAdditionsResource: resource({
-      loader: () => store._entityService.getRecentEntities(),
-    }),
-    _selectedEntityResource: resource({
-      request: () => ({ uniqueId: store.selectedEntityId() ?? '' }),
-      loader: ({ request }) => store._entityService.getEntityById(request.uniqueId),
-    }),
-  })),
-  withComputed((store) => ({
-    breadcrumbEntities: computed(() => {
-      const rawEntities = store._breadcrumbIdsResource.value()?.data ?? [];
-      return rawEntities.map((entity) => sanitizeEntity(entity));
-    }),
-    entities: computed(() => {
-      const rawEntitiesByAltParentId = store._entitiesByAltParentIdResource.value()?.data ?? [];
-      const rawEntitiesByParentId = store._entitiesByParentIdResource.value()?.data ?? [];
-      const entities = [...rawEntitiesByAltParentId, ...rawEntitiesByParentId].map((entity) =>
-        sanitizeEntity(entity),
-      );
-      return sortBy(
-        entities,
-        'name',
-        store._advancedSearchStore.sortDirection(),
-        store._translateService,
-      );
-    }),
-    flagOfTheDay: computed(() => {
-      const rawEntity = store._flagOfTheDayResource.value()?.data?.[0];
-      return rawEntity ? sanitizeEntity(rawEntity) : undefined;
-    }),
-    mainEntities: computed(() => {
-      const rawEntities = store._mainEntitiesResource.value()?.data ?? [];
-      const entities = rawEntities.map((entity) => sanitizeEntity(entity));
-      return sortBy(entities, 'name', SortDirection.Asc, store._translateService);
-    }),
-    newestAdditions: computed(() => {
-      const rawEntities = store._newestAdditionsResource.value()?.data ?? [];
-      return rawEntities.map((entity) => sanitizeEntity(entity));
-    }),
-    selectedEntity: computed(() => {
-      const rawEntity = store._selectedEntityResource.value()?.data?.[0];
-      return rawEntity ? sanitizeEntity(rawEntity) : undefined;
-    }),
   })),
   withComputed((store) => ({
     continents: computed(() =>
@@ -125,12 +73,96 @@ export const EntitiesStore = signalStore(
     ),
   })),
   withMethods((store) => ({
-    setSelectedEntityId(selectedEntityId: string) {
-      patchState(store, { selectedEntityId });
-    },
-    updateBreadcrumbIds(breadcrumbIds: string[]) {
-      patchState(store, { breadcrumbIds });
-    },
+    loadBreadcrumbs: rxMethod<string[]>(
+      pipe(
+        switchMap((uniqueIds) =>
+          store._entityService.getEntitiesByUniqueIds(uniqueIds).pipe(
+            tapResponse({
+              next: (entities) => {
+                const breadcrumbs = entities.map((entity) => ({
+                  id: entity.unique_id,
+                  label: entity.name,
+                }));
+                patchState(store, { breadcrumbs });
+              },
+              error: (error: Error) => store._toastService.open(error.message),
+            }),
+          ),
+        ),
+      ),
+    ),
+    loadEntities: rxMethod<string>(
+      pipe(
+        switchMap((uniqueId) =>
+          store._entityService.getEntityById(uniqueId).pipe(
+            tapResponse({
+              next: (selectedEntity) => patchState(store, { selectedEntity }),
+              error: (error: Error) => store._toastService.open(error.message),
+            }),
+          ),
+        ),
+        switchMap((entity) =>
+          store._entityService.getEntitiesByParentId(entity?.unique_id ?? '', true).pipe(
+            tapResponse({
+              next: (entities) =>
+                patchState(store, {
+                  entities: sortBy(
+                    entities,
+                    'name',
+                    store._advancedSearchStore.sortDirection(),
+                    store._translateService,
+                  ),
+                }),
+              error: (error: Error) => store._toastService.open(error.message),
+            }),
+          ),
+        ),
+      ),
+    ),
+    loadFlagOfTheDay: rxMethod<void>(
+      pipe(
+        switchMap(() =>
+          store._entityService.getFlagOfTheDay().pipe(
+            tapResponse({
+              next: (flagOfTheDay) => patchState(store, { flagOfTheDay }),
+              error: (error: Error) => store._toastService.open(error.message),
+            }),
+          ),
+        ),
+      ),
+    ),
+    loadMainEntities: rxMethod<void>(
+      pipe(
+        switchMap(() =>
+          store._entityService.getEntitiesByType(['continent', 'organization']).pipe(
+            tapResponse({
+              next: (mainEntities) =>
+                patchState(store, {
+                  mainEntities: sortBy(
+                    mainEntities,
+                    'name',
+                    store._advancedSearchStore.sortDirection(),
+                    store._translateService,
+                  ),
+                }),
+              error: (error: Error) => store._toastService.open(error.message),
+            }),
+          ),
+        ),
+      ),
+    ),
+    loadNewestAdditions: rxMethod<void>(
+      pipe(
+        switchMap(() =>
+          store._entityService.getRecentEntities().pipe(
+            tapResponse({
+              next: (newestAdditions) => patchState(store, { newestAdditions }),
+              error: (error: Error) => store._toastService.open(error.message),
+            }),
+          ),
+        ),
+      ),
+    ),
   })),
   withHooks({
     onInit(store) {
@@ -141,7 +173,9 @@ export const EntitiesStore = signalStore(
           ids = [...ids, selectedEntity.alt_parent_id];
         }
 
-        store.updateBreadcrumbIds(ids ?? []);
+        if (ids) {
+          store.loadBreadcrumbs(ids);
+        }
       });
     },
   }),
