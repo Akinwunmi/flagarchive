@@ -4,11 +4,16 @@
   "sourceRoot": "libs/advanced-search/src",
   "prefix": "flag",
   "projectType": "library",
-  "tags": [],
+  "tags": [
+    "type:feature",
+    "scope:shared"
+  ],
   "targets": {
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
       "options": {
         "jestConfig": "libs/advanced-search/jest.config.ts"
       }

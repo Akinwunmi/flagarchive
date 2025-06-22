@@ -1,5 +1,16 @@
-:host {
-  background-color: lightpink;
-  display: block;
-  width: 100%;
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--flag-space-md);
+
+  .flags {
+    display: grid;
+    gap: var(--flag-space-md);
+    grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
+
+    .flag {
+      display: grid;
+      gap: var(--flag-space-sm);
+    }
+  }
 }

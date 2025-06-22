@@ -1,7 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideTranslateService, TranslateLoader, TranslateFakeLoader } from '@ngx-translate/core';
 
+import { ENVIRONMENT_STUB, MockSupabaseService } from '../../mocks';
+import { SupabaseService } from '../../services';
 import { HistoryComponent } from './history.component';
+
+jest.mock('../../../environments/environment', () => ENVIRONMENT_STUB);
 
 describe('HistoryComponent', () => {
   let component: HistoryComponent;
@@ -17,6 +21,10 @@ describe('HistoryComponent', () => {
             useClass: TranslateFakeLoader,
           },
         }),
+        {
+          provide: SupabaseService,
+          useClass: MockSupabaseService,
+        },
       ],
     }).compileComponents();
 

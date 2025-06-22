@@ -10,6 +10,23 @@
     "show-overseas-regions": "Toon overzeese gebieden",
     "sorting": "Sorteren"
   },
+  "colours": {
+    "beige": "Beige",
+    "black": "Zwart",
+    "blue": "Blauw",
+    "brown": "Bruin",
+    "darkblue": "Donkerblauw",
+    "gold": "Goud",
+    "green": "Groen",
+    "grey": "Grijs",
+    "orange": "Oranje",
+    "pink": "Roze",
+    "purple": "Paars",
+    "red": "Rood",
+    "silver": "Zilver",
+    "white": "Wit",
+    "yellow": "Geel"
+  },
   "common": {
     "about": "Over",
     "about-the-project": "Over het project",
@@ -66,16 +83,17 @@
     }
   },
   "flag": {
+    "abolished": "Afgeschaft",
+    "adopted": "Aangenomen",
     "colour": {
       "singular": "Kleur",
       "plural": "Kleuren"
     },
     "designed-by": "Ontworpen door",
+    "hexadecimal": "Hexadecimaal",
     "nickname": "Bijnaam",
     "pms": "PMS",
-    "ratio": "Ratio",
-    "abolished": "Afgeschaft",
-    "adopted": "Aangenomen"
+    "ratio": "Ratio"
   },
   "flag-categories": {
     "civil-ensign": "Handelsvlag",
@@ -143,6 +161,15 @@
     }
   },
   "pages": {
+    "details": {
+      "title": "Details"
+    },
+    "entities": {
+      "title": "Entiteiten"
+    },
+    "history": {
+      "title": "Historie"
+    },
     "home": {
       "browse-flags": "Ga naar vlaggen",
       "cta": "Begin met ontdekken",

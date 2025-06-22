@@ -1,0 +1,12 @@
+svg {
+  width: var(--flag-space-2xl);
+
+  line {
+    stroke-width: 1;
+    stroke: var(--flag-secondary-600);
+  }
+
+  circle {
+    fill: var(--flag-secondary-600);
+  }
+}

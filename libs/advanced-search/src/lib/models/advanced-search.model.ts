@@ -1,6 +1,7 @@
 export enum FlagCategory {
   CivilEnsign = 'civil_ensign',
   CivilFlag = 'civil_flag',
+  NationalEnsign = 'national_ensign',
   NationalFlag = 'national_flag',
   NavalEnsign = 'naval_ensign',
   NavalJack = 'naval_jack',
@@ -10,6 +11,7 @@ export enum FlagCategory {
   StateFlag = 'state_flag',
   SubnationalFlag = 'subnational_flag',
   Unofficial = 'unofficial',
+  WarFlag = 'war_flag',
 }
 
 export enum Layout {

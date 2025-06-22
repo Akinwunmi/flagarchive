@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed, inject, input, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { DropdownComponent, FlagImageComponent, IconComponent } from '@flagarchive/ui';
+import { FlagImageComponent } from '@flagarchive/entities';
+import { DropdownComponent, IconComponent } from '@flagarchive/ui';
 import { TranslatePipe } from '@ngx-translate/core';
 
 import { MenuItem } from '../../models';

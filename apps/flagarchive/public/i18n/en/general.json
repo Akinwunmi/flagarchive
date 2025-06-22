@@ -161,6 +161,15 @@
     }
   },
   "pages": {
+    "details": {
+      "title": "Details"
+    },
+    "entities": {
+      "title": "Entities"
+    },
+    "history": {
+      "title": "History"
+    },
     "home": {
       "browse-flags": "Browse flags",
       "cta": "Start at the beginning",

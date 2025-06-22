@@ -9,12 +9,8 @@ import {
   signal,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import {
-  FlagImageComponent,
-  IconComponent,
-  ListComponent,
-  ListItemComponent,
-} from '@flagarchive/ui';
+import { FlagImageComponent } from '@flagarchive/entities';
+import { IconComponent, ListComponent, ListItemComponent } from '@flagarchive/ui';
 import { TranslatePipe } from '@ngx-translate/core';
 
 import { ENTITY_MENU_ITEMS } from '../../constants';

@@ -4,12 +4,12 @@
     secondary
     [attr.aria-label]="label()"
     [attr.aria-current]="active() ? 'page' : undefined"
-    [attr.flag-button]="!active() && !dropdown() && !flagImage() ? '' : undefined"
+    [attr.flag-button]="!active() && !dropdown() ? '' : undefined"
     [attr.ghost]="active() || undefined"
     [class.active]="active() && !dropdown()"
     [routerLink]="!active() && !dropdown() ? link() : undefined"
   >
-    @if (!dropdown() && !flagImage()) {
+    @if (!dropdown()) {
       @if (icon()) {
         <flag-icon>{{ icon() }}</flag-icon>
       }

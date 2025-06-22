@@ -9,7 +9,6 @@ export * from './card-header';
 export * from './checkbox';
 export * from './collapsible';
 export * from './dropdown';
-export * from './flag-image';
 export * from './form-field';
 export * from './icon';
 export * from './input';
