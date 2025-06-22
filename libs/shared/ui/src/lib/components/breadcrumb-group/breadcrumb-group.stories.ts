@@ -5,13 +5,11 @@ import { expect } from '@storybook/jest';
 
 import { BreadcrumbComponent } from '../breadcrumb/breadcrumb.component';
 import { DropdownComponent } from '../dropdown/dropdown.component';
-import { FlagImageComponent } from '../flag-image/flag-image.component';
 import { BreadcrumbGroupComponent } from './breadcrumb-group.component';
 
 type StoryArgs = BreadcrumbGroupComponent & {
   amount: number;
   dropdownBreadcrumbs: number[];
-  flagImageBreadcrumbs: number[];
 };
 
 const meta: Meta<StoryArgs> = {
@@ -21,7 +19,6 @@ const meta: Meta<StoryArgs> = {
   args: {
     amount: 5,
     dropdownBreadcrumbs: [1],
-    flagImageBreadcrumbs: [2],
   },
   argTypes: {
     amount: {
@@ -38,24 +35,13 @@ const meta: Meta<StoryArgs> = {
       },
       options: Array.from({ length: 9 }, (_, i) => i + 1),
     },
-    flagImageBreadcrumbs: {
-      control: {
-        type: 'multi-select',
-      },
-      options: Array.from({ length: 9 }, (_, i) => i + 1),
-    },
   },
   render: (props) => ({
     applicationConfig: {
       providers: [provideRouter([])],
     },
     moduleMetadata: {
-      imports: [
-        BreadcrumbComponent,
-        DropdownComponent,
-        FlagImageComponent,
-        RouterLink,
-      ],
+      imports: [BreadcrumbComponent, DropdownComponent, RouterLink],
     },
     props,
     template: `
@@ -86,28 +72,10 @@ function setBreadcrumbs(props: StoryArgs): string {
               label="Dropdown"
               [link]="['/', '${breadcrumb + 1}']"
             >
-              <flag-dropdown icon="more_horiz" label="" [hideChevron]="true">
-                <a flag-list-item [routerLink]="['/', '${
-                  breadcrumb + 1
-                }1']">Item 1</a>
-                <a flag-list-item [routerLink]="['/', '${
-                  breadcrumb + 1
-                }2']">Item 2</a>
+              <flag-dropdown icon="more_horiz" label="" [extraSmall]="true" [hideChevron]="true">
+                <a flag-list-item [routerLink]="['/', '${breadcrumb + 1}1']">Item 1</a>
+                <a flag-list-item [routerLink]="['/', '${breadcrumb + 1}2']">Item 2</a>
               </flag-dropdown>
-            </flag-breadcrumb>
-          `.trim();
-        }
-
-        if (props.flagImageBreadcrumbs.includes(breadcrumb + 1)) {
-          return `
-            <flag-breadcrumb
-              label="Entity"
-              [link]="['/', '${breadcrumb + 1}']"
-            >
-              <flag-image
-                src="https://upload.wikimedia.org/wikipedia/commons/c/ca/Frisian_flag.svg"
-                alt="Placeholder image"
-              />
             </flag-breadcrumb>
           `.trim();
         }

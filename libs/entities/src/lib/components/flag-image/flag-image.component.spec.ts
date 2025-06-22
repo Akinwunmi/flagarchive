@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FlagImageComponent } from './flag-image.component';
 
-describe('FlagImageComponent', () => {
+describe(FlagImageComponent.name, () => {
   let component: FlagImageComponent;
   let fixture: ComponentFixture<FlagImageComponent>;
 

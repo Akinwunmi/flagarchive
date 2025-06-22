@@ -21,6 +21,9 @@ import { NgStyle, TitleCasePipe } from '@angular/common';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    class: 'entity-page',
+  },
   imports: [
     AdvancedSearchBarComponent,
     CardComponent,

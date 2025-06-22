@@ -1,11 +1,5 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  input,
-  linkedSignal,
-} from '@angular/core';
-
-import { IconComponent } from '../icon/icon.component';
+import { ChangeDetectionStrategy, Component, input, linkedSignal } from '@angular/core';
+import { IconComponent } from '@flagarchive/ui';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
