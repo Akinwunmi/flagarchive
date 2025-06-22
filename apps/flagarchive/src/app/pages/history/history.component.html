@@ -15,7 +15,10 @@
         <figure>
           <flag-image [src]="flag.url" [alt]="entity()?.name ?? ''" />
         </figure>
-        <flag-usage-symbol [categories]="flag.categories" />
+        <flag-usage-symbol
+          [flagTooltip]="setCategoriesTooltip(flag.categories)"
+          [categories]="flag.categories"
+        />
       </div>
     }
     @for (flag of rangedFlags(); track $index) {

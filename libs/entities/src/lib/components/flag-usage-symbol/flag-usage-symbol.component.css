@@ -1,3 +1,7 @@
+:host {
+  width: fit-content;
+}
+
 svg {
   width: var(--flag-space-2xl);
 
