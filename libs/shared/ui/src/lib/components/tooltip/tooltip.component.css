@@ -1,0 +1,21 @@
+:host {
+  animation: fadeIn 150ms ease-in-out;
+  background-color: var(--flag-grey-700);
+  border-radius: var(--flag-radius-md);
+  color: var(--flag-white);
+  font-family: var(--flag-font-family);
+  font-size: var(--flag-font-size-xs);
+  line-height: var(--flag-line-height-xs);
+  max-width: 10rem;
+  opacity: 1;
+  padding: var(--flag-space-3xs) var(--flag-space-2xs);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

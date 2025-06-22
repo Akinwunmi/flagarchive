@@ -23,5 +23,6 @@ export * from './tab-group';
 export * from './tag';
 export * from './tag-group';
 export * from './toast';
+export * from './tooltip';
 export * from './year-navigator';
 export * from './year-picker';
