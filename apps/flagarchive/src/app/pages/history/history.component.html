@@ -1,9 +1,13 @@
-<app-advanced-search-bar />
+<app-advanced-search-bar [showFilterButton]="false" />
 <div class="content">
   @if (activeFlag(); as activeFlag) {
     <flag-tag-group>
       @for (category of categories(); track $index) {
-        <flag-tag>
+        <flag-tag
+          [checkable]="true"
+          [checked]="activeCategories().includes(category)"
+          (checkedChange)="toggleCategory(category)"
+        >
           {{ 'flag-categories.' + (category | hyphenate) | translate }}
         </flag-tag>
       }
@@ -11,23 +15,15 @@
   }
   <div class="flags">
     @for (flag of flags(); track $index) {
-      <div class="flag">
-        <figure>
-          <flag-image [src]="flag.url" [alt]="entity()?.name ?? ''" />
-        </figure>
-        <flag-usage-symbol
-          [flagTooltip]="setCategoriesTooltip(flag.categories)"
-          [categories]="flag.categories"
-        />
-      </div>
+      @if (containsActiveCategory(flag.categories)) {
+        <app-history-entity [flag]="getFlag(flag)" [categories]="flag.categories" />
+      }
     }
     @for (flag of rangedFlags(); track $index) {
-      <div class="flag">
-        <figure>
-          <flag-image [src]="flag.url ?? ''" [alt]="entity()?.name ?? ''" />
-        </figure>
-        <flag-usage-symbol [categories]="flag.categories ?? activeFlag()?.categories ?? []" />
-      </div>
+      @let categories = flag.categories ?? activeFlag()?.categories ?? [];
+      @if (containsActiveCategory(categories)) {
+        <app-history-entity [flag]="getRangedFlag(flag)" [categories]="categories" />
+      }
     }
   </div>
 </div>

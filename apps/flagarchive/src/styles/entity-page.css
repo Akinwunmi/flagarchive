@@ -7,16 +7,20 @@
   overflow-y: auto;
   padding-block: var(--flag-space-sm) var(--flag-space-xl);
   width: 100%;
-}
+  
+  app-advanced-search-bar {
+    margin-inline: var(--flag-space-sm);
+    z-index: 2;
+  }
+  
+  > .content {
+    align-content: stretch;
+    display: grid;
+    flex-grow: 1;
+    padding-inline: var(--flag-space-md);
+  }
 
-app-advanced-search-bar {
-  margin-inline: var(--flag-space-sm);
-  z-index: 2;
-}
-
-.content {
-  align-content: stretch;
-  display: grid;
-  flex-grow: 1;
-  padding-inline: var(--flag-space-md);
+  @media screen and (max-width: 50rem) {
+    padding-block-start: 0;
+  }
 }

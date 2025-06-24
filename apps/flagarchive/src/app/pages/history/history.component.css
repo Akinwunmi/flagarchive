@@ -7,10 +7,5 @@
     display: grid;
     gap: var(--flag-space-md);
     grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
-
-    .flag {
-      display: grid;
-      gap: var(--flag-space-sm);
-    }
   }
 }

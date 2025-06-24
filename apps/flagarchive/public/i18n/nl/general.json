@@ -98,7 +98,8 @@
   "flag-categories": {
     "civil-ensign": "Handelsvlag",
     "civil-flag": "Civiele vlag",
-    "national-flag": "Nationale vlag",
+    "national-ensign": "(Sub)nationale scheepsvlag",
+    "national-flag": "(Sub)nationale vlag",
     "naval-ensign": "Marinevlag",
     "naval-jack": "Geus",
     "official": "Officieel",
@@ -106,8 +107,8 @@
     "royal-standard": "Koninklijke standaard",
     "state-ensign": "Staatsvlag",
     "state-flag": "Staatsvlag",
-    "subnational-flag": "Subnationale vlag",
-    "unofficial": "Onofficieel"
+    "unofficial": "Onofficieel",
+    "war-flag": "Oorlogsvlag"
   },
   "flag-image": {
     "alt-text": "Vlag van {{ name }}"

@@ -9,7 +9,6 @@ export enum FlagCategory {
   RoyalStandard = 'royal_standard',
   StateEnsign = 'state_ensign',
   StateFlag = 'state_flag',
-  SubnationalFlag = 'subnational_flag',
   Unofficial = 'unofficial',
   WarFlag = 'war_flag',
 }
