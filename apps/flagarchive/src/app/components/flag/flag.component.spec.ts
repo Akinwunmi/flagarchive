@@ -1,15 +1,15 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideTranslateService, TranslateLoader, TranslateFakeLoader } from '@ngx-translate/core';
 
-import { HistoryEntityComponent } from './history-entity.component';
+import { FlagComponent } from './flag.component';
 
-describe(HistoryEntityComponent.name, () => {
-  let component: HistoryEntityComponent;
-  let fixture: ComponentFixture<HistoryEntityComponent>;
+describe(FlagComponent.name, () => {
+  let component: FlagComponent;
+  let fixture: ComponentFixture<FlagComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HistoryEntityComponent],
+      imports: [FlagComponent],
       providers: [
         provideTranslateService({
           loader: {
@@ -20,7 +20,7 @@ describe(HistoryEntityComponent.name, () => {
       ],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(HistoryEntityComponent);
+    fixture = TestBed.createComponent(FlagComponent);
     component = fixture.componentInstance;
     const { componentRef } = fixture;
     componentRef.setInput('categories', []);
