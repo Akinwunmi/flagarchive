@@ -10,73 +10,17 @@
 }
 
 a {
-  align-items: center;
-  display: grid;
-  grid-template-columns: 1fr auto;
-
-  figure {
-    align-items: center;
-    display: grid;
-    gap: var(--flag-space-xs);
-    grid-template-columns: auto 1fr;
-
-    flag-image {
-      height: var(--flag-space-2xl);
-    }
-
-    figcaption {
-      display: -webkit-box;
-      line-clamp: 1;
-      overflow: hidden;
-      word-break: break-all;
-      -webkit-line-clamp: 1;
-      -webkit-box-orient: vertical;
-    }
-  }
-  
-  .info {
-    align-items: center;
-    display: flex;
-    gap: var(--flag-space-xs);
-    height: var(--flag-space-xl);
-    width: fit-content;
-
-    .alt-parent-id {
-      font-size: var(--flag-font-size-xs);
-      font-weight: var(--flag-font-weight-medium);  
-    }
-
-    .range {
-      color: var(--flag-secondary-700);
-      font-size: var(--flag-font-size-xs);
-    }
-  }
-
   &:visited {
     color: inherit;
   }
 
-  &:not(:has(.info:hover)) {
-    &:hover {
-      background-color: var(--flag-grey-300);
-      color: var(--flag-primary-700);
-    }
-  
-    &:active {
-      background-color: var(--flag-grey-100);
-      color: var(--flag-primary-600);
-    }
+  &:hover {
+    background-color: var(--flag-grey-300);
+    color: var(--flag-primary-700);
   }
 
-  &.card {
-    grid-template-columns: 1fr;
-
-    figure {
-      grid-template-columns: 1fr;
-
-      flag-image {
-        height: auto;
-      }
-    }
+  &:active {
+    background-color: var(--flag-grey-100);
+    color: var(--flag-primary-600);
   }
 }

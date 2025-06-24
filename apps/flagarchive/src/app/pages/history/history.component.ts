@@ -1,12 +1,12 @@
 import { ChangeDetectionStrategy, Component, computed, inject, linkedSignal } from '@angular/core';
-import { EntityFlag, EntityFlagRange, FlagImage } from '@flagarchive/entities';
+import { FlagCategory } from '@flagarchive/advanced-search';
+import { EntityFlagRange, EntityRange, Flag } from '@flagarchive/entities';
 import { HyphenatePipe, TagComponent, TagGroupComponent } from '@flagarchive/ui';
 import { TranslatePipe } from '@ngx-translate/core';
 
 import { AdvancedSearchBarComponent } from '../../components/advanced-search-bar';
-import { HistoryEntityComponent } from '../../components/history-entity';
+import { FlagComponent } from '../../components/flag';
 import { EntitiesStore } from '../../store';
-import { FlagCategory } from '@flagarchive/advanced-search';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -15,7 +15,7 @@ import { FlagCategory } from '@flagarchive/advanced-search';
   },
   imports: [
     AdvancedSearchBarComponent,
-    HistoryEntityComponent,
+    FlagComponent,
     HyphenatePipe,
     TagComponent,
     TagGroupComponent,
@@ -31,15 +31,15 @@ export class HistoryComponent {
   activeFlag = this.#entitiesStore.activeFlag;
   entity = this.#entitiesStore.selectedEntity;
 
+  #flags = computed(() => this.entity()?.flags ?? []);
   categories = computed(() => {
     const allCategories = [
       ...(this.activeFlag()?.categories ?? []),
-      ...(this.flags()?.flatMap((flag) => flag.categories ?? []) ?? []),
+      ...(this.#flags()?.flatMap((flag) => flag.categories ?? []) ?? []),
     ];
     return Array.from(new Set(allCategories)).sort((a, b) => a.localeCompare(b));
   });
-  flags = computed(() => this.entity()?.flags ?? []);
-  rangedFlags = computed(() => this.entity()?.flags?.flatMap((flag) => flag.ranges ?? []) ?? []);
+  rangedFlags = computed(() => this.#setRangedFlags());
 
   activeCategories = linkedSignal(() => this.categories());
 
@@ -48,21 +48,17 @@ export class HistoryComponent {
     return categories.some((category) => activeCategories.includes(category));
   }
 
-  getFlag(flag: EntityFlag): FlagImage {
+  getFlag(flag: EntityFlagRange): Flag {
+    const range = this.#getRange(flag.start, flag.end);
     return {
-      src: flag.url,
-      alt: this.entity()?.name ?? '',
+      alt_parent_id: range?.alt_parent_id ?? this.entity()?.alt_parent_id,
+      end: flag.end,
       hoistedRight: this.entity()?.hoisted_right,
       isReversed: !!flag.reverse_url,
-    };
-  }
-
-  getRangedFlag(flag: EntityFlagRange): FlagImage {
-    return {
-      src: flag?.url ?? '',
-      alt: this.entity()?.name ?? '',
-      hoistedRight: this.entity()?.hoisted_right,
-      isReversed: !!flag.reverse_url,
+      name: range?.name ?? this.entity()?.name ?? '',
+      reverse_src: flag.reverse_url ?? this.activeFlag()?.reverse_url,
+      src: flag?.url ?? this.activeFlag()?.url,
+      start: flag.start,
     };
   }
 
@@ -74,5 +70,19 @@ export class HistoryComponent {
     }
 
     this.activeCategories.set([...currentCategories, category]);
+  }
+
+  #getRange(start: number, end?: number): EntityRange | undefined {
+    const ranges = this.entity()?.ranges ?? [];
+    return ranges.find(
+      (range) =>
+        range.start <= start &&
+        (range.end === undefined || (end !== undefined && range.end >= end)),
+    );
+  }
+
+  #setRangedFlags(): EntityFlagRange[] {
+    const flags = this.entity()?.flags?.flatMap((flag) => flag.ranges ?? []) ?? [];
+    return flags.sort((a, b) => a.start - b.start);
   }
 }

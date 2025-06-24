@@ -14,15 +14,10 @@
     </flag-tag-group>
   }
   <div class="flags">
-    @for (flag of flags(); track $index) {
-      @if (containsActiveCategory(flag.categories)) {
-        <app-history-entity [flag]="getFlag(flag)" [categories]="flag.categories" />
-      }
-    }
     @for (flag of rangedFlags(); track $index) {
       @let categories = flag.categories ?? activeFlag()?.categories ?? [];
       @if (containsActiveCategory(categories)) {
-        <app-history-entity [flag]="getRangedFlag(flag)" [categories]="categories" />
+        <app-flag currentPage="history" [categories]="categories" [flag]="getFlag(flag)" />
       }
     }
   </div>
