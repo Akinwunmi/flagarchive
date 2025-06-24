@@ -3,6 +3,7 @@ import {
   Component,
   DestroyRef,
   inject,
+  input,
   TemplateRef,
   viewChild,
   ViewContainerRef,
@@ -26,6 +27,8 @@ export class AdvancedSearchBarComponent {
   readonly #entitiesStore = inject(EntitiesStore);
   readonly #sidepanelService = inject(SidepanelService);
   readonly #viewContainerRef = inject(ViewContainerRef);
+
+  showFilterButton = input(true);
 
   filterSidepanel = viewChild.required<TemplateRef<FilterSidepanelComponent>>('filterSidepanel');
 

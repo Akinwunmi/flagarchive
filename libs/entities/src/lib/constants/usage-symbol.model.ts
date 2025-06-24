@@ -11,7 +11,6 @@ export const USAGE_SYMBOL_INDICES: Record<FlagCategory, number | [number, number
   [FlagCategory.RoyalStandard]: -1,
   [FlagCategory.StateEnsign]: 4,
   [FlagCategory.StateFlag]: 1,
-  [FlagCategory.SubnationalFlag]: [0, 1, 2],
   [FlagCategory.Unofficial]: -1,
   [FlagCategory.WarFlag]: 2,
 };

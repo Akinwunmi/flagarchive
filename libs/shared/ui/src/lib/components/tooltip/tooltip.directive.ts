@@ -26,6 +26,7 @@ export class TooltipDirective implements OnInit {
         .position()
         .flexibleConnectedTo(this.#elementRef)
         .withPositions(CONNECTED_POSITIONS),
+      scrollStrategy: this.#overlay.scrollStrategies.close(),
     });
   }
 

@@ -1,4 +1,4 @@
-<app-advanced-search-bar />
+<app-advanced-search-bar [showFilterButton]="false" />
 @if (entity(); as entity) {
   <div class="content">
     <flag-tab-group (activeChange)="setActiveSection($event)">
