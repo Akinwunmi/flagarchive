@@ -1,3 +1,5 @@
+import { FlagCategory } from '@flagarchive/advanced-search';
+
 export interface FlagImage {
   src: string;
   alt: string;
@@ -13,4 +15,5 @@ export interface Flag extends Omit<FlagImage, 'alt' | 'src'> {
   reverse_src?: string;
   src?: string;
   start?: number;
+  categories?: FlagCategory[];
 }

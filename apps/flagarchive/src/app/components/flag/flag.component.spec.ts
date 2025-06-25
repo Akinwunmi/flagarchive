@@ -22,9 +22,7 @@ describe(FlagComponent.name, () => {
 
     fixture = TestBed.createComponent(FlagComponent);
     component = fixture.componentInstance;
-    const { componentRef } = fixture;
-    componentRef.setInput('categories', []);
-    componentRef.setInput('flag', {
+    fixture.componentRef.setInput('flag', {
       src: 'https://example.com/flag.png',
       alt: 'Example Flag',
     });

@@ -38,6 +38,6 @@
     </button>
   }
 </div>
-@if (categories(); as categories) {
+@if (flag().categories; as categories) {
   <flag-usage-symbol [categories]="categories" [flagTooltip]="setCategoriesTooltip(categories)" />
 }

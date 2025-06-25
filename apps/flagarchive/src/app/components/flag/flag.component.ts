@@ -31,7 +31,6 @@ export class FlagComponent {
 
   flag = input.required<Flag>();
   cardView = input(true);
-  categories = input<FlagCategory[]>();
   currentPage = input<string>();
 
   isReversed = signal(false);
