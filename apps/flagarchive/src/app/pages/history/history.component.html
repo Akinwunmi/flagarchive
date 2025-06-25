@@ -1,23 +1,20 @@
 <app-advanced-search-bar [showFilterButton]="false" />
 <div class="content">
-  @if (activeFlag(); as activeFlag) {
-    <flag-tag-group>
-      @for (category of categories(); track $index) {
-        <flag-tag
-          [checkable]="true"
-          [checked]="activeCategories().includes(category)"
-          (checkedChange)="toggleCategory(category)"
-        >
-          {{ 'flag-categories.' + (category | hyphenate) | translate }}
-        </flag-tag>
-      }
-    </flag-tag-group>
-  }
+  <flag-tag-group>
+    @for (category of categories(); track $index) {
+      <flag-tag
+        [checkable]="true"
+        [checked]="activeCategories().includes(category)"
+        (checkedChange)="toggleCategory(category)"
+      >
+        {{ 'flag-categories.' + (category | hyphenate) | translate }}
+      </flag-tag>
+    }
+  </flag-tag-group>
   <div class="flags">
     @for (flag of rangedFlags(); track $index) {
-      @let categories = flag.categories ?? activeFlag()?.categories ?? [];
-      @if (containsActiveCategory(categories)) {
-        <app-flag currentPage="history" [categories]="categories" [flag]="getFlag(flag)" />
+      @if (containsActiveCategory(flag.categories ?? [])) {
+        <app-flag currentPage="history" [flag]="flag" />
       }
     }
   </div>
