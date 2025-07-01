@@ -1,3 +1,4 @@
+import { TitleCasePipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import {
@@ -14,10 +15,8 @@ import {
 } from '@flagarchive/ui';
 import { TranslatePipe } from '@ngx-translate/core';
 
-import { AdvancedSearchBarComponent } from '../../components/advanced-search-bar';
 import { EntitiesStore } from '../../store';
 import { DetailsSection } from './details.model';
-import { NgStyle, TitleCasePipe } from '@angular/common';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -25,13 +24,11 @@ import { NgStyle, TitleCasePipe } from '@angular/common';
     class: 'entity-page',
   },
   imports: [
-    AdvancedSearchBarComponent,
     CardComponent,
     CardContentComponent,
     CardHeaderComponent,
     HyphenatePipe,
     LinkGroupComponent,
-    NgStyle,
     RouterLink,
     TabComponent,
     TabGroupComponent,
@@ -40,6 +37,7 @@ import { NgStyle, TitleCasePipe } from '@angular/common';
     TitleCasePipe,
     TranslatePipe,
   ],
+  selector: 'app-details',
   styleUrl: './details.component.css',
   templateUrl: './details.component.html',
 })

@@ -1,13 +1,13 @@
 :host {
   align-items: center;
-  background-color: var(--flag-white);
-  border-radius: var(--flag-radius-lg);
+  background-color: var(--flag-grey-300);
   display: grid;
   gap: var(--flag-space-md);
   grid-template-columns: 1fr auto;
   inset-inline: 0;
   inset-block-start: 0;
   justify-content: space-between;
-  padding: var(--flag-space-xs);
+  padding: var(--flag-space-xs) var(--flag-space-md);
   position: sticky;
+  z-index: 3;
 }

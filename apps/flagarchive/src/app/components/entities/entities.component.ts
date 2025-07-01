@@ -1,17 +1,17 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { Layout } from '@flagarchive/advanced-search';
+import { TranslatePipe } from '@ngx-translate/core';
 
-import { AdvancedSearchBarComponent } from '../../components/advanced-search-bar';
-import { EntityComponent } from '../../components/entity';
+import { EntityComponent } from '../entity';
 import { AdvancedSearchStore, EntitiesStore } from '../../store';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    '[attr.main-entity]': 'isMainEntity() || undefined',
+    class: 'entity-page',
   },
-  imports: [EntityComponent, AdvancedSearchBarComponent],
-  styleUrl: './entities.component.css',
+  imports: [EntityComponent, TranslatePipe],
+  selector: 'app-entities',
   templateUrl: './entities.component.html',
 })
 export class EntitiesComponent {
@@ -19,10 +19,7 @@ export class EntitiesComponent {
   readonly #entitiesStore = inject(EntitiesStore);
 
   entities = this.#entitiesStore.filteredEntities;
-  isMainEntity = this.#entitiesStore.isMainEntity;
   layout = this.#advancedSearchStore.layout;
 
-  isGridLayout() {
-    return this.layout() === Layout.Grid;
-  }
+  isGridLayout = computed(() => this.layout() === Layout.Grid);
 }

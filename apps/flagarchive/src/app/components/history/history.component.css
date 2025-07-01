@@ -1,0 +1,9 @@
+.content {
+  gap: var(--flag-space-md);
+
+  .flags {
+    app-flag {
+      margin: var(--flag-space-xs);
+    }
+  }
+}

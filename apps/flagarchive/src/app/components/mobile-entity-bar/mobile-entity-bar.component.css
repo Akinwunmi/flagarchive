@@ -1,10 +1,13 @@
 :host {
   align-items: center;
-  background-color: var(--flag-grey-bg);
   display: flex;
-  min-height: var(--flag-space-6xl);
-  justify-content: space-between;
+  height: var(--flag-space-5xl);
+  justify-content: flex-end;
   padding-inline: var(--flag-space-sm);
+  position: absolute;
+  inset-block-start: var(--flag-space-4xl);
+  inset-inline-end: 0;
+  z-index: 3;
 }
 
 .flag {

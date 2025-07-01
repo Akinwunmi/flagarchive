@@ -3,6 +3,7 @@
   display: grid;
   grid-template-columns: 12.5rem 1fr;
   height: 100%;
+  position: relative;
   width: 100%;
 
   @media screen and (max-width: 50rem) {
@@ -20,7 +21,8 @@ app-sidenav {
 .flags {
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  overflow-y: auto;
+  padding-block-end: 5rem;
 
   app-mobile-entity-bar {
     display: none;

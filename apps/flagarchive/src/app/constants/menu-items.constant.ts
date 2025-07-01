@@ -13,7 +13,7 @@ export const ENTITY_MENU_ITEMS: MenuItem[] = [
   },
   {
     icon: 'history',
-    label: 'common.history',
+    label: 'common.historical-flags',
     path: ['history'],
   },
 ];

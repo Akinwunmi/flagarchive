@@ -17,10 +17,6 @@
           [label]="'entities.' + (selectedEntity.name | hyphenate) | translate"
           [link]="['flags', selectedEntity.unique_id, 'entities']"
         />
-        <flag-breadcrumb
-          [label]="'pages.' + currentPage() + '.title' | translate"
-          [link]="[currentPage()]"
-        />
       }
     </flag-breadcrumb-group>
   }
