@@ -1,40 +1,35 @@
 import { ChangeDetectionStrategy, Component, computed, inject, linkedSignal } from '@angular/core';
-import { FlagCategory } from '@flagarchive/advanced-search';
+import { FlagCategory, Layout } from '@flagarchive/advanced-search';
 import { EntityFlag, EntityFlagRange, EntityRange, Flag } from '@flagarchive/entities';
 import { HyphenatePipe, TagComponent, TagGroupComponent } from '@flagarchive/ui';
 import { TranslatePipe } from '@ngx-translate/core';
 
-import { AdvancedSearchBarComponent } from '../../components/advanced-search-bar';
-import { FlagComponent } from '../../components/flag';
-import { EntitiesStore } from '../../store';
+import { FlagComponent } from '../flag';
+import { AdvancedSearchStore, EntitiesStore } from '../../store';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     class: 'entity-page',
   },
-  imports: [
-    AdvancedSearchBarComponent,
-    FlagComponent,
-    HyphenatePipe,
-    TagComponent,
-    TagGroupComponent,
-    TranslatePipe,
-  ],
+  imports: [FlagComponent, HyphenatePipe, TagComponent, TagGroupComponent, TranslatePipe],
   selector: 'app-history',
   styleUrl: './history.component.css',
   templateUrl: './history.component.html',
 })
 export class HistoryComponent {
+  readonly #advancedSearchStore = inject(AdvancedSearchStore);
   readonly #entitiesStore = inject(EntitiesStore);
 
   entity = this.#entitiesStore.selectedEntity;
+  layout = this.#advancedSearchStore.layout;
 
   #flags = computed(() => this.entity()?.flags ?? []);
   categories = computed(() => {
     const allCategories = this.#flags()?.flatMap((flag) => flag.categories ?? []) ?? [];
     return Array.from(new Set(allCategories)).sort((a, b) => a.localeCompare(b));
   });
+  isGridLayout = computed(() => this.layout() === Layout.Grid);
   rangedFlags = computed(() => this.#setRangedFlags());
 
   activeCategories = linkedSignal(() => this.categories());

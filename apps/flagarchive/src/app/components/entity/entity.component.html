@@ -1,3 +1,3 @@
-<a [routerLink]="[basePath, entity().unique_id, entity().has_no_children ? 'details' : 'entities']">
+<a [routerLink]="[basePath, entity().unique_id]">
   <app-flag [cardView]="cardView()" [flag]="flag()" />
 </a>

@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
-import { NavigationEnd, Router, RouterLink } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import {
   BreadcrumbComponent,
   BreadcrumbGroupComponent,
@@ -11,8 +11,6 @@ import { TranslatePipe } from '@ngx-translate/core';
 
 import { WindowResizeService } from '../../services';
 import { EntitiesStore } from '../../store';
-import { toSignal } from '@angular/core/rxjs-interop';
-import { filter, map, startWith } from 'rxjs';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -31,7 +29,6 @@ import { filter, map, startWith } from 'rxjs';
 })
 export class NavigationBarComponent {
   readonly #entitiesStore = inject(EntitiesStore);
-  readonly #router = inject(Router);
   readonly #windowResizeService = inject(WindowResizeService);
 
   breadcrumbs = this.#entitiesStore.breadcrumbs;
@@ -47,15 +44,6 @@ export class NavigationBarComponent {
   isMainEntityTypesMenuOpen = signal(false);
   isMainEntitiesMenuOpen = signal(false);
 
-  #routerPath = toSignal(
-    this.#router.events.pipe(
-      filter((event) => event instanceof NavigationEnd),
-      map((event) => event.urlAfterRedirects.split('/').slice(1)),
-      startWith(this.#router.url.split('/').slice(1)),
-    ),
-  );
-
-  currentPage = computed(() => this.#routerPath()?.[2] ?? '');
   mainEntities = computed(() => {
     const selectedEntity = this.selectedEntity();
     if (!this.isMainEntity() || !selectedEntity) {

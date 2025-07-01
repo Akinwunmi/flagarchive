@@ -33,6 +33,7 @@
     "cancel": "Cancel",
     "continents": "Continents",
     "details": "Details",
+    "documents": "Documents",
     "entity": {
       "singular": "Entity",
       "plural": "Entities"
@@ -44,7 +45,7 @@
     },
     "global": "Global",
     "go-to-home": "Go to home",
-    "history": "History",
+    "historical-flags": "Historical flags",
     "language": "Language",
     "log-in": "Log in",
     "log-out": "Log out",
@@ -54,6 +55,7 @@
     "save-changes": "Save changes",
     "sign-up": "Sign up",
     "signup": "Sign up",
+    "sources": "Sources",
     "update": "Update",
     "update-password": "Update password"
   },
@@ -61,8 +63,7 @@
     "dissolved": "Dissolved",
     "founded": "Founded",
     "part-of": "Part of",
-    "region": "Region",
-    "sources": "Sources"
+    "region": "Region"
   },
   "errors": {
     "confirm-password": {

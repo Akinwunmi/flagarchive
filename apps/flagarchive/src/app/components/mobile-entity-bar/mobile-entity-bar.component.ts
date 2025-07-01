@@ -1,15 +1,12 @@
-import { ChangeDetectionStrategy, Component, computed, inject, input, signal } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { FlagImageComponent } from '@flagarchive/entities';
-import { DropdownComponent, IconComponent } from '@flagarchive/ui';
-import { TranslatePipe } from '@ngx-translate/core';
+import { IconComponent } from '@flagarchive/ui';
 
-import { MenuItem } from '../../models';
 import { AdvancedSearchStore, EntitiesStore } from '../../store';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [DropdownComponent, FlagImageComponent, IconComponent, RouterLink, TranslatePipe],
+  imports: [FlagImageComponent, IconComponent],
   selector: 'app-mobile-entity-bar',
   styleUrl: './mobile-entity-bar.component.css',
   templateUrl: './mobile-entity-bar.component.html',
@@ -18,14 +15,11 @@ export class MobileEntityBarComponent {
   readonly #advancedSearchStore = inject(AdvancedSearchStore);
   readonly #entitiesStore = inject(EntitiesStore);
 
-  entityItems = input<MenuItem[]>([]);
-
   flagCategory = this.#advancedSearchStore.flagCategory;
   selectedEntity = this.#entitiesStore.selectedEntity;
 
   isDropdownOpen = signal(false);
 
-  activeEntityItem = computed(() => this.entityItems().find((item) => item.active));
   activeFlag = computed(() =>
     this.selectedEntity()?.flags?.find((flag) => flag.categories?.includes(this.flagCategory())),
   );

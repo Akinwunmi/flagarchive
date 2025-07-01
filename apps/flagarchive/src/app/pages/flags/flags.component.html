@@ -1,7 +1,12 @@
 <app-sidenav [entityId]="entityId()" [entityItems]="entityItems()" />
 <div class="flags">
-  @if (!isMainEntity()) {
-    <app-mobile-entity-bar [entityItems]="entityItems()" />
+  <app-advanced-search-bar />
+  @if (isMainEntity()) {
+    <app-entities />
+  } @else {
+    <app-mobile-entity-bar />
+    <app-details />
+    <app-entities />
+    <app-history />
   }
-  <router-outlet />
 </div>

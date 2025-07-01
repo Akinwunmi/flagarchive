@@ -1,0 +1,10 @@
+<header>
+  <h3>{{ 'common.entity.plural' | translate }}</h3>
+</header>
+<section class="content">
+  <div class="flags" [class]="'entity-' + layout()">
+    @for (entity of entities(); track $index) {
+      <app-entity [cardView]="isGridLayout()" [entity]="entity" />
+    }
+  </div>
+</section>

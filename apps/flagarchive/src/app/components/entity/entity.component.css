@@ -2,7 +2,6 @@
   > a {
     border-radius: var(--flag-radius-sm);
     display: grid;
-    gap: var(--flag-space-xs);
     padding: var(--flag-space-xs);
     text-decoration: none;
     transition: background-color 150ms ease-in-out;

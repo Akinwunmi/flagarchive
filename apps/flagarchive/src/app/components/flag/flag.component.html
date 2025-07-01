@@ -15,7 +15,7 @@
       flag-pill
       class="alt-parent-id"
       type="button"
-      [routerLink]="[basePath, altParentId, currentPage() ?? 'entities']"
+      [routerLink]="[basePath, altParentId]"
       (click)="handleClickEvent($event)"
     >
       {{ altParentId ?? '' | uppercase }}

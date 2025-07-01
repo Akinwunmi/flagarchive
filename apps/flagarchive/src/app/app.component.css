@@ -1,8 +1,7 @@
 :host {
   background-color: var(--flag-white);
-  display: grid;
+  display: flex;
   height: 100svh;
-  overflow: hidden;
   position: absolute;
   width: 100svw;
 }
@@ -10,6 +9,8 @@
 .main {
   display: flex;
   flex-direction: column;
+  height: 100%;
+  width: 100%;
 
   .header {
     background-color: var(--flag-white);
@@ -38,7 +39,8 @@
     align-items: center;
     display: flex;
     flex-direction: column;
-    height: calc(100svh - 3.5rem);
+    flex-grow: 1;
+    height: 100%;
     width: 100%;
   
     router-outlet {

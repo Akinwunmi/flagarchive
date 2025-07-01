@@ -1,6 +1,8 @@
-<app-advanced-search-bar />
 @if (entity(); as entity) {
-  <div class="content">
+  <header>
+    <h3>{{ 'common.details' | translate }}</h3>
+  </header>
+  <section class="content">
     <flag-tab-group (activeChange)="setActiveSection($event)">
       <flag-tab [label]="'common.flag.singular' | translate" />
       <flag-tab [label]="'common.entity.singular' | translate" />
@@ -52,7 +54,7 @@
                     <td>
                       <div
                         class="colour-circle"
-                        [ngStyle]="{ backgroundColor: '#' + colour.hexadecimal }"
+                        [style.backgroundColor]="'#' + colour.hexadecimal"
                       ></div>
                       {{ 'colours.' + colour.name | translate }}
                     </td>
@@ -92,12 +94,12 @@
           </div>
           @if (entity.sources) {
             <div class="column-lg-12 key-value">
-              <p>{{ 'entity.sources' | translate }}</p>
+              <p>{{ 'common.sources' | translate }}</p>
               <flag-link-group [links]="sourceLinks()" />
             </div>
           }
         </div>
       </flag-card-content>
     </flag-card>
-  </div>
+  </section>
 }

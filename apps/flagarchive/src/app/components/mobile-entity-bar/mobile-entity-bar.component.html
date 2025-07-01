@@ -1,21 +1,8 @@
 @if (selectedEntity(); as entity) {
   <div class="flag">
     <flag-image [src]="activeFlag()?.url ?? ''" [alt]="'Flag of ' + entity.name" />
-    <button flag-button ghost>
+    <button flag-button rounded small>
       <flag-icon>open_in_full</flag-icon>
     </button>
   </div>
-  <flag-dropdown [label]="activeEntityItem()?.label ?? '' | translate" [(isOpen)]="isDropdownOpen">
-    @for (item of entityItems(); track $index) {
-      <a
-        flag-list-item
-        [routerLink]="item.path"
-        [attr.active]="item.active || undefined"
-        [attr.disabled]="(item.label === 'Entities' && entity.has_no_children) || undefined"
-        (click)="closeDropdown()"
-      >
-        {{ item.label | translate }}
-      </a>
-    }
-  </flag-dropdown>
 }
