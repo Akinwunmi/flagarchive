@@ -1,5 +1,7 @@
 <header>
-  <h3>{{ 'common.historical-flags' | translate }}</h3>
+  <a flag-anchor fragment="history" [routerLink]="[]">
+    {{ 'common.historical-flags' | translate }}
+  </a>
 </header>
 <section class="content">
   <flag-tag-group>

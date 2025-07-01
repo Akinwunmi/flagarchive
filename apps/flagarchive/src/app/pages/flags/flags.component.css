@@ -22,7 +22,7 @@ app-sidenav {
   display: flex;
   flex-direction: column;
   overflow-y: auto;
-  padding-block-end: 5rem;
+  padding-block-end: 8rem;
 
   app-mobile-entity-bar {
     display: none;
@@ -30,5 +30,17 @@ app-sidenav {
     @media screen and (max-width: 50rem) {
       display: flex;
     }
+  }
+
+  > header {
+    align-items: center;
+    background-color: var(--flag-grey-bg);
+    display: flex;
+    height: var(--flag-space-5xl);
+    margin-block-start: var(--flag-space-lg);
+    padding-inline: var(--flag-space-md);
+    position: sticky;
+    top: var(--flag-space-4xl);
+    z-index: 2;
   }
 }

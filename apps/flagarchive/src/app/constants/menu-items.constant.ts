@@ -3,17 +3,20 @@ import { MenuItem } from '../models';
 export const ENTITY_MENU_ITEMS: MenuItem[] = [
   {
     icon: 'info',
+    fragment: 'details',
     label: 'common.details',
-    path: ['details'],
+    path: [],
   },
   {
     icon: 'flag',
+    fragment: 'entities',
     label: 'common.entity.plural',
-    path: ['entities'],
+    path: [],
   },
   {
     icon: 'history',
+    fragment: 'history',
     label: 'common.historical-flags',
-    path: ['history'],
+    path: [],
   },
 ];

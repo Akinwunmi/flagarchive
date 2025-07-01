@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, computed, inject, linkedSignal } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { FlagCategory, Layout } from '@flagarchive/advanced-search';
 import { EntityFlag, EntityFlagRange, EntityRange, Flag } from '@flagarchive/entities';
 import { HyphenatePipe, TagComponent, TagGroupComponent } from '@flagarchive/ui';
@@ -12,7 +13,14 @@ import { AdvancedSearchStore, EntitiesStore } from '../../store';
   host: {
     class: 'entity-page',
   },
-  imports: [FlagComponent, HyphenatePipe, TagComponent, TagGroupComponent, TranslatePipe],
+  imports: [
+    FlagComponent,
+    HyphenatePipe,
+    RouterLink,
+    TagComponent,
+    TagGroupComponent,
+    TranslatePipe,
+  ],
   selector: 'app-history',
   styleUrl: './history.component.css',
   templateUrl: './history.component.html',

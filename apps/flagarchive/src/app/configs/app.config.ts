@@ -1,7 +1,7 @@
 import { HttpClient, provideHttpClient } from '@angular/common/http';
 import { ApplicationConfig, provideExperimentalZonelessChangeDetection } from '@angular/core';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { provideRouter } from '@angular/router';
+import { provideRouter, withInMemoryScrolling } from '@angular/router';
 import { provideTranslateService, TranslateLoader, TranslationObject } from '@ngx-translate/core';
 
 import { APP_ROUTES } from '../app.routes';
@@ -30,7 +30,10 @@ export const APP_CONFIG: ApplicationConfig = {
     provideAnimationsAsync(),
     provideExperimentalZonelessChangeDetection(),
     provideHttpClient(),
-    provideRouter(APP_ROUTES),
+    provideRouter(
+      APP_ROUTES,
+      withInMemoryScrolling({ anchorScrolling: 'enabled', scrollPositionRestoration: 'enabled' }),
+    ),
     provideTranslateService({
       loader: {
         provide: TranslateLoader,

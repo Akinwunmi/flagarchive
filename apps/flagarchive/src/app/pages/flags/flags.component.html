@@ -2,11 +2,19 @@
 <div class="flags">
   <app-advanced-search-bar />
   @if (isMainEntity()) {
-    <app-entities />
+    <div #fragment id="entities">
+      <app-entities />
+    </div>
   } @else {
     <app-mobile-entity-bar />
-    <app-details />
-    <app-entities />
-    <app-history />
+    <div #fragment id="details">
+      <app-details />
+    </div>
+    <div #fragment id="entities">
+      <app-entities />
+    </div>
+    <div #fragment id="history">
+      <app-history />
+    </div>
   }
 </div>

@@ -1,0 +1,24 @@
+a[flag-anchor] {
+  align-items: center;
+  color: var(--flag-secondary-700);
+  display: flex;
+  font-size: var(--flag-font-size-md);
+  font-weight: var(--flag-font-weight-bold);
+  gap: var(--flag-space-xs);
+  text-decoration: none;
+
+  &::after {
+    color: var(--flag-grey-500);
+    content: 'link';
+    font-family: 'Material Symbols Rounded';
+    opacity: 0;
+    transition: opacity 150ms ease-in-out;
+  }
+
+  &:hover {
+    &::after {
+      display: inline-block;
+      opacity: 1;
+    }
+  }
+}

@@ -55,6 +55,7 @@
         [attr.disabled]="
           (item.label === 'Entities' && selectedEntity()?.has_no_children) || undefined
         "
+        [fragment]="item.fragment"
         [routerLink]="item.path"
       >
         @if (item.icon) {

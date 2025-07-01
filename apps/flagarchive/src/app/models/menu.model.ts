@@ -6,4 +6,5 @@ export interface Item {
 export interface MenuItem extends Item {
   path: string[] | string;
   active?: boolean;
+  fragment?: string;
 }
