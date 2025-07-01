@@ -1,5 +1,7 @@
 <header>
-  <h3>{{ 'common.entity.plural' | translate }}</h3>
+  <a flag-anchor fragment="entities" [routerLink]="[]">
+    {{ 'common.entity.plural' | translate }}
+  </a>
 </header>
 <section class="content">
   <div class="flags" [class]="'entity-' + layout()">

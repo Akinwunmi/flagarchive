@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { Layout } from '@flagarchive/advanced-search';
 import { TranslatePipe } from '@ngx-translate/core';
 
@@ -10,7 +11,7 @@ import { AdvancedSearchStore, EntitiesStore } from '../../store';
   host: {
     class: 'entity-page',
   },
-  imports: [EntityComponent, TranslatePipe],
+  imports: [EntityComponent, RouterLink, TranslatePipe],
   selector: 'app-entities',
   templateUrl: './entities.component.html',
 })

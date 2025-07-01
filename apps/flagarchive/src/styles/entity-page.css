@@ -2,10 +2,11 @@
   display: flex;
   flex-direction: column;
   gap: var(--flag-space-xs);
-  padding-block-end: var(--flag-space-xl);
+  margin-block-end: calc(var(--flag-space-2xl) * -1);
+  padding-block: var(--flag-space-xl);
   width: 100%;
 
-  header {
+  > header {
     align-items: center;
     background-color: var(--flag-grey-bg);
     color: var(--flag-secondary-700);

@@ -1,6 +1,8 @@
 @if (entity(); as entity) {
   <header>
-    <h3>{{ 'common.details' | translate }}</h3>
+    <a flag-anchor fragment="details" [routerLink]="[]">
+      {{ 'common.details' | translate }}
+    </a>
   </header>
   <section class="content">
     <flag-tab-group (activeChange)="setActiveSection($event)">
