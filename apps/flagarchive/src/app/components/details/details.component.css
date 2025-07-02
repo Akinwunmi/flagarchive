@@ -6,48 +6,43 @@
     display: none;
   }
 
-  .flag-info {
-    flag-card-content {
-      .grid {
-        flag-tag-group {
-          margin-block: var(--flag-space-md);
-        }
+  .general-info {
+    flag-card-header {
+      gap: var(--flag-space-2xs);
+      padding-block-end: var(--flag-space-xs);
 
-        .colours-header {
-          font-size: var(--flag-font-size-sm);
-          font-weight: var(--flag-font-weight-regular);
-        }
-
-        [flag-table] {
-          th,
-          td {
-            &:first-of-type {
-              max-width: calc(50svw - var(--flag-space-xl));
-              width: 12rem;
-            }
-          }
-          .colour-circle {
-            border-radius: 50%;
-            float: left;
-            height: calc(var(--flag-space-lg) + var(--flag-space-2xs));
-            margin-block: var(--flag-space-2xs);
-            margin-inline-end: var(--flag-space-xs);
-            border: var(--flag-border-size-sm) solid var(--flag-grey-300);
-            width: calc(var(--flag-space-lg) + var(--flag-space-2xs));
-          }
-        }
+      .subtitle {
+        color: var(--flag-secondary-text);
       }
     }
   }
 
-  .entity-info {
+  .flag-colours {
     gap: var(--flag-space-xs);
 
-    flag-card-header {
-      gap: var(--flag-space-2xs);
+    flag-card-content {
+      .colours-header {
+        font-size: var(--flag-font-size-sm);
+        font-weight: var(--flag-font-weight-regular);
+      }
 
-      .subtitle {
-        color: var(--flag-secondary-700);
+      [flag-table] {
+        th,
+        td {
+          &:first-of-type {
+            max-width: calc(50svw - var(--flag-space-xl));
+            width: 12rem;
+          }
+        }
+        .colour-circle {
+          border-radius: 50%;
+          float: left;
+          height: calc(var(--flag-space-lg) + var(--flag-space-2xs));
+          margin-block: var(--flag-space-2xs);
+          margin-inline-end: var(--flag-space-xs);
+          border: var(--flag-border-size-sm) solid var(--flag-grey-300);
+          width: calc(var(--flag-space-lg) + var(--flag-space-2xs));
+        }
       }
     }
   }
@@ -60,8 +55,8 @@
       display: initial;
     }
 
-    .flag-info,
-    .entity-info {
+    .general-info,
+    .flag-colours {
       display: none;
 
       &.active {
@@ -69,17 +64,9 @@
       }
     }
 
-    .flag-info {
+    .flag-colours {
       flag-card-header {
         display: none;
-      }
-
-      flag-card-content {
-        .grid {
-          flag-tag-group {
-            margin-block: var(--flag-space-xl) var(--flag-space-xs);
-          }
-        }
       }
     }
   }

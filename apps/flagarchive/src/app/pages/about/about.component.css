@@ -47,7 +47,7 @@ hr {
   .about-card {
     background-color: var(--flag-grey-100);
     border-radius: var(--flag-radius-lg);
-    color: var(--flag-secondary-700);
+    color: var(--flag-secondary-text);
     display: grid;
     gap: var(--flag-space-sm);
     max-width: 35.5rem;

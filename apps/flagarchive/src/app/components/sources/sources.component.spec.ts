@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
-import { provideTranslateService, TranslateFakeLoader, TranslateLoader } from '@ngx-translate/core';
+import { provideTranslateService, TranslateLoader, TranslateFakeLoader } from '@ngx-translate/core';
 
 import { ENVIRONMENT_STUB, MockSupabaseService } from '../../mocks';
 import { SupabaseService } from '../../services';
-import { MainNavigationActionsComponent } from './main-navigation-actions.component';
+import { SourcesComponent } from './sources.component';
 
 jest.mock('../../../environments/environment', () => ENVIRONMENT_STUB);
 
-describe(MainNavigationActionsComponent.name, () => {
-  let component: MainNavigationActionsComponent;
-  let fixture: ComponentFixture<MainNavigationActionsComponent>;
+describe(SourcesComponent.name, () => {
+  let component: SourcesComponent;
+  let fixture: ComponentFixture<SourcesComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MainNavigationActionsComponent],
+      imports: [SourcesComponent],
       providers: [
         provideRouter([]),
         provideTranslateService({
@@ -30,7 +30,7 @@ describe(MainNavigationActionsComponent.name, () => {
       ],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(MainNavigationActionsComponent);
+    fixture = TestBed.createComponent(SourcesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -11,9 +11,11 @@ import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { filter, map } from 'rxjs';
 
-import { HeaderComponent } from './components/header';
-import { MainNavigationActionsComponent } from './components/main-navigation-actions';
-import { NavigationBarComponent } from './components/navigation-bar';
+import {
+  HeaderComponent,
+  MainNavigationActionsComponent,
+  NavigationBarComponent,
+} from './components';
 import { ENTITY_MENU_ITEMS } from './constants';
 import { AuthService } from './services';
 

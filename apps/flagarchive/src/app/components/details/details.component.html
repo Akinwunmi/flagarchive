@@ -6,101 +6,80 @@
   </header>
   <section class="content">
     <flag-tab-group (activeChange)="setActiveSection($event)">
-      <flag-tab [label]="'common.flag.singular' | translate" />
-      <flag-tab [label]="'common.entity.singular' | translate" />
+      <flag-tab [label]="'common.general' | translate" />
+      <flag-tab [label]="'common.colour.plural' | translate" />
     </flag-tab-group>
-    <flag-card class="flag-info" [class.active]="activeSection() === detailsSection.Flag">
-      <flag-card-header>
-        {{ 'common.flag.singular' | translate }}
-      </flag-card-header>
-      <flag-card-content>
-        <div class="grid no-padding">
-          @if (activeFlag(); as activeFlag) {
-            <flag-tag-group class="column-lg-12">
-              @for (category of activeFlag.categories; track $index) {
-                <flag-tag>
-                  {{ 'flag-categories.' + (category | hyphenate) | translate }}
-                </flag-tag>
-              }
-            </flag-tag-group>
-          }
-          @if (activeFlagRange(); as activeFlagRange) {
-            <div class="column-lg-4 column-sm-2 key-value">
-              <p>{{ 'flag.adopted' | translate }}</p>
-              <p>{{ activeFlagRange.start }}</p>
-            </div>
-            <div class="column-lg-4 column-sm-2 key-value">
-              <p>{{ 'flag.abolished' | translate }}</p>
-              <p>{{ activeFlagRange.end ?? '\u2014' }}</p>
-            </div>
-            <div class="column-lg-4 column-sm-2 key-value">
-              <p>{{ 'flag.ratio' | translate }}</p>
-              <p>{{ activeFlag()?.ratio ?? activeFlagRange.ratio ?? '\u2014' }}</p>
-            </div>
-          }
-          <hr flag-divider class="column-lg-12" />
-          @if (activeFlag()?.colours; as colours) {
-            <h3 class="column-lg-12 colours-header">
-              {{ 'flag.colour.plural' | translate }}
-            </h3>
-            <table flag-table class="column-lg-12">
-              <thead>
-                <tr>
-                  <th>{{ 'flag.colour.singular' | translate }}</th>
-                  <th>{{ 'flag.pms' | translate }}</th>
-                </tr>
-              </thead>
-              <tbody>
-                @for (colour of colours; track $index) {
-                  <tr>
-                    <td>
-                      <div
-                        class="colour-circle"
-                        [style.backgroundColor]="'#' + colour.hexadecimal"
-                      ></div>
-                      {{ 'colours.' + colour.name | translate }}
-                    </td>
-                    <td>{{ colour.pms | titlecase }}</td>
-                  </tr>
-                }
-              </tbody>
-            </table>
-          }
-        </div>
-      </flag-card-content>
-    </flag-card>
-    <flag-card class="entity-info" [class.active]="activeSection() === detailsSection.Entity">
+    <flag-card
+      class="general-info"
+      [class.active]="activeSection() === detailsSection.General"
+      [elevated]="false"
+    >
       <flag-card-header>
         <h3>{{ 'entities.' + (activeRange()?.name ?? entity.name) | translate }}</h3>
         <p class="subtitle">{{ 'entity-types.' + entity.type | translate }}</p>
       </flag-card-header>
       <flag-card-content>
         <div class="grid no-padding">
-          <div class="column-lg-12 key-value">
-            <p>{{ 'entity.region' | translate }}</p>
-            <flag-link-group [links]="parentIdLinks()" />
+          <div class="column-lg-4 column-sm-2 key-value">
+            <p>{{ 'flag.adopted' | translate }}</p>
+            <p>{{ activeFlagRange()?.start ?? '\u2014' }}</p>
           </div>
-          @if (altParentId(); as altParentId) {
-            <div class="column-lg-12 key-value">
-              <p>{{ 'entity.part-of' | translate }}</p>
-              <a flag-link [routerLink]="['/flags', altParentId]">{{ altParentId }}</a>
-            </div>
-          }
-          <div class="column-lg-6 column-md-2 column-sm-2 key-value">
-            <p>{{ 'entity.founded' | translate }}</p>
-            <p>{{ activeRange()?.start }}</p>
+          <div class="column-lg-4 column-sm-2 key-value">
+            <p>{{ 'flag.abolished' | translate }}</p>
+            <p>{{ activeFlagRange()?.end ?? '\u2014' }}</p>
           </div>
-          <div class="column-lg-6 column-md-2 column-sm-2 key-value">
-            <p>{{ 'entity.dissolved' | translate }}</p>
-            <p>{{ activeRange()?.end ?? '\u2014' }}</p>
+          <div class="column-lg-4 column-sm-2 key-value">
+            <p>{{ 'flag.ratio' | translate }}</p>
+            <p>{{ activeFlagRange()?.ratio ?? activeFlag()?.ratio ?? '\u2014' }}</p>
           </div>
-          @if (entity.sources) {
-            <div class="column-lg-12 key-value">
-              <p>{{ 'common.sources' | translate }}</p>
-              <flag-link-group [links]="sourceLinks()" />
-            </div>
-          }
+          <div class="column-lg-4 column-sm-2 key-value">
+            <p>{{ 'flag.nickname' | translate }}</p>
+            <p>{{ activeFlagRange()?.nickname ?? activeFlag()?.nickname ?? '\u2014' }}</p>
+          </div>
+          <div class="column-lg-4 column-sm-2 key-value">
+            <p>{{ 'flag.designed-by' | translate }}</p>
+            <p>{{ activeFlagRange()?.designed_by ?? activeFlag()?.designed_by ?? '\u2014' }}</p>
+          </div>
         </div>
+      </flag-card-content>
+    </flag-card>
+    <flag-card
+      class="flag-colours"
+      [class.active]="activeSection() === detailsSection.Colours"
+      [elevated]="false"
+    >
+      <flag-card-header>
+        <h3 class="column-lg-12 colours-header">
+          {{ 'flag.colour.plural' | translate }}
+        </h3>
+      </flag-card-header>
+      <flag-card-content>
+        @if (activeFlag()?.colours; as colours) {
+          <table flag-table>
+            <thead>
+              <tr>
+                <th>{{ 'flag.colour.singular' | translate }}</th>
+                <th>{{ 'flag.pms' | translate }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (colour of colours; track $index) {
+                <tr>
+                  <td>
+                    <div
+                      class="colour-circle"
+                      [style.backgroundColor]="'#' + colour.hexadecimal"
+                    ></div>
+                    {{ 'colours.' + colour.name | translate }}
+                  </td>
+                  <td>{{ colour.pms | titlecase }}</td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        } @else {
+          <p class="placeholder-text">{{ 'pages.details.no-colour-data' | translate }}</p>
+        }
       </flag-card-content>
     </flag-card>
   </section>

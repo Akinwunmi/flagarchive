@@ -31,6 +31,10 @@
     "about": "About",
     "about-the-project": "About Flag Archive",
     "cancel": "Cancel",
+    "colour": {
+      "singular": "Colour",
+      "plural": "Colours"
+    },
     "continents": "Continents",
     "details": "Details",
     "documents": "Documents",
@@ -43,6 +47,7 @@
       "singular": "Flag",
       "plural": "Flags"
     },
+    "general": "General",
     "global": "Global",
     "go-to-home": "Go to home",
     "historical-flags": "Historical flags",
@@ -164,12 +169,16 @@
   },
   "pages": {
     "details": {
+      "no-colour-data": "No colour codes available yet",
       "title": "Details"
     },
     "entities": {
+      "no-children": "This entity has no child entities",
+      "no-data": "No entities available yet",
       "title": "Entities"
     },
     "history": {
+      "no-data": "No historical flags available yet",
       "title": "History"
     },
     "home": {
@@ -192,6 +201,10 @@
     "signup": {
       "login-message": "Already have an account?",
       "welcome-message": "Good to have you here!"
+    },
+    "sources": {
+      "no-data": "No sources available yet",
+      "title": "Sources"
     }
   }
 }

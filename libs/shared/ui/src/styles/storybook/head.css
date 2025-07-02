@@ -24,16 +24,16 @@
     }
     
     .css-18rvurk {
-      color: var(--flag-secondary-700);
+      color: var(--flag-secondary-text);
     
       &:hover {
         background-color: var(--flag-secondary-200);
-        color: var(--flag-secondary-700);
+        color: var(--flag-secondary-text);
       }
     
       &:active {
         background-color: var(--flag-secondary-100);
-        color: var(--flag-secondary-700);
+        color: var(--flag-secondary-text);
       }
     }
   }

@@ -1,6 +1,6 @@
 a[flag-anchor] {
   align-items: center;
-  color: var(--flag-secondary-700);
+  color: var(--flag-secondary-text);
   display: flex;
   font-size: var(--flag-font-size-md);
   font-weight: var(--flag-font-weight-bold);

@@ -8,7 +8,7 @@ import { EntitiesComponent } from './entities.component';
 
 jest.mock('../../../environments/environment', () => ENVIRONMENT_STUB);
 
-describe('EntitiesComponent', () => {
+describe(EntitiesComponent.name, () => {
   let component: EntitiesComponent;
   let fixture: ComponentFixture<EntitiesComponent>;
 

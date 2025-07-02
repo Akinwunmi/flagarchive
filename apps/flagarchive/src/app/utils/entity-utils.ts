@@ -29,6 +29,8 @@ function mapFlags(flags: DbEntityFlag[] | null): EntityFlag[] | undefined {
   return flags.map((flag) => ({
     categories: flag.categories,
     colours: mapFlagColours(flag.entity_flag_colours),
+    designed_by: flag.designed_by ?? undefined,
+    nickname: flag.nickname ?? undefined,
     ranges: mapFlagRanges(flag.entity_flag_ranges),
     ratio: flag.ratio ?? undefined,
     reverse_url: flag.reverse_url ?? undefined,
@@ -71,6 +73,8 @@ function mapFlagRanges(ranges: DbEntityFlagRange[] | null): EntityFlagRange[] | 
     start: range.start,
     end: range.end ?? undefined,
     categories: range.categories ?? undefined,
+    designed_by: range.designed_by ?? undefined,
+    nickname: range.nickname ?? undefined,
     ratio: range.ratio ?? undefined,
     reverse_url: range.reverse_url ?? undefined,
     url: range.url ?? undefined,

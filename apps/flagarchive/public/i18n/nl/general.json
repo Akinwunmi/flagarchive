@@ -31,8 +31,13 @@
     "about": "Over",
     "about-the-project": "Over Flag Archive",
     "cancel": "Annuleren",
+    "colour": {
+      "singular": "Kleur",
+      "plural": "Kleuren"
+    },
     "continents": "Continenten",
     "details": "Details",
+    "documents": "Documenten",
     "entity": {
       "singular": "Entiteit",
       "plural": "Entiteiten"
@@ -42,6 +47,7 @@
       "singular": "Vlag",
       "plural": "Vlaggen"
     },
+    "general": "Algemeen",
     "global": "Wereldwijd",
     "go-to-home": "Ga naar home",
     "historical-flags": "Historische vlaggen",
@@ -54,6 +60,7 @@
     "save-changes": "Wijzigingen opslaan",
     "sign-up": "Aanmelden",
     "signup": "Aanmelden",
+    "sources": "Bronnen",
     "update": "Bijwerken",
     "update-password": "Wachtwoord bijwerken"
   },
@@ -61,8 +68,7 @@
     "dissolved": "Ontbonden",
     "founded": "Opgericht",
     "part-of": "Onderdeel van",
-    "region": "Regio",
-    "sources": "Bronnen"
+    "region": "Regio"
   },
   "errors": {
     "confirm-password": {
@@ -166,9 +172,12 @@
       "title": "Details"
     },
     "entities": {
+      "no-children": "Deze entiteit heeft geen sub-entiteiten",
+      "no-data": "Nog geen entiteiten beschikbaar",
       "title": "Entiteiten"
     },
     "history": {
+      "no-data": "Nog geen historische vlaggen beschikbaar",
       "title": "Historie"
     },
     "home": {
@@ -191,6 +200,10 @@
     "signup": {
       "login-message": "Al een account?",
       "welcome-message": "Fijn je hier te zien!"
+    },
+    "sources": {
+      "no-data": "Nog geen bronnen beschikbaar",
+      "title": "Bronnen"
     }
   }
 }

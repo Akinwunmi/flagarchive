@@ -8,7 +8,7 @@ import { HistoryComponent } from './history.component';
 
 jest.mock('../../../environments/environment', () => ENVIRONMENT_STUB);
 
-describe('HistoryComponent', () => {
+describe(HistoryComponent.name, () => {
   let component: HistoryComponent;
   let fixture: ComponentFixture<HistoryComponent>;
 

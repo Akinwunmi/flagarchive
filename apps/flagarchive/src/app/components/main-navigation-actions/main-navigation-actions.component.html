@@ -1,3 +1,6 @@
+<a flag-button ghost small routerLink="/about">
+  {{ 'common.about' | translate }}
+</a>
 @if (!currentUser() || mainPage() === 'profile') {
   @if (mainPage() === 'home') {
     <a flag-button ghost small routerLink="/signup">
