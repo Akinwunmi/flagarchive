@@ -1,6 +1,6 @@
 :host {
   align-items: center;
-  color: var(--flag-secondary-700);
+  color: var(--flag-secondary-text);
   display: flex;
   gap: var(--flag-space-md);
 }

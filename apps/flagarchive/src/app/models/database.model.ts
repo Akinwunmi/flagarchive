@@ -28,6 +28,8 @@ interface DbRawEntityFlag {
   entity_id: number;
   id: number;
   url: string;
+  designed_by?: string[] | null;
+  nickname?: string | null;
   ratio?: string | null;
   reverse_url?: string | null;
 }
@@ -74,6 +76,8 @@ export interface DbEntityFlagRange {
   start: number;
   categories?: FlagCategory[] | null;
   end?: number | null;
+  designed_by?: string[] | null;
+  nickname?: string | null;
   ratio?: string | null;
   reverse_url?: string | null;
   url?: string | null;

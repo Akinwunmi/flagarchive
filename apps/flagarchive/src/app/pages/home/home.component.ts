@@ -3,8 +3,7 @@ import { RouterLink } from '@angular/router';
 import { IconComponent } from '@flagarchive/ui';
 import { TranslatePipe } from '@ngx-translate/core';
 
-import { EntityComponent } from '../../components/entity';
-import { FooterComponent } from '../../components/footer';
+import { EntityComponent, FooterComponent } from '../../components';
 import { EntitiesStore } from '../../store';
 
 @Component({

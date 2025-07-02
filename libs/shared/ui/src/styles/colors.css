@@ -33,6 +33,7 @@
   --flag-secondary-700: hsl(var(--_secondary), 23%);
 
   --flag-secondary: var(--flag-secondary-500);
+  --flag-secondary-text: var(--flag-secondary-700);
 
   --_success: 150, 70%;
   --flag-success-100: hsl(var(--_success), 97%);

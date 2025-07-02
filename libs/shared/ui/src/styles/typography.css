@@ -22,3 +22,7 @@ h3 {
   line-height: var(--flag-line-height-md);
   margin: 0;
 }
+
+.placeholder-text {
+  color: var(--flag-grey-500);
+}

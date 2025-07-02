@@ -1,0 +1,16 @@
+<header>
+  <a flag-anchor fragment="sources" [routerLink]="[]">
+    {{ 'common.sources' | translate }}
+  </a>
+</header>
+<section class="content">
+  @if (!entity()?.sources) {
+    <p class="placeholder-text">{{ 'pages.sources.no-data' | translate }}</p>
+  } @else {
+    <flag-card>
+      <flag-card-content>
+        <flag-link-group [links]="sourceLinks()" />
+      </flag-card-content>
+    </flag-card>
+  }
+</section>

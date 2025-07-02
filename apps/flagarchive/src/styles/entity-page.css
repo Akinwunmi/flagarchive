@@ -9,7 +9,7 @@
   > header {
     align-items: center;
     background-color: var(--flag-grey-bg);
-    color: var(--flag-secondary-700);
+    color: var(--flag-secondary-text);
     display: flex;
     height: var(--flag-space-5xl);
     margin-block-start: var(--flag-space-lg);

@@ -19,4 +19,10 @@ export const ENTITY_MENU_ITEMS: MenuItem[] = [
     label: 'common.historical-flags',
     path: [],
   },
+  {
+    icon: 'asterisk',
+    fragment: 'sources',
+    label: 'common.sources',
+    path: [],
+  },
 ];

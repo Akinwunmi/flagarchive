@@ -4,9 +4,15 @@
   </a>
 </header>
 <section class="content">
-  <div class="flags" [class]="'entity-' + layout()">
-    @for (entity of entities(); track $index) {
-      <app-entity [cardView]="isGridLayout()" [entity]="entity" />
-    }
-  </div>
+  @if (hasNoChildren()) {
+    <p class="placeholder-text">{{ 'pages.entities.no-children' | translate }}</p>
+  } @else if (entities().length === 0) {
+    <p class="placeholder-text">{{ 'pages.entities.no-data' | translate }}</p>
+  } @else {
+    <div class="flags" [class]="'entity-' + layout()">
+      @for (entity of entities(); track $index) {
+        <app-entity [cardView]="isGridLayout()" [entity]="entity" />
+      }
+    </div>
+  }
 </section>

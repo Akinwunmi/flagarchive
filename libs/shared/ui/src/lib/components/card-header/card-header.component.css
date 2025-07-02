@@ -2,5 +2,5 @@
   color: var(--flag-primary);
   display: grid;
   font-size: var(--flag-font-size-sm);
-  padding: var(--flag-space-lg);
+  padding: var(--flag-space-lg) var(--flag-space-lg) 0;
 }

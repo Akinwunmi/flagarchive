@@ -15,7 +15,7 @@ button,
   border: var(--flag-border-size-xs) solid var(--flag-secondary-700);
   border-radius: var(--flag-radius-xl);
   box-sizing: border-box;
-  color: var(--flag-secondary-700);
+  color: var(--flag-secondary-text);
   display: flex;
   font-family: var(--flag-font-family);
   font-size: var(--flag-font-size-xs);

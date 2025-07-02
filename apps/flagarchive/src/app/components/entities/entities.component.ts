@@ -20,7 +20,9 @@ export class EntitiesComponent {
   readonly #entitiesStore = inject(EntitiesStore);
 
   entities = this.#entitiesStore.filteredEntities;
+  entity = this.#entitiesStore.selectedEntity;
   layout = this.#advancedSearchStore.layout;
 
+  hasNoChildren = computed(() => this.entity()?.has_no_children ?? false);
   isGridLayout = computed(() => this.layout() === Layout.Grid);
 }

@@ -1,6 +1,6 @@
 @for (link of links(); track $index) {
   @if (link.url) {
-    <a [href]="link.url" target="_blank">{{ link.name }}</a>
+    <a target="_blank" [href]="link.url">{{ link.name }}</a>
   } @else if (link.path) {
     <a [routerLink]="link.path">{{ link.name }}</a>
   }

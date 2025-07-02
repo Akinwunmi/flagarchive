@@ -4,22 +4,26 @@
   </a>
 </header>
 <section class="content">
-  <flag-tag-group>
-    @for (category of categories(); track $index) {
-      <flag-tag
-        [checkable]="true"
-        [checked]="activeCategories().includes(category)"
-        (checkedChange)="toggleCategory(category)"
-      >
-        {{ 'flag-categories.' + (category | hyphenate) | translate }}
-      </flag-tag>
-    }
-  </flag-tag-group>
-  <div class="flags" [class]="'entity-' + layout()">
-    @for (flag of rangedFlags(); track $index) {
-      @if (containsActiveCategory(flag.categories ?? [])) {
-        <app-flag currentPage="history" [cardView]="isGridLayout()" [flag]="flag" />
+  @if (rangedFlags().length === 0) {
+    <p class="placeholder-text">{{ 'pages.history.no-data' | translate }}</p>
+  } @else {
+    <flag-tag-group>
+      @for (category of categories(); track $index) {
+        <flag-tag
+          [checkable]="true"
+          [checked]="activeCategories().includes(category)"
+          (checkedChange)="toggleCategory(category)"
+        >
+          {{ 'flag-categories.' + (category | hyphenate) | translate }}
+        </flag-tag>
       }
-    }
-  </div>
+    </flag-tag-group>
+    <div class="flags" [class]="'entity-' + layout()">
+      @for (flag of rangedFlags(); track $index) {
+        @if (containsActiveCategory(flag.categories ?? [])) {
+          <app-flag currentPage="history" [cardView]="isGridLayout()" [flag]="flag" />
+        }
+      }
+    </div>
+  }
 </section>

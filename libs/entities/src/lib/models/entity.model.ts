@@ -18,6 +18,8 @@ export interface EntityFlag {
   categories: FlagCategory[];
   url: string;
   colours?: EntityFlagColour[];
+  designed_by?: string[];
+  nickname?: string;
   ranges?: EntityFlagRange[];
   ratio?: string;
   reverse_url?: string;
@@ -93,6 +95,8 @@ export interface EntityFlagColour {
 
 export interface EntityFlagRange extends EntityStartEnd {
   categories?: FlagCategory[];
+  designed_by?: string[];
+  nickname?: string;
   ratio?: string;
   reverse_url?: string;
   url?: string;

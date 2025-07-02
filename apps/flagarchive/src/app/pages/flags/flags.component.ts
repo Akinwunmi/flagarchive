@@ -14,12 +14,15 @@ import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter, map } from 'rxjs';
 
-import { AdvancedSearchBarComponent } from '../../components/advanced-search-bar';
-import { DetailsComponent } from '../../components/details';
-import { EntitiesComponent } from '../../components/entities';
-import { HistoryComponent } from '../../components/history';
-import { MobileEntityBarComponent } from '../../components/mobile-entity-bar';
-import { SidenavComponent } from '../../components/sidenav';
+import {
+  AdvancedSearchBarComponent,
+  DetailsComponent,
+  EntitiesComponent,
+  HistoryComponent,
+  MobileEntityBarComponent,
+  SidenavComponent,
+  SourcesComponent,
+} from '../../components';
 import { ENTITY_MENU_ITEMS } from '../../constants';
 import { EntitiesStore } from '../../store';
 
@@ -32,6 +35,7 @@ import { EntitiesStore } from '../../store';
     HistoryComponent,
     MobileEntityBarComponent,
     SidenavComponent,
+    SourcesComponent,
   ],
   templateUrl: './flags.component.html',
   styleUrl: './flags.component.css',

@@ -17,7 +17,7 @@ table[flag-table] {
   }
 
   thead {
-    color: var(--flag-secondary-700);
+    color: var(--flag-secondary-text);
   }
 
   tbody {

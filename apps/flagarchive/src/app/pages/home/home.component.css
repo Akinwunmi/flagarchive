@@ -47,7 +47,7 @@
   .new,
   .flag-of-the-day {
     h3 {
-      color: var(--flag-secondary-700);
+      color: var(--flag-secondary-text);
       font-weight: var(--flag-font-weight-regular);
     }
   }

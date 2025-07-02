@@ -1,4 +1,4 @@
 export enum DetailsSection {
-  Flag = 0,
-  Entity = 1,
+  General = 0,
+  Colours = 1,
 }
