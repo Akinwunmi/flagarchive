@@ -1,7 +1,7 @@
 import { HttpClient, provideHttpClient } from '@angular/common/http';
 import { ApplicationConfig, provideExperimentalZonelessChangeDetection } from '@angular/core';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { provideRouter, withInMemoryScrolling } from '@angular/router';
+import { provideRouter, withComponentInputBinding } from '@angular/router';
 import { provideTranslateService, TranslateLoader, TranslationObject } from '@ngx-translate/core';
 
 import { APP_ROUTES } from '../app.routes';
@@ -22,18 +22,12 @@ class TranslateHttpModuleloader implements TranslateLoader {
 const httpLoaderFactory: (http: HttpClient) => TranslateHttpModuleloader = (http: HttpClient) =>
   new TranslateHttpModuleloader(http);
 
-// const httpLoaderFactory: (http: HttpClient) => TranslateHttpModuleLoader = (http: HttpClient) =>
-//   new TranslateHttpModuleLoader(http, './i18n/', '.json');
-
 export const APP_CONFIG: ApplicationConfig = {
   providers: [
     provideAnimationsAsync(),
     provideExperimentalZonelessChangeDetection(),
     provideHttpClient(),
-    provideRouter(
-      APP_ROUTES,
-      withInMemoryScrolling({ anchorScrolling: 'enabled', scrollPositionRestoration: 'enabled' }),
-    ),
+    provideRouter(APP_ROUTES, withComponentInputBinding()),
     provideTranslateService({
       loader: {
         provide: TranslateLoader,
