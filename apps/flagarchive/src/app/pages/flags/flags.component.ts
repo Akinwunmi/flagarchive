@@ -19,14 +19,17 @@ import { filter, map } from 'rxjs';
 
 import {
   AdvancedSearchBarComponent,
-  DetailsComponent,
-  EntitiesComponent,
-  HistoryComponent,
   MobileEntityBarComponent,
   SidenavComponent,
-  SourcesComponent,
 } from '../../components';
 import { ENTITY_MENU_ITEMS } from '../../constants';
+import {
+  DetailsComponent,
+  DocumentsComponent,
+  EntitiesComponent,
+  HistoryComponent,
+  SourcesComponent,
+} from '../../fragments';
 import { EntitiesStore } from '../../store';
 
 @Component({
@@ -34,6 +37,7 @@ import { EntitiesStore } from '../../store';
   imports: [
     AdvancedSearchBarComponent,
     DetailsComponent,
+    DocumentsComponent,
     EntitiesComponent,
     HistoryComponent,
     MobileEntityBarComponent,

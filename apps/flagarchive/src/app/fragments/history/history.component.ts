@@ -5,7 +5,7 @@ import { EntityFlag, EntityFlagRange, EntityRange, Flag } from '@flagarchive/ent
 import { HyphenatePipe, TagComponent, TagGroupComponent } from '@flagarchive/ui';
 import { TranslatePipe } from '@ngx-translate/core';
 
-import { FlagComponent } from '../flag';
+import { FlagComponent } from '../../components';
 import { AdvancedSearchStore, EntitiesStore } from '../../store';
 
 @Component({

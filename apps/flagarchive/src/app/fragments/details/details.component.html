@@ -1,13 +1,13 @@
 @if (entity(); as entity) {
   <header>
     <a flag-anchor fragment="details" [routerLink]="[]">
-      {{ 'common.details' | translate }}
+      {{ 'pages.details.title' | translate }}
     </a>
   </header>
   <section class="content">
     <flag-tab-group (activeChange)="setActiveSection($event)">
       <flag-tab [label]="'common.general' | translate" />
-      <flag-tab [label]="'common.colour.plural' | translate" />
+      <flag-tab [label]="'flag.colour.plural' | translate" />
     </flag-tab-group>
     <flag-card
       class="general-info"
