@@ -32,6 +32,7 @@ describe('FlagsComponent', () => {
 
     fixture = TestBed.createComponent(FlagsComponent);
     component = fixture.componentInstance;
+    fixture.componentRef.setInput('entityId', 'test-id');
     fixture.detectChanges();
   });
 

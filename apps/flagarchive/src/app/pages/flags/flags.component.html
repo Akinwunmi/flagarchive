@@ -1,5 +1,5 @@
 <app-sidenav [entityId]="entityId()" [entityItems]="entityItems()" />
-<div class="flags">
+<div #flags class="flags">
   <app-advanced-search-bar />
   @if (isMainEntity()) {
     <div #fragment id="entities">

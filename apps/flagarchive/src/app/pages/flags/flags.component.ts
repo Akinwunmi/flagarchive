@@ -4,10 +4,13 @@ import {
   Component,
   computed,
   DestroyRef,
+  effect,
   ElementRef,
   inject,
+  input,
   OnInit,
   signal,
+  viewChild,
   viewChildren,
 } from '@angular/core';
 import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
@@ -46,6 +49,9 @@ export class FlagsComponent implements AfterViewInit, OnInit {
   readonly #route = inject(ActivatedRoute);
   readonly #router = inject(Router);
 
+  entityId = input.required<string>();
+
+  flags = viewChild.required<ElementRef<HTMLDivElement>>('flags');
   fragments = viewChildren<ElementRef<HTMLDivElement>>('fragment');
 
   isMainEntity = this.#entitiesStore.isMainEntity;
@@ -59,8 +65,6 @@ export class FlagsComponent implements AfterViewInit, OnInit {
 
   #activePage = signal<string | null>(null);
 
-  #entityPath = computed(() => this.#routerPath()?.[1]);
-  entityId = computed(() => this.#entityPath()?.split('#')[0] ?? '');
   entityItems = computed(() =>
     ENTITY_MENU_ITEMS.map((item) => ({
       ...item,
@@ -69,6 +73,17 @@ export class FlagsComponent implements AfterViewInit, OnInit {
     })),
   );
   mainPage = computed(() => this.#routerPath()?.[0] ?? '');
+
+  constructor() {
+    effect(() => {
+      if (this.entityId()) {
+        this.flags().nativeElement.scrollTo({
+          top: 0,
+          behavior: 'smooth',
+        });
+      }
+    });
+  }
 
   ngAfterViewInit(): void {
     const options: IntersectionObserverInit = {
@@ -83,7 +98,6 @@ export class FlagsComponent implements AfterViewInit, OnInit {
       });
     }, options);
 
-    // Observe components
     this.fragments().forEach((fragment) => {
       if (fragment.nativeElement) {
         observer.observe(fragment.nativeElement);
