@@ -31,17 +31,7 @@
     "about": "About",
     "about-the-project": "About Flag Archive",
     "cancel": "Cancel",
-    "colour": {
-      "singular": "Colour",
-      "plural": "Colours"
-    },
     "continents": "Continents",
-    "details": "Details",
-    "documents": "Documents",
-    "entity": {
-      "singular": "Entity",
-      "plural": "Entities"
-    },
     "filters-and-sorting": "Filters and sorting",
     "flag": {
       "singular": "Flag",
@@ -50,7 +40,6 @@
     "general": "General",
     "global": "Global",
     "go-to-home": "Go to home",
-    "historical-flags": "Historical flags",
     "language": "Language",
     "log-in": "Log in",
     "log-out": "Log out",
@@ -60,7 +49,6 @@
     "save-changes": "Save changes",
     "sign-up": "Sign up",
     "signup": "Sign up",
-    "sources": "Sources",
     "update": "Update",
     "update-password": "Update password"
   },
@@ -172,6 +160,10 @@
       "no-colour-data": "No colour codes available yet",
       "title": "Details"
     },
+    "documents": {
+      "no-data": "No documents available yet",
+      "title": "Documents"
+    },
     "entities": {
       "no-children": "This entity has no child entities",
       "no-data": "No entities available yet",
@@ -179,7 +171,7 @@
     },
     "history": {
       "no-data": "No historical flags available yet",
-      "title": "History"
+      "title": "Historical flags"
     },
     "home": {
       "browse-flags": "Browse flags",

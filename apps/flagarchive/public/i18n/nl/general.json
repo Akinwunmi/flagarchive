@@ -31,17 +31,7 @@
     "about": "Over",
     "about-the-project": "Over Flag Archive",
     "cancel": "Annuleren",
-    "colour": {
-      "singular": "Kleur",
-      "plural": "Kleuren"
-    },
     "continents": "Continenten",
-    "details": "Details",
-    "documents": "Documenten",
-    "entity": {
-      "singular": "Entiteit",
-      "plural": "Entiteiten"
-    },
     "filters-and-sorting": "Filters en sorteren",
     "flag": {
       "singular": "Vlag",
@@ -50,7 +40,6 @@
     "general": "Algemeen",
     "global": "Wereldwijd",
     "go-to-home": "Ga naar home",
-    "historical-flags": "Historische vlaggen",
     "language": "Taal",
     "log-in": "Inloggen",
     "log-out": "Uitloggen",
@@ -60,7 +49,6 @@
     "save-changes": "Wijzigingen opslaan",
     "sign-up": "Aanmelden",
     "signup": "Aanmelden",
-    "sources": "Bronnen",
     "update": "Bijwerken",
     "update-password": "Wachtwoord bijwerken"
   },

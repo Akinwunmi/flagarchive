@@ -4,25 +4,31 @@ export const ENTITY_MENU_ITEMS: MenuItem[] = [
   {
     icon: 'info',
     fragment: 'details',
-    label: 'common.details',
+    label: 'pages.details.title',
     path: [],
   },
   {
     icon: 'flag',
     fragment: 'entities',
-    label: 'common.entity.plural',
+    label: 'pages.entities.title',
     path: [],
   },
   {
     icon: 'history',
     fragment: 'history',
-    label: 'common.historical-flags',
+    label: 'pages.history.title',
+    path: [],
+  },
+  {
+    icon: 'article',
+    fragment: 'documents',
+    label: 'pages.documents.title',
     path: [],
   },
   {
     icon: 'asterisk',
     fragment: 'sources',
-    label: 'common.sources',
+    label: 'pages.sources.title',
     path: [],
   },
 ];

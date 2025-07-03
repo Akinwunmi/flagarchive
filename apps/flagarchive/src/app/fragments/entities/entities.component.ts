@@ -3,7 +3,7 @@ import { RouterLink } from '@angular/router';
 import { Layout } from '@flagarchive/advanced-search';
 import { TranslatePipe } from '@ngx-translate/core';
 
-import { EntityComponent } from '../entity';
+import { EntityComponent } from '../../components';
 import { AdvancedSearchStore, EntitiesStore } from '../../store';
 
 @Component({
