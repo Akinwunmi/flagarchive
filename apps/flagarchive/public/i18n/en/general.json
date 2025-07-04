@@ -92,6 +92,8 @@
   "flag-categories": {
     "civil-ensign": "Civil ensign",
     "civil-flag": "Civil flag",
+    "community-flag": "Community flag",
+    "institutional-flag": "Institutional flag",
     "national-ensign": "(Sub)national ensign",
     "national-flag": "(Sub)national flag",
     "naval-ensign": "Naval ensign",

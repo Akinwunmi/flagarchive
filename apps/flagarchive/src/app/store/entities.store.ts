@@ -25,7 +25,7 @@ import { pipe, switchMap } from 'rxjs';
 import { Breadcrumb } from '../models';
 import { EntityService } from '../services';
 import { AdvancedSearchStore } from './advanced-search.store';
-import { setCurrentRange, setFilteredEntities } from './entities.utils';
+import { setCurrentRange, setFilteredEntities, setFlagCategory } from './entities.utils';
 
 interface EntitiesState {
   breadcrumbs: Breadcrumb[];
@@ -123,7 +123,10 @@ export const EntitiesStore = signalStore(
         switchMap((uniqueId) =>
           store._entityService.getEntityById(uniqueId).pipe(
             tapResponse({
-              next: (selectedEntity) => patchState(store, { selectedEntity }),
+              next: (selectedEntity) => {
+                patchState(store, { selectedEntity });
+                setFlagCategory(store._advancedSearchStore, selectedEntity.type, uniqueId);
+              },
               error: (error: Error) => store._toastService.open(error.message),
             }),
           ),

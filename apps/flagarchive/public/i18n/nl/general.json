@@ -92,6 +92,8 @@
   "flag-categories": {
     "civil-ensign": "Handelsvlag",
     "civil-flag": "Civiele vlag",
+    "community-flag": "Gemeenschapsvlag",
+    "institutional-flag": "Institutionele vlag",
     "national-ensign": "(Sub)nationale scheepsvlag",
     "national-flag": "(Sub)nationale vlag",
     "naval-ensign": "Marinevlag",
