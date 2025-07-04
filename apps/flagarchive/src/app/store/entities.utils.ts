@@ -1,5 +1,12 @@
-import { sortBy } from '@flagarchive/advanced-search';
-import { Entity, EntityRange, getActiveRange } from '@flagarchive/entities';
+import { FlagCategory, sortBy } from '@flagarchive/advanced-search';
+import {
+  COMMUNITY_ENTITY_TYPES,
+  Entity,
+  EntityRange,
+  EntityType,
+  getActiveRange,
+  INSTITUTIONAL_ENTITY_TYPES,
+} from '@flagarchive/entities';
 import { CURRENT_YEAR } from '@flagarchive/ui';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -45,4 +52,29 @@ export function setFilteredEntities(
     advancedSearchStore.sortDirection(),
     translateService,
   );
+}
+
+export function setFlagCategory(
+  advancedSearchStore: InstanceType<typeof AdvancedSearchStore>,
+  type: EntityType,
+  id: string,
+) {
+  if (COMMUNITY_ENTITY_TYPES.includes(type)) {
+    return advancedSearchStore.setFlagCategory(FlagCategory.CommunityFlag);
+  }
+
+  if (INSTITUTIONAL_ENTITY_TYPES.includes(type)) {
+    return advancedSearchStore.setFlagCategory(FlagCategory.InstitutionalFlag);
+  }
+
+  if (type === EntityType.Organization) {
+    const category = id === 'oo' ? FlagCategory.InstitutionalFlag : FlagCategory.CommunityFlag;
+    return advancedSearchStore.setFlagCategory(category);
+  }
+
+  // Reset to NationalFlag if currently set to Community or Institutional
+  const current = advancedSearchStore.flagCategory();
+  if (current === FlagCategory.CommunityFlag || current === FlagCategory.InstitutionalFlag) {
+    advancedSearchStore.setFlagCategory(FlagCategory.NationalFlag);
+  }
 }

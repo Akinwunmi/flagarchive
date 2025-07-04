@@ -1,6 +1,8 @@
 export enum FlagCategory {
   CivilEnsign = 'civil_ensign',
   CivilFlag = 'civil_flag',
+  CommunityFlag = 'community_flag',
+  InstitutionalFlag = 'institutional_flag',
   NationalEnsign = 'national_ensign',
   NationalFlag = 'national_flag',
   NavalEnsign = 'naval_ensign',
