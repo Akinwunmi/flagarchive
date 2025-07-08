@@ -79,23 +79,6 @@
           />
         </flag-list-item>
       </flag-collapsible>
-      <flag-collapsible
-        [label]="'advanced-search.flag-category' | translate"
-        [pillLabel]="'flag-categories.' + (activeFlagCategory() | hyphenate) | translate"
-        [secondary]="true"
-      >
-        @for (flagCategory of flagCategories; track $index) {
-          <button
-            flag-list-item
-            highlighted
-            secondary
-            [attr.active]="flagCategory === activeFlagCategory() || undefined"
-            (click)="setFlagCategory(flagCategory)"
-          >
-            {{ 'flag-categories.' + (flagCategory | hyphenate) | translate }}
-          </button>
-        }
-      </flag-collapsible>
     </flag-accordion>
   </section>
 </flag-sidepanel>

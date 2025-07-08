@@ -30,7 +30,7 @@ export function setFilteredEntities(
   advancedSearchStore: InstanceType<typeof AdvancedSearchStore>,
   entities: Entity[],
   selectedEntity?: Entity,
-  translateService?: TranslateService,
+  translate?: TranslateService,
 ) {
   const filteredEntities = entities.filter((entity) => {
     const activeRange = getActiveRange(advancedSearchStore.selectedYear(), entity.ranges);
@@ -50,7 +50,7 @@ export function setFilteredEntities(
     filteredEntities,
     'name',
     advancedSearchStore.sortDirection(),
-    translateService,
+    translate,
   );
 }
 

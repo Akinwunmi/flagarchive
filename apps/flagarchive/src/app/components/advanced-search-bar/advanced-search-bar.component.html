@@ -5,6 +5,28 @@
   [showPlayBar]="false"
   (selectedChange)="setSelectedYear($event)"
 />
+<div class="flag-categories">
+  @if (showCategoryDropdown()) {
+    <flag-dropdown
+      icon="flag"
+      [label]="isDesktop() ? ('flag-categories.' + (activeCategory() | hyphenate) | translate) : ''"
+      [secondary]="true"
+      [small]="true"
+      [(isOpen)]="isCategoryDropdownOpen"
+    >
+      @for (category of categories(); track $index) {
+        <button
+          flag-list-item
+          secondary
+          [attr.active]="category === activeCategory() || undefined"
+          (click)="selectCategory(category)"
+        >
+          {{ 'flag-categories.' + (category | hyphenate) | translate }}
+        </button>
+      }
+    </flag-dropdown>
+  }
+</div>
 @if (showFilterButton()) {
   <button flag-button secondary small (click)="openFilterSidepanel()">
     <flag-icon>tune</flag-icon>

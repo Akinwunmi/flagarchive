@@ -37,12 +37,16 @@ button {
     padding-inline-end: var(--flag-space-xs);
   }
 
-  &:hover {
-    background-color: var(--flag-secondary-100);
+  &:active,
+  &.active {
+    background-color: var(--flag-secondary-600);
+    border-color: var(--flag-secondary-600);
+    color: var(--flag-white);
   }
 
-  &:active {
-    background-color: var(--flag-secondary-200);
+  &:hover {
+    background-color: var(--flag-secondary-700);
+    border-color: var(--flag-secondary-700);
   }
 }
 

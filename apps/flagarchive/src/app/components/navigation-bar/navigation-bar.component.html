@@ -1,5 +1,5 @@
 <div class="breadcrumbs">
-  @if (!isTablet() || (isTablet() && !isMainEntity())) {
+  @if (isDesktop() || (!isDesktop() && !isMainEntity())) {
     <flag-breadcrumb-group>
       @if (selectedEntity(); as selectedEntity) {
         @for (entity of breadcrumbs(); track $index) {
@@ -20,7 +20,7 @@
       }
     </flag-breadcrumb-group>
   }
-  @if (isTablet() && isMainEntity()) {
+  @if (!isDesktop() && isMainEntity()) {
     @if (selectedEntity(); as selectedEntity) {
       <flag-dropdown
         [extraSmall]="true"

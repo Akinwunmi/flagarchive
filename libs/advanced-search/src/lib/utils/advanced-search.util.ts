@@ -1,6 +1,28 @@
 import { TranslateService } from '@ngx-translate/core';
 
-import { SortDirection } from '../models';
+import { NATIONAL_ENSIGN_CATEGORIES, NATIONAL_FLAG_CATEGORIES } from '../constants';
+import { FlagCategory, SortDirection } from '../models';
+
+export function isActiveFlagCategory(
+  categories: FlagCategory[],
+  activeCategory: FlagCategory,
+): boolean {
+  if (
+    categories.includes(FlagCategory.NationalEnsign) &&
+    NATIONAL_ENSIGN_CATEGORIES.includes(activeCategory)
+  ) {
+    return true;
+  }
+
+  if (
+    categories.includes(FlagCategory.NationalFlag) &&
+    NATIONAL_FLAG_CATEGORIES.includes(activeCategory)
+  ) {
+    return true;
+  }
+
+  return categories.includes(activeCategory);
+}
 
 export function sortBy<T, K extends keyof T>(
   array: T[],

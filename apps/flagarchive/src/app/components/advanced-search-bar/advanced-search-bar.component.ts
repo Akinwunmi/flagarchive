@@ -1,22 +1,39 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  computed,
   DestroyRef,
   inject,
   input,
+  signal,
   TemplateRef,
   viewChild,
   ViewContainerRef,
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { IconComponent, SidepanelService, YearNavigatorComponent } from '@flagarchive/ui';
+import { FlagCategory, NATIONAL_CATEGORIES } from '@flagarchive/advanced-search';
+import {
+  DropdownComponent,
+  HyphenatePipe,
+  IconComponent,
+  SidepanelService,
+  YearNavigatorComponent,
+} from '@flagarchive/ui';
+import { TranslatePipe } from '@ngx-translate/core';
 
 import { AdvancedSearchStore, EntitiesStore } from '../../store';
 import { FilterSidepanelComponent } from '../filter-sidepanel';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [FilterSidepanelComponent, IconComponent, YearNavigatorComponent],
+  imports: [
+    DropdownComponent,
+    FilterSidepanelComponent,
+    HyphenatePipe,
+    IconComponent,
+    TranslatePipe,
+    YearNavigatorComponent,
+  ],
   selector: 'app-advanced-search-bar',
   styleUrl: './advanced-search-bar.component.css',
   templateUrl: './advanced-search-bar.component.html',
@@ -34,6 +51,17 @@ export class AdvancedSearchBarComponent {
 
   #selectedYear = this.#advancedSearchStore.selectedYear;
   currentRange = this.#entitiesStore.currentRange;
+  activeCategory = this.#advancedSearchStore.flagCategory;
+  isDesktop = this.#advancedSearchStore.isDesktop;
+
+  categories = signal(this.#setCategories());
+  isCategoryDropdownOpen = signal(false);
+
+  showCategoryDropdown = computed(() => {
+    return ![FlagCategory.CommunityFlag, FlagCategory.InstitutionalFlag].includes(
+      this.activeCategory(),
+    );
+  });
 
   getSelectedYear(): number {
     const [firstYear, lastYear] = this.currentRange();
@@ -57,7 +85,16 @@ export class AdvancedSearchBarComponent {
       .subscribe();
   }
 
+  selectCategory(category: FlagCategory) {
+    this.#advancedSearchStore.setFlagCategory(category);
+    this.isCategoryDropdownOpen.set(false);
+  }
+
   setSelectedYear(selectedYear: number) {
     this.#advancedSearchStore.setSelectedYear(selectedYear);
+  }
+
+  #setCategories() {
+    return Object.values(FlagCategory).filter((category) => NATIONAL_CATEGORIES.includes(category));
   }
 }

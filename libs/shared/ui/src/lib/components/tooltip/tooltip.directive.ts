@@ -1,5 +1,5 @@
 import { Overlay, OverlayRef } from '@angular/cdk/overlay';
-import { Directive, ElementRef, inject, input, OnInit } from '@angular/core';
+import { Directive, ElementRef, inject, input, OnDestroy, OnInit } from '@angular/core';
 
 import { CONNECTED_POSITIONS } from '../../constants';
 import { TooltipComponent } from './tooltip.component';
@@ -12,7 +12,7 @@ import { ComponentPortal } from '@angular/cdk/portal';
   },
   selector: '[flagTooltip]',
 })
-export class TooltipDirective implements OnInit {
+export class TooltipDirective implements OnDestroy, OnInit {
   readonly #elementRef = inject(ElementRef);
   readonly #overlay = inject(Overlay);
 
@@ -28,6 +28,10 @@ export class TooltipDirective implements OnInit {
         .withPositions(CONNECTED_POSITIONS),
       scrollStrategy: this.#overlay.scrollStrategies.close(),
     });
+  }
+
+  ngOnDestroy() {
+    this.#overlayRef?.dispose();
   }
 
   hide() {
