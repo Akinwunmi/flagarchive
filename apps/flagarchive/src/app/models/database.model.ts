@@ -92,14 +92,14 @@ interface DbEntityFlagRangeForeignKey {
 }
 
 export interface DbEntityRange {
-  alt_parent_id: string | null;
-  end: number | null;
-  entity_id: number | null;
+  alt_parent_id?: string | null;
+  end?: number | null;
+  entity_id: number;
   id: number;
-  name: string | null;
-  parent_ids: string[] | null;
+  name?: string | null;
+  parent_ids?: string[] | null;
   start: number;
-  type: string | null;
+  type?: string | null;
 }
 
 interface DbEntityRangeForeignKey {
