@@ -1,5 +1,6 @@
 import { Component, ChangeDetectionStrategy, input, signal, inject, computed } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { isActiveFlagCategory } from '@flagarchive/advanced-search';
 import { Entity, EntityFlagRange, EntityRange, Flag, getActiveRange } from '@flagarchive/entities';
 
 import { FlagComponent } from '../flag';
@@ -24,7 +25,7 @@ export class EntityComponent {
   isReversed = signal(false);
 
   #activeFlag = computed(() =>
-    this.entity().flags?.find((flag) => flag.categories?.includes(this.flagCategory())),
+    this.entity().flags?.find((flag) => isActiveFlagCategory(flag.categories, this.flagCategory())),
   );
   #activeFlagRange = computed(() => this.#setActiveFlagRange());
   #activeRange = computed(() => this.#setActiveRange());
@@ -33,6 +34,7 @@ export class EntityComponent {
   );
   flag = computed<Flag>(() => ({
     alt_parent_id: this.#activeRange()?.alt_parent_id ?? this.entity().alt_parent_id,
+    categories: this.categories(),
     end: this.#activeRange()?.end,
     hoistedRight: this.entity().hoisted_right,
     isReversed: !!this.#activeFlag()?.reverse_url,

@@ -1,12 +1,11 @@
 import { CdkTrapFocus } from '@angular/cdk/a11y';
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
-import { FlagCategory, Layout, SortDirection } from '@flagarchive/advanced-search';
+import { Layout, SortDirection } from '@flagarchive/advanced-search';
 import { EntityTypeItem } from '@flagarchive/entities';
 import {
   AccordionComponent,
   CheckboxComponent,
   CollapsibleComponent,
-  HyphenatePipe,
   IconComponent,
   ListItemComponent,
   SidepanelComponent,
@@ -24,7 +23,6 @@ import { AdvancedSearchStore, EntitiesStore } from '../../store';
     CdkTrapFocus,
     CheckboxComponent,
     CollapsibleComponent,
-    HyphenatePipe,
     IconComponent,
     ListItemComponent,
     SidepanelComponent,
@@ -41,12 +39,10 @@ export class FilterSidepanelComponent {
 
   #entities = this.#entitiesStore.entities;
   #entityTypes = this.#advancedSearchStore.entityTypes;
-  activeFlagCategory = this.#advancedSearchStore.flagCategory;
   activeSortDirection = this.#advancedSearchStore.sortDirection;
   layout = this.#advancedSearchStore.layout;
   showOverseasRegions = this.#advancedSearchStore.showOverseasRegions;
 
-  flagCategories = Object.values(FlagCategory);
   layoutOptions: Item[] = [
     { label: Layout.List, icon: 'splitscreen' },
     { label: Layout.Grid, icon: 'grid_view' },
@@ -80,10 +76,6 @@ export class FilterSidepanelComponent {
 
   isSelectedEntityType(label: string): boolean {
     return this.currentEntityTypes().find((type) => type.label === label)?.checked ?? false;
-  }
-
-  setFlagCategory(flagCategory: FlagCategory) {
-    this.#advancedSearchStore.setFlagCategory(flagCategory);
   }
 
   setLayout(layout: string) {

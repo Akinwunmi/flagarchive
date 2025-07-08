@@ -7,13 +7,13 @@
   [flagDropdown]="dropdown"
   [(isOpen)]="isOpen"
 >
-  @if (amountSelected() > 0) {
-    <flag-badge>{{ amountSelected() }}</flag-badge>
-  }
   @if (icon(); as icon) {
     <flag-icon>{{ icon }}</flag-icon>
   }
   {{ label() }}
+  @if (amountSelected() > 0) {
+    <flag-badge>{{ amountSelected() }}</flag-badge>
+  }
   @if (!hideChevron()) {
     <flag-icon [class.rotated]="isOpen()">keyboard_arrow_down</flag-icon>
   }

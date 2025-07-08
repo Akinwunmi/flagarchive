@@ -17,6 +17,8 @@
   --flag-font-weight-medium: 500;
   --flag-font-weight-bold: 600;
 
+  --flag-letter-spacing-xs: 0.0625rem;
+  --flag-letter-spacing-sm: 0.125rem;
   --flag-letter-spacing-md: 0.25rem;
 
   --flag-line-height-xs: 1.125rem;

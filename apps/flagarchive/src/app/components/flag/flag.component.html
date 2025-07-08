@@ -39,5 +39,7 @@
   }
 </div>
 @if (flag().categories; as categories) {
-  <flag-usage-symbol [categories]="categories" [flagTooltip]="setCategoriesTooltip(categories)" />
+  @if (categories.length > 0) {
+    <flag-usage-symbol [categories]="categories" [flagTooltip]="setCategoriesTooltip(categories)" />
+  }
 }

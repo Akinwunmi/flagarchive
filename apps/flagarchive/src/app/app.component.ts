@@ -3,11 +3,13 @@ import {
   Component,
   computed,
   inject,
+  OnDestroy,
   OnInit,
   signal,
 } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
+import { ResizeObserverService } from '@flagarchive/ui';
 import { TranslateService } from '@ngx-translate/core';
 import { filter, map } from 'rxjs';
 
@@ -26,8 +28,9 @@ import { AuthService } from './services';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnDestroy, OnInit {
   readonly #authService = inject(AuthService);
+  readonly #resizeObserverService = inject(ResizeObserverService);
   readonly #router = inject(Router);
   readonly #translate = inject(TranslateService);
 
@@ -52,5 +55,11 @@ export class AppComponent implements OnInit {
     this.#authService.auth.onAuthStateChange((event, session) => {
       this.#authService.setCurrentUser(event, session);
     });
+
+    this.#resizeObserverService.observe();
+  }
+
+  ngOnDestroy() {
+    this.#resizeObserverService.unobserve();
   }
 }

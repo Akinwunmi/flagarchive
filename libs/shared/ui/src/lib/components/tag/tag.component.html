@@ -9,7 +9,7 @@
     <ng-container *ngTemplateOutlet="content" />
   </label>
 } @else if (removable()) {
-  <button type="button">
+  <button type="button" [class.active]="active()" (click)="remove.emit()">
     <ng-container *ngTemplateOutlet="content" />
     <flag-icon>close</flag-icon>
   </button>

@@ -13,7 +13,7 @@ import { RouterLink } from '@angular/router';
 import { IconComponent } from '@flagarchive/ui';
 import { combineLatest, find, tap } from 'rxjs';
 
-import { WindowResizeService } from '../../services';
+import { AdvancedSearchStore } from '../../store';
 import { MainMenuComponent } from '../main-menu';
 
 @Component({
@@ -24,11 +24,13 @@ import { MainMenuComponent } from '../main-menu';
   templateUrl: './header.component.html',
 })
 export class HeaderComponent {
+  readonly #advancedSearchStore = inject(AdvancedSearchStore);
   readonly #destroyRef = inject(DestroyRef);
   readonly #overlay = inject(Overlay);
-  readonly #windowResizeService = inject(WindowResizeService);
 
   mainMenuPortal = viewChild.required(CdkPortal);
+
+  #isTablet = this.#advancedSearchStore.isTablet;
 
   isMainMenuOpen = signal(false);
 
@@ -41,7 +43,7 @@ export class HeaderComponent {
 
   openMainMenu() {
     let positionStrategy = this.#overlay.position().global().left().top();
-    if (this.#windowResizeService.isTablet()) {
+    if (this.#isTablet()) {
       positionStrategy = this.#overlay.position().global().right().top();
     }
 

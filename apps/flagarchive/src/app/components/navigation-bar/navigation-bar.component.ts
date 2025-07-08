@@ -9,8 +9,7 @@ import {
 } from '@flagarchive/ui';
 import { TranslatePipe } from '@ngx-translate/core';
 
-import { WindowResizeService } from '../../services';
-import { EntitiesStore } from '../../store';
+import { AdvancedSearchStore, EntitiesStore } from '../../store';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -28,17 +27,17 @@ import { EntitiesStore } from '../../store';
   templateUrl: './navigation-bar.component.html',
 })
 export class NavigationBarComponent {
+  readonly #advancedSearchStore = inject(AdvancedSearchStore);
   readonly #entitiesStore = inject(EntitiesStore);
-  readonly #windowResizeService = inject(WindowResizeService);
 
   breadcrumbs = this.#entitiesStore.breadcrumbs;
   continents = this.#entitiesStore.continents;
   globalEntities = this.#entitiesStore.globalEntities;
+  isDesktop = this.#advancedSearchStore.isDesktop;
   isMainEntity = this.#entitiesStore.isMainEntity;
+  isMobile = this.#advancedSearchStore.isMobile;
+  isTablet = this.#advancedSearchStore.isTablet;
   selectedEntity = this.#entitiesStore.selectedEntity;
-
-  isMobile = this.#windowResizeService.isMobile;
-  isTablet = this.#windowResizeService.isTablet;
 
   basePath = '/flags';
   isMainEntityTypesMenuOpen = signal(false);
