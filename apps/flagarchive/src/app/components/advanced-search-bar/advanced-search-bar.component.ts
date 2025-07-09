@@ -94,7 +94,31 @@ export class AdvancedSearchBarComponent {
     this.#advancedSearchStore.setSelectedYear(selectedYear);
   }
 
+  #getCategoryPriority(category: FlagCategory): number {
+    if (category.includes('flag')) {
+      return 1;
+    }
+
+    if (category.includes('ensign')) {
+      return 2;
+    }
+
+    return 3;
+  }
+
   #setCategories() {
-    return Object.values(FlagCategory).filter((category) => NATIONAL_CATEGORIES.includes(category));
+    const categories = Object.values(FlagCategory).filter((category) =>
+      NATIONAL_CATEGORIES.includes(category),
+    );
+
+    return categories.sort((a, b) => {
+      const priorityA = this.#getCategoryPriority(a);
+      const priorityB = this.#getCategoryPriority(b);
+      if (priorityA !== priorityB) {
+        return priorityA - priorityB;
+      }
+
+      return a.localeCompare(b);
+    });
   }
 }

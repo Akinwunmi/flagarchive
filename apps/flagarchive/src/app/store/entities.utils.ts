@@ -75,6 +75,6 @@ export function setFlagCategory(
   // Reset to NationalFlag if currently set to Community or Institutional
   const current = advancedSearchStore.flagCategory();
   if (current === FlagCategory.CommunityFlag || current === FlagCategory.InstitutionalFlag) {
-    advancedSearchStore.setFlagCategory(FlagCategory.NationalFlag);
+    advancedSearchStore.setFlagCategory(FlagCategory.CivilFlag);
   }
 }
