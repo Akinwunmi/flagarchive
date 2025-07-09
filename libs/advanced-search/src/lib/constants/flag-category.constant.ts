@@ -15,8 +15,6 @@ export const NATIONAL_FLAG_CATEGORIES = [
 export const NATIONAL_CATEGORIES = [
   ...NATIONAL_ENSIGN_CATEGORIES,
   ...NATIONAL_FLAG_CATEGORIES,
-  FlagCategory.NationalEnsign,
-  FlagCategory.NationalFlag,
   FlagCategory.Unofficial,
 ];
 

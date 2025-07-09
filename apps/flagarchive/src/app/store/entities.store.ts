@@ -1,5 +1,5 @@
 import { computed, effect, inject } from '@angular/core';
-import { sortBy } from '@flagarchive/advanced-search';
+import { isActiveFlagCategory, sortBy } from '@flagarchive/advanced-search';
 import {
   Entity,
   EntityFlagRange,
@@ -58,7 +58,7 @@ export const EntitiesStore = signalStore(
     activeFlag: computed(() => {
       const flags = store.selectedEntity()?.flags;
       const flagCategory = store._advancedSearchStore.flagCategory();
-      return flags?.find((flag) => flag.categories?.includes(flagCategory));
+      return flags?.find((flag) => isActiveFlagCategory(flag.categories, flagCategory));
     }),
     activeRange: computed(() => {
       const selectedEntity = store.selectedEntity();
