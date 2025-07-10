@@ -9,10 +9,12 @@
     {{ 'entities.' + flag().name | translate }}
   </figcaption>
 </figure>
-<div class="info-row">
+<div class="actions">
   @if (flag().alt_parent_id; as altParentId) {
     <a
-      flag-pill
+      flag-button
+      extra-small
+      rounded
       class="alt-parent-id"
       type="button"
       [routerLink]="[basePath, altParentId]"
@@ -20,19 +22,6 @@
     >
       {{ altParentId ?? '' | uppercase }}
     </a>
-  }
-  @if (flag().start) {
-    <span class="range">{{ flag().start }} &ndash; {{ flag().end }}</span>
-  }
-</div>
-<div class="info-row">
-  @if (flag().categories; as categories) {
-    @if (categories.length > 0) {
-      <flag-usage-symbol
-        [categories]="categories"
-        [flagTooltip]="setCategoriesTooltip(categories)"
-      />
-    }
   }
   @if (flag().additional_srcs; as additionalSrcs) {
     <div class="multiple-flags">
@@ -72,5 +61,18 @@
         <flag-icon>swap_horiz</flag-icon>
       </button>
     </div>
+  }
+</div>
+<div class="info">
+  @if (flag().start) {
+    <span class="range">{{ flag().start }} &ndash; {{ flag().end }}</span>
+  }
+  @if (flag().categories; as categories) {
+    @if (categories.length > 0) {
+      <flag-usage-symbol
+        [categories]="categories"
+        [flagTooltip]="setCategoriesTooltip(categories)"
+      />
+    }
   }
 </div>

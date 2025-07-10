@@ -26,20 +26,28 @@
     }
   }
   
-  .info-row {
+  .info,
+  .actions {
     align-items: center;
     display: flex;
-    gap: var(--flag-space-xs);
+    gap: var(--flag-space-lg);
     height: var(--flag-space-xl);
-  
-    .alt-parent-id {
-      font-size: var(--flag-font-size-xs);
-      font-weight: var(--flag-font-weight-medium);
-    }
+  }
+
+  .info {
+    justify-content: flex-end;
   
     .range {
       color: var(--flag-secondary-text);
       font-size: var(--flag-font-size-xs);
+      width: 100%;
+    }
+  }
+
+  .actions {
+    .alt-parent-id {
+      font-size: var(--flag-font-size-xs);
+      font-weight: var(--flag-font-weight-medium);
     }
 
     .multiple-flags,
@@ -68,6 +76,15 @@
       flag-image {
         height: auto;
       }
+    }
+
+    .info,
+    .actions {
+      gap: var(--flag-space-xs);
+    }
+
+    .info {
+      grid-row: 2 / 3;
     }
   }
 }
