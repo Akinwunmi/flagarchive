@@ -6,7 +6,7 @@
       <app-entities />
     </div>
   } @else {
-    <app-mobile-entity-bar />
+    <app-selected-entity [cardView]="false" [showFavoriteButton]="false" />
     <div #fragment id="details">
       <app-details />
     </div>

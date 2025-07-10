@@ -6,6 +6,5 @@ export * from './footer';
 export * from './header';
 export * from './main-menu';
 export * from './main-navigation-actions';
-export * from './mobile-entity-bar';
 export * from './navigation-bar';
 export * from './sidenav';

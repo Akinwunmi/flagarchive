@@ -11,7 +11,11 @@ import {
   ViewContainerRef,
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { FlagCategory, NATIONAL_CATEGORIES } from '@flagarchive/advanced-search';
+import {
+  FlagCategory,
+  NATIONAL_CATEGORIES,
+  OTHER_NATIONAL_CATEGORIES,
+} from '@flagarchive/advanced-search';
 import {
   DropdownComponent,
   HyphenatePipe,
@@ -108,7 +112,7 @@ export class AdvancedSearchBarComponent {
 
   #setCategories() {
     const categories = Object.values(FlagCategory).filter((category) =>
-      NATIONAL_CATEGORIES.includes(category),
+      [...NATIONAL_CATEGORIES, ...OTHER_NATIONAL_CATEGORIES].includes(category),
     );
 
     return categories.sort((a, b) => {

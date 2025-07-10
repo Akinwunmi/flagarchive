@@ -24,23 +24,20 @@ app-sidenav {
   overflow-y: auto;
   padding-block-end: 8rem;
 
-  app-mobile-entity-bar {
+  app-selected-entity {
+    align-items: center;
     display: none;
+    height: var(--flag-space-5xl);
+    justify-content: flex-end;
+    padding-inline: var(--flag-space-sm);
+    position: absolute;
+    inset-block-start: var(--flag-space-4xl);
+    inset-inline-end: 0;
+    z-index: 3;
+
 
     @media screen and (max-width: 50rem) {
       display: flex;
     }
-  }
-
-  > header {
-    align-items: center;
-    background-color: var(--flag-grey-bg);
-    display: flex;
-    height: var(--flag-space-5xl);
-    margin-block-start: var(--flag-space-lg);
-    padding-inline: var(--flag-space-md);
-    position: sticky;
-    top: var(--flag-space-4xl);
-    z-index: 2;
   }
 }
