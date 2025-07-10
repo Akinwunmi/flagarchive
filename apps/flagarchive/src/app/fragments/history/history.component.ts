@@ -69,6 +69,7 @@ export class HistoryComponent {
   #setFlag(flagRange: EntityFlagRange, flag?: EntityFlag): Flag {
     const range = this.#getRange(flagRange.start, flagRange.end);
     return {
+      additional_srcs: flag?.additional_urls,
       alt_parent_id: range?.alt_parent_id ?? this.entity()?.alt_parent_id,
       categories: flagRange.categories ?? flag?.categories,
       end: flagRange.end,

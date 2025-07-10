@@ -16,7 +16,9 @@
   
     figcaption {
       display: -webkit-box;
+      height: var(--flag-space-xl);
       line-clamp: 1;
+      line-height: var(--flag-line-height-md);
       overflow: hidden;
       word-break: break-all;
       -webkit-line-clamp: 1;
@@ -24,12 +26,11 @@
     }
   }
   
-  .info {
+  .info-row {
     align-items: center;
     display: flex;
     gap: var(--flag-space-xs);
     height: var(--flag-space-xl);
-    width: fit-content;
   
     .alt-parent-id {
       font-size: var(--flag-font-size-xs);
@@ -40,6 +41,21 @@
       color: var(--flag-secondary-text);
       font-size: var(--flag-font-size-xs);
     }
+
+    .multiple-flags,
+    .reverse-button {
+      display: flex;
+      gap: var(--flag-space-2xs);
+      justify-content: flex-end;
+      width: 100%;
+    }
+
+    .multiple-flags {
+      [flag-button] {
+        width: var(--flag-space-xl);
+      }
+    }
+
   }
 
   &.card {

@@ -28,6 +28,7 @@ interface DbRawEntityFlag {
   entity_id: number;
   id: number;
   url: string;
+  additional_urls?: string[] | null;
   designed_by?: string[] | null;
   nickname?: string | null;
   ratio?: string | null;

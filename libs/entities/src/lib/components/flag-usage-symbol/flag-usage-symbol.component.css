@@ -1,9 +1,11 @@
 :host {
+  align-items: center;
+  display: flex;
   width: fit-content;
 }
 
 svg {
-  width: var(--flag-space-2xl);
+  width: var(--flag-space-xl);
 
   line {
     stroke-width: 1;

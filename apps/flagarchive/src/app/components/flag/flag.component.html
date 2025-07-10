@@ -3,13 +3,13 @@
     [alt]="'flag-image.alt-text' | translate: { name: 'entities.' + flag().name | translate }"
     [hoistedRight]="flag().hoistedRight ?? false"
     [isReversed]="isReversed()"
-    [src]="flagImageSrc() ?? ''"
+    [src]="selectedSrc() ?? ''"
   />
   <figcaption>
     {{ 'entities.' + flag().name | translate }}
   </figcaption>
 </figure>
-<div class="info">
+<div class="info-row">
   @if (flag().alt_parent_id; as altParentId) {
     <a
       flag-pill
@@ -24,22 +24,53 @@
   @if (flag().start) {
     <span class="range">{{ flag().start }} &ndash; {{ flag().end }}</span>
   }
+</div>
+<div class="info-row">
+  @if (flag().categories; as categories) {
+    @if (categories.length > 0) {
+      <flag-usage-symbol
+        [categories]="categories"
+        [flagTooltip]="setCategoriesTooltip(categories)"
+      />
+    }
+  }
+  @if (flag().additional_srcs; as additionalSrcs) {
+    <div class="multiple-flags">
+      <button
+        flag-button
+        extra-small
+        secondary
+        [attr.raised]="selectedSrc() === flagImageSrc() || undefined"
+        (click)="selectSrc($event)"
+      >
+        1
+      </button>
+      @for (src of additionalSrcs; track $index) {
+        <button
+          flag-button
+          extra-small
+          secondary
+          [attr.raised]="selectedSrc() === src || undefined"
+          (click)="selectSrc($event, src)"
+        >
+          {{ $index + 2 }}
+        </button>
+      }
+    </div>
+  }
   @if (flag().reverse_src) {
-    <button
-      flag-button
-      extra-small
-      rounded
-      secondary
-      type="button"
-      [attr.raised]="isReversed() || undefined"
-      (click)="toggleReversed($event)"
-    >
-      <flag-icon>swap_horiz</flag-icon>
-    </button>
+    <div class="reverse-button">
+      <button
+        flag-button
+        extra-small
+        rounded
+        secondary
+        type="button"
+        [attr.raised]="isReversed() || undefined"
+        (click)="toggleReversed($event)"
+      >
+        <flag-icon>swap_horiz</flag-icon>
+      </button>
+    </div>
   }
 </div>
-@if (flag().categories; as categories) {
-  @if (categories.length > 0) {
-    <flag-usage-symbol [categories]="categories" [flagTooltip]="setCategoriesTooltip(categories)" />
-  }
-}

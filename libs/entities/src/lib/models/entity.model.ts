@@ -17,6 +17,7 @@ export interface Entity {
 export interface EntityFlag {
   categories: FlagCategory[];
   url: string;
+  additional_urls?: string[];
   colours?: EntityFlagColour[];
   designed_by?: string[];
   nickname?: string;

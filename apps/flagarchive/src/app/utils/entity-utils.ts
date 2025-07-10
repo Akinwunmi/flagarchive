@@ -27,6 +27,7 @@ function mapFlags(flags: DbEntityFlag[] | null): EntityFlag[] | undefined {
   }
 
   return flags.map((flag) => ({
+    additional_urls: flag.additional_urls ?? undefined,
     categories: flag.categories,
     colours: mapFlagColours(flag.entity_flag_colours),
     designed_by: flag.designed_by ?? undefined,

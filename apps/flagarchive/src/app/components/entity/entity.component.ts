@@ -33,6 +33,7 @@ export class EntityComponent {
     () => this.#activeFlagRange()?.categories ?? this.#activeFlag()?.categories ?? [],
   );
   flag = computed<Flag>(() => ({
+    additional_srcs: this.#activeFlag()?.additional_urls,
     alt_parent_id: this.#activeRange()?.alt_parent_id ?? this.entity().alt_parent_id,
     categories: this.categories(),
     end: this.#activeRange()?.end,
