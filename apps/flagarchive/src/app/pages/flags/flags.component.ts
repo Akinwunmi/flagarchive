@@ -17,11 +17,7 @@ import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter, map } from 'rxjs';
 
-import {
-  AdvancedSearchBarComponent,
-  MobileEntityBarComponent,
-  SidenavComponent,
-} from '../../components';
+import { AdvancedSearchBarComponent, SidenavComponent } from '../../components';
 import { ENTITY_MENU_ITEMS } from '../../constants';
 import {
   DetailsComponent,
@@ -31,6 +27,7 @@ import {
   SourcesComponent,
 } from '../../fragments';
 import { EntitiesStore } from '../../store';
+import { SelectedEntityComponent } from '../../components/selected-entity';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -40,7 +37,7 @@ import { EntitiesStore } from '../../store';
     DocumentsComponent,
     EntitiesComponent,
     HistoryComponent,
-    MobileEntityBarComponent,
+    SelectedEntityComponent,
     SidenavComponent,
     SourcesComponent,
   ],

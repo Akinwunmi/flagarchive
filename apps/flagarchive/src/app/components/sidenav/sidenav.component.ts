@@ -9,24 +9,24 @@ import {
   signal,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { FlagImageComponent } from '@flagarchive/entities';
 import { IconComponent, ListComponent, ListItemComponent } from '@flagarchive/ui';
 import { TranslatePipe } from '@ngx-translate/core';
 
 import { ENTITY_MENU_ITEMS } from '../../constants';
 import { MenuItem } from '../../models';
-import { AdvancedSearchStore, EntitiesStore } from '../../store';
+import { EntitiesStore } from '../../store';
+import { SelectedEntityComponent } from '../selected-entity';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     CdkMenu,
     CdkMenuItem,
-    FlagImageComponent,
     IconComponent,
     ListComponent,
     ListItemComponent,
     RouterLink,
+    SelectedEntityComponent,
     TranslatePipe,
   ],
   selector: 'app-sidenav',
@@ -34,17 +34,12 @@ import { AdvancedSearchStore, EntitiesStore } from '../../store';
   templateUrl: './sidenav.component.html',
 })
 export class SidenavComponent implements OnInit {
-  readonly #advancedSearchStore = inject(AdvancedSearchStore);
   readonly #entitiesStore = inject(EntitiesStore);
 
   entityId = input<string>();
   entityItems = input<MenuItem[]>([]);
 
-  activeFlag = this.#entitiesStore.activeFlag;
-  activeFlagRange = this.#entitiesStore.activeFlagRange;
-  activeRange = this.#entitiesStore.activeRange;
   continents = this.#entitiesStore.continents;
-  flagCategory = this.#advancedSearchStore.flagCategory;
   globalEntities = this.#entitiesStore.globalEntities;
   isMainEntity = this.#entitiesStore.isMainEntity;
   selectedEntity = this.#entitiesStore.selectedEntity;

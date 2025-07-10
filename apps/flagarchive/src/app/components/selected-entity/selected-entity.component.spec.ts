@@ -3,17 +3,17 @@ import { provideTranslateService, TranslateLoader, TranslateFakeLoader } from '@
 
 import { ENVIRONMENT_STUB, MockSupabaseService } from '../../mocks';
 import { SupabaseService } from '../../services';
-import { MobileEntityBarComponent } from './mobile-entity-bar.component';
+import { SelectedEntityComponent } from './selected-entity.component';
 
 jest.mock('../../../environments/environment', () => ENVIRONMENT_STUB);
 
-describe('MobileEntityBarComponent', () => {
-  let component: MobileEntityBarComponent;
-  let fixture: ComponentFixture<MobileEntityBarComponent>;
+describe(SelectedEntityComponent.name, () => {
+  let component: SelectedEntityComponent;
+  let fixture: ComponentFixture<SelectedEntityComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MobileEntityBarComponent],
+      imports: [SelectedEntityComponent],
       providers: [
         provideTranslateService({
           loader: {
@@ -28,7 +28,7 @@ describe('MobileEntityBarComponent', () => {
       ],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(MobileEntityBarComponent);
+    fixture = TestBed.createComponent(SelectedEntityComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

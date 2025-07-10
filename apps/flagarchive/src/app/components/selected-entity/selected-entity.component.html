@@ -1,0 +1,20 @@
+@if (selectedEntity(); as entity) {
+  <flag-image
+    [alt]="
+      'flag-image.alt-text'
+        | translate: { name: 'entities.' + (activeRange()?.name ?? entity.name) | translate }
+    "
+    [hoistedRight]="entity.hoisted_right ?? false"
+    [src]="activeFlagRange()?.url ?? activeFlag()?.url ?? ''"
+  />
+  <div class="actions">
+    @if (showFavoriteButton()) {
+      <button flag-button rounded small>
+        <flag-icon>favorite</flag-icon>
+      </button>
+    }
+    <button flag-button rounded small>
+      <flag-icon>open_in_full</flag-icon>
+    </button>
+  </div>
+}

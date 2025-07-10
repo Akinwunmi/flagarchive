@@ -26,26 +26,7 @@
     }
   </flag-list>
 } @else {
-  @if (selectedEntity(); as selectedEntity) {
-    <div class="flag">
-      <flag-image
-        [src]="activeFlagRange()?.url ?? activeFlag()?.url ?? ''"
-        [alt]="
-          'flag-image.alt-text'
-            | translate
-              : { name: 'entities.' + (activeRange()?.name ?? selectedEntity.name) | translate }
-        "
-      />
-      <div class="actions">
-        <button flag-button rounded small>
-          <flag-icon>favorite</flag-icon>
-        </button>
-        <button flag-button ghost rounded small>
-          <flag-icon>open_in_full</flag-icon>
-        </button>
-      </div>
-    </div>
-  }
+  <app-selected-entity />
   <flag-list cdkMenu>
     @for (item of entityItems(); track $index) {
       <a

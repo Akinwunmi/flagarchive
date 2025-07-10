@@ -1,0 +1,26 @@
+:host {
+  align-items: center;
+  display: flex;
+  gap: var(--flag-space-xs);
+
+  flag-image {
+    width: 3.75rem;
+  }
+
+  &.card {
+    background-color: var(--flag-grey-200);
+    display: grid;
+    gap: var(--flag-space-md);
+    margin-inline-start: var(--flag-space-sm);
+    padding: var(--flag-space-sm) var(--flag-space-xs);
+
+    flag-image {
+      width: initial;
+    }
+  }
+} 
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+}

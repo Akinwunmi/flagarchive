@@ -7,16 +7,3 @@
 flag-list {
   margin-block: var(--flag-space-md);
 }
-
-.flag {
-  background-color: var(--flag-grey-200);
-  display: grid;
-  gap: var(--flag-space-md);
-  margin-inline-start: var(--flag-space-sm);
-  padding: var(--flag-space-sm) var(--flag-space-xs);
-
-  .actions {
-    display: flex;
-    justify-content: space-between;
-  }
-}
