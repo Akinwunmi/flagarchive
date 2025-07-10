@@ -1,5 +1,13 @@
 import { UpperCasePipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component, computed, inject, input, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  input,
+  linkedSignal,
+  signal,
+} from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { FlagCategory } from '@flagarchive/advanced-search';
 import { Flag, FlagImageComponent, FlagUsageSymbolComponent } from '@flagarchive/entities';
@@ -37,11 +45,18 @@ export class FlagComponent {
 
   flagImageSrc = computed(() => this.#setFlagImageSrc());
 
+  selectedSrc = linkedSignal(() => this.flagImageSrc());
+
   basePath = '/flags';
 
   handleClickEvent(event: Event) {
     event.preventDefault();
     event.stopPropagation();
+  }
+
+  selectSrc(event: Event, src?: string) {
+    this.handleClickEvent(event);
+    this.selectedSrc.set(src ?? this.flagImageSrc());
   }
 
   setCategoriesTooltip(categories: FlagCategory[]): string {

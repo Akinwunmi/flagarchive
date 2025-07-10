@@ -10,6 +10,7 @@ export interface FlagImage {
 
 export interface Flag extends Omit<FlagImage, 'alt' | 'src'> {
   name: string;
+  additional_srcs?: string[];
   alt_parent_id?: string;
   end?: number;
   reverse_src?: string;
